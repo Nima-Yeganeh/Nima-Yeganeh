@@ -1,0 +1,1 @@
+print ("Hello this is %s and my age is %d !" % ('Nima', 35))
