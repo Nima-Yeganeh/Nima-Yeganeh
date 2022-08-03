@@ -44,4 +44,9 @@ git push
 git config --global credential.credentialStore secretservice
 git push
 git status
+git add .
+git commit -m 'done'
+git push
+git status
+git pull
 
