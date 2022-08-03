@@ -26,6 +26,11 @@ ls -anp
 cd ..
 ls -anp
 cd Downloads/
+#https://linuxize.com/post/how-to-install-git-on-ubuntu-18-04/
+#https://linuxize.com/post/how-to-install-git-on-ubuntu-18-04/
+#https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository
+#https://stackoverflow.com/questions/6565357/git-push-requires-username-and-password
+#https://github.com/GitCredentialManager/git-credential-manager
 #https://github.com/GitCredentialManager/git-credential-manager/releases/tag/v2.0.785
 wget https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.785/gcm-linux_amd64.2.0.785.deb 
 sudo dpkg -i gcm-linux_amd64.2.0.785.deb 
