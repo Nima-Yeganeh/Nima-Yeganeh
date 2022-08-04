@@ -278,3 +278,50 @@ sudo docker image ls
 sudo docker container run python2.7test
 sudo docker container run python3.7test
 
+sudo apt install -y jq
+sudo curl -s --unix-socket /var/run/docker.sock http:/images/json | jq '.'
+sudo curl -X POST \
+--unix-socket /var/run/docker.sock \
+http:/images/create?fromImage=nimayeganeh/apache2
+sudo curl -X POST \
+--unix-socket /var/run/docker.sock \
+http:/images/create?fromImage=wordpress
+sudo curl -X DELETE \
+--unix-socket /var/run/docker.sock \
+http:/images/wordpress:latest
+
+sudo apt-get -y install python3-pip
+sudo pip3 install docker
+
+sudo systemctl docker status | grep Loaded
+sudo service docker staus
+
+sudo cat /lib/systemd/system/docker.service
+sudo vi /lib/systemd/system/docker.service
+#ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375 --containerd=/run/containerd/containerd.sock
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+sudo systemctl daemon-reload
+sudo service docker restart
+
+sudo systemctl restart docker
+sudo apt install -y net-tools
+sudo netstat -anp | grep 2375
+sudo curl -s http://127.0.0.1:2375/version
+sudo curl -s http://127.0.0.1:2375/version | jq "."
+sudo docker -H tcp://127.0.0.1:2357 version
+
+sudo export DOCKER_HOST=tcp://dockerhost.example.com:2375
+
+sudo docker container run -it -c 100 alpine ash
+sudo docker container run -it --cpuset=0,3 alpine ash
+
+sudo docker container run -it -m 512M alpine ash
+sudo docker container run -it --ulimit data=8192 alpine ash
+sudo cat /etc/docker/daemon.json
+
+
