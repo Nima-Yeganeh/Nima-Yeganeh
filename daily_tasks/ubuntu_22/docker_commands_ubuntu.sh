@@ -141,3 +141,47 @@ sudo docker container export --help
 sudo docker image import myapache2.tar apache2:imported
 sudo docker image import --help
 
+sudo docker image import --help
+mkdir sample_image
+cd sample_image
+cat Dockerfile
+vi Dockerfile
+
+# Use ubuntu as the base image
+FROM ubuntu
+# Add author's name
+LABEL maintainer="nima"
+# Add the command to run at the start of container
+CMD date
+
+sudo docker image build .
+sudo docker image build -t sample .
+
+sudo docker image build --help
+
+mkdir apache2_sample_image
+cd apache2_sample_image
+cat Dockerfile
+vi Dockerfile
+
+FROM alpine
+LABEL maintainer="nimayeganeh"
+RUN apk add --no-cache apache2 && \
+mkdir -p /run/apache2 && \
+echo "<html><h1>Docker Test</h1></html>" > \
+/var/www/localhost/htdocs/index.html
+EXPOSE 80
+ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
+sudo docker image build -t apache2_test .
+
+ID=$(sudo docker container run -d -p 8081:80 apache2_test)
+IP=$(sudo docker container inspect --format='{{.NetworkSettings.IPAddress}}' $ID)
+sudo curl $IP
+
+sudo docker container run -d -p 5000:5000 \
+--name registry registry:2
+sudo docker tag apache2_test localhost:5000/apache2_test
+sudo docker image push localhost:5000/apache2_test
+
+
