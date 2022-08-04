@@ -240,4 +240,41 @@ sudo touch file
 sudo docker container run --rm -v /home/nima/file:/file:rw ubuntu sh -c "echo rw mode >> /file"
 sudo cat file
 
+sudo mkdir flask_docker_test
+sudo cd flask_docker_test
+sudo git clone https://github.com/pallets/flask
+sudo ls -anp
+sudo cat Dockerfile_2.7
+sudo vi Dockerfile_2.7
+
+FROM python:2.7
+RUN pip install flask pytest
+ADD flask/ /flask
+WORKDIR /flask/examples/tutorial
+RUN pip install -e .
+CMD ["/usr/local/bin/pytest"]
+
+sudo cat $PWD/Dockerfile_2.7
+sudo docker image build -t python2.7test -f $PWD/Dockerfile_2.7 .
+
+sudo docker image ls
+
+sudo ls -anp
+sudo cat Dockerfile_3.7
+sudo vi Dockerfile_3.7
+
+FROM python:3.7
+RUN pip install flask pytest
+ADD flask/ /flask
+WORKDIR /flask/examples/tutorial
+RUN pip install -e .
+CMD ["/usr/local/bin/pytest"]
+
+sudo cat $PWD/Dockerfile_3.7
+sudo docker image build -t python3.7test -f $PWD/Dockerfile_3.7 .
+
+sudo docker image ls
+
+sudo docker container run python2.7test
+sudo docker container run python3.7test
 
