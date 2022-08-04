@@ -241,7 +241,7 @@ sudo docker container run --rm -v /home/nima/file:/file:rw ubuntu sh -c "echo rw
 sudo cat file
 
 sudo mkdir flask_docker_test
-sudo cd flask_docker_test
+cd flask_docker_test
 sudo git clone https://github.com/pallets/flask
 sudo ls -anp
 sudo cat Dockerfile_2.7
@@ -324,4 +324,40 @@ sudo docker container run -it -m 512M alpine ash
 sudo docker container run -it --ulimit data=8192 alpine ash
 sudo cat /etc/docker/daemon.json
 
+sudo mkdir docker-performance-test
+cd docker-performance-test
+sudo git clone https://github.com/redhat-performance/docker-performance.git
+sudo ls -anp
+cd docker-performance/Dockerfiles/
+sudo docker image ls
+sudo docker image build -t c7perf --rm .
+sudo docker image ls
+
+sudo apt-get install -y sysbench
+sudo apt-get install -y nuttcp netperf
+sudo docker stats
+
+sudo pip install docker-compose
+sudo mkdir wordpress_docker_compose_test
+cd wordpress_docker_compose_test
+sudo cat docker-compose.yml
+sudo vi docker-compose.yml
+
+version: '3.1'
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_PASSWORD: example
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      
+sudo cat docker-compose.yml
+sudo docker-compose up
 
