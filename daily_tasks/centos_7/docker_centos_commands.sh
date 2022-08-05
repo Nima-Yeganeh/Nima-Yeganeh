@@ -233,8 +233,38 @@ FROM ubuntu
 # Add author name
 LABEL maintainer='Nima Yeganeh'
 # Add the command to run at the start of container
-CMD date" > Dockerfile
+CMD date
+" > Dockerfile
 cat Dockerfile
 sudo docker image build .
 sudo docker image build -t sampleimage1 .
+
+mkdir sampleimage2
+cd sampleimage2
+cat Dockerfile
+echo "" > Dockerfile
+pwd
+ls -anp
+echo "
+FROM alpine:3.6
+LABEL maintainer='Nima Yeganeh'
+RUN apk add --no-cache apache2 && \
+mkdir -p /run/apache2 && \
+echo '<html><h1>Docker Test</h1></html>' > \
+/var/www/localhost/htdocs/index.html
+EXPOSE 80
+ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+" > Dockerfile
+cat Dockerfile
+sudo docker image build -t sampleimage2 .
+
+ID=$(sudo docker container run -d -p 8081:80 sampleimage2)
+sudo docker container inspect $ID
+IP=$(sudo docker container inspect --format='{{.NetworkSettings.IPAddress}}' $ID)
+sudo curl $IP
+
+sudo docker container run -d -p 5000:5000 \
+--name registry registry:2
+sudo docker tag apache2 localhost:5000/apache2
+sudo docker image push localhost:5000/apache2
 
