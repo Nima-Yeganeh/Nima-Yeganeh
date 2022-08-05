@@ -336,4 +336,54 @@ sudo curl -s --unix-socket /var/run/docker.sock http://images/json | jq "."
 sudo yum install -y python3 python3-pip
 sudo pip3 install docker
 
+sudo systemctl docker status | grep Loaded
+sudo service docker status | grep Loaded
+sudo cat /lib/systemd/system/docker.service
+sudo vi /lib/systemd/system/docker.service
+# Continue on to configure dockerd to accept connections from remote systems by appending -H tcp://0.0.0.0:2375 to the ExecStart line in the unit file
+# ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375
+# default setting >> ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375 --containerd=/run/containerd/containerd.sock
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+sudo yum install -y net-tools
+sudo netstat -nap | grep 2375
+sudo curl http://127.0.0.1:2375/version | jq "."
+sudo docker -H tcp://127.0.0.1:2375 version
+sudo export DOCKER_HOST=tcp://dockerhost.example.com:2375
+sudo export DOCKER_HOST=tcp://127.0.0.1:2375
+
+sudo docker container run -it -c 100 alpine ash
+sudo docker container run -it --cpuset=0,3 alpine ash
+sudo docker container run -it -m 512M alpine ash
+sudo docker container run -it --ulimit data=8192 alpine ash
+
+sudo setenforce 0
+sudo setenforce 1
+
+sudo yum install -y nuttcp netperf
+
+sudo docker stats
+
+sudo yum install -y gcc openssl-devel bzip2-devel libffi-devel
+sudo yum update -y
+cd /usr/src
+sudo wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
+sudo tar xzf Python-3.7.0.tgz
+cd Python-3.7.0
+sudo ./configure --enable-optimizations
+sudo make altinstall
+python3.7 -V
+
+cd /usr/src
+sudo curl -O https://www.python.org/ftp/python/3.8.1/Python-3.8.1.tgz
+sudo tar -xzf Python-3.8.1.tgz
+cd Python-3.8.1/
+sudo ./configure --enable-optimizations
+sudo make altinstall
+
+sudo pip install --upgrade pip
+sudo pip3 install --upgrade pip
+sudo pip install docker-compose
+sudo pip3 install docker-compose
 
