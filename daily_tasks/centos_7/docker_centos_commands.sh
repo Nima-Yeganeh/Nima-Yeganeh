@@ -32,3 +32,29 @@ sudo systemctl enable docker
 sudo docker container run hello-world
 sudo docker ps -a
 
+sudo systemctl start docker
+sudo docker info
+
+sudo yum -y upgrade
+sudo systemctl enable docker
+sudo yum remove docker-ce
+sudo systemctl stop docker
+
+#Installing Docker on Linux with an automated script
+sudo curl -fsSL get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+sudo docker container run hello-world
+sudo docker image pull alpine
+sudo docker image ls
+sudo docker container run -id --name demo alpine ash
+sudo docker container ps
+
+sudo groupadd docker
+sudo useradd dockertest
+sudo usermod -aG docker dockertest
+sudo man docker
+sudo man docker ps
+sudo man docker-ps
+
+
