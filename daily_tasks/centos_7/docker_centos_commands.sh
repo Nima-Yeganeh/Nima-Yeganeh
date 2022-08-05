@@ -127,4 +127,21 @@ sudo docker container prune
 
 sudo docker container prune --help
 
+sudo docker container run --restart=always -d -i -t ubuntu /bin/bash
+sudo docker container run --restart=on-failure:3 \
+-d -i -t ubuntu /bin/bash
+
+sudo docker container run --privileged -i -t ubuntu /bin/bash
+#test inside the container >>
+mount --bind /home/ /mnt/
+ls /mnt/
+touch /home/file-in-home
+ls -l /mnt/
+
+sudo docker container run --device=/dev/sdc:/dev/xvdc \
+-i -t ubuntu /bin/bash
+
+ID=$(sudo docker container run -d redis)
+sudo docker container exec -it $ID /bin/bash
+
 
