@@ -223,4 +223,18 @@ sudo docker container export --help
 
 sudo docker image import myapache2.tar apache2:imported
 
+mkdir sampleimage1
+cd sampleimage1
+cat Dockerfile
+echo "" > Dockerfile
+echo "
+# Use ubuntu as the base image
+FROM ubuntu
+# Add author name
+LABEL maintainer='Nima Yeganeh'
+# Add the command to run at the start of container
+CMD date" > Dockerfile
+cat Dockerfile
+sudo docker image build .
+sudo docker image build -t sampleimage1 .
 
