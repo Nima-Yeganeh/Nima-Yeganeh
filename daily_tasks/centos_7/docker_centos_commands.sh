@@ -57,4 +57,23 @@ sudo man docker
 sudo man docker ps
 sudo man docker-ps
 
+sudo docker version
+sudo docker search --limit 5 alpine
+sudo docker search \
+--filter is-automated=true \
+--filter stars=1 alpine
+sudo docker search --help
+
+sudo docker image pull ubuntu
+sudo docker image pull centos:centos7
+
+sudo docker image pull --all-tags alpine
+sudo docker image pull --help
+
+sudo docker image ls
+sudo docker images
+sudo docker image ls --help
+
+sudo docker container run -i -t --name mycontainer ubuntu /bin/bash
+
 
