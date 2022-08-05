@@ -268,3 +268,54 @@ sudo docker container run -d -p 5000:5000 \
 sudo docker tag apache2 localhost:5000/apache2
 sudo docker image push localhost:5000/apache2
 
+sudo ip addr
+sudo ip addr docker0
+
+sudo docker container run --rm -it alpine
+sudo docker container run --rm --network=host alpine brctl show
+sudo iptables -t nat -L -n
+sudo docker run --rm alpine traceroute -m 3 -n 8.8.8.8
+
+sudo docker container run -d -p 80:80 test/apache2
+sudo /proc/sys/net/ipv4/ip_local_port_range
+sudo docker container run -it --rm alpine ip addr
+sudo docker container run -it --rm --net=host alpine ip addr
+
+sudo docker network ls
+sudo docker container run -it --rm --net=none alpine ip addr
+
+sudo docker container run -itd --name=ipcontainer alpine
+sudo docker container exec ipcontainer ip addr
+sudo docker container run --rm --net container:ipcontainer alpine ip addr
+sudo docker container run -itd --net container:ipcontainer --name service1 alpine
+sudo docker container exec service1 ip addr
+
+sudo docker network create newnet
+sudo docker network inspect newnet
+
+sudo docker network create 10dot1net --subnet 10.1.0.0/16
+sudo docker container run -itd --name container1 --network-alias netalias --net newnet alpine
+sudo docker container run -itd --name container2 --network-alias netalias --net newnet alpine
+sudo docker container inspect container1
+sudo docker container inspect container2
+sudo docker container run --rm --net newnet alpine ping -c1 container1
+sudo docker container run --rm --net newnet alpine ping -c1 container2
+sudo docker container run --rm --net newnet alpine ping -c1 netalias
+
+sudo dig -h
+sudo docker volume create datavol
+sudo docker volume ls
+sudo docker container run -it --rm -v datavol:/data alpine
+echo "This is a named volume demo" > /data/demo.txt
+sudo docker container run --rm -v datavol:/data ubuntu cat /data/demo.txt
+sudo docker container run --rm -v datavol:/data ubuntu ls -anp /data/
+sudo docker volume inspect datavol
+
+sudo yum install -y tree
+sudo tree -a /var/lib/docker/volumes/datavol
+sudo docker volume create -help
+sudo docker volume ls -help
+sudo docker volume inspect -help
+
+
+
