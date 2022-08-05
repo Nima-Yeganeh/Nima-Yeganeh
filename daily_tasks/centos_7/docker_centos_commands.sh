@@ -328,4 +328,12 @@ touch /home/nima/data_share/file
 sudo docker container run --rm -v /home/nima/data_share/file:/file:rw ubuntu sh -c "echo rw mode >> /file"
 cat /home/nima/data_share/file
 
+sudo yum install -y curl epel-release
+sudo yum update -y
+sudo yum install -y jq
+sudo curl -s --unix-socket /var/run/docker.sock http://images/json | jq "."
+
+sudo yum install -y python3 python3-pip
+sudo pip3 install docker
+
 
