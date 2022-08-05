@@ -98,4 +98,33 @@ sudo docker container run --help
 
 sudo docker container ls
 sudo docker ps
+sudo docker container ls -aq
+sudo docker container ls -l
+
+sudo docker container run -d ubuntu \
+/bin/bash -c \
+"while [ true ]; do date; sleep 1; done"
+
+sudo docker container logs --help
+
+ID=$(sudo docker run -d -i ubuntu /bin/bash)
+sudo docker stop $ID
+sudo docker stop $(sudo docker ps -q)
+sudo docker ps -q
+sudo docker container stop --help
+
+ID=$(sudo docker container create ubuntu /bin/bash)
+sudo docker container stop $ID
+sudo docker container rm $ID
+
+sudo docker container stop $(sudo docker container ls -q)
+sudo docker container rm $(sudo docker container ls -aq)
+sudo docker container rm --help
+
+sudo docker container create --name c1 ubuntu /bin/bash
+sudo docker container run --name c2 ubuntu /bin/bash
+sudo docker container prune
+
+sudo docker container prune --help
+
 
