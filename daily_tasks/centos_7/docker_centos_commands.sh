@@ -144,4 +144,80 @@ sudo docker container run --device=/dev/sdc:/dev/xvdc \
 ID=$(sudo docker container run -d redis)
 sudo docker container exec -it $ID /bin/bash
 
+sudo docker container exec --help
+
+ID=$(sudo docker container run -d -i ubuntu /bin/bash)
+sudo docker container inspect $ID
+
+ID=$(sudo docker container run -d -i ubuntu /bin/bash)
+sudo docker container inspect $ID | more
+
+sudo docker container inspect \
+--format='{{.NetworkSettings.IPAddress}}' $ID
+
+docker container inspect \
+--format='{{.NetworkSettings.IPAddress}}' demo
+docker container inspect \
+--format='{{.NetworkSettings.IPAddress}}' demo demo2
+
+sudo docker container inspect --format='{{.NetworkSettings.IPAddress}}' $(sudo docker ps -aq)
+sudo docker container inspect --help
+
+sudo docker image ls
+sudo docker container run \
+--label com.example.container=docker-test \
+label-demo date
+
+sudo docker container run --rm alpine pstree -p
+sudo docker container run --rm alpine sh -c 'pstree -p'
+sudo docker container run --rm --init alpine pstree -p
+sudo docker container run --rm --init alpine sh -c 'pstree -p'
+
+sudo docker container run -it ubuntu sh -c 'pwd && apt update && apt install -y apache2'
+sudo docker container ls -a
+sudo docker container commit --author 'nima-yeganeh' --message 'ubuntu with apache2' 80b32769d5ba myapache2test2
+sudo docker image ls
+sudo docker container diff 80b32769d5ba
+sudo docker container commit --help
+
+sudo docker login
+sudo docker logout
+sudo docker info
+sudo docker info | grep name
+sudo docker image tag myapache2test2 yeganehnimad/myapache2test2
+sudo docker image push yeganehnimad/myapache2test2
+sudo docker push --help
+
+sudo docker image history myapache2
+sudo docker image inspect myapache2
+sudo docker image inspect --format='{{.Comment}}' myapache2
+
+sudo docker image rm --help
+sudo docker image tag centos:latest centos:tag1
+sudo docker image tag centos:latest centos:tag2
+sudo docker image  ls
+sudo docker image rm $ID
+
+sudo docker image rm centos:tag1
+sudo docker image rm centos:tag2
+sudo docker image rm centos
+
+sudo docker container ls -q
+sudo docker container stop $(sudo docker container ls -q)
+
+sudo docker container ls -a -q
+sudo docker container rm $(sudo docker container ls -a -q)
+
+sudo docker image ls -q
+sudo docker image rm $(sudo docker image ls -q)
+
+sudo docker image rm --help
+
+sudo docker image save [-o|--output]=file.tar IMAGE
+sudo docker image save --output=myapache2.tar myapache2
+sudo docker container export --output=myapache2_cont.tar c71ae52e382d
+
+sudo docker image save -help
+sudo docker container export --help
+
 
