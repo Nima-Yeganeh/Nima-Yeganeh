@@ -387,4 +387,27 @@ sudo pip3 install --upgrade pip
 sudo pip install docker-compose
 sudo pip3 install docker-compose
 
+mkdir wordpress_compose
+cd wordpress_compose
+ls -anp
+cat docker-compose.yml
+echo "
+version: '3.1'
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_PASSWORD: example
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+" > docker-compose.yml
+cat docker-compose.yml
+sudo docker-compose up
+
 
