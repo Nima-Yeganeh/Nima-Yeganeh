@@ -75,5 +75,27 @@ sudo docker images
 sudo docker image ls --help
 
 sudo docker container run -i -t --name mycontainer ubuntu /bin/bash
+sudo docker container ps -a
+sudo docker container start mycontainer
+sudo docker container attach mycontainer
 
+ID=$(sudo docker container create -t -i ubuntu /bin/bash)
+sudo docker container start -a -i $ID
+sudo docker container run -d -i -t ubuntu /bin/bash
+
+ID=$(sudo docker container run -d -t -i ubuntu /bin/bash)
+sudo docker attach $ID
+
+sudo docker container run -d ubuntu \
+/bin/bash -c \
+"while [ true ]; do date; sleep 1; done"
+
+sudo docker run --rm ubuntu date
+sudo docker container run --read-only --rm \
+ubuntu touch file
+
+sudo docker container run --help
+
+sudo docker container ls
+sudo docker ps
 
