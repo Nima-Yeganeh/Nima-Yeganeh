@@ -188,11 +188,12 @@ sudo docker image tag myapache2test2 yeganehnimad/myapache2test2
 sudo docker image push yeganehnimad/myapache2test2
 sudo docker push --help
 
-sudo docker image history myapache2
-sudo docker image inspect myapache2
-sudo docker image inspect --format='{{.Comment}}' myapache2
+sudo docker image history myapache2test2
+sudo docker image inspect myapache2test2
+sudo docker image inspect --format='{{.Comment}}' myapache2test2
 
 sudo docker image rm --help
+sudo docker image pull centos:latest
 sudo docker image tag centos:latest centos:tag1
 sudo docker image tag centos:latest centos:tag2
 sudo docker image  ls
@@ -219,5 +220,7 @@ sudo docker container export --output=myapache2_cont.tar c71ae52e382d
 
 sudo docker image save -help
 sudo docker container export --help
+
+sudo docker image import myapache2.tar apache2:imported
 
 
