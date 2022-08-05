@@ -317,5 +317,15 @@ sudo docker volume create -help
 sudo docker volume ls -help
 sudo docker volume inspect -help
 
+mkdir /home/nima/data_share/
+echo 'data sharing demo' > /home/nima/data_share/demo.txt
+cat /home/nima/data_share/demo.txt
+sudo docker container run --rm -v /home/nima/data_share:/data ubuntu cat /data/demo.txt
+sudo docker container run --rm -v /home/nima/data_share:/data ubuntu ls -anp /data/
+sudo docker container run --rm -v /home/nima/data_share:/testfolder centos ls -anp /testfolder
+
+touch /home/nima/data_share/file
+sudo docker container run --rm -v /home/nima/data_share/file:/file:rw ubuntu sh -c "echo rw mode >> /file"
+cat /home/nima/data_share/file
 
 
