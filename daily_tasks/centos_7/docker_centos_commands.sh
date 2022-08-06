@@ -409,5 +409,64 @@ services:
 " > docker-compose.yml
 cat docker-compose.yml
 sudo docker-compose up
+sudo docker-compose down
+sudo docker-compose build
+sudo docker-compose exec wordpress bash
+sudo docker-compose ps
 
+sudo docker node ls
+sudo docker service create --name demo --publish 80:80 nginx
+sudo docker service ls
+sudo docker service ps demo
+sudo docker service scale demo=3
+
+echo "mypass" | docker secret create my_pass -
+sudo docker service create --name="my-service" --secret="my_pass"
+sudo docker service ps my-service
+sudo docker container exec $(sudo docker container ls --filter name=my-service -q) cat /run/secrets/my_pass
+sudo docker secret inspect secret_name
+sudo docker secret ls
+sudo docker secret rm secret_name
+sudo docker service update --secret-rm secret_name service_name
+
+sudo kubectl get pods
+sudo kubectl get rs
+sudo kubectl scale --replicas=1 deployment/my-nginx
+sudo kubectl get services
+sudo kubectl get secrets
+sudo kubectl get pvc
+
+sudo docker search ubuntu
+sudo useradd dockertest
+sudo passwd dockertest
+sudo groupadd docker
+sudo gpasswd -a dockertest docker
+
+sudo setenforce 1
+sudo getenforce
+sudo docker info
+
+sudo docker container run -it -v /tmp:/tmp/host:z alpine ash
+sudo docker container run -it -v /tmp:/tmp/host:z alpine ash
+
+sudo docker container run -it --net=host --pid=host --ipc=host alpine ash
+sudo docker -D
+sudo cat /etc/docker/daemon.json
+sudo docker container run alpine echo "hello world"
+
+sudo journalctl -u docker.service
+
+cat Dockerfile
+echo '
+FROM alpine:3.8
+RUN apk add --update nginx && mkdir /tmp/nginx && rm -rf /var/cache/apk/*
+EXPOSE 80 443
+CMD ["nginx", "-g", "daemon off;"]
+' > Dockerfile
+cat Dockerfile
+sudo docker image build -t sampleimage3 --no-cache - < Dockerfile
+sudo docker images
+
+sudo docker network create br0 --subnet 192.168.2.1/24
+sudo docker network ls
 
