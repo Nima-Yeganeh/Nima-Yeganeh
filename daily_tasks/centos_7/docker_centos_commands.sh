@@ -483,5 +483,6 @@ sudo docker events --filter 'event=start'
 sudo docker events --filter 'image=alpine:3.5'
 sudo docker events --format 'ID={{.ID }} Type={{.Type}} Status={{.Status}}'
 
-docker events --format '{{json .}}'
+sudo docker events --format '{{json .}}'
+
 
