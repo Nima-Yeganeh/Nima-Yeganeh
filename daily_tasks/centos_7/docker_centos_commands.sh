@@ -470,3 +470,18 @@ sudo docker images
 sudo docker network create br0 --subnet 192.168.2.1/24
 sudo docker network ls
 
+sudo docker container run -d --network br0 --name br0demo redis
+sudo docker container inspect br0demo
+
+sudo docker network rm br0
+
+sudo dockerd --log-driver=none
+sudo dockerd --log-driver=syslog
+sudo docker container run -it --log-driver syslog alpine ash
+sudo docker events --since '2015-01-01'
+sudo docker events --filter 'event=start'
+sudo docker events --filter 'image=alpine:3.5'
+sudo docker events --format 'ID={{.ID }} Type={{.Type}} Status={{.Status}}'
+
+docker events --format '{{json .}}'
+
