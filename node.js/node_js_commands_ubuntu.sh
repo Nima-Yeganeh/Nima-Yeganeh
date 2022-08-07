@@ -51,4 +51,9 @@ openssl x509 -req -in my_csr.pem -signkey my_key.pem -out my_cert.pem
 cp my_key.pem private_key.pem
 cp my_cert.pem certificate.pem
 
+npm install node-inspector
+npm install -g mocha
+npm install should
+npm install async
+npm install request
 

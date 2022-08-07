@@ -1,7 +1,7 @@
 var tls = require('tls'),
     fs = require('fs'),
-    port = 443,
-    host = 'google.com',
+    port = 4000,
+    host = 'localhost',
     options = {
         key : fs.readFileSync('./private_key.pem'),
         cert : fs.readFileSync('./certificate.pem')
