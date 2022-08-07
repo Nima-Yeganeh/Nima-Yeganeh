@@ -28,3 +28,27 @@ sudo npm view connect
 sudo curl -i http://localhost:4000
 curl -i http://localhost:8080
 
+# Testing udp port >> 4000
+echo 'hello' | nc -u -w 1 localhost 4000
+
+# Testing udp port on multicast network
+echo 'hello' | nc -u -w 1 230.1.2.3 4000
+
+# Private key
+openssl genrsa -out my.pem 1024
+
+# Public key
+openssl req -new -key my_key.pem -out my_csr.pem
+
+# Self-signed
+openssl x509 -req -in my_csr.pem -signkey my_key.pem -out my_cert.pem
+
+# Private and Public key generation commands
+openssl genrsa -out my.pem 1024
+cp my.pem my_key.pem
+openssl req -new -key my_key.pem -out my_csr.pem
+openssl x509 -req -in my_csr.pem -signkey my_key.pem -out my_cert.pem
+cp my_key.pem private_key.pem
+cp my_cert.pem certificate.pem
+
+
