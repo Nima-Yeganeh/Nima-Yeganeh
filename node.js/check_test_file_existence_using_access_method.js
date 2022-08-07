@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = './config.js';
+const path = './sample-file.txt';
 fs.access(path, fs.F_OK, (err) => {
     if (err) {
         console.error(err);

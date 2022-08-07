@@ -19,3 +19,12 @@ sudo npm install --save express-session
 sudo npm install --save mysql
 sudo npm install --save mongodb
 
+sudo npm ls installed
+sudo npm ls stable
+sudo npm ls installed stable
+sudo npm ls fug
+sudo npm view connect
+
+sudo curl -i http://localhost:4000
+curl -i http://localhost:8080
+
