@@ -31,4 +31,7 @@ curl -X GET 'http://localhost:9200/_nodes?pretty'
 
 curl -X POST -H "Content-Type: application/json" 'http://localhost:9200/tutorial/helloworld/1' -d '{ "message": "Hello World!" }'
 curl -X GET -H "Content-Type: application/json" 'http://localhost:9200/tutorial/helloworld/1'
+curl -X PUT -H "Content-Type: application/json"  'localhost:9200/tutorial/helloworld/1?pretty' -d '{ "message": "Hello, People!" }'
+curl -X GET -H "Content-Type: application/json" 'http://localhost:9200/tutorial/helloworld/1?pretty'
+
 
