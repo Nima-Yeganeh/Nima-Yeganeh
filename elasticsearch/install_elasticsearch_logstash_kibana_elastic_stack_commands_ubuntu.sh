@@ -43,12 +43,14 @@ sudo cat /etc/environment
 sudo nano /etc/environment
 sudo vi /etc/environment
 JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+LS_JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 source /etc/environment
 echo $JAVA_HOME
+echo $LS_JAVA_HOME
 
 # Install Nginx on Ubuntu
-sudo apt update
-sudo apt install nginx
+sudo apt update -y
+sudo apt install -y nginx
 sudo ufw app list
 sudo ufw allow 'Nginx HTTP'
 sudo ufw status
@@ -99,6 +101,17 @@ http {
 
 sudo nginx -t
 sudo systemctl restart nginx
+sudo systemctl status nginx.service
+sudo journalctl -xeu nginx.service
+
+# if error
+sudo service apache2 stop
+sudo systemctl restart nginx
+sudo systemctl disable apache2
+sudo systemctl stop apache2
+
+cat /etc/nginx/nginx.conf
+cat /etc/nginx/sites-enabled/default
 
 # Important Nginx Files and Directories
 # /var/www/html: The actual web content, which by default only consists of the default Nginx page you saw earlier, is served out of the /var/www/html directory. This can be changed by altering Nginx configuration files.
@@ -110,8 +123,6 @@ sudo systemctl restart nginx
 # /var/log/nginx/access.log: Every request to your web server is recorded in this log file unless Nginx is configured to do otherwise.
 # /var/log/nginx/error.log: Any Nginx errors will be recorded in this log.
 
-
-
 # Installing and Configuring the Kibana Dashboard
 sudo apt install -y kibana
 sudo systemctl enable kibana
@@ -119,16 +130,19 @@ sudo systemctl start kibana
 
 # Because Kibana is configured to only listen on localhost, we must set up a reverse proxy to allow external access to it. We will use Nginx for this purpose, which should already be installed on your server. First, use the openssl command to create an administrative Kibana user which you’ll use to access the Kibana web interface. As an example we will name this account kibanaadmin, but to ensure greater security we recommend that you choose a non-standard name for your user that would be difficult to guess. The following command will create the administrative Kibana user and password, and store them in the htpasswd.users file. You will configure Nginx to require this username and password and read this file momentarily:
 echo "kibanaadmin:`openssl passwd -apr1`" | sudo tee -a /etc/nginx/htpasswd.users
+cat /etc/nginx/htpasswd.users
+# example >> kibanaadmin:$apr1$fVHNpw8p$XxA1rgcbPxgpJsFIklC8j/
 
 # Enter and confirm a password at the prompt. Remember or take note of this login, as you will need it to access the Kibana web interface. Next, we will create an Nginx server block file. As an example, we will refer to this file as your_domain, although you may find it helpful to give yours a more descriptive name. For instance, if you have a FQDN and DNS records set up for this server, you could name this file after your FQDN.
 sudo nano /etc/nginx/sites-available/your_domain
+sudo vi /etc/nginx/sites-available/your_domain
 
 # Add the following code block into the file, being sure to update your_domain to match your server’s FQDN or public IP address. This code configures Nginx to direct your server’s HTTP traffic to the Kibana application, which is listening on localhost:5601. Additionally, it configures Nginx to read the htpasswd.users file and require basic authentication.
 
 cat /etc/nginx/sites-available/your_domain
 # Delete all the existing content in the file before adding the following:
 server {
-    listen 80;
+    listen 81;
 
     server_name your_domain;
 
@@ -157,18 +171,23 @@ sudo ufw allow 'Nginx Full'
 sudo ufw delete allow 'Nginx HTTP'
 
 # Kibana is now accessible via your FQDN or the public IP address of your Elastic Stack server. You can check the Kibana server’s status page by navigating to the following address and entering your login credentials when prompted:
-http://your_domain/status
+http://your_domain:81/status
+http://localhost:81/status
+http://localhost:81/
+# note: user and pass >> kibanaadmin and your_password!
 
 # Installing and Configuring Logstash
 # Although it’s possible for Beats to send data directly to the Elasticsearch database, it is common to use Logstash to process the data. This will allow you more flexibility to collect data from different sources, transform it into a common format, and export it to another database.
-sudo apt install logstash
+sudo apt install -y logstash
 sudo nano /etc/logstash/conf.d/02-beats-input.conf
+sudo vi /etc/logstash/conf.d/02-beats-input.conf
 input {
   beats {
     port => 5044
   }
 }
 sudo nano /etc/logstash/conf.d/30-elasticsearch-output.conf
+sudo vi /etc/logstash/conf.d/30-elasticsearch-output.conf
 output {
   if [@metadata][pipeline] {
 	elasticsearch {
@@ -185,9 +204,22 @@ output {
 	}
   }
 }
+
+cat /etc/logstash/conf.d/02-beats-input.conf
+cat /etc/logstash/conf.d/30-elasticsearch-output.conf
+sudo cat /etc/logstash/startup.options
 sudo -u logstash /usr/share/logstash/bin/logstash --path.settings /etc/logstash -t
 sudo systemctl start logstash
 sudo systemctl enable logstash
+sudo systemctl daemon-reload
+sudo systemctl enable logstash
+sudo systemctl start logstash 
+sudo systemctl status logstash
+
+# Stash your first log from the command line using logstash.
+sudo /usr/share/logstash/bin/logstash -e 'input { stdin { } } output { stdout {} }'
+hello world! 
+# To stop logstash press control + d
 
 # Installing and Configuring Filebeat
 # The Elastic Stack uses several lightweight data shippers called Beats to collect data from various sources and transport them to Logstash or Elasticsearch. Here are the Beats that are currently available from Elastic:
@@ -197,8 +229,9 @@ sudo systemctl enable logstash
 # Winlogbeat: collects Windows event logs.
 # Auditbeat: collects Linux audit framework data and monitors file integrity.
 # Heartbeat: monitors services for their availability with active probing.
-sudo apt install filebeat
+sudo apt install -y filebeat
 sudo nano /etc/filebeat/filebeat.yml
+sudo vi /etc/filebeat/filebeat.yml
 ...
 #output.elasticsearch:
   # Array of hosts to connect to.
@@ -209,6 +242,7 @@ output.logstash:
   hosts: ["localhost:5044"]
 sudo filebeat modules enable system
 sudo filebeat modules list
+cat /etc/filebeat/modules.d/system.yml
 sudo filebeat setup --pipelines --modules system
 sudo filebeat setup --index-management -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'
 sudo filebeat setup -E output.logstash.enabled=false -E output.elasticsearch.hosts=['localhost:9200'] -E setup.kibana.host=localhost:5601
