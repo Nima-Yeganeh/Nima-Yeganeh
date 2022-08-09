@@ -39,6 +39,7 @@ elasticsearch.username: "elastic"
 elasticsearch.password: "P@ssw0rd"
 cat kibana.yml
 
+sudo docker container rm $(sudo docker container ls -qa)
 sudo docker ps -a
 sudo docker container ls -a
 sudo docker-compose up
