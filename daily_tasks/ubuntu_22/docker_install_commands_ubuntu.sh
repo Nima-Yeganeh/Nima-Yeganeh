@@ -1,10 +1,11 @@
-sudo apt-get remove docker docker-engine docker.io containerd runc
-sudo apt-get update
+sudo apt-get remove -y docker docker-engine docker.io containerd runc
+sudo apt-get update -y
 sudo apt-get install -y \
     ca-certificates \
     curl \
     gnupg \
     lsb-release
+sudo apt install -y python3 python3-pip
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo \
@@ -16,4 +17,5 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 sudo apt-cache madison docker-ce
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo docker run hello-world
+sudo pip install docker-compose
 
