@@ -104,3 +104,57 @@ sudo gitlab-runner register -n --url https://your_gitlab.com --registration-toke
 # --docker-image is the default Docker image to use in CI/CD jobs, if not explicitly specified.
 # --tag-list is a list of tags assigned to the runner. Tags can be used in a pipeline configuration to select specific runners for a CI/CD job. The deployment tag will allow you to refer to this specific runner to execute the deployment job.
 # --docker-privileged executes the Docker container created for each CI/CD job in privileged mode. A privileged container has access to all devices on the host machine and has nearly the same access to the host as processes running outside containers (see Docker’s documentation about runtime privilege and Linux capabilities). The reason for running in privileged mode is so you can use Docker-in-Docker (dind) to build a Docker image in your CI/CD pipeline. It is good practice to give a container the minimum requirements it needs. For you it is a requirement to run in privileged mode in order to use Docker-in-Docker. Be aware, you registered the runner for this specific project only, where you are in control of the commands being executed in the privileged container.
+# Verify the registration process by going to Settings > CI/CD > Runners in GitLab, where the registered runner will show up.
+
+# Creating a Deployment User
+# You are going to create a user that is dedicated for the deployment task. You will later configure the CI/CD pipeline to log in to the server with that user.
+# On your server, create a new user:
+sudo adduser deployer
+# You’ll be guided through the user creation process. Enter a strong password and optionally any further user information you want to specify. Finally confirm the user creation with Y.
+# Add the user to the Docker group:
+sudo usermod -aG docker deployer
+# This permits deployer to execute the docker command, which is required to perform the deployment.
+# You are going to create an SSH key for the deployment user. GitLab CI/CD will later use the key to log in to the server and perform the deployment routine.
+# Let’s start by switching to the newly created deployer user for whom you’ll generate the SSH key:
+su deployer
+# Next, generate a 4096-bit SSH key. It is important to answer the questions of the ssh-keygen command correctly:
+# First question: answer it with ENTER, which stores the key in the default location (the rest of this tutorial assumes the key is stored in the default location).
+# Second question: configures a password to protect the SSH private key (the key used for authentication). If you specify a passphrase, you’ll have to enter it each time the private key is used. In general, a passphrase adds another security layer to SSH keys, which is good practice. Somebody in possession of the private key would also require the passphrase to use the key. For the purposes of this tutorial, it is important that you have an empty passphrase, because the CI/CD pipeline will execute non-interactively and therefore does not allow to enter a passphrase.
+# To summarize, run the following command and confirm both questions with ENTER to create a 4096-bit SSH key and store it in the default location with an empty passphrase:
+ssh-keygen -b 4096
+# To authorize the SSH key for the deployer user, you need to append the public key to the authorized_keys file:
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+# ~ is short for the user home in Linux. The cat program will print the contents of a file; here you use the >> operator to redirect the output of cat and append it to the authorized_keys file.
+
+# Storing the Private Key in a GitLab CI/CD Variable
+# You are going to store the SSH private key in a GitLab CI/CD file variable, so that the pipeline can make use of the key to log in to the server.
+# When GitLab creates a CI/CD pipeline, it will send all variables to the corresponding runner and the variables will be set as environment variables for the duration of the job. In particular, the values of file variables are stored in a file and the environment variable will contain the path to this file.
+# While you’re in the variables section, you’ll also add a variable for the server IP and the server user, which will inform the pipeline about the destination server and user to log in.
+# Start by showing the SSH private key:
+cat ~/.ssh/id_rsa
+# Copy the output to your clipboard. Make sure to add a linebreak after -----END RSA PRIVATE KEY-----:
+# Now navigate to Settings > CI / CD > Variables in your GitLab project and click Add Variable. Fill out the form as follows:
+# Key: ID_RSA
+# Value: Paste your SSH private key from your clipboard (including a line break at the end).
+# Type: File
+# Environment Scope: All (default)
+# Protect variable: Checked
+# Mask variable: Unchecked
+# A file containing the private key will be created on the runner for each CI/CD job and its path will be stored in the $ID_RSA environment variable.
+
+# Create another variable with your server IP. Click Add Variable and fill out the form as follows:
+# Key: SERVER_IP
+# Value: your_server_IP
+# Type: Variable
+# Environment scope: All (default)
+# Protect variable: Checked
+# Mask variable: Checked
+
+# Finally, create a variable with the login user. Click Add Variable and fill out the form as follows:
+# Key: SERVER_USER
+# Value: deployer
+# Type: Variable
+# Environment scope: All (default)
+# Protect variable: Checked
+# Mask variable: Checked
+
