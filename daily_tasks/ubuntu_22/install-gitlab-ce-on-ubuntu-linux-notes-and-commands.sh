@@ -72,3 +72,11 @@ sudo ufw allow http
 sudo ufw allow https
 sudo ufw allow OpenSSH
 sudo ufw status
+
+sudo cat ~/.ssh/id_rsa.pub
+sudo ssh-keygen
+sudo cat /root/.ssh/id_rsa
+sudo cat /root/.ssh/id_rsa.pub
+sudo cat ~/.ssh/id_rsa.pub
+
+# nameserver 178.22.122.100
