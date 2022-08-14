@@ -80,3 +80,27 @@ sudo cat /root/.ssh/id_rsa.pub
 sudo cat ~/.ssh/id_rsa.pub
 
 # nameserver 178.22.122.100
+
+# In order to install the gitlab-runner service, you’ll add the official GitLab repository. Download and inspect the install script:
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh > script.deb.sh
+less script.deb.sh
+# Once you are satisfied with the safety of the script, run the installer:
+sudo bash script.deb.sh
+# Next install the gitlab-runner service:
+sudo apt install gitlab-runner
+# Verify the installation by checking the service status:
+systemctl status gitlab-runner
+# To register the runner, you need to get the project token and the GitLab URL:
+# In your GitLab project, navigate to Settings > CI/CD > Runners.
+# In the Set up a specific Runner manually section, you’ll find the registration token and the GitLab URL. Copy both to a text editor; you’ll need them for the next command. They will be referred to as https://your_gitlab.com and project_token.
+# Back to your terminal, register the runner for your project:
+sudo gitlab-runner register -n --url https://your_gitlab.com --registration-token project_token --executor docker --description "Deployment Runner" --docker-image "docker:stable" --tag-list deployment --docker-privileged
+# The command options can be interpreted as follows:
+# -n executes the register command non-interactively (we specify all parameters as command options).
+# --url is the GitLab URL you copied from the runners page in GitLab.
+# --registration-token is the token you copied from the runners page in GitLab.
+# --executor is the executor type. docker executes each CI/CD job in a Docker container (see GitLab’s documentation on executors).
+# --description is the runner’s description, which will show up in GitLab.
+# --docker-image is the default Docker image to use in CI/CD jobs, if not explicitly specified.
+# --tag-list is a list of tags assigned to the runner. Tags can be used in a pipeline configuration to select specific runners for a CI/CD job. The deployment tag will allow you to refer to this specific runner to execute the deployment job.
+# --docker-privileged executes the Docker container created for each CI/CD job in privileged mode. A privileged container has access to all devices on the host machine and has nearly the same access to the host as processes running outside containers (see Docker’s documentation about runtime privilege and Linux capabilities). The reason for running in privileged mode is so you can use Docker-in-Docker (dind) to build a Docker image in your CI/CD pipeline. It is good practice to give a container the minimum requirements it needs. For you it is a requirement to run in privileged mode in order to use Docker-in-Docker. Be aware, you registered the runner for this specific project only, where you are in control of the commands being executed in the privileged container.
