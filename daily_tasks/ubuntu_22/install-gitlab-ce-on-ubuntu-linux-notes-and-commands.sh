@@ -157,4 +157,3 @@ cat ~/.ssh/id_rsa
 # Environment scope: All (default)
 # Protect variable: Checked
 # Mask variable: Checked
-
