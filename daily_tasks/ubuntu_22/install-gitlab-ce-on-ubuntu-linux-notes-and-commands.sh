@@ -365,3 +365,32 @@ build-docker:
   script:
     - docker build -t hello -f ./dockerfile.txt .
 
+# docker-in-docker sample file >> gitlab test lab
+build:docker:
+  image: docker:20-dind
+  variables:
+    # using "docker" as the host is only possible if you alias the service below
+    DOCKER_HOST: tcp://docker:2375 
+    # could be wrong here but although Docker defaults to overlay2, 
+    # Docker-in-Docker (DIND) does not according to the following GitLab doc: 
+    # https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-the-overlayfs-driver
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+  services:
+    - name: docker:20-dind
+      alias: docker
+      # in our experience although you'd assume this would be sufficient, this did 
+      # nothing to prevent connection errors without `DOCKER_TLS_CERTDIR` being set 
+      # to an empty string, and I would call that beyond mildly infuriating.
+      command: ["--tls=false"]
+  before_script:
+    - echo ${REGISTRY_PASSWORD} | docker login ${REGISTRY} -u ${REGISTRY_USER} -- 
+  password-stdin
+    - *version_info
+  script:
+    - docker build .
+      --tag ${CONTAINER_IMAGE}:$BUILD_VERSION
+      --tag ${CONTAINER_IMAGE}:latest
+    - docker push ${CONTAINER_IMAGE}:latest
+    - docker push ${CONTAINER_IMAGE}:$BUILD_VERSION
+
