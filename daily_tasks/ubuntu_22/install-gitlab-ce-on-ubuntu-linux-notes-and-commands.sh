@@ -340,3 +340,28 @@ deploy:
 sudo gitlab-runner verify
 sudo gitlab-runner start
 sudo gitlab-runner run
+
+# Sample Project >> GitLab CI CD Hello World Test
+# .gitlab-ci.yml
+build-hello:
+  script:
+    - echo "hello world"
+
+# Sample Project >> GitLab CI CD Docker Hello World
+# dockerfile.txt
+FROM alpine
+RUN echo "hello"
+# .gitlab-ci.yml
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_TLS_CERTDIR: ""
+build-docker:
+  image: docker:20-dind
+  services:
+    - name: docker:20-dind
+      alias: docker
+      command: ["--tls=false"]
+  script:
+    - docker build -t hello -f ./dockerfile.txt .
+
