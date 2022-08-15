@@ -400,3 +400,61 @@ sudo docker container rm $(sudo docker container ls -aq)
 sudo docker ps -a
 sudo docker images
 
+# sample project >> docker-in-docker and nginx >> gitlab project
+# index.html
+<html>
+<body>
+<h1>My Personal Website</h1>
+</body>
+</html>
+
+# dockerfile.txt
+FROM nginx:1.18
+COPY index.html /usr/share/nginx/html
+
+# .gitlab-ci.yml
+stages:
+  - publish
+  - deploy
+variables:
+  DOCKER_HUB_USER: "yeganehnimad"
+  DOCKER_HUB_PASS: "yeganehnimad"
+  TAG_NAME: "yeganehnimad/my-app"
+  TAG_LATEST: $CI_COMMIT_REF_NAME:latest
+  TAG_COMMIT: $CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_TLS_CERTDIR: ""  
+publish:
+  image:
+    name: docker:20-dind
+    pull_policy: always
+  stage: publish
+  services:
+    - name: docker:20-dind
+      alias: docker
+      command: ["--tls=false"]
+  script:
+    - docker build -t $TAG_COMMIT -t $TAG_LATEST -t $TAG_NAME -f ./dockerfile.txt .
+    - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
+    - docker push $TAG_NAME
+    - docker container rm -f my-app || true
+    - docker run -d -p 8001:80 --name my-app $TAG_COMMIT
+deploy:
+  image:
+    name: alpine:latest
+    pull_policy: always
+  stage: deploy
+  tags:
+    - deployment
+  script:
+    - chmod og= $ID_RSA
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $TAG_NAME"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f my-app || true"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 8001:80 --name my-app $TAG_NAME"
+  environment:
+    name: production-8001
+    url: http://192.168.244.138:8001
+
