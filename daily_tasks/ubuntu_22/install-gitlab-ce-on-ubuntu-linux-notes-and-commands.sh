@@ -394,3 +394,9 @@ build:docker:
     - docker push ${CONTAINER_IMAGE}:latest
     - docker push ${CONTAINER_IMAGE}:$BUILD_VERSION
 
+# docker commands >> checking
+sudo docker container ls -aq
+sudo docker container rm $(sudo docker container ls -aq)
+sudo docker ps -a
+sudo docker images
+
