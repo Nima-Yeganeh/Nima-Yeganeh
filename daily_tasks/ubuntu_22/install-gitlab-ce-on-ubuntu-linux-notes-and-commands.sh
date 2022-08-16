@@ -424,7 +424,7 @@ variables:
   TAG_COMMIT: $CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://docker:2375/
-  DOCKER_TLS_CERTDIR: ""  
+  DOCKER_TLS_CERTDIR: ""
 publish:
   image:
     name: docker:20-dind
@@ -457,4 +457,26 @@ deploy:
   environment:
     name: production-8001
     url: http://192.168.244.138:8001
+
+# sample project >> Simple Python Hello World Test >> gitlab project
+
+# helloworld.py
+print("hello world")
+
+# bash.sh
+zfiles=$(find . -name "*.py")
+# echo $zfiles
+for n in $zfiles
+do
+  # echo $n
+  python3 $n
+done
+
+# .gitlab-ci.yml
+image: ubuntu
+hello-test:
+    script: 
+      - apt-get update && apt-get install -y python3
+      - python3 helloworld.py
+      - bash bash.sh
 
