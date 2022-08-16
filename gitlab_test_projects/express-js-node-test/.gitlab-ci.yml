@@ -1,0 +1,46 @@
+stages:
+  - build
+  - deploy
+variables:
+  APP_NAME: "hello-world-express-js-node-test"
+  DOCKER_HUB_USER: $DOCKER_HUB_USER_VAR
+  DOCKER_HUB_PASS: $DOCKER_HUB_PASS_VAR
+  TAG_NAME: "$DOCKER_HUB_USER_VAR/$APP_NAME"
+  TAG_LATEST: $CI_COMMIT_REF_NAME:latest
+  TAG_COMMIT: $CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_TLS_CERTDIR: ""
+build:
+  stage: build
+  image:
+    name: docker:20-dind
+    pull_policy: always
+  services:
+    - name: docker:20-dind
+      alias: docker
+      command: ["--tls=false"]
+  script:
+    - docker build -t $TAG_COMMIT -t $TAG_LATEST -t $TAG_NAME -f ./dockerfile.txt .
+    - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS
+    - docker push $TAG_NAME
+    - docker container rm -f $APP_NAME || true
+    - docker run -d -p 3001:3001 --name $APP_NAME $TAG_COMMIT
+deploy:
+  image:
+    name: alpine:latest
+    pull_policy: always
+  stage: deploy
+  tags:
+    - deployment
+  script:
+    - chmod og= $ID_RSA
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $TAG_NAME"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f $APP_NAME || true"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 3001:3001 --name $APP_NAME $TAG_NAME"
+  environment:
+    name: production-3001
+    url: http://192.168.244.138:3001
+

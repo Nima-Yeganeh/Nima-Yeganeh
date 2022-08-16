@@ -1,0 +1,7 @@
+FROM node:16-alpine3.15
+WORKDIR /
+RUN yarn install --frozen-lockfile --production=true
+COPY app.js ./app.js
+EXPOSE 3001
+CMD ["node", "app.js"]
+

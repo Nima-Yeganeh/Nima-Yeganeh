@@ -1,0 +1,6 @@
+image: ubuntu
+hello-test:
+    script: 
+      - apt-get update && apt-get install -y python3
+      - python3 helloworld.py
+      - bash bash.sh
