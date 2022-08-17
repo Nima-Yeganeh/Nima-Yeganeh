@@ -1,0 +1,5 @@
+services:
+  test:
+    image: nvidia/cuda:10.2-base
+    command: nvidia-smi
+    runtime: nvidia
