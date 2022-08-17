@@ -24,3 +24,6 @@ wsl --set-default-version 2
 
 # Install docker
 # Download it on the official website and go to the next step
+
+# disable hyper-v after docker installation
+dism.exe /Online /Disable-Feature /FeatureName:Microsoft-Hyper-V-All
