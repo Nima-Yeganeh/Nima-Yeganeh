@@ -74,3 +74,7 @@ docker run -dp 3000:3000 \
 
 docker-compose version
 
+docker run -it ubuntu
+docker run -it centos
+docker run -it debian
+docker run -it redis
