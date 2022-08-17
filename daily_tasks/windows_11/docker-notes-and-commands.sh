@@ -74,7 +74,52 @@ docker run -dp 3000:3000 \
 
 docker-compose version
 
+docker run -it alpine
 docker run -it ubuntu
 docker run -it centos
 docker run -it debian
 docker run -it redis
+docker run -it postgres
+docker run -it node
+docker run -it mysql
+docker run -it traefik
+docker run -it mongo
+docker run -it busybox
+docker run -it nginx
+docker run -it python
+docker run -it mariadb
+docker run -it hello-world
+docker run -it docker
+docker run -it openjdk
+docker run -it registry
+docker run -it rabbitmq
+docker run -it golang
+docker run -it httpd
+docker run -it memcached
+docker run -it influxdb
+docker run -it sonarqube
+docker run -it nextcloud
+docker run -it amazonlinux
+docker run -it haproxy
+docker run -it ruby
+docker run -it elasticsearch
+docker run -it maven
+docker run -it tomcat
+docker run -it php
+docker run -it bash
+docker run -it mongo-express
+docker run -it zookeeper
+docker run -it logstash
+docker run -it couchdb
+docker run -it cassandra
+docker run -it java
+docker run -it kibana
+docker run -it perl
+docker run -it jenkins
+docker run -it groovy
+docker run -it fedora
+docker run -it swarm
+docker run -it django
+docker run -it archlinux
+docker run -it varnish
+
