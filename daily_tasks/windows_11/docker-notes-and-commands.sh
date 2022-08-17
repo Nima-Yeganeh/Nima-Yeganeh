@@ -123,3 +123,12 @@ docker run -it django
 docker run -it archlinux
 docker run -it varnish
 
+docker-compose up -d
+docker-compose logs -f
+docker volume ls
+docker ps
+
+docker scan getting-started
+docker image history getting-started
+
+docker compose up -d
