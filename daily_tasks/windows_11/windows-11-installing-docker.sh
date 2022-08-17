@@ -27,3 +27,4 @@ wsl --set-default-version 2
 
 # disable hyper-v after docker installation
 dism.exe /Online /Disable-Feature /FeatureName:Microsoft-Hyper-V-All
+Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Hypervisor
