@@ -6,4 +6,3 @@ git push
 git pull
 git status
 echo 'done!'
-
