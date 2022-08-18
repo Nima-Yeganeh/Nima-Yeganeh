@@ -1,0 +1,63 @@
+image: node:latest
+
+stages:
+  - build
+  - test
+
+cache:
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: build
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+
+test_with_lab:
+  stage: test
+  script: npm run
+
+# more info - notes and commands
+# The file uses the GitLab CI YAML configuration syntax to define the actions that should be taken, the order they should execute, under what conditions they should be run, and the resources necessary to complete each task. When writing your own GitLab CI files, you can visit a syntax linter by going to /ci/lint in your GitLab instance to validate that your file is formatted correctly.
+
+#The configuration file starts off by declaring a Docker image that should be used to run the test suite. Since Hapi is a Node.js framework, we are using the latest Node.js image:
+# image: node:latest
+
+# Next, we explicitly define different continuous integration stages that will run:
+# stages:
+#  - build
+#  - test
+
+# The names you choose here are arbitrary, but the ordering determines the order of execution for the steps that will follow. Stages are tags that you can apply to individual jobs. GitLab will run jobs of the same stage in parallel and will wait to execute the next stage until all jobs at the current stage are complete. If no stages are defined, GitLab will use three stages called build, test, and deploy and assign all jobs to the test stage by default.
+# After defining the stages, the configuration includes a cache definition:
+# cache:
+#   paths:
+#     - node_modules/
+
+# This specifies files or directories that can be cached (saved for later use) between runs or stages. This can help decrease the amount of time that it takes to run jobs that rely on resources that might not change between runs. Here, we are caching the node_modules directory, which is where npm will install the dependencies it downloads.
+# Our first job is called install_dependencies:
+# install_dependencies:
+#   stage: build
+#   script:
+#     - npm install
+#   artifacts:
+#     paths:
+#       - node_modules/
+
+# Jobs can be named anything, but because the names will be used in the GitLab UI, descriptive names are helpful. Usually, npm install can be combined with the next testing stages, but to better demonstrate the interaction between stages, we are extracting this step to run in its own stage.
+
+# We mark the stage explicitly as “build” with the stage directive. Next, we specify the actual commands to run using the script directive. You can include multiple commands by adding additional lines within the script section.
+
+# The artifacts subsection is used to specify file or directory paths to save and pass between stages. Because the npm install command installs the dependencies for the project, our next step will need access to the downloaded files. Declaring the node_modules path ensures that the next stage will have access to the files. These will also be available to view or download in the GitLab UI after the test, so this is useful for build artifacts like binaries as well. If you want to save everything produced during the stage, replace the entire paths section with untracked: true.
+
+# Finally, the second job called test_with_lab declares the command that will actually run the test suite:
+# test_with_lab:
+#   stage: test
+#   script: npm test
+
+# We place this in the test stage. Since this is a later stage, it has access to the artifacts produced by the build stage, which are the project dependencies in our case. Here, the script section demonstrates the single-line YAML syntax that can be used when there’s only a single item. We could have used this same syntax in the previous job as well since only one command was specified.
+
+# Now that you have a basic idea of how the .gitlab-ci.yml file defines CI/CD tasks, we can define one or more runners capable of executing the testing plan.

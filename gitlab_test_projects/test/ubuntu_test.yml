@@ -1,0 +1,15 @@
+variables:
+  APP_NAME: "test1234"
+image:
+  name: ubuntu
+test:
+  script:
+    - echo 'hello!'
+    - echo $APP_NAME
+    - apt-get update -y
+    - apt-get install -y net-tools
+    - ifconfig
+    - route -n
+    - pwd
+    - ls -anp
+    - uname -a

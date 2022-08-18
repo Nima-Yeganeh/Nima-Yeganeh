@@ -1,0 +1,10 @@
+job:
+  services:
+  - php:7
+  - node:latest
+  - golang:1.10
+  image: alpine:3.7
+  script:
+  - php -v
+  - node -v
+  - go version

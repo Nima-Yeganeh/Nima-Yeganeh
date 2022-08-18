@@ -1,0 +1,11 @@
+image: alpine:3.9
+before_script:
+  - apk add emscripten make --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing
+pages:
+  script:
+  - make
+  artifacts:
+    paths:
+    - public
+  only:
+    - main

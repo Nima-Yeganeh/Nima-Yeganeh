@@ -1,0 +1,16 @@
+{
+    "name": "project-ci",
+    "version": "1.0.0",
+    "description": "project to test nodejs and research gitlab-runner",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Test OK\" && exit 0",
+      "start": "node index.js"
+    },
+    "keywords": [],
+    "author": "nima",
+    "license": "nima",
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  }

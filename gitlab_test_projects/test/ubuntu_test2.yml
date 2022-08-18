@@ -1,0 +1,7 @@
+services:
+    - php:7
+image: ubuntu
+test:
+    script:
+        - echo 'hello!'
+        - php -v

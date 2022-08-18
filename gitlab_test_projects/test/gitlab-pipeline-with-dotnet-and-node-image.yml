@@ -1,0 +1,39 @@
+stages:
+  - build
+  - tests
+  - deploy
+
+variables:
+  CSPROJ_PATH: 'TechDay/TechDay.csproj'
+  NPM_ROOT: TechDay/ClientApp
+  NPM_DIST: TechDay/wwwroot
+
+build-npm:
+  image: node:16
+  stage: build
+  script:
+    - cd $NPM_ROOT
+    - npm install
+    - npm run
+  artifacts:
+    paths:
+      - $NPM_DIST/
+    expire_in: 20 minutes  
+
+build:
+  image: mcr.microsoft.com/dotnet/sdk:5.0.103
+  stage: build
+  script:
+    - 'dotnet build $CSPROJ_PATH'
+
+tests:
+  image: mcr.microsoft.com/dotnet/sdk:5.0.103
+  stage: tests
+  script:
+    - 'dotnet test $CSPROJ_PATH'
+
+deploy:
+  image: mcr.microsoft.com/dotnet/sdk:5.0.103
+  stage: deploy
+  script:
+    - 'dotnet publish $CSPROJ_PATH'

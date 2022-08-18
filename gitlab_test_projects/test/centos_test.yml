@@ -1,0 +1,9 @@
+image:
+  name: centos:latest
+test:
+  script:
+    - echo 'hello!'
+    - ip addr
+    - pwd
+    - ls -anp
+    - uname -a
