@@ -10,6 +10,8 @@ docker images
 # We can run Gitlab container straight away at this point by supplying all the options in a single command but that would mean every time you need to run the container, you need to supply these variables. Docker Compose makes this process easier as it will allow you to save the configuration into a .yml file which will be then used to run and launch the container.
 # Create a docker-compose.yml.
 nano docker-compose.yml
+# or
+vi docker-compose.yml
 
 # Paste the following code.
 web:
@@ -76,3 +78,5 @@ docker rm gitlab-nima-tutorial
 docker pull gitlab/gitlab-ee:latest
 docker-compose up -d
 
+# git lab user pass >> default user: root
+docker exec -it gitlab-nima-tutorial cat /etc/gitlab/initial_root_password
