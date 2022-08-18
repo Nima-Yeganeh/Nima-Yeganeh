@@ -24,4 +24,5 @@ default: &default
 docker compose up -d
 docker compose run web rake db:create
 docker compose down
-docker compose up
+docker compose up -d 
+
