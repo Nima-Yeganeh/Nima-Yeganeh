@@ -2,18 +2,34 @@
 # Riak
 #
 # VERSION       0.1.1
-
 # Use the Ubuntu parent image provided by dotCloud
-FROM ubuntu:trusty
-
+FROM ubuntu:latest
 # Install Riak repository before we do apt-get update, so that update happens
 # in a single step
-RUN apt-get install -q -y curl && \
-    curl -fsSL https://packagecloud.io/install/repositories/basho/riak/script.deb | sudo bash
+RUN apt-get update -y
+RUN apt-get install -q -y curl wget gnupg
+#RUN curl -fsSL https://packagecloud.io/install/repositories/basho/riak/script.deb | bash
+#RUN curl -O https://packagecloud.io/install/repositories/basho/riak/script.deb.sh
+#RUN bash script.deb.sh
+#RUN curl -L https://packagecloud.io/gpg.key | apt-key add –
+RUN wget --quiet -O - https://packagecloud.io/gpg.key | apt-key add -
+#RUN echo 'deb https://packagecloud.io/basho/riak/ubuntu/ trusty main' | tee -a /etc/apt/sources.list.d/riak.list
+#RUN echo 'deb-src https://packagecloud.io/basho/riak/ubuntu/ trusty main' | tee -a /etc/apt/sources.list.d/riak.list
+RUN apt-get update -y
+RUN apt-get install -y git
+RUN git clone https://github.com/basho/riak.git
+RUN cd riak
+RUN apt-get install -y make build-essential
+#RUN make locked-deps
+#RUN make rel
+#RUN make
+#RUN apt-get install -y riak
+#RUN apt-get install -y riak=2.1.1-1
 
 # Install and setup project dependencies
 RUN apt-get update && \
-    apt-get install -y supervisor riak=2.0.5-1
+    apt-get install -y supervisor
+#RUN apt-get install -y riak=2.0.5-1
 
 RUN mkdir -p /var/log/supervisor
 
