@@ -4,11 +4,11 @@ services:
   web:
     image: 'gitlab/gitlab-ce:latest'
     restart: always
-    hostname: 'localhost'
+    hostname: 'gitlabtest.domain.local'
     container_name: gitlab-ce
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://localhost'
+        external_url 'http://gitlabtest.domain.local'
     ports:
       - '8080:80'
       - '8443:443'
@@ -20,7 +20,7 @@ services:
       - gitlab
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
-    container_name: gitlab-runner    
+    container_name: gitlab-runner
     restart: always
     depends_on:
       - web

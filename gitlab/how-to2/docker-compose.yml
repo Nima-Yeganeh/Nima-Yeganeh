@@ -3,7 +3,7 @@ services:
     image: 'gitlab/gitlab-ee:latest'
     container_name: 'gitlab-nima-tutorial'
     restart: always
-    hostname: 'gitlab.example.com'
+    hostname: 'gitlabtest.domain.local'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://gitlabtest.domain.local'
