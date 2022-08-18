@@ -7,7 +7,7 @@ services:
     container_name: gitlab-ce
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlabtest.domain.local:8080/'
+        external_url 'http://gitlabtest.domain.local'
     ports:
       - '8080:80'
       - '8443:443'
