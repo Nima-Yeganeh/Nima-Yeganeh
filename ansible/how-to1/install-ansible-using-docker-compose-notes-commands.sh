@@ -113,6 +113,5 @@ docker ps
 
 # Connect to the Ansible Container
 docker exec -it 324f1c88f928 bash
-root@324f1c88f928:/#
-root@324f1c88f928:/# ansible --version
+ansible --version
 ssh root@remote-host-one
