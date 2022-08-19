@@ -66,9 +66,12 @@ docker exec -it gitlab-runner gitlab-runner register --url "http://gitlab-ce" --
 # Enter the default Docker image: here we provide the default docker image, e.g. maven: latest
 # After proper configuration, we should see confirmation Runner registred successfully:
 
+docker exec -it gitlab-runner cat /etc/gitlab-runner/config.toml
+
 # In addition to the basic configuration, we also need to allow access for containers launched from the runner to the virtual network in which GitLab operates. To do this, we run the editor (e.g. vi)
 sudo vi gitlab/gitlab-runner/config.toml
 # Then we add new line to the end of the runner configuration: network_mode = “gitlab-network”
+# network_mode = 'gitlab-network'
 
 # To check if the runner is available from the GitLab level, go to the following address:http://localhost:8080/admin/runners
 
