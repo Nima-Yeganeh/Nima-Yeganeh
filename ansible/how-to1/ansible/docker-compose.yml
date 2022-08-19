@@ -11,6 +11,11 @@ services:
         container_name: remote-host-one
         image: remote-host-ssh
         build:
-          context: ./ssh-enabled-ubuntu
+          context: ./ssh-enabled-ubuntu/Dockerfile1
+      remote-host-two:
+        container_name: remote-host-two
+        image: remote-host-ssh
+        build:
+          context: ./ssh-enabled-ubuntu/Dockerfile2
 networks:
       net:
