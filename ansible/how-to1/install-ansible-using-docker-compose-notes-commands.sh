@@ -115,3 +115,7 @@ docker ps
 docker exec -it 324f1c88f928 bash
 ansible --version
 ssh root@remote-host-one
+
+apt install -y net-tools iputils-ping git
+git clone https://github.com/Nima-Yeganeh/Public.git
+git pull
