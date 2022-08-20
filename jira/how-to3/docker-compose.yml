@@ -27,4 +27,3 @@
   volumes:
       sql-data:
       jira-data:
-      
