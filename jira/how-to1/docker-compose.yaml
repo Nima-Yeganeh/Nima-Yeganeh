@@ -1,0 +1,90 @@
+version: '3' 
+services: 
+  jira:
+    container_name: jira 
+    image: atlassian/jira-software:latest 
+    environment:
+     - ATL_PROXY_NAME=jira.internal
+     - ATL_PROXY_PORT=80
+     - ATL_TOMCAT_SCHEME=http
+    volumes:
+      - jiradata:/var/atlassian/jira
+  confluence: 
+    container_name: confluence
+    image: atlassian/confluence-server:latest
+    environment: 
+     - ATL_PROXY_NAME=confluence.internal
+     - ATL_PROXY_PORT=80
+     - ATL_TOMCAT_SCHEME=http
+  bitbucket: 
+    container_name: bitbucket 
+    image: atlassian/bitbucket-server:latest 
+    environment: 
+     - SERVER_PROXY_NAME=bitbucket.internal
+     - SERVER_PROXY_PORT=80
+     - SERVER_SCHEME=http 
+  nginx: 
+    container_name: nginx 
+    image: nginx:latest 
+    volumes:
+     - ./nginx.conf:/etc/nginx/nginx.conf 
+    depends_on: 
+     - jira 
+     - confluence 
+     - bitbucket 
+    ports: 
+     - "80:80" 
+    networks: 
+      default: 
+        aliases:
+         - jira.internal
+         - confluence.internal
+         - bitbucket.internal
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    expose:
+      - '3306'
+      - '33060'
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+  postgresql5:
+    container_name: postgres5
+    image: postgres:9.6
+    expose:
+      - '5432'
+    volumes:
+      - postgresqldata5:/var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_USER=jiradbuser'
+      # CHANGE THE PASSWORD!
+      - 'POSTGRES_PASSWORD=admin'
+      - 'POSTGRES_DB=jiradb5'
+      - 'POSTGRES_ENCODING=UNICODE'
+      - 'POSTGRES_COLLATE=C'
+      - 'POSTGRES_COLLATE_TYPE=C'
+  postgresql2:
+    container_name: postgres2
+    image: postgres:9.6
+    expose:
+      - '5432'
+    volumes:
+      - postgresqldata2:/var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_USER=jiradbuser'
+      # CHANGE THE PASSWORD!
+      - 'POSTGRES_PASSWORD=admin'
+      - 'POSTGRES_DB=confdb2'
+      - 'POSTGRES_ENCODING=UNICODE'
+      - 'POSTGRES_COLLATE=C'
+      - 'POSTGRES_COLLATE_TYPE=C'
+volumes:
+  jiradata:
+    external: false
+  postgresqldata:
+    external: false
+  postgresqldata2:
+    external: false
+  postgresqldata5:
+    external: false

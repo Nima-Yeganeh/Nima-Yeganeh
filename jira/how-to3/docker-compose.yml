@@ -1,0 +1,30 @@
+  version: "3.7"
+  services: 
+      sql-server:
+          container_name: sql-server
+          image: mcr.microsoft.com/mssql/server:2017-latest
+          ports:
+              - "1433:1433"
+          environment: 
+              ACCEPT_EULA: "Y" 
+              SA_PASSWORD: "Password!_first"
+          volumes: 
+              - sql-data:/var/opt/mssql/data
+      jira-software:
+          container_name: jira-software
+          image: atlassian/jira-software
+          ports: 
+              - "9000:8080"
+          environment: 
+              ATL_JDBC_URL: "jdbc:sqlserver://;serverName=sql-server;portNumber=1433;databaseName=jiradb"
+              ATL_JDBC_USER: "jiraUser"
+              ATL_JDBC_PASSWORD: "[JiraPassword1!]"
+              ATL_DB_DRIVER: "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+              ATL_DB_TYPE: "mssql"
+              ATL_DB_SCHEMA_NAME: "jiraschema"
+          volumes: 
+              - jira-data:/var/atlassian/application-data/jira
+  volumes:
+      sql-data:
+      jira-data:
+      
