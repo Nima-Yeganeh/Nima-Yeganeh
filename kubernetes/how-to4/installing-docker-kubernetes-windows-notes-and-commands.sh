@@ -256,6 +256,14 @@ minikube start --v=7
 # Once the command completes successfully, you can test the setup with:
 kubectl get nodes
 
+# minikube commands: >>
+minikube status
+minikube image list
+minikube version
+minikube update-check
+minikube ip
+minikube node list
+
 # Congrats you have a fully working Kubernetes cluster!
 
 # Installing Kubernetes on Windows 10 - Kind
