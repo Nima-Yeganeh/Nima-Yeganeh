@@ -49,8 +49,9 @@ ls -anp
 cd Nima-Yeganeh/
 ls -anp
 git status
-git push
+git pull
 git config --global credential.credentialStore secretservice
+
 git push
 git status
 git add .
