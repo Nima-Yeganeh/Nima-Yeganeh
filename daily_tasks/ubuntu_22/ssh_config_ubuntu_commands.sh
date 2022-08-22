@@ -3,6 +3,7 @@ sudo systemctl start sshd
 sudo systemctl start ssh
 sudo systemctl enable ssh
 sudo systemctl -l --type service --all| grep ssh
+sudo apt-get -y update
 
 # If that doesn't solve your problem, you can reinstall ssh
 sudo apt-get remove --purge openssh-server
