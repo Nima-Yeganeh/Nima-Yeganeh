@@ -30,9 +30,9 @@ sudo yum install -y curl epel-release
 sudo yum update -y
 sudo yum install -y jq
 sudo yum install -y python3 python3-pip
-sudo yum install -y python python-pip
-sudo pip install --upgrade pip
+sudo yum install -y python
 sudo pip3 install --upgrade pip
+sudo pip install --upgrade pip
 sudo pip3 install docker-compose
 
 sudo systemctl start docker
