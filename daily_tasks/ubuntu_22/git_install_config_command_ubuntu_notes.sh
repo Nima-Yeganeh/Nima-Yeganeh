@@ -3,10 +3,10 @@ sudo apt install dnf -y
 sudo dnf install git-all -y
 sudo apt install git-all -y
 
+sudo iftop
+
 git --version
 sudo apt install iftop -y
-
-sudo iftop
 
 pwd
 ls -anp
