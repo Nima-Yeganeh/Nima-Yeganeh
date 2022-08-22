@@ -15,11 +15,12 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 sudo apt-cache madison docker-ce
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-sudo docker run hello-world
 sudo pip install docker-compose
 
-sudo docker run -it alpine
-sudo docker run -it ubuntu
+sudo docker run hello-world
+sudo docker run -d alpine
+sudo docker run -d ubuntu
+sudo docker run -d centos
 
 # how to remove ?!
 sudo apt-get remove -y docker docker-engine docker.io containerd runc
