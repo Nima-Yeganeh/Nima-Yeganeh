@@ -1,6 +1,7 @@
 sudo ps aux
 sudo ip addr
 sudo yum install -y libcgroup libcgroup-tools
+
 sudo lssubsys -M
 sudo uname -i
 sudo uname -r
@@ -20,17 +21,28 @@ docker-engine
 sudo yum install -y yum-utils \
 device-mapper-persistent-data \
 lvm2
+
 sudo yum-config-manager \
 --add-repo \
 https://download.docker.com/linux/centos/docker-ce.repo
+
 sudo yum-config-manager --enable docker-ce-test
 sudo yum install -y docker-ce
 
+sudo yum update -y
 sudo systemctl start docker
 sudo systemctl enable docker
-
 sudo docker container run hello-world
 sudo docker ps -a
+
+sudo yum install -y curl epel-release
+sudo yum update -y
+sudo yum install -y jq
+sudo yum install -y python3 python3-pip
+sudo yum install -y python python-pip
+sudo pip install --upgrade pip
+sudo pip3 install --upgrade pip
+sudo pip3 install docker-compose
 
 sudo systemctl start docker
 sudo docker info
