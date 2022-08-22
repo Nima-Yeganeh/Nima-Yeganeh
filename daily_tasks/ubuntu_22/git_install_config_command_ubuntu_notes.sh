@@ -1,10 +1,13 @@
-sudo apt update
-sudo apt install dnf
-sudo dnf install git-all
-sudo apt install git-all
+sudo apt update -y
+sudo apt install dnf -y
+sudo dnf install git-all -y
+sudo apt install git-all -y
+
 git --version
-sudo apt install iftop
+sudo apt install iftop -y
+
 sudo iftop
+
 pwd
 ls -anp
 mkdir nima_git
@@ -14,6 +17,7 @@ git --version
 git config --global user.name 'your_git_username'
 git config --global user.email 'your_git_email'
 git config --list
+
 git clone https://github.com/Nima-Yeganeh/Nima-Yeganeh
 ls -anp
 cd Nima-Yeganeh/
