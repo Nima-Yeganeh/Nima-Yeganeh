@@ -1,12 +1,16 @@
 sudo docker container ls
 sudo docker container run hello-world
+
 sudo systemctl start docker
 sudo docker info
 sudo systemctl enable docker
+
 sudo systemctl stop docker
+
 sudo docker image pull alpine
 sudo docker image ls
 sudo docker container run -id --name demo alpine ash
+
 sudo groupadd docker
 sudo useradd dockertest
 sudo usermod -aG docker dockertest
