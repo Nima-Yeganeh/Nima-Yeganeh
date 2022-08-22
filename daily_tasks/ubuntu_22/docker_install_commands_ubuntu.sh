@@ -22,5 +22,8 @@ sudo docker run -d alpine
 sudo docker run -d ubuntu
 sudo docker run -d centos
 
+sudo docker ps -a
+sudo docker images
+
 # how to remove ?!
 sudo apt-get remove -y docker docker-engine docker.io containerd runc
