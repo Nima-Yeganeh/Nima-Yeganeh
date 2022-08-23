@@ -75,3 +75,35 @@ docker ps
 
 docker rm -f web1
 
+docker container run --name ctr1 -it alpine:latest sh
+ls /var/lib/docker/
+
+docker image pull ubuntu:latest
+docker image pull alpine:latest
+docker image ls
+docker image pull microsoft/powershell:nanoserver
+docker image pull microsoft/dotnet:latest
+
+docker image pull mongo:3.3.11
+docker image pull redis:latest
+docker image pull alpine
+
+docker image ls --filter dangling=true
+docker image prune
+docker image ls --filter=reference="*:latest"
+docker image ls --format "{{.Size}}"
+docker image ls --format "{{.Repository}}: {{.Tag}}: {{.Size}}"
+
+docker search ubuntu
+docker search alpine
+
+docker search alpine --filter "is-official=true"
+docker search alpine --filter "is-automated=true"
+
+docker image inspect ubuntu:latest
+docker image ls --digests alpine
+docker image rm alpine:latest
+
+docker container run --rm golang go version
+docker image rm $(docker image ls -q) -f
+
