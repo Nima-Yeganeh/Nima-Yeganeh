@@ -72,3 +72,6 @@ docker container run -d --name web1 --publish 8080:8080 docker-test-psweb:latest
 docker ps
 
 # localhost:8080 or 127.0.0.1:8080
+
+docker rm -f web1
+
