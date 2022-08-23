@@ -67,7 +67,8 @@ git clone https://github.com/Nima-Yeganeh/Nima-Yeganeh.git
 
 docker image build -t docker-test-psweb:latest .
 docker image ls
-
+docker ps
 docker container run -d --name web1 --publish 8080:8080 docker-test-psweb:latest
+docker ps
 
 # localhost:8080 or 127.0.0.1:8080
