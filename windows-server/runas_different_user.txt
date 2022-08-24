@@ -1,0 +1,1 @@
+runas /netonly /user:192.168.197.251\admin "mmc.exe \"services.msc\""

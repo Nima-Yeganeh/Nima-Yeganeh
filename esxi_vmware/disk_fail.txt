@@ -1,0 +1,7 @@
+VMware Fix for Call “HostDatastoreSystem.QueryVmfsDatastoreCreateOptions” for object “ha-datastoresystem” on ESXi failed
+
+1 >> ssh to esxi
+2 >> cd /dev/disks/
+3 >> ls
+4 >> partedUtil mklabel /dev/disks/FULL_DISKNAME msdos
+5 >> add hard

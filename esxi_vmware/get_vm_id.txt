@@ -1,0 +1,1 @@
+vim-cmd vmsvc/getallvms | grep <vm_name>
