@@ -121,3 +121,54 @@ Get-Service docker
 docker container run -it ubuntu:latest /bin/bash
 ps -elf
 
+docker container exec -it myapp bash
+docker container stop myapp
+docker container rm myapp
+
+docker container run --name percy -it ubuntu:latest /bin/bash
+docker container exec -it percy bash
+
+docker container run --name neversaydie -it --restart always microsoft/powershell:nanoserver
+docker container run --name neversaydie -it --restart always ubuntu
+
+docker container run -d --name always --restart always alpine sleep 1d
+docker container run -d --name unless-stopped --restart unless-stopped alpine sleep 1d
+docker container ls
+docker container stop always unless-stopped
+systemlctl restart docker
+docker container ls -a
+
+docker container run -d --name webserver -p 80:8080 nigelpoulton/pluralsight-docker-ci
+docker image inspect nigelpoulton/pluralsight-docker-ci
+
+docker container ls -aq
+docker container rm $(docker container ls -aq) -f
+docker image rm $(docker image ls -q)
+
+cd docker-test-psweb
+ls
+docker image build -t docker-test-psweb2 .
+docker image tag docker-test-psweb2 yeganehnimadgmailcom/docker-test-psweb2
+docker login
+docker image push yeganehnimadgmailcom/docker-test-psweb2
+docker image ls
+docker container run -d --name c1-docker-test-psweb2 -p 8081:8080 yeganehnimadgmailcom/docker-test-psweb2
+docker ps
+
+sudo docker image pull yeganehnimadgmailcom/docker-test-psweb2
+sudo docker image ls
+sudo docker container run -d --name c1-docker-test-psweb2 -p 8081:8080 yeganehnimadgmailcom/docker-test-psweb2
+sudo docker ps
+
+docker image history web:latest
+docker image history yeganehnimadgmailcom/docker-test-psweb2
+docker image inspect yeganehnimadgmailcom/docker-test-psweb2
+
+cd docker-test-atsea-sample-shop-app
+cd app
+ls
+docker image build -t multi:stage .
+
+cd docker-test-counter-app
+ls
+docker-compose up -d
