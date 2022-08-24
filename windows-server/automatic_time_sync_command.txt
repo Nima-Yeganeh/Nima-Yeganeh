@@ -1,0 +1,2 @@
+w32tm /config /update /manualpeerlist:0.ir.pool.ntp.org
+w32tm /resync /rediscover

@@ -1,0 +1,12 @@
+route add 149.154.164.0 mask 255.255.252.0 VPN_GW metric 1 -p 
+route add 149.154.160.0 mask 255.255.240.0 VPN_GW metric 1 -p 
+route add 91.108.4.0 mask 255.255.252.0 VPN_GW metric 1 -p 
+route add 91.108.56.0 mask 255.255.252.0 VPN_GW metric 1 -p 
+route add 91.108.8.0 mask 255.255.252.0 VPN_GW metric 1 -p
+route add 149.154.167.99 mask 255.255.255.255 VPN_GW metric 1 -p
+route add 149.154.167.118 mask 255.255.255.255 VPN_GW metric 1 -p
+route add 149.154.164.11 mask 255.255.255.255 VPN_GW metric 1 -p
+route add 149.154.167.117 mask 255.255.255.255 VPN_GW metric 1 -p
+route add 149.154.164.3 mask 255.255.255.255 VPN_GW metric 1 -p
+route add 149.154.167.120 mask 255.255.255.255 VPN_GW metric 1 -p
+route add 104.222.176.201 mask 255.255.255.255 VPN_GW metric 1 -p

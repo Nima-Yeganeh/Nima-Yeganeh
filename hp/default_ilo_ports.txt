@@ -1,0 +1,8 @@
+ssh >> 22
+remote console >> 17990
+web >> 80
+web ssl >> 443
+virtual >> 17988
+snmp >> 161
+snmp trap >> 162
+ipmvdcmi >> 623
