@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {% endblock %}
+
+{% block style %}
+{% block home_style %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+
+{% include 'inc/header.html' %} <div class="distance_from_top">
+    
+
+{% block home_content %} {% endblock %}
+</div>
+{% include 'inc/footer.html' %}
+
+{% endblock %}
+
+
+{% block js %}
+<script src="{% static 'components/header_search.min.js' %}"></script>
+<script>
+    // var USER_NOTIFICATIONS_COUNT = 0;
+    var vue123 = new Vue({
+        el: '#base_main_head',
+        created() {
+            // notification api
+            this.call_notification_api();
+            x = setInterval(this.call_notification_api, 10 * 1000/*10 secs*/);
+        },
+        data: {
+            notifications: [],
+            counti: 0,
+        },
+        mounted() {
+            setTimeout(() => {
+                $('.ui.dropdown').dropdown();
+            }, 40);
+        },
+        methods: {
+            async call_notification_api() {
+                let res = await callAPI("{% url 'notification:show_notification_api' %}", {}, 'get');
+                // =>if success
+                if (res[0] === 'success') {
+                    obj = res[1].data;
+                    // console.log('notifs:', obj);
+                    // =>enable dropdown, if before not
+                    if (obj.count > 0 && this.counti === 0) {
+                        $('.ui.dropdown').dropdown();
+                    }
+                    // =>set notif counter
+                    this.counti = obj.count;
+                    if (typeof sidebar12vue !== 'undefined') {
+                    sidebar12vue.USER_NOTIFICATIONS_COUNT = this.counti;
+                    }
+                    // =>set recived resume counter
+                    this.counti = obj.count;
+                    if (typeof sidebar12vue !== 'undefined') {
+                    sidebar12vue.USER_RECEIVED_RESUME_COUNT = obj.receive_resume_count ?? 0;
+                    }
+                    // =>set sent resume counter
+                    this.counti = obj.count;
+                    if (typeof sidebar12vue !== 'undefined') {
+                    sidebar12vue.USER_SENT_RESUME_COUNT = obj.sent_resume_count ?? 0;
+                    }
+                    // =>set notifications list
+                    this.notifications = obj.notifications;
+                    // =>normalize notifications
+                    for (const notif of this.notifications) {
+                        if (notif.description && notif.description.length > 63) {
+                            notif.description = notif.description.substr(0, 60) + '...';
+                        }
+                    }
+                } else {
+                    $('#notification_counter').css("display", "none");
+                }
+            },
+            goToNotificationPage(pk) {
+                window.location.href = "{% url 'notification:notification_details' 0 %}".replace('0', pk);
+            },
+            redirectToHomePage() {
+                window.location.href = "{% url 'core:home' %}";
+            }
+        },
+        components: {
+            'header-search': header_search,
+        },
+    });
+</script>
+<script>
+    async function sendMessage(){
+        let name = document.getElementById("guest_name").value
+        let phone = document.getElementById("guest_phone").value
+        let title = document.getElementById("guest_ticket_title").value
+        let desc = document.getElementById("guest_ticket_description").value
+        let res = await callStdAPI("{% url 'ticket:api:public_ticket' %}", {
+            method: 'post',
+            data: {
+                'name': name,
+                'phone': phone,
+                'title': title,
+                'description': desc
+            }
+        });
+        // =>if success
+        if (res.status === 200) {
+            showSuccessToast('انجام شد', message = 'پیام شما ارسال شد.');
+            document.getElementById("send_public_ticket").disabled = true
+            document.getElementById("guest_name").value = ""
+            document.getElementById("guest_phone").value = ""
+            document.getElementById("guest_ticket_title").value = ""
+            document.getElementById("guest_ticket_description").value = ""            
+        }else if (res.status === 400){
+            switch (res.data.message){
+                case 'bad_input_type':
+                showWarningToast('درخواست ثبت نشد', message= '');
+                    break
+                case 'empty_field':
+                showWarningToast('لطفا', message= 'تمام فیلد ها را تکمیل کنید!');
+                    break
+                case 'too_long_field':
+                showWarningToast('درخواست ثبت نشد', message= 'متن پیام طولانی است!');
+                    break
+            }
+        }
+    }
+</script>
+{% if request.user.is_admin %}
+<script>
+    $(document).ready(() => {
+        // obj.forEach(function (item, index) {
+        // console.log(item, index);
+        // });
+        getAllUsers();
+        $(window).scroll(function(){
+        if ($(this).scrollTop() > 50) {
+            $('#base_main_head').addClass('shadow');
+        } else {
+            $('#base_main_head').removeClass('shadow');
+        }
+    });
+    })
+    async function getAllUsers() {
+        // load all users
+        let res1 = await callStdAPI("{% url 'talent_admin:users_api' %}", {
+            data:{
+              "has_pagination":false
+            },
+            method: 'get',
+        });
+        let user_email = "{{request.user.email}}"
+        var obj = res1.data;
+        for (const user of obj) {
+            if (user_email == user.email) {
+                $('#admin_switch_users').append("<option class=\"item\" selected value=" + user.pk + ">" + user.email + "</option>")
+            } else {
+                $('#admin_switch_users').append("<option class=\"item\" value=" + user.pk + ">" + user.email + "</option>")
+            }
+        }
+        $('#admin_switch_users').on('change', async function () {
+            let pk = $(this).find(":selected").val()
+            let response = await callStdAPI("{% url 'talent_admin:virtual_login' %}", {
+                method: 'post',
+                data: { "user_id": pk }
+            })
+            if (response.status === 200)
+                window.location.reload()
+        });
+    }
+</script>
+{% endif %}
+
+{% block home_js %}{% endblock %}
+{% endblock %}

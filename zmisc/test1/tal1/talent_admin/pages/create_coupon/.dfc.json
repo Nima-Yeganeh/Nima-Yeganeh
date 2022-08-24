@@ -1,0 +1,20 @@
+{
+    "extends": "base_admin.html",
+    "id": "__jobs_page",
+    "css_block_name": "style1",
+    "html_block_name": "content1",
+    "js_block_name": "js1",
+    "compiled_html_name": "create_coupon.html",
+    "vars_prop_name": "context",
+    "title": "ایجاد کوپن جدید",
+    "css_styles": [
+        "base/css/persian-datepicker.css"
+    ],
+    "js_scripts": [ 
+        "base/js/persian-date.min.js",
+        "base/js/persian-datepicker.min.js"
+    ], 
+    "components": [
+        "form_builder"
+    ]
+}

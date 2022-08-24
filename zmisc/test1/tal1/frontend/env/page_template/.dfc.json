@@ -1,0 +1,10 @@
+{
+    "extends": "panel.html",
+    "id": "__{{pageName}}_page",
+    "css_block_name": "employee_style",
+    "html_block_name": "main",
+    "js_block_name": "employee_js",
+    "compiled_html_name": "{{pageName}}.html",
+    "vars_prop_name": "context",
+    "title": "{{pageName}}"
+}

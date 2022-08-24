@@ -1,0 +1,84 @@
+<div class="main-coupon">
+    <div class="head-of-coupon">
+        <h3>کوپن ها</h3>
+        <button class="ui grey basic button" @click="redirect(context.url)">افزودن کوپن</button>
+    </div>
+
+    <div class="main-of-coupon">
+        <!-- Tab links -->
+        <div class="tab">
+            <button v-for="tab in tabs" :class="{active: activeTab === tab.value}" @click="goToTab(tab.value)"
+                v-text="tab.title"></button>
+        </div>
+
+        <!-- tab all coupon -->
+        <div class="active">
+            <table class="ui compact celled definition table">
+                <!-- Head -->
+                <thead>
+                    <tr>
+                        <th v-if="activeTab === 'all' "></th>
+                        <th>کد</th>
+                        <th>تعداد کد</th>
+                        <th>قابلیت استفاده</th>
+                        <th>استفاده شده</th>
+                        <th>مقدار</th>
+                        <th>نوع</th>
+                        <th>حداکثر قیمت</th>
+                        <th v-if="activeTab !== 'expired' ">زمان انقضا</th>
+                        <th v-if="activeTab === 'all' ">وضعیت</th>
+                    </tr>
+                </thead>
+                <!-- List -->
+                <tbody>
+                    <tr v-for="c in coupon">
+                        <template v-if="activeTab === 'all'">
+                            <td class="collapsing">
+                                <div class="ui toggle checkbox">
+                                    <input @change="disableCoupon(c)" v-model="c.is_active" type="checkbox">
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td>{{ c.code }}</td>
+                            <td>{{ c.limit }}</td>
+                            <td>{{ c.usage }}</td>
+                            <td>{{ c.used }}</td>
+                            <td>{{ c.type == 'price' ? c.price : c.percent }}</td>
+                            <td>{{ c.type == 'price' ? 'تومان' : 'درصد' }}</td>
+                            <td>{{ c.max_price }}</td>
+                            <td>{{toPersianDate(c.expired_at)}}</td>
+                            <td>{{ c.is_active == true ? 'فعال' : 'غیر فعال' }}</td>
+                        </template>
+                        <template v-if="activeTab === 'active' && c.is_active === true ">
+                            <td>{{ c.code }}</td>
+                            <td>{{ c.limit }}</td>
+                            <td>{{ c.usage }}</td>
+                            <td>{{ c.used }}</td>
+                            <td>{{ c.type == 'price' ? c.price : c.percent }}</td>
+                            <td>{{ c.type == 'price' ? 'تومان' : 'درصد' }}</td>
+                            <td>{{ c.max_price }}</td>
+                            <td>{{toPersianDate(c.expired_at)}}</td>
+                        </template>
+                        <template v-if="activeTab === 'expired' && c.is_active === false">
+                            <td>{{ c.code }}</td>
+                            <td>{{ c.limit }}</td>
+                            <td>{{ c.usage }}</td>
+                            <td>{{ c.used }}</td>
+                            <td>{{ c.type == 'price' ? c.price : c.percent }}</td>
+                            <td>{{ c.type == 'price' ? 'تومان' : 'درصد' }}</td>
+                            <td>{{ c.max_price }}</td>
+                        </template>
+                    </tr>
+                </tbody>
+                <tfoot class="full-width">
+                    <tr>
+                        <th></th>
+                        <th>کوپن های فعال: {{ active_coupon }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <pagination :page_counts="this.page_counts" :p_index="this.index" @reload="getCouponList($event)"
+            class="pagination"></pagination>
+    </div>
+</div>

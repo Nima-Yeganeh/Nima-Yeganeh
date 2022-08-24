@@ -1,0 +1,192 @@
+.main-res {
+    border-radius: 24px !important;
+    min-width: 60em;
+    margin-top: 30px;
+
+    background-color: #fafafa;
+}
+.resume {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    .header {
+        display: flex;
+        align-items: stretch;
+        .content {
+            flex: 1 1 0;
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+            .button {
+                margin: 0 3px;
+                display: flex;
+                align-items: center;
+                min-height: 26px;
+            }
+        }
+    }
+}
+.resume-info {
+    display: flex;
+    flex-direction: row;
+    .right {
+        min-width: 30%;
+        max-width: 30%;
+        border-left: 2px solid #dfdfe0;
+        padding: 2%;
+        .individual-info {
+            margin-bottom: 8%;
+            display: flex;
+            flex-direction: row;
+            i {
+                font-size: 20px !important;
+                margin-left: 2%;
+            }
+        }
+        .contact-info,
+        .skill-info,
+        .lang-info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 8%;
+            .icon-sub {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+
+                .subject {
+                    margin-right: 3%;
+                }
+
+                p {
+                    font-size: 12px;
+                    font-weight: 700;
+                }
+            }
+            .text {
+                font-size: 11px;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+        .social-media {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 8%;
+            i {
+                font-size: 18px;
+                margin-left: 3%;
+            }
+        }
+    }
+    .left {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        .about-me {
+            padding: 4%;
+            margin: 2%;
+            min-height: 160px;
+            border-radius: 12px;
+        }
+        .both-left {
+            display: flex;
+            flex-direction: column;
+            .edu {
+                padding: 2%;
+                margin: 2%;
+                min-height: 100px;
+                border-radius: 12px;
+            }
+            .edu-list {
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: row;
+                align-items: baseline;
+                overflow: hidden;
+                h4 {
+                    font-size: 12px;
+                    font-weight: 700;
+                    margin-left: 4%;
+                }
+                h3 {
+                    margin-left: 4%;
+                }
+            }
+            .job {
+                padding: 2%;
+                margin: 2%;
+                min-height: 100px;
+                border-radius: 12px;
+                overflow: hidden;
+                h4 {
+                    font-size: 12px;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+.person-photo {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 100% !important;
+    object-fit: cover !important;
+}
+@media only screen and (max-width: 980px) {
+    .main-res {
+        min-width: 20%;
+        margin-top: 30px !important;
+    }
+    .resume {
+        min-width: 20em;
+    }
+
+    .header {
+        align-items: center !important;
+
+        .actions {
+            align-items: stretch !important;
+            flex-direction: column !important;
+            .button {
+                margin: 3px 3px !important;
+            }
+        }
+    }
+    .resume-info {
+        flex-direction: column;
+    }
+    .right {
+        min-width: 100% !important;
+        border-left: none !important;
+    }
+    .left {
+        min-width: 100%;
+    }
+
+    .contact-info,
+    .skill-info,
+    .lang-info,
+    .individual-info {
+        margin-bottom: 2% !important;
+    }
+}
+@media only screen and (max-width: 580px) {
+    .header {
+        flex-direction: column;
+        img {
+            margin: 3%;
+        }
+        div {
+            text-align: center;
+            padding: 0 !important;
+            margin: 1%;
+        }
+    }
+}

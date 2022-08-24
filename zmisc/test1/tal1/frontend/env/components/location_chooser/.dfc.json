@@ -1,0 +1,10 @@
+{
+    "extends": "panel.html",
+    "id": "__location_chooser_page",
+    "css_block_name": "employee_style",
+    "html_block_name": "main",
+    "js_block_name": "employee_js",
+    "compiled_html_name": "location_chooser.html",
+    "vars_prop_name": "context",
+    "title": "location_chooser"
+}

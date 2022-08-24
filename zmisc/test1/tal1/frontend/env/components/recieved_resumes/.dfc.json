@@ -1,0 +1,14 @@
+{
+    "extends": "panel.html",
+    "id": "__recieved_resumes_page",
+    "css_block_name": "employee_style",
+    "html_block_name": "main",
+    "js_block_name": "employee_js",
+    "compiled_html_name": "recieved_resumes.html",
+    "vars_prop_name": "context",
+    "title": "recieved_resumes",
+    "components": [
+        "pagination",
+        "not_found"
+    ]
+}

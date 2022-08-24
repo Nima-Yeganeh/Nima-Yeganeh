@@ -1,0 +1,34 @@
+{% load url_replace %}
+<div class="page-counter">
+    {% if pagination.has_previous %}
+        <a href="?{% url_replace request 'page' 1 %}" class="last-page">
+            <button class="ui grey basic button custom-page-button-size">
+                <i class="material-icons arrow-s">
+                    arrow_right
+                </i>
+            </button>
+        </a>
+        <a href="?{% url_replace request 'page' pagination.previous_page_number %}" class="last-page">
+            <button class="ui button success custom-page-button-size">
+                {{ pagination.previous_page_number }}
+            </button>
+        </a>
+    {% endif %}
+    <button class="ui button custom-active-page custom-page-button-size">
+        {{ pagination.number }}
+    </button>
+    {% if pagination.has_next %}
+        <a href="?{% url_replace request 'page' pagination.next_page_number %}" class="next-page">
+            <button class="ui button success custom-page-button-size">
+                {{ pagination.next_page_number }}
+            </button>
+        </a>
+        <a href="?{% url_replace request 'page' pagination.paginator.num_pages %}" class="next-page">
+            <button class="ui grey basic button custom-page-button-size">
+                <i class="material-icons arrow-s">
+                    arrow_left
+                </i>
+            </button>
+        </a>
+    {% endif %}
+</div>

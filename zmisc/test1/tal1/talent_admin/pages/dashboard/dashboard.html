@@ -1,0 +1,58 @@
+<div class="main-dashboard">
+    <div class="ui grid stackable padded card-main">
+        <div class="four wide computer eight wide tablet sixteen wide mobile column" v-for="s in stats">
+            <!-- users stats -->
+            <div class="ui fluid card cards-detail">
+                <div class="content">
+                    <div class="ui right floated header " :class=[s.color]>
+                        <i class="material-icons">{{s.icon}}</i>
+                    </div>
+                    <div class="header">
+                        <div class="ui header" :class=[s.color]>{{ convertNumbersToPersian(s.value) }}</div>
+                    </div>
+                    <div class="meta">{{s.label}}</div>
+                    <div class="description">{{s.des}}</div>
+                </div>
+                <div class="extra content">
+                    <div class="ui two buttons">
+                        <a :href="s.buttonLink" class="ui button"
+                            :class="[s.color, s.buttonDisabled ? 'disabled' : '']">{{s.button}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="ui horizontal divider header">جدول گزارشات</h4>
+    <div class="table">
+        <button class="fluid ui blue button" @click="getlog()">بارگذاری مجدد</button>
+
+        <table class="ui unstackable table">
+            <thead>
+                <tr v-for="item in log">
+                    <th>{{item.log_type}}</th>
+                    <th>{{item.id}}</th>
+                    <th>{{item.name}}</th>
+                    <th>{{item.mode}}</th>
+                    <th>{{item.desc1}}</th>
+                    <th>{{item.desc2}}</th>
+                    <th>{{item.time}}</th>
+                    <th>{{item.user_ip}}</th>
+                    <th>{{item.user_id}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in logs">
+                    <td>{{item.log_type}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.namespace}}</td>
+                    <td>{{item.mode}}</td>
+                    <td>{{item.var1}}</td>
+                    <td>{{item.var2}}</td>
+                    <td>{{toPersianDate(item.created_at)}}</td>
+                    <td>{{item.user_ip}}</td>
+                    <td>{{item.user_id}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} ERROR {% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'core/css/error.css' %} ">
+{% endblock %}
+
+{% block content %}
+    <div class="error-main">
+        <!-- div photo -->
+        <div>
+            {% block error_img %}
+            {% endblock %}
+        </div>
+        <!-- div text -->
+        <div class="error-text">
+            {% block error_msg %}
+            {% endblock %}
+        </div>
+        <!-- div button -->
+        <div class="button-error">
+            <button class="ui grey basic button button-error" onclick="window.location ='{% url 'core:home' %}' ">
+                <i class="material-icons">home</i>
+                خانه
+            </button>
+            <!-- <button class="ui grey basic button button-error" {% if request.user.role == 'applicant' %} onclick = "window.location.href ='{% url 'resume:resume' %}';" {%else%} onclick="window.location.href = '{%url 'company:jobs'%}';" {%endif%}>
+                <i class="material-icons">person</i>
+                پروفایل شما
+            </button> -->
+        </div>
+    </div>
+{% endblock %}
+{% block home_js %}
+
+{% endblock %}

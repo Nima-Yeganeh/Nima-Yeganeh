@@ -1,0 +1,42 @@
+{% extends 'panel.html' %}
+{% load static %}
+{% block title %} {% endblock %}
+{% block employee_style %}
+    <link rel="stylesheet" href="{% static 'notification/css/notif_detail.css' %} ">
+{% endblock %}
+
+{% block main %}
+    <div>
+        <div class="notifDetailContent">
+            <div class="detailContents">
+                <div class="title">
+                    <div class="title-content">
+                        <div class="ui breadcrumb">
+                            <div class="section">اعلان ها</div>
+                            <div class="divider"> / </div>
+                            <div class="active section">{{ notification.title }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui secondary segment details">
+                    <p>{{ notification.description }}</p>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="ui basic grey button" onclick="got_to_previous_page();">بازگشت به صفحه قبل</button>
+                {% if notification.company %}
+                    <button class="ui basic grey button"
+                            onclick="redirect('{%url 'company:company_detail' pk=0 %}','{{ notification.company.pk }}');">
+                        صفحه {{ notification.company.title }}</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block employee_js %}
+    <script>
+        function got_to_previous_page() {
+            goToPage(document.referrer);
+        }
+    </script>
+{% endblock %}

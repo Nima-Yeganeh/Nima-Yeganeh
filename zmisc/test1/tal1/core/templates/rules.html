@@ -1,0 +1,39 @@
+
+{% extends 'panel.html' %}
+{% load static %}
+
+{% block home_style %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/rules/rules.min.css' %}">
+   
+{% endblock %}
+
+{% block home_content %}
+   <div id="element___rules_page">
+      <rules :context="variablesData"></rules>
+   </div>
+{% endblock %}
+
+{% block home_js %}
+   
+   <script src="{% static 'pages/rules/rules.min.js' %}"></script>
+   <script>
+         var context = {
+    title: 'سلام به دنیا'
+}  
+         </script>
+   <script>
+      let vue___rules_page = new Vue({
+         el: '#element___rules_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'قوانین و مقررات';
+         },
+         components: {
+            "rules": rules,
+         }
+      });
+   </script>
+{% endblock %}
+   

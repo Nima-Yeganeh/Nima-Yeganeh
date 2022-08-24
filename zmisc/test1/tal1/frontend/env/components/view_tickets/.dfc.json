@@ -1,0 +1,11 @@
+{
+    "extends": "panel.html",
+    "id": "__view_tickets_page",
+    "css_block_name": "employee_style",
+    "html_block_name": "main",
+    "js_block_name": "employee_js",
+    "compiled_html_name": "view_tickets.html",
+    "vars_prop_name": "context",
+    "title": "view_tickets",
+    "is_compile": true
+}

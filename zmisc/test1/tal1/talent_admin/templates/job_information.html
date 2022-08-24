@@ -1,0 +1,114 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+<link rel="stylesheet" href="{% static '/talent_admin/job-information.css' %} ">
+{% endblock %}
+
+{% block title %} آگهی (اسم شرکت ارسال کننده آگهی) {% endblock %}
+
+{% block content1 %}
+
+<div class="ui segment main-job-information" id="table_info">
+  <div class="head-admin-panel">
+    <h4 class="ui header">آگهی ها / اسم شرکت ارسال کننده </h4>
+    <button class="ui grey basic button button-status">وضعیت آگهی</button>
+  </div>
+  <div class="main-about">
+    <div class="company-info">
+      <img src="{{ user.get_image }}">
+      <div>
+        <h3>هیواتک</h3>
+        <p>98545</p>
+      </div>
+    </div>
+    <table class="ui celled table" v-for="item in inputs">
+      <tbody>
+        <tr>
+          <td class="left aligned collapsing subject-title"  v-text="item.subject"></td>
+          <td v>Initial commit</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="button-align">
+      <button class="ui green button button-style">
+        <i class="material-icons">check</i>
+        تایید آگهی
+      </button>
+      <button class="ui red button button-style">
+        <i class="material-icons">close</i>
+        رد آگهی
+      </button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+{% block js1 %}
+
+<script>
+  new Vue({
+    el: '#table_info',
+    created: () => {
+    },
+    data: {
+      inputs: [
+        {
+          subject: 'عنوان شغل',
+          input: 'work_outline',
+        },
+        {
+          subject: 'دسته بندی شغل',
+          input: 'work_outline',
+        },
+        {
+          subject: 'نحوه همکاری',
+          input: 'work_outline',
+        },
+        {
+          subject: 'حقوق',
+          input: 'work_outline',
+        },
+        {
+          subject: 'موقعیت مکانی',
+          input: 'work_outline',
+        },
+        {
+          subject: 'سابقه مورد نیاز',
+          input: 'work_outline',
+        },
+        {
+          subject: 'جنسیت کارمند',
+          input: 'work_outline',
+        },
+        {
+          subject: 'وضعیت تحصیلی',
+          input: 'work_outline',
+        },
+        {
+          subject: 'وضعیت نظام وظیفه',
+          input: 'work_outline',
+        },
+        {
+          subject: 'مهارت های مورد نیاز',
+          input: 'work_outline',
+        },
+        {
+          subject: 'مزیت',
+          input: 'work_outline',
+        },
+        {
+          subject: 'شرح موقعیت شغلی',
+          input: 'work_outline',
+        },
+      ]
+    },
+  })
+</script>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<header>
+    <h2 class="ui header">
+        <div class="content">
+            درخواست پنل حقوقی
+            <div class="sub header">{{context.ticket.settings.company_name}}</div>
+        </div>
+    </h2>
+    <div class="actions">
+        <!-- show accept, reject actions -->
+        <template v-if="context.ticket.settings.status == 'checking'">
+            <button class="ui compact labeled icon green button" @click="action()">
+                <i class="check icon"></i>
+                تایید
+            </button>
+            <button class="ui compact labeled icon negative button" @click="action('reject')">
+                <i class="close icon"></i>
+                رد</button>
+        </template>
+    </div>
+</header>
+<div class="ui divider"></div>
+
+<table class="ui table">
+    <tbody>
+        <tr v-for="f in fields">
+            <td>{{f.title}}</td>
+            <td>{{f.value}}</td>
+        </tr>
+        <tr v-if="filePaths.length > 0">
+            <td>فایل اساسنامه</td>
+            <td><a :href="filePaths[0]" target="_blank">{{filePaths[0]}}</a></td>
+        </tr>
+        <tr v-if="filePaths.length > 1">
+            <td>فایل آخرین تغییرات</td>
+            <td><a :href="filePaths[1]" target="_blank">{{filePaths[1]}}</a></td>
+        </tr>
+    </tbody>
+</table>

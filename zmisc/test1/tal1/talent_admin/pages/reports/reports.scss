@@ -1,0 +1,15 @@
+.main-report {
+    padding: 2%;
+    .loader-style {
+        margin: 0px !important;
+        padding: 0px !important;
+        .payment-show {
+            height: 550px !important;
+            z-index: 3 !important;
+        }
+    }
+    h1 {
+        color: black;
+        font-size: 18px;
+    }
+}

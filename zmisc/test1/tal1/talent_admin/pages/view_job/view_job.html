@@ -1,0 +1,86 @@
+<header>
+    <h2 class="ui header">
+        <i class="material-icons md-48">work</i>
+        <div class="content">
+            {{context.job_details.title}}
+            <div class="sub header">{{context.job_details.company.title}}</div>
+        </div>
+    </h2>
+    <div class="actions">
+        <!-- show accept, reject actions -->
+        <template v-if="context.job_details.status == 'checking'">
+            <button class="ui compact labeled icon green button" @click="action()">
+                <i class="check icon"></i>تایید
+            </button>
+            <button class="ui compact labeled icon negative button" @click="showModal()">
+                <i class="close icon"></i>رد
+            </button>
+        </template>
+    </div>
+</header>
+<div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        اطلاعات سهامداران
+    </div>
+    <div class="ui basic segment">
+        <div class="ui form sixteen wide column">
+            <form-builder :fields="notifList" :loading="loading"></form-builder>
+        </div>
+        <div class="button-style">
+            <button @click="sendNotification()" class="ui right floated green button">ارسال اعلان</button>
+        </div>
+    </div>
+</div>
+<div class="ui divider"></div>
+<table class="ui table">
+    <tbody>
+        <template v-for="f in fields">
+            <tr v-if="!f.disabled">
+                <td class="collapsing">
+                    <i class="material-icons">{{f.icon}}</i>
+                </td>
+                <td>
+                    {{f.subject}}
+                </td>
+                <td>
+                    <!-- if list type -->
+                    <template v-if="f.type == 'list'">
+                        <div v-for="lbl in f.text" class="ui label">{{lbl}}</div>
+                    </template>
+                    <!-- if language type -->
+                    <template v-if="f.type === 'language'">
+                        <div class="lang-list">
+                            <a class="ui  yellow image label" v-for="lbl in f.text">
+                                {{getKeyValueText('language_names', lbl.lang)}}
+                                <div class="detail">{{getKeyValueText('language_levels', lbl.level)}}
+                                </div>
+                            </a>
+                        </div>
+                    </template>
+                    <!-- if location type -->
+                    <template v-if="f.type == 'location'">
+                        <div class="ui primary label">{{f.text[0].country}}</div>
+                        <div class="ui teal label">{{f.text[0].state}}</div>
+                        <div class="ui green label">{{f.text[0].city}}</div>
+                    </template>
+                    <!-- if text type -->
+                    <p v-if="f.type== 'text'" v-html="parseHtml(f.text)"></p>
+                    <!-- if toggle type -->
+                    <div class="inline field" v-if="f.type== 'toggle'">
+                        <div class="ui toggle checkbox">
+                            <input :value="f.text" type="checkbox" tabindex="0" class="hidden disabled">
+                            <label></label>
+                        </div>
+                    </div>
+                    <!-- if normal type -->
+                    <div v-if="!f.type" class="ui label">{{f.text}}</div>
+                </td>
+            </tr>
+        </template>
+    </tbody>
+</table>
+
+<related-courses name="related_course1" :selectedCourseIds="this.selectedCourseIds"
+    :selectable="context.job_details.status == 'checking'" @course_ids="selectedCourseIds=$event">
+</related-courses>

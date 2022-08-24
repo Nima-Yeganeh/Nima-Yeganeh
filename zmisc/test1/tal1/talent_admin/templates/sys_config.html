@@ -1,0 +1,40 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/sys_config/sys_config.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___sys_config_page">
+      <sys_config :context="variablesData"></sys_config>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/sys_config/sys_config.min.js' %}"></script>
+   <script>
+         var context = {
+    get_configs_api: "{% url 'talent_admin:api:sys_config' %}",
+    delete_configs_api: "{% url 'talent_admin:delete_config' %}",
+}   
+         </script>
+   <script>
+      let vue___sys_config_page = new Vue({
+         el: '#element___sys_config_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'پیکربندی سیستم';
+         },
+         components: {
+            "sys_config": sys_config,
+         }
+      });
+   </script>
+{% endblock %}
+   

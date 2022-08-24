@@ -1,0 +1,14 @@
+{
+    "extends": "base_admin.html",
+    "id": "__view_job_page",
+    "css_block_name": "style1",
+    "html_block_name": "content1",
+    "js_block_name": "js1",
+    "compiled_html_name": "view_job.html",
+    "vars_prop_name": "context",
+    "title": "مشاهده جزییات آگهی",
+    "components": [
+        "related_courses",
+        "form_builder"
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "id": "__about_page",
+    "extends": "base_admin.html",
+    "css_block_name": "style1",
+    "html_block_name": "content1",
+    "js_block_name": "js1",
+    "compiled_html_name": "about.html",
+    "vars_prop_name": "context",
+    "title": "درباره سیستم"
+}

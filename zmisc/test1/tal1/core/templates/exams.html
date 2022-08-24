@@ -1,0 +1,39 @@
+
+{% extends 'panel.html' %}
+{% load static %}
+
+{% block home_style %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/exams/exams.min.css' %}">
+   
+{% endblock %}
+
+{% block home_content %}
+   <div id="element___exams_page">
+      <exams :context="variablesData"></exams>
+   </div>
+{% endblock %}
+
+{% block home_js %}
+   
+   <script src="{% static 'pages/exams/exams.min.js' %}"></script>
+   <script>
+         var context = {
+    exam: "{% static '/base/img/exam4.png' %}",
+}  
+         </script>
+   <script>
+      let vue___exams_page = new Vue({
+         el: '#element___exams_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'آزمون ها';
+         },
+         components: {
+            "exams": exams,
+         }
+      });
+   </script>
+{% endblock %}
+   

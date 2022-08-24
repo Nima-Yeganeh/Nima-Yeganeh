@@ -1,0 +1,30 @@
+<div class="main-panel_req">
+    <div class="ui form sixteen wide column" id="panel_request_form">
+        <h3>ثبت پنل کارفرما</h3>
+        <form-builder :fields="fields"></form-builder>
+        <file-uploader ref="panel_request_image_uploader"></file-uploader>
+        <div class="upload-field" v-if="status !== 'waiting'">
+            <div class="upload-file">
+                <h1>بارگذاری اساسنامه</h1>
+                <img :src="context.defImage_l" id="tick">
+                <p>دقت داشته باشید که اساس نامه حتما دارای مهر و در فرمت رسمی باشد.</p>
+                <label class="label-tick input-file-trigger" @click="uploadStatute()">
+                    <i class="material-icons">file_upload</i>
+                    بارگذاری مدارک
+                </label>
+            </div>
+            <div class="upload-file">
+                <h1>بارگذاری آخرین تغییرات</h1>
+                <img :src="context.defImage_r" id="tick1">
+                <p>دقت داشته باشید که اساس نامه حتما دارای مهر و در فرمت رسمی باشد.</p>
+                <label class="label-tick input-file-trigger" @click="uploadLastEdition()">
+                    <i class="material-icons">file_upload</i>
+                    بارگذاری مدارک
+                </label>
+            </div>
+        </div>
+        <br>
+        <button class="fluid ui primary button" v-if="status !== 'waiting'" @click="addCompany()">
+            <i class="material-icons">check_box</i> ثبت پنل کارفرما</button>
+    </div>
+</div>

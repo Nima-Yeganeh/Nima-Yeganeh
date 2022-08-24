@@ -1,0 +1,17 @@
+<div class="dropdown-main">
+    <div class="dropdown-content" :class="{focused:focused}">
+        <div class="co_header">
+            <input type="text" v-model="search" autocomplete="off" :placeholder="placeholder" id="myInput"
+                @keyup="filter()" @click="showDropdown = !showDropdown, focused = !focused" class="ac_input">
+            <span @click="showDropdown = !showDropdown, focused = !focused" class="icon_dd">
+                <i class="material-icons">arrow_drop_down</i>
+            </span>
+        </div>
+        <div class="dropdown-list" v-if="showDropdown">
+            <option v-for="item in dropdownlist" :value="item.value" :class="{selected: selectedId === item.value }"
+                @click="selectDropdown($event), focused = !focused" class="list_of_input">
+                {{item.text}}
+            </option>
+        </div>
+    </div>
+</div>

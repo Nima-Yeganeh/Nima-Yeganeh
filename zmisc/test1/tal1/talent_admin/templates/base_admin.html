@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static '/talent_admin/style.css' %} ">
+{% block style1 %}{% endblock %}
+{% endblock %}
+{% block content %}
+
+<!-- top nav -->
+
+<nav class="ui top fixed inverted menu">
+    <div class="left menu">
+        <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
+            <i class="sidebar icon"></i>
+        </a>
+        <a href="{% url 'core:home' %}" class="header item">
+            بورس تلنت </a>
+    </div>
+    <div class="right menu">
+        <!-- <a href="#" class="item">
+            <i class="bell icon"></i>
+        </a> -->
+        <div class="ui dropdown item">
+            <i class="user cirlce icon"></i>
+            <div class="menu">
+                <a href="{% url 'panel:employee' %}" class="item">
+                    <i class="material-icons">person</i> پروفایل</a>
+                <a href="#" class="item disabled">
+                    <i class="wrench icon"></i>
+                    تنظیمات</a>
+                <a href="{% url 'accounts:logout' %}" class="item ">
+                    <i class="material-icons">logout</i>
+                    خروج
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="body-content">
+    <!-- sidebar -->
+    <div class="ui inverted  vertical menu sidebar-menu" id="active">
+        <div v-for="tabs in admin_dash">
+            <a class="item" :href="tabs.url" :class="{active: checkActiveTabAdmin(pageName,tabs.address)}">
+                <i class="material-icons" v-text="tabs.icon"></i>
+                <span v-text="tabs.name"></span>
+            </a>
+        </div>
+    </div>
+    <div class="main-content">
+        {% block content1 %}{% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static '/talent_admin/script.js' %}"></script>
+<script>
+    let requestPathAdmin = '{{request.path}}';
+    if (requestPathAdmin[requestPathAdmin.length - 1] !== '/') requestPathAdmin += '/';
+    let requestPathIdAdmin = requestPathAdmin.split('/').slice(1, requestPathAdmin.split('/').length - 1).join('_');
+    console.log(requestPathIdAdmin, requestPathAdmin, requestPathAdmin.split('/'))
+    let admin_panel = new Vue({
+        el: '#active',
+        created() { },
+        data: {
+            pageName: requestPathIdAdmin,
+            admin_dash: [
+                {
+                    name: 'داشبورد',
+                    url: "{% url 'talent_admin:dashboard' %}",
+                    icon: 'dashboard',
+                    address: ['admin-panel'],
+                },
+                {
+                    name: 'کاربران',
+                    url: "{% url 'talent_admin:users' %}",
+                    icon: 'people',
+                    address: ['admin-panel_users', 'admin-panel_make_employer'],
+                },
+                {
+                    name: 'پیکربندی سیستم',
+                    url: "{% url 'talent_admin:configuration' %}",
+                    icon: 'settings',
+                    address: ['admin-panel_system-config'],
+                },
+                {
+                    name: 'آگهی ها',
+                    url: "{% url 'talent_admin:jobs' %}",
+                    icon: 'work',
+                    address: ['admin-panel_jobs', 'admin-panel_view_job'],
+                },
+                {
+                    name: 'شرکت ها',
+                    url: "{% url 'talent_admin:company_list_admin' %}",
+                    icon: 'business',
+                    address: ['admin-panel_company_list_admin'],
+                },
+                {
+                    name: 'ویرایش صفحات',
+                    url: "{% url 'talent_admin:edit_pages' %}",
+                    icon: 'description',
+                    address: ['admin-panel_edit_pages'],
+                },
+                {
+                    name: 'گزارشات',
+                    url: "{% url 'talent_admin:reports' %}",
+                    icon: 'report_problem',
+                    address: ['admin-panel_reports'],
+                },
+                {
+                    name: 'تیکت ها',
+                    url: "{% url 'talent_admin:tickets' %}",
+                    icon: 'confirmation_number',
+                    address: ['admin-panel_tickets', 'admin-panel_tickets_view-ticket'],
+                },
+                {
+                    name: 'کوپن ها',
+                    url: "{% url 'talent_admin:coupon' %}",
+                    icon: 'local_offer',
+                    address: ['admin-panel_coupon', 'admin-panel_create_coupon'],
+                },
+                {
+                    name: 'اعلان',
+                    url: "{% url 'talent_admin:add_notification' %}",
+                    icon: 'notifications',
+                    address: ['admin-panel_add_notification'],
+                },
+                {
+                    name: 'معرفی مشاغل',
+                    url: "{% url 'talent_admin:jobs_intro' %}",
+                    icon: 'engineering',
+                    address: ['admin-panel_jobs-intro'],
+                },
+                {
+                    name: 'درباره',
+                    url: "{% url 'talent_admin:about' %}",
+                    icon: 'help_center',
+                    address: ['admin-panel_about'],
+                    matches: ['about'],
+                },
+            ]
+        },
+        methods: {
+            checkActiveTabAdmin(obj, list) {
+                var i;
+                for (i = 0; i < list.length; i++) {
+                    if (obj.startsWith(list[i]) && list[i].endsWith("_"))
+                        return true;
+                    if (list[i] === obj)
+                        return true;
+                }
+                return false;
+            }
+        },
+    })
+</script>
+{% block js1 %}{% endblock %}
+{% endblock %}

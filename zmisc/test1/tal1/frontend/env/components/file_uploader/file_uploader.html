@@ -1,0 +1,76 @@
+<div class="ui modal  transition" :class="[options.modalSize]" :id="id">
+    <div class="header">
+        {{options.title}}
+        <span class="spacer"></span>
+        <div class="actions">
+            <i class="material-icons" @click="close()">close</i>
+        </div>
+    </div>
+    <div class="content">
+        <!-- uploader -->
+        <div class='picker' v-if="filesSelected.length === 0">
+            <div class="uploder">
+                <i class="material-icons">upload_file</i>
+                <div class="browse">
+                    <label :for="fileUploaderId" class="ui primary basic button">انتخاب فایل (ها)</label>
+                    <input
+                        :accept="options.allowedMimeTypes.length == 0 ? undefined : options.allowedMimeTypes.join(',')"
+                        :multiple="options.multipleFiles ? true : undefined" type="file" :id="fileUploaderId"
+                        @change="chooseFiles($event)"></input>
+                </div>
+                <div class="options">
+                    <a class="ui teal image label" v-if="options.allowedMimeTypes && options.allowedMimeTypes.length > 0">
+                        فایل های مجاز
+                        <div class="detail">{{options.allowedMimeTypes.join(' | ')}}</div>
+                    </a>
+                    <a class="ui red image label">
+                        حداکثر اندازه فایل <div class=" detail">{{formattedMaxSize}}</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- uploading -->
+        <div class="uploading" v-if="filesSelected.length > 0">
+            <div class="file" v-for="f in filesSelected">
+                <div class="preview">
+                    <i class="material-icons" v-if="!f.is_image">insert_drive_file</i>
+                    <img v-if="f.is_image" :src="f.preview">
+                </div>
+                <div class="info">
+                    <div class="filename">
+                        <span class="name">{{f.file.name}}</span>
+                        <span v-if="f.status == 'uploading'" class="percent">{{f.percent}}%</span>
+                        <!--success-->
+                        <i class="material-icons green md-24" v-if="f.status === 'success'">check_circle</i>
+                        <!--error-->
+                        <i class="material-icons red md-24" v-if="f.status === 'failed'">error_outline</i>
+                        <!--cancel upload-->
+                        <i class="material-icons red md-24 icon-btn" v-if="f.status === 'waiting'"
+                            @click="cancelUploadFile(f)">cancel</i>
+                    </div> 
+                    <div class="progress" v-if="f.status == 'uploading'">
+                        <div class="fill" :style="{width: f.percent + '%'}"></div>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="options">
+            <div class="ui checkbox">
+                <input type="checkbox" v-model="closeAfterUploadFiles">
+                <label>بستن پس از آپلود فایل ها</label>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="buttons">
+            <div class="ui positive left labeled icon button " @click="approve()">
+                آپلود
+                <i class="checkmark icon"></i>
+            </div>
+            <div class="ui negative button left" @click="close()">بستن</div>
+        </div>
+
+    </div>
+</div>

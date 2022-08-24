@@ -1,0 +1,24 @@
+<div class="ui labeled  fluid dropdown-main" :id="id">
+    <div class="ui basic label dropdown-label" v-if="selectedCountry">
+        <!-- if country selected -->
+        <span class="ui label" v-if="selectedCountry" @click="reset('country')">{{selectedCountry}}</span>
+        <!-- if state selected -->
+        <span v-if="selectedState" class="ui teal label" @click="reset('state')">{{selectedState}}</span>
+    </div>
+    <!-- searching input -->
+    <div class="ui selection search dropdown end-search" :id="dropdownId" :class="[loading ? 'loading': '']">
+        <input v-model="dropDownValue" type="hidden" @change="dropdownChanged($event)">
+        <i class="dropdown icon"></i>
+        <div class="default text">{{defaultOption}}</div>
+        <div class="menu">
+            <div class="item" v-for="(item, ind) in dropDownOptions" :key="'loc_' + ind" :value="typeof item == 'object' ? item.value : item">
+                {{typeof
+                item == 'object' ? item.text : item}}</div>
+        </div>
+    </div>
+    <!-- <select class="ui dropdown" :class="[loading ? 'loading': '']" @change="dropdownChanged($event)">
+        <option readonly selected>{{defaultOption}}</option>
+        <option v-for="item in dropDownOptions" :value="typeof item == 'object' ? item.value : item">{{typeof
+            item == 'object' ? item.text : item}}</option>
+    </select> -->
+</div>

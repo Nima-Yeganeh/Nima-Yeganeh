@@ -1,0 +1,278 @@
+<div class="ui segment placeholder main-res">
+    <div class="ui active inverted dimmer" v-if="loading">
+        <div class="ui text loader">بارگذاری</div>
+    </div>
+    <div class="resume" v-if="!loading">
+        <h2 class="ui header">
+            <img class="person-photo" :src="resumeInfo.basic_info.user_avatar">
+            <div class="content">
+                {{resumeInfo.basic_info.full_name}}
+                <div class="sub header">{{resumeInfo.basic_info.job_title}}</div>
+            </div>
+            <div class="actions">
+                <div class="ui labeled icon green button" @click="acceptEvent()" v-if="showAcceptAction">
+                    <i class="check icon"></i>
+                    تایید
+                </div>
+                <div class="ui labeled icon red button" @click="rejectEvent()" v-if="showRejectAction">
+                    <i class="close icon"></i>
+                    رد
+                </div>
+                <div class="ui labeled icon green button" @click="downloadPDF()">
+                    <i class="download icon"></i>
+                    دانلود
+                </div>
+            </div>
+        </h2>
+        <div class="resume-info" v-if="!loading">
+            <div class="right">
+                <div class="phone-resume">
+                    <h3>اطلاعات تماس:</h3>
+                    <template v-for="item in contact" v-if="item.text !== '' && item.text !== undefined ">
+                        <div class="individual-info" >
+                            <i class="material-icons" v-text="item.icon"></i>
+                            <p class="text" v-text="item.text"></p>
+                        </div>
+                    </template>
+                </div>
+                <div class="person-resume">
+                    <div class="ui clearing divider divider-resume"></div>
+                    <h3>اطلاعات فردی:</h3>
+                    <template v-for="item in fields">
+                        <div class="contact-info" v-if="item.text !== ''">
+                            <div class="icon-sub">
+                                <i class="material-icons" v-text="item.icon"></i>
+                                <p class="subject" v-text="item.subject"></p>
+                            </div>
+                            <p class="text" v-text="item.text"></p>
+                        </div>
+                    </template>
+                </div>
+                <div>
+                    <template v-if="resumeInfo.skill && resumeInfo.skill.length > 0">
+                        <div class="ui clearing divider divider-resume"></div>
+                        <h3>مهارت ها:</h3>
+                        <div class="skill-info" v-for="item in resumeInfo.skill">
+                            <div class="icon-sub">
+                                <p class="subject" v-text=" item.title"></p>
+                            </div>
+                            <p class="text" v-text="getKeyValueText('skill_levels',item.level,item.level)"></p>
+                        </div>
+                    </template>
+                </div>
+                <div>
+                    <template v-if="resumeInfo.language && resumeInfo.language.length > 0">
+                        <div class="ui clearing divider divider-resume"></div>
+                        <h3>زبان ها</h3>
+                        <div class="lang-info" v-for="item in resumeInfo.language">
+                            <div class="icon-sub">
+                                <p class="subject" v-text="getKeyValueText('language_names',item.title,item.title)"></p>
+                            </div>
+                            <p class="text" v-text="getKeyValueText('language_levels',item.level,item.level)"></p>
+                        </div>
+                    </template>
+                </div>
+                <div>
+                    <template
+                        v-if="resumeInfo.basic_info.settings && resumeInfo.basic_info.settings.socials && resumeInfo.basic_info.settings.socials.length > 0">
+                        <div class="ui clearing divider divider-resume"></div>
+
+                        <h3>شبکه های اجتماعی</h3>
+                        <div class="social-media" v-for="item in resumeInfo.basic_info.settings.socials">
+                            <i :class="[item.type]" class="icon"></i>
+                            <p class="text" v-text="item.link"></p>
+                        </div>
+
+                    </template>
+                </div>
+            </div>
+
+            <div class="left">
+                <div class="both-left">
+
+                    <div class="ui grey segment about-me"
+                        v-if="resumeInfo.basic_info.about_me && resumeInfo.basic_info.about_me.length > 0">
+                        <h3>درباره من</h3>
+                        <p v-html="parseHtml(resumeInfo.basic_info.about_me)"></p>
+                    </div>
+                    <div class="res-card">
+                        <!-- expreinces -->
+                        <div class="ui purple segment job"
+                            v-if="resumeInfo.experience && resumeInfo.experience.length > 0">
+
+                            <h3>سابقه شغلی</h3>
+                            <ul v-for="item in resumeInfo.experience" class="ui grid segment">
+                                <li class="eight wide column edu-list">
+                                    <h4>سمت:</h4>
+                                    <p v-text="item.job_side"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>شرکت/موسسه:</h4>
+                                    <p v-text="item.department_name"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>موقعیت مکانی:</h4>
+                                    <p v-text="get_loaction(item.location)"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>تاریخ آغاز:</h4>
+                                    <p v-text="toPersianDate(item.start_date)"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>تاریخ فراغت:</h4>
+                                    <p>
+                                        <template v-if="!item.settings.busy_now">
+                                            {{toPersianDate(item.end_date)}}
+                                        </template>
+                                        <template v-if="item.settings.busy_now">
+                                            مشغول به کار
+                                        </template>
+                                    </p>
+                                </li>
+                                <li v-if="item.settings" class="eight wide column edu-list">
+                                    <h4>توضیحات:</h4>
+                                    <p v-html="parseHtml(item.settings.des)"></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- educations -->
+                        <div class="ui yellow segment edu"
+                            v-if="resumeInfo.education && resumeInfo.education.length > 0">
+                            <h3>سابقه تحصیلی</h3>
+                            <ul v-for="item in resumeInfo.education" class="ui grid segment">
+                                <li class="eight wide column edu-list">
+                                    <h4>رشته:</h4>
+                                    <p v-text="item.title"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>گرایش:</h4>
+                                    <p v-text="item.field"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>مقطع:</h4>
+                                    <p v-text="getKeyValueText('degree_level',item.degree_level,item.degree_level)"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>نوع دانشگاه:</h4>
+                                    <p
+                                        v-text="getKeyValueText('university_type',item.settings.university_type,item.settings.university_type) ">
+                                    </p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>نام دانشگاه:</h4>
+                                    <p v-text="get_university_name(item.settings.university,item.settings.university)">
+                                    </p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>موقعیت مکانی:</h4>
+                                    <p v-text="get_loaction(item.location)"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>معدل:</h4>
+                                    <p v-text="item.settings.grade"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>تاریخ آغاز:</h4>
+                                    <p v-text="toPersianDate(item.start_date)"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>تاریخ فراغت:</h4>
+                                    <p>
+                                        <template v-if="!item.settings.busy_now">
+                                            {{toPersianDate(item.end_date)}}
+                                        </template>
+                                        <template v-if="item.settings.busy_now">
+                                            در حال تحصیل
+                                        </template>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- project -->
+                        <div class="ui blue segment edu"
+                            v-if="resumeInfo.project && resumeInfo.project.length > 0">
+                            <h3>پروژه ها</h3>
+                            <ul v-for="item in resumeInfo.project" class="ui grid segment">
+                                <li class="eight wide column edu-list">
+                                    <h3>عنوان پروژه:</h3>
+                                    <h5 v-text="item.title" style="margin-top: 0;"></h5>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>کارفرما:</h4>
+                                    <p v-text="item.settings.employee"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>تاریخ:</h4>
+                                    <p>{{toPersianDate(item.settings.date)}}</p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>لینک:</h4>
+                                    <p v-text="item.settings.link"></p>
+                                </li>
+                                <li class="sixteen wide column edu-list">
+                                    <h4>توضیحات:</h4>
+                                    <p v-html="parseHtml(item.settings.des)"></p>
+                                </li>
+                
+                            </ul>
+                        </div>
+                        <!-- article -->
+                        <div class="ui brown segment edu"
+                            v-if="resumeInfo.article && resumeInfo.article.length > 0">
+                            <h3>تحقیقات و مقالات</h3>
+                            <ul v-for="item in resumeInfo.article" class="ui grid segment">
+                                <li class="eight wide column edu-list">
+                                    <h4>عنوان:</h4>
+                                    <p v-text="item.title"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>ناشر:</h4>
+                                    <p v-text="item.settings.publisher"></p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>تاریخ:</h4>
+                                    <p>{{toPersianDate(item.settings.date)}}</p>
+                                </li>
+                                <li class="eight wide column edu-list">
+                                    <h4>لینک:</h4>
+                                    <p v-text="item.settings.link"></p>
+                                </li>
+                                <li class="sixteen wide column edu-list">
+                                    <h4>توضیحات:</h4>
+                                    <p v-html="parseHtml(item.settings.des)"></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- certificates -->
+                    <div class="ui green segment edu"
+                        v-if="resumeInfo.certificate && resumeInfo.certificate.length > 0">
+                        <h3>گواهینامه ها</h3>
+                        <div class="ui two column padded stackable grid ">
+                            <div class=" column " v-for="cert in resumeInfo.certificate">
+                                <div class="ui  segment" v-if="cert.type=='ifc'"
+                                    style="min-width: 200px;min-height: 115px; text-align: center;">
+                                    <p>{{cert.title}}</p>
+                                    <div class="ui label">{{cert.certificate_code}}</div>
+                                    <div class="ui teal  label">{{cert.settings.certificateTypeName}}</div>
+                                </div>
+                                <div class="ui  segment" v-if="cert.type=='other'"
+                                    style="min-width: 200px;text-align: center;">
+                                    <p>{{cert.title}}</p>
+                                    <div class="ui label">{{cert.settings.institution_name}}</div>
+                                    <div class="ui teal  label">{{cert.settings.year}}</div>
+                                    <a class="ui red label" target="_blank" :href="cert.file_url"
+                                        v-if="cert.settings.file">دانلود فایل گواهینامه</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

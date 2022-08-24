@@ -1,0 +1,39 @@
+
+{% extends 'panel.html' %}
+{% load static %}
+
+{% block home_style %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/evaluation_and_development/evaluation_and_development.min.css' %}">
+   
+{% endblock %}
+
+{% block home_content %}
+   <div id="element___evaluation_and_development_page">
+      <evaluation_and_development :context="variablesData"></evaluation_and_development>
+   </div>
+{% endblock %}
+
+{% block home_js %}
+   
+   <script src="{% static 'pages/evaluation_and_development/evaluation_and_development.min.js' %}"></script>
+   <script>
+         var context = {
+    image:"{%static '/base/img/evalution.png'%}"
+}  
+         </script>
+   <script>
+      let vue___evaluation_and_development_page = new Vue({
+         el: '#element___evaluation_and_development_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'کانون ارزیابی و توسعه';
+         },
+         components: {
+            "evaluation_and_development": evaluation_and_development,
+         }
+      });
+   </script>
+{% endblock %}
+   

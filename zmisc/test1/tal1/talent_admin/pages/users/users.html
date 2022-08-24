@@ -1,0 +1,106 @@
+<div class="ui search fluid">
+    <div class="main-users">
+        <div class="ui icon input fluid search-users">
+            <input v-model="searchInput" class="prompt" @keyup="getUsersList(1)" placeholder="جستجو در ایمیل و تلفن کاربران">
+            <i class="search icon"></i>
+        </div>
+        <div class="filterUsers">
+            <select value="all" @change="filterUsers($event)" class="ui dropdown selection fluid">
+                <option value="all">همه</option>
+                <option value="employer">کارفرما</option>
+                <option value="applicant">کارجو</option>
+            </select>
+        </div>
+    </div>
+    <div class="results"></div>
+</div>
+
+<table class="ui compact celled definition table">
+    <thead class="full-width">
+        <tr>
+            <th></th>
+            <th>نام کاربر</th>
+            <th>ایمیل</th>
+            <th>تلفن</th>
+            <th>نقش</th>
+            <th>شناسه مشتری</th>
+            <th>وضعیت</th>
+            <th>کاربر مدیر</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="u in users">
+            <td class="collapsing">
+                <div class="ui toggle checkbox">
+                    <input @input="updateUser(u)" v-model="u.is_active" type="checkbox"> <label></label>
+                </div>
+            </td>
+            <td>{{u.get_full_name}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.phone}}</td>
+            <td>
+                <!--<td v-text="u.role === 'applicant' ? 'کارجو' : 'کارفرما'"> -->
+                <!-- {{u.role === 'applicant' ? 'کارجو' : 'کارفرما'}} -->
+                <!-- <button class="ui button basic"></button> -->
+                <div v-if="u.role === 'employer'">کارفرما</div>
+                <div class="ui animated fade button basic applicant-role" v-if="u.role === 'applicant'"
+                    @click="redirect(u)">
+                    <div class="visible content">کارجو</div>
+                    <div class="hidden content ">ارتقا به کارفرما</div>
+                </div>
+            </td>
+            <td>{{u.customer_id}}</td>
+            <td><span class="ui label" :class="{green: u.is_online, red: !u.is_online}">{{u.is_online ? 'آنلاین':
+                    'آفلاین'}}</span></td>
+            <td>
+                <div class="ui checkbox">
+                    <input @input="updateUser(u)" v-model="u.is_really_admin" type="checkbox"> <label></label>
+                </div>
+            </td>
+        </tr>
+        <!-- add user -->
+        <tr v-if="showAddUser">
+            <td colspan="2">
+                <div class="ui input fluid">
+                    <input autocomplete="new-password" type="password" v-model="addUserModel.password" placeholder="رمزعبور">
+                </div>
+            </td>
+            <td colspan="3">
+                <div class="ui input fluid">
+                    <input type="email" v-model="addUserModel.email" placeholder="ایمیل">
+                </div>
+            </td>
+            <td colspan="2">
+                <div class="ui input fluid">
+                    <input type="number" v-model="addUserModel.phone" placeholder="موبایل">
+                </div>
+            </td>
+            <td>
+                <div class="ui checkbox">
+                    <input v-model="addUserModel.is_admin" type="checkbox"> <label></label>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot class="full-width">
+        <tr>
+            <!-- <th></th> -->
+            <th colspan="8">
+                <div class="ui left floated small primary labeled icon button" @click="addUser()">
+                    <i class="user icon"></i> افزودن کاربر
+                </div>
+                <div v-if="showAddUser" class="ui left floated small red button" @click="reset_addUserModel()">
+                    لغو
+                </div>
+                <!-- <div class="ui small  button">
+            Approve
+          </div>
+          <div class="ui small  disabled button">
+            Approve All
+          </div> -->
+            </th>
+        </tr>
+    </tfoot>
+</table>
+<!-- pagination -->
+<pagination :page_counts="this.page_counts" :p_index="this.index" @reload="getUsersList($event)"></pagination>

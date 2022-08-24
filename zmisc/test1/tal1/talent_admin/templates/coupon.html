@@ -1,0 +1,41 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/coupon/coupon.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___jobs_page">
+      <coupon :context="variablesData"></coupon>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/coupon/coupon.min.js' %}"></script>
+   <script>
+         var context = {
+    url: '{% url "talent_admin:create_coupon" %}',
+    coupon_list: '{% url "payment:api:all_coupon" %}',
+    active_API: '{% url "payment:api:update_coupon" %}',
+}  
+         </script>
+   <script>
+      let vue___jobs_page = new Vue({
+         el: '#element___jobs_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'کوپن ها';
+         },
+         components: {
+            "coupon": coupon,
+         }
+      });
+   </script>
+{% endblock %}
+   

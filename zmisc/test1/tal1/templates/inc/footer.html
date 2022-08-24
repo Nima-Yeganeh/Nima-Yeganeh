@@ -1,0 +1,103 @@
+{% load static %}
+<div class="footer">
+    <div class="footer1">
+        <div class="ui stackable five column grid none-foot">
+            <div class="column address">
+                <h3>{{footer.copyright_name}}</h3>
+                <p>
+                    <a href="https://test.local/" target="blank">{{footer.address}}</a>
+                </p>
+                <!-- <p>{{footer.phone}}</p> -->
+                <p>
+                    <a href="tel:{{footer.phone}}">{{footer.phone}}</a>
+                </p>
+                <p>
+                    <a href="mailto:{{footer.email}}">{{footer.email}}</a>
+                </p>
+
+            </div>
+            <div class="column contact">
+                <h3>راه های ارتباطی</h3>
+                <a href={{footer.about_url}}>درباره ما</a>
+                <a href={{footer.contact_url}}>تماس با ما </a>
+            </div>
+            <div class="column links">
+                <h3>لینک های مفید</h3>
+                {% for key, value in footer.useful_links.items %}
+                <a href={{value}}>{{key}}</a>
+                {% endfor %}
+            </div>
+            <div class="column form footer-form">
+                <p>ما برای جواب دادن به سوال هات همیشه آماده ایم.</p>
+                <form class="ui form send-msg-form">
+                    <div class="field field_footer">
+                        <input type="text" name="first-name" id="guest_name" placeholder="نام و نام خانوادگی">
+                    </div>
+                    <div class="fields style_bottons">
+                        <div class="field field_footer half_field">
+                            <input type="text" name="shipping[phone]" id="guest_phone" placeholder="شماره همراه">
+                        </div>
+                        <div class="field field_footer half_field">
+                            <input type="text" name="shipping[subject]" id="guest_ticket_title" placeholder="موضوع">
+                        </div>
+                    </div>
+                    <div class="field field_footer">
+                        <textarea rows="2" maxlength="500" id="guest_ticket_description"
+                            placeholder="متن پیام"></textarea>
+                    </div>
+                </form>
+                <button class="ui fluid inverted basic button send" id="send_public_ticket" onclick="sendMessage()">ارسال پیام
+                </button>
+                <!-- <div class="fields">
+                    <div class="onefield">
+                        <input type="text" name="first-name" id="guest_name" placeholder="نام و نام خانوادگی">
+                    </div>
+                    <div class="ui grid twofields">
+                        <div class="eight wide column">
+                            <input type="text" name="shipping[phone]" id="guest_phone" placeholder="شماره همراه">
+                        </div>
+                        <div class="eight wide column">
+                            <input type="text" name="shipping[subject]" id="guest_ticket_title" placeholder="موضوع">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <textarea maxlength="500" id="guest_ticket_description" placeholder="متن پیام"></textarea>
+                    </div>
+                    <div class="ui fluid inverted basic button send" 
+                      id="send_public_ticket">ارسال  پیام
+                    </div>
+                </div> -->
+            </div>
+            <div class="column socialmedia">
+                {% if footer.social_media.aparat and footer.social_media.aparat != "#" %}
+                <a href={{footer.social_media.aparat}}> <img src="{% static '/base/img/f-aparat.svg' %}"> </a>
+                {% endif %}
+                {% if footer.social_media.instagram and footer.social_media.instagram != "#"%}
+                <a href={{footer.social_media.instagram}}> <img src="{% static '/base/img/f-instagram.svg' %}"></a>
+                {% endif %}
+                {% if footer.social_media.facebook and footer.social_media.facebook != "#" %}
+                <a href={{footer.social_media.facebook}}> <img src="{% static '/base/img/f-facebook.svg' %}"></a>
+                {% endif %}
+                {% if footer.social_media.linkedin and footer.social_media.linkedin != "#" %}
+                <a href={{footer.social_media.linkedin}}> <img src="{% static '/base/img/f-LinkedIn.svg' %}"></a>
+                {% endif %}
+                {% if footer.social_media.twitter and footer.social_media.twitter != "#" %}
+                <a href={{footer.social_media.twitter}}> <img src="{% static '/base/img/f-twitter.svg' %}"></a>
+                {% endif %}
+                {% if footer.social_media.youtube and footer.social_media.youtube != "#" %}
+                <a href={{footer.social_media.youtube}}> <img src="{% static '/base/img/f-youtube.svg' %}"></a>
+                {% endif %}
+                {% if footer.social_media.telegram and footer.social_media.telegram != "#" %}
+                <a href={{footer.social_media.telegram}}> <img src="{% static '/base/img/f-telegram.svg' %}"></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="logos">
+        <a href=""> <img class="samandehi" src="{% static '/base/img/samandehi.svg' %}"> </a>
+        <a href=""> <img class="enamad" src="{% static '/base/img/enamad.png' %}"> </a>
+    </div>
+
+    <hr>
+    <p class="copyright">۱۴۰۰ {{footer.copyright_name}}. همه حقوق محفوظ است.</p>
+</div>

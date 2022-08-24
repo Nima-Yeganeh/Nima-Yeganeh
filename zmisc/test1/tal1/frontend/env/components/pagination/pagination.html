@@ -1,0 +1,21 @@
+<div class="pagination">
+    <button class="ui basic compact icon button" @click="firstPage" v-if="has_prev">
+        <span class="material-icons">
+            arrow_right
+        </span>
+    </button>
+    <button class="ui compact icon button" @click="prevPage" v-if="has_prev">
+        {{convertNumbersToPersian(index - 1)}}
+    </button>
+    <button class="ui compact icon button active" v-if="show_index">
+        {{convertNumbersToPersian(index)}}
+    </button>
+    <button class="ui compact icon button" @click="nextPage" v-if="has_next">
+        {{convertNumbersToPersian(index + 1)}}
+    </button>
+    <button class="ui basic compact icon button" @click="lastPage" v-if="has_next">
+        <span class="material-icons">
+            arrow_left
+        </span>
+    </button>
+</div>

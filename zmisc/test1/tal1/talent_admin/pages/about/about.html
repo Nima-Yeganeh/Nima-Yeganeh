@@ -1,0 +1,22 @@
+<header>
+    <h2 class="ui header">
+        <div class="content">
+            درباره سیستم
+            <!-- <div class="sub header"></div> -->
+        </div>
+    </h2>
+</header>
+<div class="ui divider"></div>
+
+<table class="ui table">
+    <tbody>
+        <tr v-for="f in context.info">
+            <td class="collapsing">
+                <!-- <i class="folder icon"></i> node_modules -->
+            </td>
+            <td>{{f.title}}</td>
+            <td>{{f.value}}</td>
+        </tr>
+    </tbody>
+</table>
+<button class="ui button violet" @click="delete_cache()">پاک کردن کش</button>

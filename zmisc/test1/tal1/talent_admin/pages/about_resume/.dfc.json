@@ -1,0 +1,20 @@
+{
+    "extends": "base_admin.html",
+    "id": "__about_resume_page",
+    "css_block_name": "style1",
+    "html_block_name": "content1",
+    "js_block_name": "js1",
+    "compiled_html_name": "about_resume.html",
+    "vars_prop_name": "context",
+    "title": "about_resume",
+    "components": [
+        "form_builder"
+    ],
+    "css_styles": [
+        "base/css/summernote.min.css"
+    ],
+    "js_scripts": [
+        "base/js/summernote.min.js",
+        "base/js/summernote-fa-IR.js"
+    ]
+} 

@@ -1,0 +1,128 @@
+.header {
+    display: flex !important;
+    align-items: center;
+    .spacer {
+        flex: 1 1 0;
+    }
+    .actions {
+        display: flex;
+        align-items: center;
+        i {
+            margin: 0 2px;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: all 0.3s;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+.picker {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    .uploder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        i {
+            font-size: 5em;
+        }
+        .browse {
+            flex: 1 1 0;
+            label {
+                color: rgb(28, 104, 204);
+                opacity: 0.7;
+                transition: all 0.3s;
+                &:hover {
+                    cursor: pointer;
+                    opacity: 1;
+                }
+            }
+            input {
+                display: none;
+            }
+        }
+        .options {
+            margin-top: 30px;
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+            height: 27px;
+            a {
+                max-height: 100%;
+            }
+        }
+    }
+}
+.uploading {
+    display: flex;
+    flex-direction: column;
+    .file {
+        transition: none 500ms ease-in-out;
+        display: flex;
+        align-items: center;
+        .preview {
+            margin: 0 4px;
+            i {
+                color: rgb(63, 134, 255);
+                font-size: 4em;
+            }
+            img {
+                height: 50px;
+                max-width: 100px;
+                border: 1px dashed rgba(0, 0, 0, 0.7);
+            }
+        }
+        .info {
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            .filename {
+                display: flex;
+                .name {
+                    flex: 1 1 0;
+                }
+                .green {
+                    color: green;
+                }
+                .percent {
+                    opacity: 0.6;
+                }
+                .icon-btn {
+                    opacity: 0.8;
+                    transition: all 0.3s;
+                    &:hover {
+                        opacity: 1;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .progress {
+                background-color: rgba(159, 143, 143, 0.3);
+                height: 0.5rem;
+                border-radius: 0.625rem;
+                transition: all 0.3s;
+                .fill {
+                    // z-index: 3;
+                    transition: all 0.3s;
+                    background-color: rgb(63, 134, 255);
+                    height: 100%;
+                    border-radius: 0.625rem;
+                }
+            }
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    .spacer {
+        flex: 1 1 0;
+    }
+}

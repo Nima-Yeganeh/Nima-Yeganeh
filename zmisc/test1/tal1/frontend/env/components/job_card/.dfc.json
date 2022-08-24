@@ -1,0 +1,17 @@
+{
+    "extends": "panel.html",
+    "id": "__job_card_page",
+    "css_block_name": "employee_style",
+    "html_block_name": "main",
+    "js_block_name": "employee_js",
+    "compiled_html_name": "job_card.html",
+    "vars_prop_name": "context",
+    "title": "job_card",
+    "css_styles": [
+        "base/css/summernote.min.css"
+    ],
+    "js_scripts": [
+        "base/js/summernote.min.js",
+        "base/js/summernote-fa-IR.js"
+    ]
+}

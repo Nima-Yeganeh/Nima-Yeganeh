@@ -1,0 +1,17 @@
+<div class="edit_pages">
+    <h1>ویرایش صفحات</h1>
+    <!-- Tab links -->
+    <div class="tab">
+        <button v-for="tab in tabs" :class="{active: activeTab === tab.value}" @click="goToTab(tab)"
+            v-text="tab.title"></button>
+    </div>
+    <div class="ui form">
+        <!-- is loading -->
+        <div class="ui active inverted dimmer" v-if="loading">
+            <div class="ui text loader">بارگذاری</div>
+        </div>
+        <!-- form builder -->
+        <form-builder :fields="activeForm" :loading="loading"></form-builder>
+        <button class="ui button green" @click="editConfig()">ثبت</button>
+    </div>
+</div>

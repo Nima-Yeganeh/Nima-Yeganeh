@@ -1,0 +1,99 @@
+<div class="ui card fluid card-res" :id="id">
+  <div class="ui active inverted dimmer" v-if="loading">
+    <div class="ui text loader">بارگذاری</div>
+  </div>
+  <div class="content" @click="jobClick($event)" v-if="!loading">
+    <!-- job company -->
+    <div v-if="job.company" class="meta company-logo">
+      <div class="right-top">
+        <img class=" ui avatar image" :src="job.company.logo">
+        <div>
+          <h4>{{job.title}}</h4>
+          <p>{{job.company.title}}</p>
+        </div>
+      </div>
+      <div class="actions" v-if="is_login=='true' || userInfo">
+        <!-- is starred -->
+        <i :id=" job.pk" class="material-icons" @click.stop="stopTheEvent" @click="toggleBookmark()">{{job.bookmark ?
+          'bookmark' : 'bookmark_border'}}</i>
+        <!-- send resume -->
+        <template v-if="showSendResume && !job.is_owner">
+          <span data-tooltip="ارسال رزومه" @click.stop="stopTheEvent" @click="send_resume($event, job)"
+            v-if="!job.resume_exist">
+            <i class="material-icons send-btn">send</i>
+          </span>
+          <span data-tooltip="رزومه ارسال شده است" v-if="job.resume_exist">
+            <i class="material-icons green">done</i>
+          </span>
+        </template>
+      </div>
+    </div>
+    <!-- <div class="description" v-if="shortDes">
+      <p v-html="parseHtml(shortDes)"></p>    
+    </div> -->
+  </div>
+  <span v-if="job.is_starred" class="ui red label starred">فوری</span>
+  <div class="extra content">
+    <span class="right floated time" v-if="publicationAt">{{publicationAt}}</span>
+    <span class="category" v-if="locationText">{{locationText}}</span>
+  </div>
+</div>
+
+<!--    
+<div class="ui card">
+    <div class="content">
+      <div class="header">Cute Dog</div>
+      <div class="meta">
+        <span class="right floated time">2 days ago</span>
+        <span class="category">Animals</span>
+      </div>
+      <div class="description">
+        <p></p>
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="right floated author">
+        <img class="ui avatar image" src="/images/avatar/small/matt.jpg"> Matt
+      </div>
+    </div>
+  </div> -->
+
+<!-- -------------------------------dialog send resume------------------------------- -->
+<div class="ui tiny modal" v-if="showSendResume" :id="sendResumeModalId">
+  <div class="header">ارسال رزومه به آگهی</div>
+  <div class="content">
+    <!-- div image -->
+    <div class="image-p">
+      <img src="/static/base/img/img-pay.svg">
+    </div>
+    <!-- to check how to send resume -->
+    <div class="ui toggle checkbox">
+      <input type="checkbox" v-model="sendSpecialResume">
+      <label>تمایل دارم رزومه من، به عنوان رزومه ویژه به کارفرما ارسال شود. </label>
+    </div>
+    <!-- <div id="price-view" class="price-view">
+          <div class="about-notice-bottom ">
+              <h4> هزینه ویژه کردن رزومه</h4>
+              <div class="price">
+                  <p>۴۵۰۰۰</p>
+                  <p class="t">تومان</p>
+              </div>
+          </div>
+          <br>
+          <div class="ui input sale-code">
+              <input type="text" placeholder="کد تخفیف">
+          </div>
+          <button class="ui button notice">
+              پرداخت
+              <i class="material-icons">chevron_left</i>
+          </button>
+      </div> -->
+  </div>
+  <!-- sent resume button -->
+  <div class="actions">
+    <button class="ui positive right labeled icon button" :disabled="resume_exist || expire" @click="send_resume_api()">
+      ارسال رزومه
+      <i class="checkmark icon"></i>
+    </button>
+  </div>
+</div>

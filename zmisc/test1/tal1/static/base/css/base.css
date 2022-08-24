@@ -1,0 +1,490 @@
+/* @import url('https://v1.fontapi.ir/css/Shabnam:100;300;400;500;700'); */
+@font-face {
+    font-family: "Shabnam";
+    /* src: url("https://fdn.fontcdn.ir/Fonts/Shabnam/a074a415cfe0e4f57e2ede996a73d0e509c0ea194c9678c7b87c65fb977907e7.woff2") format("woff2"); */
+    src: url("../font/Shabnam.woff2") format("woff2");
+    font-weight: 100;
+    font-style: normal;
+}
+
+/* ::-webkit-scrollbar {
+    border-radius: 80px !important;
+    height: 3px !important;
+}
+::-webkit-scrollbar-track {
+    border-radius: 80px !important;
+    background: transparent !important;
+} */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+a,
+input,
+textarea,
+.ui,
+.header,
+[data-tooltip]::after {
+    font-family: "Shabnam", sans-serif !important;
+}
+
+body {
+    background-color: #fafafa !important;
+}
+
+.distance_from_top {
+    margin-top: 147px !important;
+}
+
+/* *** header ***  */
+.menu-header {
+    background-color: #eaf3ff;
+    box-shadow: 0px 16px 25px 4px rgba(0, 0, 0, 2%);
+    transition: all 1s;
+}
+.ui.inverted.dimmer {
+    z-index: 2;
+}
+.up-head {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.menu-ham-head {
+    display: none;
+}
+
+.logo-header {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo-header img {
+    width: 140px;
+    margin-top: 4px;
+}
+.login-btn {
+    color: #fff !important;
+}
+
+.bottom-responsive {
+    display: flex;
+    flex-direction: row;
+    width: 83%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notif-pesron {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 11%;
+    align-items: center;
+}
+
+.searchbar {
+    flex: 1 1 0;
+    margin: 0 5px;
+    border-radius: 12px !important;
+}
+
+.s-head {
+    width: 100% !important;
+    border: none !important;
+}
+
+.s-head i {
+    margin-right: 3px !important;
+}
+
+.ui.icon.input input {
+    font-size: 11px !important;
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+    font-family: Shabnam !important;
+}
+
+.ui.icon.input > i.icon {
+    font-size: 13px !important;
+    line-height: 0.8 !important;
+}
+
+.login {
+    font-family: Shabnam !important;
+    font-size: 12px !important;
+    padding: 0.9% !important;
+    border-radius: 10px !important;
+}
+
+.login-res {
+    display: none !important;
+}
+
+.header-drp-dwn {
+    display: flex !important;
+    margin: 0 5px;
+}
+
+.m-head {
+    margin-top: 5px !important;
+    min-width: 20em !important;
+    min-height: 50px;
+    right: -250px !important;
+    border-radius: 12px !important;
+    opacity: 1;
+    border: none !important;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.m-head .notifications {
+    flex: 1 1 0;
+}
+
+.menu-head {
+    right: -60px !important;
+    margin-top: 5px !important;
+}
+
+.menu-head hr,
+.m-head hr {
+    width: 98% !important;
+    opacity: 80% !important;
+}
+
+.item-head {
+    padding: 16px 24px !important;
+}
+
+.divider-head {
+    margin: 5px 0 !important;
+}
+.btn-page i {
+    font-size: 2em;
+    color: #1d2455;
+}
+
+.jobcategory {
+    padding: 1% 4% 2% 0%;
+    color: #4f4f4f;
+    cursor: pointer;
+}
+
+.Topcompanies {
+    padding: 1% 3%;
+    color: #4f4f4f;
+    cursor: pointer;
+}
+
+.fixed_header {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0px;
+}
+.shadow {
+    box-shadow: 0 20px 10px 0px rgb(0 0 0 / 5%);
+}
+
+.notif-h {
+    display: flex !important;
+    margin: 0 10px;
+}
+
+.title-h {
+    padding-top: 15% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.item-notif {
+    padding: 2% !important;
+    font-size: 16px !important;
+    cursor: pointer;
+}
+
+.notifnum {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+.notifnum i {
+    margin: 0 5px;
+}
+.notifnum span {
+    font-size: 1em;
+}
+
+.notif-divider {
+    margin: 0 !important;
+}
+
+.notifications-h {
+    margin-top: -12% !important;
+    padding-right: 2% !important;
+}
+
+.notif-head {
+    max-width: 86%;
+    margin-right: 3%;
+}
+
+.clock-notif,
+.title-notifications,
+.notification_description {
+    font-size: 0.8em !important;
+    font-weight: 200;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.8;
+}
+.btn-notif {
+    border-radius: 0 0 10px 10px !important;
+    text-align: center !important;
+}
+
+/* *******FOOTER******** */
+.footer {
+    padding-top: 3%;
+    padding-bottom: 2%;
+    color: #fff !important;
+    background-color: #010834;
+    position: absolute;
+    width: 100%;
+}
+.footer1 {
+    width: 100%;
+    padding: 0% 3% 2% 0%;
+}
+.logos {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.logos a {
+    margin: 0 2%;
+}
+
+.logos img {
+    border-radius: 12px;
+    background-color: #fff;
+    max-width: 100px;
+    min-width: 100px;
+}
+.contact,
+.links {
+    display: flex !important;
+    flex-direction: column;
+}
+.contact a,
+.links a {
+    margin-bottom: 2%;
+    color: white !important;
+    cursor: pointer;
+}
+.footer-form {
+    width: 30% !important;
+}
+.field_footer input,
+.field_footer textarea {
+    background: #cce2ff3d !important;
+    max-height: 120px !important;
+}
+.style_bottons{
+    display: flex;
+    flex-direction: row;
+}
+.socialmedia {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 5% !important;
+    justify-content: flex-end;
+    width: 10% !important;
+}
+.socialmedia a{
+    margin-top: 8px;
+    margin-left: 8px;
+}
+.copyright {
+    text-align: center;
+    color: #a6a6a6;
+    padding-top: 2%;
+}
+.send {
+    margin-top: 2% !important;
+}
+.exit {
+    font-size: 16px !important;
+}
+.half_field{
+    width: 50%;
+}
+/* **** page not found style ****** */
+.not-found {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.not-found p {
+    color: #252525;
+    font-size: 20px;
+    margin-top: 2%;
+}
+
+/******pagination*****/
+
+.page-counter {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.custom-active-page {
+    background-color: #48dbb8 !important;
+}
+
+.custom-page-button-size {
+    min-width: 1em !important;
+    width: 3em !important;
+    min-height: 3.5em !important;
+    border-radius: 10px !important;
+    padding: 0px !important;
+    margin-left: 10px !important;
+    margin-top: 20px !important;
+}
+.custom-page-button-size i {
+    font-size: 30px;
+}
+
+.arrow-s {
+    font-size: 24px !important;
+}
+
+/* responsive */
+
+@media only screen and (min-width: 800px) and (max-width: 1050px) {
+    .btn-page {
+        padding: 5px !important;
+        margin: 0px 0px 8px 0px !important;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .btn-page {
+        padding: 0px !important;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    /****header****/
+    .divider-head {
+        display: none !important;
+    }
+    .up-head {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .login,
+    .loginmood {
+        display: none !important;
+    }
+    .logo-header {
+        padding: 2%;
+    }
+    .bottom-responsive {
+        padding: 3%;
+        border-top: 1px solid #dfdfe0;
+        width: 98%;
+    }
+    .searchbar {
+        width: 70% !important;
+    }
+    .menu-head {
+        right: -55px !important;
+    }
+    .m-head {
+        right: -245px !important;
+        min-width: 22em;
+    }
+    .ham-menu-i {
+        font-size: 30px;
+    }
+    .ham-menu-head {
+        background: #517fbbc9 !important;
+    }
+    .between-b-h {
+        display: none !important;
+    }
+    .menu-ham-head {
+        display: block;
+    }
+    .items_responsive {
+        display: none;
+    }
+    .bottom-head {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .fields .field_footer {
+        width: 50%;
+    }
+    .fields {
+        margin-bottom: 2% !important;
+    }
+    .footer-form p{
+        text-align: center;
+    }
+    .socialmedia {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .logos{
+        justify-content: center;
+
+    }
+    .address,
+    .contact,
+    .links {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    /******header*****/
+    .searchbar {
+        width: 46% !important;
+    }
+    .menu-head {
+        right: -75px !important;
+    }
+
+    .searchbar {
+        display: none !important;
+    }
+    .responsive_search {
+        display: none !important;
+    }
+}

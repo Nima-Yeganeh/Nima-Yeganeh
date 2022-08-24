@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} admin {% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static '/panel/css/adminbeauty.css' %} ">
+{% endblock %}
+{% block content %}
+    <div class="main">
+        <div class="right-task">
+            <img src="{% static '/base/img/logo.png' %} " alt="">
+            <div class="ui vertical menu">
+                <div class="ui button button-style">
+                    <h3 class="ui header"> کارفرمایان</h3>
+                    <a class="item">لیست همه</a>
+                    <a class="item">جستجو</a>
+                    <a class="item">فعال/غیرفعال کردن</a>
+                </div>
+                <div class="ui button button-style">
+                    <h3 class="ui header">کارجویان</h3>
+                    <a class="item">لیست همه</a>
+                    <a class="item">جستجو</a>
+                    <a class="item">فعال/غیرفعال کردن</a>
+                </div>
+                <div class="ui button button-style">
+                    <h3 class="ui header">درخواست های ثبت آگهی</h3>
+                    <a class="item">لیست همه</a>
+                    <a class="item">انتخاب</a>
+                    <a class="item">بررسی/ویرایش</a>
+                    <a class="item">تایید و انتظار</a>
+                </div>
+                <div class="ui button button-style">
+                    <h3 class="ui header"> آگهی ها</h3>
+                    <a class="item">لیست همه</a>
+                    <a class="item">انتخاب</a>
+                    <a class="item">رزومه های ارسالی</a>
+                </div>
+                <div class="ui button button-style">
+                    <h3 class="ui header"> گزارش گیری</h3>
+                    <a class="item">اطلاعات پرداختی</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block js %}
+<script>
+$('.dropdown')
+  .dropdown({
+})
+;
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+.notifDetailContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.detailContents{
+    padding: 0px 15px;
+}
+.title-content{
+    color: #8E8E8E;
+    display: flex;
+    align-items: baseline;
+    padding: 10px 0px;
+}
+.details{
+    color: #4F4F4F;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: right;
+    margin: 3% 0!important;
+    width: 100%;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+}
+button{
+    border-radius: 7px !important;
+}
+
+
+
+

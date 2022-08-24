@@ -1,0 +1,26 @@
+p{
+    font-size: 15px;
+}
+.table-bottom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .download-btns{
+        padding-top: 10px;
+        // padding-right: 6px;
+        display: flex;
+        flex-direction: column;
+        a{
+            // width: 20px !important;
+            // height: 30px !important;
+            text-align: center;
+            align-content: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 5px 0px !important;
+            i{
+                margin: 0px !important;
+            }
+        }
+    }
+}

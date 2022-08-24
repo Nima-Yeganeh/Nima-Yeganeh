@@ -1,0 +1,18 @@
+.main-dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .card-main {
+        width: 100%;
+    }
+    .cards-detail{
+        min-height: 195px;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .table{
+        overflow-x: scroll;
+        width: 94% !important;
+    }
+    
+}

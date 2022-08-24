@@ -1,0 +1,117 @@
+<div class="ui stackable very padded" style="margin: 20px 0">
+    <div class="ui secondary pointing menu" style="overflow-x: auto !important; ">
+        <a v-for="cat in categories" class="item" :class="{'active': cat.value === activeCategory.value}"
+            @click="goToCategory(cat)">
+            {{cat.title}}
+        </a>
+    </div>
+    <!-- tab-->
+    <table class="ui compact celled definition table" id="job_cat_table">
+        <thead class="full-width">
+            <tr>
+                <th v-for="h in activeCategory.headers">{{h.title}}</th>
+                <th>تاریخ بروز رسانی</th>
+                <th>گزینه ها</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="c in configs">
+                <!-- editable record -->
+                <template
+                    v-if="editableConfig && editableConfig.namespace === c.namespace && editableConfig.key === c.key">
+                    <td v-for="h in activeCategory.headers">
+                        <!-- readonly field -->
+                        <div class="content" v-if="h.readonly">{{getValue(c, h)}}</div>
+                        <!-- editable field -->
+                        <template v-if="!h.readonly">
+                            <!-- if single value -->
+                            <template v-if="!editableConfig.is_array">
+                                <div class="ui input fluid">
+                                    <input :value="getValue(c, h)" @input="changeEditableField(h, $event.target.value)"
+                                        :type="c.data_type == 'number' ? 'number' : 'text'" :placeholder="h.title">
+                                </div>
+                            </template>
+                            <!-- if array value -->
+                            <template v-if="editableConfig.is_array">
+                                <div class="ui input fluid">
+                                    <input v-model="editableConfig.tmp_value" @keyup.enter="addFieldToArray()"
+                                        :type="editableConfig.array_type == 'number' ? 'number' : 'text'"
+                                        :placeholder="h.title">
+                                </div>
+                                <!-- array of labels -->
+                                <div class="ui labels" style="padding: 5px">
+                                    <div v-for="(lbl, ind) in editableConfig.array_list" class="ui green label">{{lbl}}
+                                        &nbsp;
+                                        <i class="material-icons" style="cursor: pointer;"
+                                            @click="removeFieldFromArray(ind)">delete</i>
+                                    </div>
+                                </div>
+                            </template>
+
+                        </template>
+                    </td>
+                    <td colspan="2">
+                        <button class="ui icon green button " @click="editConfig()">
+                            <i class="material-icons ">check</i>
+                        </button>
+                        <button class="ui icon red button " @click="cancelEdit(c)">
+                            <i class="material-icons ">close</i>
+                        </button>
+                    </td>
+                </template>
+                <!-- just show record -->
+                <template
+                    v-if="!editableConfig || editableConfig.namespace !== c.namespace || editableConfig.key !== c.key">
+
+                    <td v-for="h in activeCategory.headers">
+                        <div class="content" :data-content="h.translate ? getValue(c, h, true) : undefined">
+                            {{getValue(c, h)}}
+                            <i class="material-icons" v-if="h.translate &&getValue(c, h, true)">help</i>
+                        </div>
+                    </td>
+                    <td>
+                        <span v-if="c.updated_at" v-text="toPersianDate(c.updated_at)"></span>
+                        <span v-if="!c.updated_at"> - </span>
+                    </td>
+                    <td>
+                        <button v-if="activeCategory.editable" class="ui icon yellow button "
+                            @click="showEditableConfig(c)">
+                            <i class="material-icons ">edit</i>
+                        </button>
+                        <button v-if="activeCategory.deletable" class="ui icon red button" @click="deleteConfig(c)">
+                            <i class="material-icons ">delete</i>
+                        </button>
+                    </td>
+                </template>
+            </tr>
+            <!-- show new item -->
+            <tr v-if="showNewItemValue">
+                <td v-for="h in activeCategory.headers">
+                    <div class="ui input fluid" v-if="!h.type">
+                        <input v-model="showNewItemValue[h.value]" type="text" />
+                    </div>
+                    <button v-if="h.type === 'image'" class="ui button" @click="uploadImage(h.value)">آپلود</button>
+                </td>
+                <td colspan="2">
+                    <select class="ui dropdown disabled" v-model="showNewItemDataType">
+                        <option value="string">string</option>
+                        <option value="object">object</option>
+                        <option value="number">number</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot class="full-width" v-if="activeCategory.addItem">
+            <tr>
+                <th></th>
+                <th :colspan="activeCategory.headers.length + 1">
+                    <button class="ui right floated small primary labeled icon button" @click="showNewItem()">
+                        <i class="add icon"></i> {{activeCategory.addItem.title}}
+                    </button>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<file-uploader ref="image_uploader"></file-uploader>

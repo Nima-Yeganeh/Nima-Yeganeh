@@ -1,0 +1,9 @@
+{% extends 'base_error.html' %}
+{% load static %}
+{% block error_img %}
+     <img class="error-img" src="{% static '/base/img/403.svg' %} " alt="">
+{% endblock %}
+{% block error_msg %}
+        <h1>خطای 403</h1>
+        <p>نگران نباش، ما میتونیم راهنماییت کنیم.</p>
+{% endblock %}

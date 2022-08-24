@@ -1,0 +1,35 @@
+<div class=" main" id="header_search_el">
+    <div class="ui icon input " :class="[loading? 'loading': '']">
+        <input v-model="searchInput" @input="changeSearchText()" type="text"
+            placeholder="شرکت یا موقعیت شغلی مورد نظرتو اینجا جستجو کن.">
+        <i class="search icon"></i>
+    </div>
+    <div class="ui stacked segment results" :class="[showResults ? 'show': 'hide']">
+        <!-- not found -->
+        <div class="not-found" v-if="jobResults.length === 0 && companyResults.length === 0">
+            موردی یافت نشد!
+        </div>
+        <!-- job results -->
+        <div class="jobs" :class="[companyResults.length > 0 ? 'has-company' : '']" v-if="jobResults.length > 0">
+            <div class="ui vertical segment result-item" v-for="job in jobResults">
+                <div class="image" :style="{'background-image': 'url(' + job.image + ')'}"></div>
+                <div class="content">
+                    <h1 @click="goToPage(job.url)">{{job.title}}</h1>
+                    <!-- <p>{{shortDescription(job.description)}}</p> -->
+                    <div v-html="shortDescription(job.description)" style="font-size: 10px !important"></div>
+                </div>
+            </div>
+        </div>
+        <!-- company results -->
+        <div class="companies" v-if="companyResults.length > 0">
+            <div class="ui vertical segment result-item" v-for="com in companyResults">
+                <div class="image" :style="{'background-image': 'url(' + com.image + ')'}"></div>
+                <div class="content">
+                    <h1 @click="goToPage(com.url)">{{com.title}}</h1>
+                    <!-- <p>{{shortDescription(com.description)}}</p> -->
+                    <div v-html="shortDescription(com.description)" style="font-size: 10px !important"></div>
+                </div>
+            </div>
+        </div>   
+    </div>
+</div>  

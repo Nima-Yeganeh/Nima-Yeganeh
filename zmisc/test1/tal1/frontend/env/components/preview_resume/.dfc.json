@@ -1,0 +1,11 @@
+{
+    "extends": "panel.html",
+    "id": "__preview_resume_page",
+    "css_block_name": "employee_style",
+    "html_block_name": "main",
+    "js_block_name": "employee_js",
+    "compiled_html_name": "preview_resume.html",
+    "vars_prop_name": "context",
+    "title": "preview_resume"
+      
+}

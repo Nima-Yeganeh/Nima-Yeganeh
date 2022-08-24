@@ -1,0 +1,47 @@
+.main-coupon {
+    margin: 1em;
+    padding: 1em;
+    width: 97%;
+    height: auto;
+    .head-of-coupon {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .main-of-coupon {
+        .tab {
+            overflow: hidden;
+            border-bottom: 2px solid #dedede;
+            button {
+                background-color: inherit;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                color: #4f4f4f;
+                font-size: 14px;
+                &:hover {
+                    font-weight: bold;
+                }
+            }
+            button.active {
+                border-bottom: 3px solid #6946ff !important;
+                font-weight: bold;
+                color: #6946ff;
+            }
+        }
+        table {
+            margin-top: 20px !important;
+            thead{
+                th{
+                    background: #f9fafb !important;
+                }
+            }
+        }
+    }
+}
+
+.pagination{
+    margin-top: 5px;
+}

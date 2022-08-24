@@ -1,0 +1,7 @@
+<div class="ui basic segment">
+    <h1>اضافه کردن اعلان</h1>
+    <div class="ui form sixteen wide column">
+        <form-builder :fields="notifList" :loading="loading"></form-builder>
+        <button @click="sendNotification()" class="ui right floated green button">ارسال اعلان</button>
+    </div>
+</div>

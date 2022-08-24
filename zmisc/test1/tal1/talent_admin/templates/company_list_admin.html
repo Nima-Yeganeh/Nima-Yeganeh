@@ -1,0 +1,42 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/company_list_admin/company_list_admin.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___company_list_admin_page">
+      <company_list_admin :context="variablesData"></company_list_admin>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/company_list_admin/company_list_admin.min.js' %}"></script>
+   <script>
+         var context = {
+    companyApi: "{% url 'talent_admin:api:company_list' %}",
+    url: '{% url "company:company_detail" 0 %}',
+    uploadFileApi: "{% url 'core:file_upload' %}",
+    recieved_resumes_url: "{% url 'talent_admin:company_sent_resume' %}",
+}
+         </script>
+   <script>
+      let vue___company_list_admin_page = new Vue({
+         el: '#element___company_list_admin_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'لیست شرکت ها';
+         },
+         components: {
+            "company_list_admin": company_list_admin,
+         }
+      });
+   </script>
+{% endblock %}
+   

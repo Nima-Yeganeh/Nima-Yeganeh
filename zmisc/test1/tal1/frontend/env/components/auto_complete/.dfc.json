@@ -1,0 +1,10 @@
+{
+    "extends": "panel.html",
+    "id": "__auto_complete_page",
+    "css_block_name": "employee_style",
+    "html_block_name": "main",
+    "js_block_name": "employee_js",
+    "compiled_html_name": "auto_complete.html",
+    "vars_prop_name": "context",
+    "title": "auto_complete"
+}

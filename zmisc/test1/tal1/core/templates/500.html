@@ -1,0 +1,10 @@
+{% extends 'base_error.html' %}
+{% load static %}
+{% block error_img %}
+    <img class="error-img error_505_img" src="{% static '/base/img/500.png' %} " alt="">
+{% endblock %}
+{% block error_msg %}
+    <h1>خطای 500</h1>
+    <p>خطای داخلی سرور رخ داده است!!</p>
+
+{% endblock %}

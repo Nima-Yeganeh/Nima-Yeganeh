@@ -1,0 +1,77 @@
+<template v-if="mode === 'list'">
+
+
+   <table class="ui compact celled definition table">
+      <thead class="full-width">
+         <tr>
+            <th>شناسه</th>
+            <th>عنوان شغل</th>
+            <th>توضیحات</th>
+            <th>تصویر شغل</th>
+            <th>تاریخ آخرین بروز رسانی</th>
+            <th>گزینه ها</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr v-for="j in jobs">
+            <td>{{j.key}}</td>
+            <td>{{j.value.title}}</td>
+            <td>{{short(j.value.description)}}</td>
+            <td>
+               <img v-if="j.image" style="max-width: 40px;max-height: 150px;" :src="j.image">
+            </td>
+            <td>{{toPersianDate(j.updated_at)}}</td>
+            <td>
+               <button class="ui icon blue button" @click="viewJob(j)">
+                  <i class="material-icons ">visibility</i>
+               </button>
+               <button class="ui icon yellow button " @click="editJob(j)">
+                  <i class="material-icons ">edit</i>
+               </button>
+               <button v-if="j.updated_at" class="ui icon red button" @click="deleteJob(j)">
+                  <i class="material-icons ">delete</i>
+               </button>
+            </td>
+         </tr>
+      </tbody>
+      <tfoot class="full-width">
+         <tr>
+            <th></th>
+            <th colspan="6">
+               <div class="ui left floated small primary labeled icon button" @click="addJob()">
+                  <i class="user icon"></i> افزودن شغل
+               </div>
+               <!-- <div class="ui small  button">
+            Approve
+          </div>
+          <div class="ui small  disabled button">
+            Approve All
+          </div> -->
+            </th>
+         </tr>
+      </tfoot>
+   </table>
+</template>
+
+<template v-if="mode === 'add' || mode === 'edit'">
+   <div class="ui form sixteen wide column">
+      <form-builder :fields="fields"></form-builder>
+      <div class="field job-image">
+         <label>تصویر شغل</label>
+         <img v-if="model.uploadImage" :src="model.uploadImage">
+         <button @click="uploadImage()" class="ui button">آپلود تصویر جدید</button>
+      </div>
+      <div class="field">
+         <label>توضیحات شغل</label>
+         <textarea v-model="model.description"></textarea>
+      </div>
+   </div>
+   <related-courses @course_ids="model.related_courses=$event" :selectedCourseIds="model.related_courses">
+   </related-courses>
+
+   <div class="ui divider"></div>
+   <button class="ui blue button" @click="addOrEdit()">{{mode == 'add' ? 'افزودن' : 'ویرایش'}}</button>
+   <button class="ui negative button" @click="mode= 'list'">انصراف</button>
+</template>
+
+<file-uploader ref="image_uploader"></file-uploader>

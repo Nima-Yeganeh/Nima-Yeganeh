@@ -1,0 +1,42 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/about/about.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___about_page">
+      <about :context="variablesData"></about>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/about/about.min.js' %}"></script>
+   <script>
+         var context = {
+    {% autoescape off %}
+    info: {{ info }}, 
+    {% endautoescape %}
+    delete_cache_api: "{% url 'talent_admin:api:clear_config_cache' %}",
+}
+         </script>
+   <script>
+      let vue___about_page = new Vue({
+         el: '#element___about_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'درباره سیستم';
+         },
+         components: {
+            "about": about,
+         }
+      });
+   </script>
+{% endblock %}
+   

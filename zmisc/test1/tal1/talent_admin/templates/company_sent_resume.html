@@ -1,0 +1,39 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/company_sent_resume/company_sent_resume.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___company_sent_resume_page">
+      <company_sent_resume :context="variablesData"></company_sent_resume>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/company_sent_resume/company_sent_resume.min.js' %}"></script>
+   <script>
+         var context = {
+    title: 'سلام به دنیا'
+}  
+         </script>
+   <script>
+      let vue___company_sent_resume_page = new Vue({
+         el: '#element___company_sent_resume_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'رزومه های ارسالی به شرکت';
+         },
+         components: {
+            "company_sent_resume": company_sent_resume,
+         }
+      });
+   </script>
+{% endblock %}
+   

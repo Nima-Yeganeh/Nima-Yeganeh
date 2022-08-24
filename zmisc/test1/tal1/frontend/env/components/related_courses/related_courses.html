@@ -1,0 +1,26 @@
+<!-- choose courses for job -->
+<div class="related-courses">
+   <h2>دروس مرتبط با آگهی</h2>
+   <div class="ui icon input fluid">
+      <input v-model="courseSearchName" @input="getCourses()" class="prompt" type="text" placeholder="جستجو نام درس">
+      <i class="search icon"></i>
+   </div>
+   <div class="table-container">
+      <table class="ui celled table">
+         <thead>
+            <tr>
+               <th>شناسه</th>
+               <th>نام</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr v-for="c in coursesList" :class="{positive: checkSelectedCourse(c) }" @click="toggleSelectCourse(c)"
+               style="cursor: pointer;">
+               <td>{{c.id}}</td>
+               <td>{{c.name}}</td>
+            </tr>
+
+         </tbody>
+      </table>
+   </div>
+</div>

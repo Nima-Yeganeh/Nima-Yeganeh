@@ -1,0 +1,97 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+{% endblock %}
+
+{% block content1 %}
+<div class="ui stackable very padded main-admin" style="margin: 20px 0" id="tickets_section">
+    <div class="ui secondary pointing menu">
+        <a href="{% url 'talent_admin:tickets' 'panel_request' %}"
+            class="item {% if type == 'panel_request' %} active {% endif %}">
+            درخواست پنل کارفرما
+        </a>
+    </div>
+    <!-- tab-->
+    <div class="ui  segment">
+        <table class="ui compact celled definition table">
+            <thead class="full-width">
+                <tr>
+                    <th>شناسه</th>
+                    <th>عنوان </th>
+                    <th>ارسال کننده</th>
+                    <th>زمان</th>
+                    <th>وضعیت</th>
+                    <th>گزینه ها</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="t in tickets">
+                    <td v-text="t.code"></td>
+                    <td v-text="t.title">
+                    </td>
+                    <td v-text="t.created_by"></td>
+                    <td v-text="t.created_at"></td>
+                    <td v-text="t.status ?? '-'"></td>
+                    <td class="ui center aligned">
+                        <button class="ui icon primary button" @click="viewTicket(t)">
+                            <i class="material-icons ">visibility</i>
+                        </button>
+                        <!-- panel request -->
+                        <!-- <template v-if="type == 'panel_request' && (!t.status || t.status === 'checking')">
+                            <button class="ui icon red button" @click="answerPanelRequest(t, 'reject')">
+                                <i class="material-icons ">close</i>
+                            </button>
+                            <button class="ui icon positive button" @click="answerPanelRequest(t, 'accept')">
+                                <i class="material-icons ">check</i>
+                            </button>
+                        </template> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block js1 %}
+<script>
+    var _tickets_data_ = [
+        {% for t in tickets %}
+    {
+        code: "{{ t.ticket_code }}",
+            title: "{{t.title}}",
+                created_by: "{{t.created_by}}",
+                    created_at: "{{t.created_at}}",
+                        status: "{{t.status}}",
+        },
+    {% endfor %}
+    ];
+    var vue12 = new Vue({
+        el: '#tickets_section',
+        data: {
+            type: "{{type}}",
+            tickets: _tickets_data_,
+        },
+        methods: {
+            async answerPanelRequest(ticket, answer) {
+                let res = await sendAjaxRequest("{% url 'talent_admin:answer_panel_request'%}", {
+                    code: ticket.code,
+                    answer: answer,
+                });
+                console.log(res)
+                if (Boolean(res)) {
+                    ticket.status = answer;
+                }
+            },
+            viewTicket(ticket) {
+                // =>if panel request
+                // if (ticket.sta)
+            },
+        },
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,10 @@
+{
+    "extends": "panel.html",
+    "id": "__rules_page",
+    "css_block_name": "home_style",
+    "html_block_name": "home_content",
+    "js_block_name": "home_js",
+    "compiled_html_name": "rules.html",
+    "vars_prop_name": "context",
+    "title": "قوانین و مقررات"
+}

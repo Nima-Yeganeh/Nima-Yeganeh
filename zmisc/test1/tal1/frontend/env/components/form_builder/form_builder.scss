@@ -1,0 +1,36 @@
+input:read-only,
+textarea:read-only {
+    opacity: 0.6;
+}
+.label-item {
+    display: inline-flex;
+    align-items: center;
+    i {
+        margin: 0 4px;
+        font-size: 1.4em;
+    }
+}
+.ui.error {
+    input,
+    textarea, select {
+        background-color: #fff6f6;
+        border-color: #e0b4b4;
+        color: #9f3a38;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+.auto_complete{
+    width: 100%;
+    z-index: 3;
+}
+@media only screen and (max-width:400px){
+    .label-price{
+        width: 30% !important;
+        display: flex !important;
+        justify-content: center;
+    }
+    .income-div{
+        width: 70% !important;
+    }
+}

@@ -1,0 +1,49 @@
+<div class="main-report">
+    <h1>لیست پرداختی ها</h1>
+    <!-- loading -->
+    <div class="ui basic segment loader-style">
+        <div class="ui active inverted dimmer payment-show" v-if="loading">
+            <div class="ui text loader">بارگذاری</div>
+        </div>
+    </div>
+    <!-- table -->
+    <table class="ui unstackable table">
+        <thead>
+            <tr>
+                <th>وضعیت</th>
+                <th>ایمیل کاربر</th>
+                <th>تاریخ پرداخت</th>
+                <th>کد رهگیری</th>
+                <th>قیمت اصلی</th>
+                <th>قیمت نهایی</th>
+                <th>نوع</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="p in payment">
+                <td>
+                    <a v-if="p.result === 'success'" class="ui green label">پرداخت شده</a>
+                    <a v-if="p.result === 'waiting'" class="ui red label">در انتظار پرداخت</a>
+                </td>
+                <td>{{ p.user.email }}</td>
+                <td><template v-if="p.updated_at !== null">{{ toPersianDate(p.updated_at) }}</template></td>
+                <td>{{ p.trace_no }}</td>
+                <td>{{ humanizePrice(p.price) }}</td>
+                <td>{{ humanizePrice(p.final_price) }}</td>
+                <td>{{ p.type }}</td>
+            </tr>
+        </tbody>
+        <tfoot class="full-width">
+            <tr>
+                <th></th>
+                <th>مجموع پرداختی های موفق:</th>
+                <th>{{ humanizePrice(total_payment) }}</th>
+                <th>مجموع فروش:</th>
+                <th>{{ humanizePrice(total_price) }}</th>
+                <th></th>
+                <th>قیمت ها به ریال میباشد</th>
+            </tr>
+        </tfoot>
+    </table>
+    <pagination :page_counts="this.page_counts" :p_index="this.index" @reload="getPayment($event)"></pagination>
+</div>

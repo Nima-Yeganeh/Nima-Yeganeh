@@ -1,0 +1,11 @@
+.job-image {
+  display: flex;
+  align-items: center;
+  img {
+    max-height: 100px;
+    border: 1px dashed gray;
+    border-radius: 5px;
+    max-width: 300px;
+    margin: 0 5px;
+  }
+}

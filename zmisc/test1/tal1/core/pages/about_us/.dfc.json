@@ -1,0 +1,10 @@
+{
+    "extends": "panel.html",
+    "id": "__about_us_page",
+    "css_block_name": "home_style",
+    "html_block_name": "home_content",
+    "js_block_name": "home_js",
+    "compiled_html_name": "about_us.html",
+    "vars_prop_name": "context",
+    "title": "درباره بورس"
+}

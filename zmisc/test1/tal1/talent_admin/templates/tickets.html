@@ -1,0 +1,41 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/tickets/tickets.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___tickets_page">
+      <tickets :context="variablesData"></tickets>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/tickets/tickets.min.js' %}"></script>
+   <script>
+         var context = {
+    ticketsApi: "{% url 'talent_admin:api:tickets' %}",
+    viewTicket: "{% url 'talent_admin:view_ticket' %}",    
+}
+
+         </script>
+   <script>
+      let vue___tickets_page = new Vue({
+         el: '#element___tickets_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'تیکت های پشتیبانی';
+         },
+         components: {
+            "tickets": tickets,
+         }
+      });
+   </script>
+{% endblock %}
+   

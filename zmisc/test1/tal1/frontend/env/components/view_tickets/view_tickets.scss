@@ -1,0 +1,56 @@
+.ticket-header {
+    display: flex;
+    align-items: center;
+}
+.ticket-header h2 {
+    flex: 1 1 0;
+}
+#ticket_details {
+    width: 93% !important;
+    margin-left: 80px !important;
+}
+.comments {
+    max-width: unset !important;
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px !important;
+    .comment {
+        margin-top: 20px !important;
+        padding-bottom: 20px !important;
+        border-bottom: .5px solid #cfcfcf;
+        margin-bottom: -1px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .align-text{
+            display: flex;
+            flex-direction: row;
+        }
+        .avatar {
+            width: 2.5em;
+            height: 2.5em;
+            border-radius: 50%;
+            float: right;
+            margin: 0.2em 0 0;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+}
+.attachment a i {
+    margin: 0px !important;
+}
+.comments .comment.you {
+    display: flex;
+    direction: ltr;
+    .avatar {
+        margin-right: 10px;
+    }
+}
+/* responsive */
+@media only screen and (max-width: 700px) {
+    .comment{
+        flex-direction: column !important;
+    }
+}

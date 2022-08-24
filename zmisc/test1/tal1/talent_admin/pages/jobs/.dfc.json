@@ -1,0 +1,13 @@
+{
+    "extends": "base_admin.html",
+    "id": "__jobs_page",
+    "css_block_name": "style1",
+    "html_block_name": "content1",
+    "js_block_name": "js1",
+    "compiled_html_name": "jobs.html",
+    "vars_prop_name": "context",
+    "title": "آگهی ها",
+    "components": [
+        "pagination"
+    ]
+}

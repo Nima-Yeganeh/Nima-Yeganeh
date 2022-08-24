@@ -1,0 +1,173 @@
+{% extends 'panel.html' %}
+{% load static %}
+{% block title %} اعلان ها {% endblock %}
+{% block employee_style %}
+    <link rel="stylesheet" href="{% static '/notification/css/notifs.css' %} ">
+{% endblock %}
+{% block header %}
+{% endblock %}
+{% block main %}
+    <div>
+        <div class="notifMain">
+            <div class="notifContent">
+                <div class="ui breadcrumb notif_title">
+                    <h1 class="section">اعلان ها</h1>
+                </div>
+                <div class="ui pointing secondary menu notifMenu">
+                    <!-- <a class="item active-title item1" data-tab="first">همه</a>
+                    <a class="item item1" data-tab="second"></a> -->
+                    <div class="filter-div">
+                        <!-- <a class="item item1" data-tab="third"></a> -->
+                        <div id="checked-checkbox" class="tooltip">
+                            <i class="material-icons notification-icons delete" data-tooltip="حذف پیام" onclick="call_api('delete')">delete</i>
+                        </div>
+                        <div id="text" class="tooltip">
+                            <i class="material-icons notification-icons mark-as-read" data-tooltip="علامت به عنوان خوانده شده " onclick="call_api('unread')">mark_as_unread</i>
+                        </div>
+                        <!-- <a class="item item2 disabled" data-tab="third">
+                            <i class="material-icons">filter_alt</i>فیلتر ها
+                        </a> -->
+                    </div>
+                </div>
+                {% if notifications %}
+                <div class="list-notif">
+                        <table class="ui celled unstackable table table_items">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <!-- <th>شناسه پیام</th> -->
+                                <th>عنوان</th>
+                                <th>پیش نمایش</th>
+                                <th>زمان</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in notifications %}
+                                <tr class="{% if item.unread %} cells {% else %} unread-cells {% endif %}"
+                                    onclick="ridirect({{ item.pk }})">
+                                    <td class="general-cells">
+                                        <input class="Checkbox" type="checkbox" id="checkbox{{ item.pk }}"
+                                               value="{{ item.pk }}"
+                                               onclick="event.stopPropagation(); myFunction({{ item.pk }},'{{ item.unread }}')"
+                                        >
+                                    <!-- <td>{{ item.pk }}</td> -->
+                                    <td>{{ item.title }}</td>
+                                    <td id="show-more{{ item.description }}">
+                                        {{ item.description|truncatechars_html:30 }}
+                                    </td>
+                                    <td>{{ item.get_persian_created_at }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        {% include 'inc/not_found.html' %}
+                    {% endif %}
+                </div>
+                {% if notifications %}
+                    {% with pagination=notifications %}
+                        {% include 'inc/pagination.html'%}
+                    {% endwith %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block employee_js %}
+    <script>
+        var delete_count = 0;
+        var mark_as_read_count = 0;
+
+        function myFunction(pk, unread) {
+            var checkBox = document.getElementById("checkbox" + pk);
+            var delet = document.getElementById("checked-checkbox");
+            var mark_as_read = document.getElementById("text");
+
+            if (checkBox.checked == true) {
+                if (unread == 'True') {
+                    mark_as_read_count = mark_as_read_count + 1;
+                }
+                delete_count = delete_count + 1;
+            }
+            if (checkBox.checked == false) {
+                if (unread == 'True') {
+                    mark_as_read_count = mark_as_read_count - 1;
+                }
+                delete_count = delete_count - 1;
+            }
+            if (delete_count > 0) {
+                delet.style.display = "block";
+            }
+            if (mark_as_read_count > 0) {
+                mark_as_read.style.display = "block";
+            }
+
+            if (delete_count == 0) {
+                delet.style.display = "none";
+            }
+            if (mark_as_read_count == 0) {
+                mark_as_read.style.display = "none";
+            }
+        }
+
+        function ridirect(pk) {
+            var url = "{%url 'notification:notification_details' pk=0 %}".split('/');
+            url.pop();
+            url.pop();
+            url.push(pk);
+            goToPage(url.join('/'));
+        }
+    </script>
+
+    <script>
+        // call delete notification api
+        function call_api(api_type) {
+            if (api_type == 'delete') {
+                var method = 'DELETE'
+            } else if (api_type == 'unread') {
+                var method = 'POST'
+            }
+
+            let pk = ($('.Checkbox:checked').map(function () {
+                return this.value;
+            }).get().join(','));
+            console.log(pk)
+            const csrftoken = getCookie('csrftoken');
+            (async () => {
+                var data = new FormData()
+                data.append("pk", pk);
+                const rawResponse = await fetch('{% url 'notification:notification_api' %}', {
+                    method: method,
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    },
+                    body: data
+                });
+                const content = await rawResponse.status;
+                if (content == 200) {
+                    window.location.href = '{% url "notification:notification" %}'
+                }else {
+                    alert("مشکلی پیش آمده !!!")
+                }
+            })();
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,44 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/view_ticket/view_ticket.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___view_ticket_page">
+      <view_ticket :context="variablesData"></view_ticket>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/view_ticket/view_ticket.min.js' %}"></script>
+   <script>
+         var context = {
+    {% autoescape off %}
+    ticket: {{ ticket }}, 
+    {% endautoescape %}
+    userId: Number("{{ request.user.id}}"),
+    ticketsList: "{% url 'talent_admin:tickets' %}",
+    addTicket: "{% url 'talent_admin:api:tickets' %}",
+}  
+         </script>
+   <script>
+      let vue___view_ticket_page = new Vue({
+         el: '#element___view_ticket_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'مشاهده جزییات تیکت';
+         },
+         components: {
+            "view_ticket": view_ticket,
+         }
+      });
+   </script>
+{% endblock %}
+   

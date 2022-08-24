@@ -1,0 +1,45 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/view_panel_request/view_panel_request.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___view_panel_request_page">
+      <view_panel_request :context="variablesData"></view_panel_request>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/view_panel_request/view_panel_request.min.js' %}"></script>
+   <script>
+         var context = {
+    {% autoescape off %}
+ticket: JSON.parse(JSON.stringify({{ ticket }})),
+    {% endautoescape %}
+ticketsApi: "{% url 'talent_admin:api:tickets' %}",
+    ticketsList: "{% url 'talent_admin:tickets' %}",
+        uploadFileApi: "{% url 'core:file_upload' %}",
+
+}
+         </script>
+   <script>
+      let vue___view_panel_request_page = new Vue({
+         el: '#element___view_panel_request_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'مشاهده درخواست پنل حقوقی';
+         },
+         components: {
+            "view_panel_request": view_panel_request,
+         }
+      });
+   </script>
+{% endblock %}
+   

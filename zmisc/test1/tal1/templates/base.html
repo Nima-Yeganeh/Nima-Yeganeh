@@ -1,0 +1,102 @@
+{% load static %}
+{% load parse_json %}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <meta name="enamad" content="535634" />
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static  'base/css/base.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static  'base/img/favicon.ico' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static  'base/css/semantic.rtl.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static  'base/css/Material-Icons/icon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static  'base/css/icon.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static  'base/css/iziToast.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static  'base/css/slick.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static  'base/css/slick-theme.css' %}" />
+    
+    <script src="{% static  'base/js/vue.js' %}"></script>
+    {% block style %} {% endblock %}
+
+    <script>
+        var PUBLIC_URLS = {
+            resume_special_payment_api: "{% url 'resume:api:resume_special_payment' %}",
+            panel_urls_api: "{% url 'core:panel_urls' %}", 
+            download_resume_url: "{% url 'resume:download_resume' %}",
+            send_resume_api: '{% url "resume:api:send_resume" %}',
+            company_status_api: "{% url 'company:api:check_active_company' %}",
+            recieved_resumes_api: "{% url 'resume:api:receive_resume_list' %}",preview_resume_url: "{% url 'resume:preview_user_resume' %}",
+            job_details_api: "{% url 'job:api:job' %}",check_resume_api: '{% url "company:api:check_resume" %}',
+            company_info_api: "{% url 'company:api:company_information' %}",
+            user_info_api: "{% url 'core:user_info' %}"
+        };
+    </script>
+</head>
+
+<body>
+{% block content %} {% endblock %}
+</body>
+<script src="{% static  'base/js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static  'base/js/axios.min.js' %}"></script>
+
+<script src="{% static  'base/js/slick.min.js' %}"></script>
+<script src="{% static  'base/js/semantic.min.js' %}"></script>
+<script src="{% static  'base/js/iziToast.min.js' %}"></script>
+<script src="{% static  'base/js/helper.js' %}"></script>
+<script src="{% static 'base/js/persian-date.min.js' %}"></script>
+
+
+<script>
+    $('.ui.dropdown').dropdown();
+    $('.message .close').on('click', () => {
+        console.log('closing')
+        $(this)
+            .closest('.message')
+            .transition('fade')
+        ;
+    });
+</script>
+<script>
+
+  
+{% if messages %}
+    {% for message in messages %}
+            {% with json_msg=message|json_loads %}
+                {% if json_msg.title %}
+                    {% if json_msg.description %}
+                        iziToast.{{ message.tags }}({title: '{{ json_msg.title }}', message: '{{ json_msg.description }}'});
+                        {%else%}
+                        iziToast.{{ message.tags }}({title: '{{ json_msg.title }}', message: ''});
+                    {% endif %}
+                {% else %}
+                        iziToast.{{ message.tags }}({title: '', message: '{{ json_msg }}'});
+                {% endif %}
+            {% endwith %}
+    {% endfor %}
+{% endif %}
+</script>
+
+<script>
+    $('.left.demo.sidebar').first()
+        .sidebar('setting', 'transition', 'overlay');
+    $('#responsive_menu').click(() => {
+        $('.left.demo.sidebar').first().sidebar('toggle').css('opacity', 1);
+    });
+    $('.menu-icon')
+        .removeClass('disabled');
+</script>
+<script>
+    $('.ui.accordion')
+        .accordion();
+</script>
+<script>
+    
+</script>
+{% block js %} {% endblock %}
+
+</html>

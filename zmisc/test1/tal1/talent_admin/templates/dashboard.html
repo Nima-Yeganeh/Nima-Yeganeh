@@ -1,0 +1,46 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/dashboard/dashboard.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___dashboard_page">
+      <dashboard :context="variablesData"></dashboard>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/dashboard/dashboard.min.js' %}"></script>
+   <script>
+         var context = {
+    users: {{users}},
+    active_users: {{active_users}},
+    active_jobs: {{active_jobs}},
+    jobs_page: "{% url 'talent_admin:jobs' %}",
+    users_page: "{% url 'talent_admin:users' %}",
+    active_panel_requests: {{active_panel_requests}},
+    tickets_page: "{% url 'talent_admin:tickets' %}",
+    log_API:"{% url 'log:api:get_log' %}",
+}  
+         </script>
+   <script>
+      let vue___dashboard_page = new Vue({
+         el: '#element___dashboard_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'داشبورد';
+         },
+         components: {
+            "dashboard": dashboard,
+         }
+      });
+   </script>
+{% endblock %}
+   

@@ -1,0 +1,66 @@
+.div_home {
+    padding: 2% 4% 4%;
+    // main div
+    .main_rules {
+        text-align: justify;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100% !important;
+        align-content: center;
+        padding: 8%;
+        border-radius: 12px;
+        // image div
+        .img_rules {
+            width: 300px;
+            img {
+                height: 300px;
+            }
+        }
+        // text div
+        .box_rules {
+            width: 90%;
+            margin-block-start: 5%;
+            .text_rules {
+                border-radius: 12px !important;
+                padding: 5%;
+            }
+        }
+    }
+}
+// ******************************* RESPONSIVE *******************************
+@media only screen and (min-width: 600px) and (max-width: 950px) {
+    .main_rules {
+        padding: 3% !important;
+    }
+}
+@media only screen and (min-width: 450px) and (max-width: 600px) {
+    .div_home {
+        padding: 1% !important;
+        .main_rules {
+            padding: 1.5% !important;
+            .text_rules {
+                width: 100% !important;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 450px) {
+    .div_home {
+        padding: 0.5% !important;
+        .main_rules {
+            padding: 1% !important;
+            padding-top: 2% !important;
+            .img_rules {
+                width: 250px !important;
+                img {
+                    height: 250px !important;
+                }
+            }
+            .text_rules {
+                width: 100% !important;
+            }
+        }
+    }
+}

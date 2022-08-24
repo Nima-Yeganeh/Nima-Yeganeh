@@ -1,0 +1,76 @@
+<div class="ui segment">
+    <h1>شرکت ها</h1>
+
+    <!-- loading -->
+    <div class="ui active inverted dimmer loader-style" v-if="loading">
+        <div class="ui text loader">بارگذاری</div>
+    </div>
+    <table class="ui unstackable table">
+        <thead>
+            <tr>
+                <th>وضعیت</th>
+                <th>نام</th>
+                <th>ایمیل</th>
+                <!-- <th>درباره شرکت</th> -->
+                <th>اطلاعات مدیرعامل</th>
+                <th>اطلاعات رابط</th>
+                <th class="center aligned">مشاهده</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in company">
+                <td class="collapsing">
+                    <div class="ui toggle checkbox">
+                        <input @change="disableCompany(item)" v-model="item.is_active" type="checkbox">
+                        <label></label>
+                    </div>
+                </td>
+                <td v-text="item.title"></td>
+                <td v-text="item.user.email"></td>
+                <!-- <td v-html="short(item.about_company)"></td> -->
+                <td>
+                    <div>
+                        {{item.settings.CEO_name}}
+                    </div>
+                    <div>
+                        {{item.settings.CEO_phone}}
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        {{item.settings.connector_name}}
+                    </div>
+                    <div>
+                        {{item.settings.connector_phone}}
+                    </div>
+                </td>
+
+                <td class="table-bottom">
+                    <div class="download-btns">
+                        <a class="ui button basic grey" @click="redirect(context.url,item.pk)"
+                            data-tooltip="مشاهده شرکت">
+                            <i class="material-icons icon-desc cursor">visibility</i>
+                        </a>
+                        <a class="ui button basic grey" :href="context.recieved_resumes_url + '?company_id=' + item.pk"
+                            data-tooltip="رزومه های ارسالی به شرکت">
+                            <i class="material-icons icon-desc cursor">menu_book</i>
+                        </a>
+                        <a target="_blank" v-if="item.settings.statute" @click="downloadAttach(item.settings.statute)"
+                            data-tooltip="دانلود اساسنامه" class="ui button basic violet">
+                            <i class="download icon"></i>
+                        </a>
+                        <a target="_blank" v-if="item.settings.last_edition"
+                            @click="downloadAttach(item.settings.last_edition)" data-tooltip="دانلود آخرین تغییرات"
+                            class="ui button basic teal">
+                            <i class="download icon"></i>
+                        </a>
+                    </div>
+                    <!-- <div  v-if="item.settings.last_edition || item.settings.statute">
+                    </div> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination :page_counts="this.page_counts" :p_index="this.index" @reload="companyListAdmin($event)"
+        class="pagination"></pagination>
+</div>

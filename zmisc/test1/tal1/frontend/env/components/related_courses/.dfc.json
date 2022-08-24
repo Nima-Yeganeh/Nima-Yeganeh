@@ -1,0 +1,10 @@
+{
+    "extends": "panel.html",
+    "id": "__related_courses_page",
+    "css_block_name": "employee_style",
+    "html_block_name": "main",
+    "js_block_name": "employee_js",
+    "compiled_html_name": "related_courses.html",
+    "vars_prop_name": "context",
+    "title": "related_courses"
+}

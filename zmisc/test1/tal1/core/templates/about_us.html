@@ -1,0 +1,39 @@
+
+{% extends 'panel.html' %}
+{% load static %}
+
+{% block home_style %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/about_us/about_us.min.css' %}">
+   
+{% endblock %}
+
+{% block home_content %}
+   <div id="element___about_us_page">
+      <about_us :context="variablesData"></about_us>
+   </div>
+{% endblock %}
+
+{% block home_js %}
+   
+   <script src="{% static 'pages/about_us/about_us.min.js' %}"></script>
+   <script>
+         var context = {
+    image: "{% static '/base/img/aboutus.jpg' %}",
+}  
+         </script>
+   <script>
+      let vue___about_us_page = new Vue({
+         el: '#element___about_us_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'درباره بورس';
+         },
+         components: {
+            "about_us": about_us,
+         }
+      });
+   </script>
+{% endblock %}
+   

@@ -1,0 +1,65 @@
+{% load static %}
+<style>
+    .up-head {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    .logo-header {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .logo-header img {
+        width: 140px;
+        margin-top: 4px;
+    }
+
+    .menu-header {
+        background-color: #eaf3ff;
+        box-shadow: 0px 16px 25px 4px rgba(0, 0, 0, 2%);
+        transition: all 1s;
+    }
+
+    .main-div {
+        width: 100%;
+    }
+
+    .text_box{
+        margin: 5%;
+        box-shadow: 0 5px 25px 4px rgb(0 0 0 / 6%);
+        width: 80%;
+        border-radius: 12px;
+        padding: 4%;
+        margin-bottom: 25px;
+    }
+</style>
+
+<body dir="rtl">
+    <header class="menu-header">
+        <div class="up-head">
+            <div class="logo-header" @click="redirectToHomePage()">
+                <img src="{% static '/base/img/logocompany.png' %} ">
+            </div>
+            <div>
+                <p>مرکز</p>
+            </div>
+        </div>
+    </header>
+    <div class="main-div">
+        <div class="text_box">
+            <p>سلام {{ user.get_full_name }} عزیز</p>
+            <h2>{{ title }}</h2>
+            <p>{{ description }}</p>
+        </div>
+        <p>ورود به بورس {{ domain }}</p>
+    </div>
+</body>

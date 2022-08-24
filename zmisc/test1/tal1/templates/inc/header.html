@@ -1,0 +1,174 @@
+{% load static %}
+<header id="base_main_head" class="menu-header fixed_header">
+    <div class="up-head">
+        <div class="logo-header" @click="redirectToHomePage()">
+            <img src="{% static '/base/img/logocompany.png' %} ">
+        </div>
+        <div class="searchbar">
+            <header-search ref="main_header_search"></header-search>
+        </div>
+
+        {% if not request.user.is_authenticated %}
+        <button class="ui violet button login-btn" onclick="window.location ='{% url 'accounts:login' %}';">
+            ورود / ثبت نام
+        </button>
+        {% else %}
+        <div style="margin: 0 5px;display: flex;align-items: center;">
+            <!--if admin-->
+            {% if request.user.is_admin %}
+
+            <!-- show all users -->
+            <select class="ui search selection dropdown responsive_search" id="admin_switch_users">
+            </select>
+            {% endif %}
+            <!-- notifications -->
+            <div class="ui dropdown notif-h" :class="{disabled: counti === 0}">
+                <div class="floating ui red label circular " v-text="counti" v-if="counti > 0"></div>
+                <div class="notif-h">
+                    <i class="material-icons md-24">notifications</i>
+                </div>
+                <div class="menu m-head" id="notif_menu_header">
+                    <div class="notifications">
+                        <div v-for="notif in notifications" @click="goToNotificationPage(notif.pk)"
+                            class="item item-notif ui vertical segment">
+                            <div class="notifications-h">
+                                <div class="title-h">
+                                    <p class="title-notifications" v-text="notif.title"></p>
+                                    <p class="clock-notif" v-text="notif.date"></p>
+                                </div>
+                            </div>
+                            <div class="item notif-head">
+                                <P class="notification_description" v-text="notif.description"></P>
+                            </div>
+                            <!-- <div class="ui divider"></div> -->
+                        </div>
+                    </div>
+                    <button class="item fluid ui button btn-notif"
+                        onclick="window.location ='{% url 'notification:notification' %}';"
+                        v-text="'مشاهده همه (' + counti + ')'"></button>
+                </div>
+            </div>
+            <!-- user menu -->
+            <div class="ui dropdown">
+                <div class="text"><i class="material-icons md-24">person</i></div>
+                <i class="dropdown icon"></i>
+                <div class="left menu">
+                    <div class="item item-head" onclick="window.location ='{% url 'resume:resume' %}';">
+                        <i class="material-icons ">dashboard</i> پنل کاربری
+                    </div>
+                    {%if request.user.role == 'employer' %}
+                    <div class="item item-head" onclick="window.location ='{% url 'company:jobs' %}?role=employer';">
+                        <i class="material-icons ">work</i> پنل کارفرما
+                    </div>
+                    {%endif%}
+                    {%if request.user.is_admin%}
+                    <div class="item item-head" onclick="window.location ='{% url 'talent_admin:dashboard' %}';">
+                        <i class="material-icons ">admin_panel_settings</i> پنل ادمین
+                    </div>
+                    {%endif%}
+                {% if request.user.role == 'applicant' %}
+                    <div class="item item-head" onclick="window.location ='{% url 'ticket:panel_request' %}';">
+                        <i class="material-icons ">person_add</i> درخواست پنل حقوقی
+                    </div>
+                    {% endif %}
+                    <div class="item item-head" onclick="window.location ='{% url 'ticket:ticket_list' %}';">
+                        <i class="material-icons ">confirmation_number</i> تیکت های پشتیبانی
+                    </div>
+                    <div class="ui divider"></div>
+
+                    <div class="item item-head" onclick="window.location ='{% url 'accounts:logout' %}';">
+                        <i class="material-icons d-menu">logout</i>خروج
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="ui divider divider-head"></div>
+    <div class="ui secondary orange menu bottom-head" id="active">
+        <template v-for="item in fields">
+            <a :target="item.target" class="item btn-page" :href="item.url" :class="{active: checkActiveTabHeader(pageName,item.address)}">
+                <i class="material-icons" v-text="item.icon"></i>
+                <p class="items_responsive" v-text="item.name"></p>
+            </a>
+        </template>
+    </div>
+</header>
+
+{% block js %}
+<script>
+    let requestPathHeader = '{{request.path}}';
+    let requestPathIdHeader = requestPathHeader.split('/').slice(1, requestPathHeader.split('/').length - 1).join('_');
+    console.log(requestPathIdHeader)
+    let headerBar = new Vue({
+        el: '#active',
+        created() { },
+        data: {
+            pageName: requestPathIdHeader,
+            fields: [
+                {
+                    name: 'صفحه نخست',
+                    url: "{% url 'core:home' %}",
+                    icon: 'home',
+                    address: [''],
+                },
+                {
+                    name: ' آگهی های شغلی',
+                    url: "{% url 'job:jobs_list' %}",
+                    icon: 'campaign',
+                    address: ['jobs_jobs'],
+                },
+                {
+                    name: 'معرفی شرکت ها',
+                    url: "{% url 'company:company_list' %}",
+                    icon: 'business',
+                    address: ['company_company_list'],
+                },
+                {
+                    name: 'معرفی مشاغل',
+                    url: "{% url 'job:job_info' %}",
+                    icon: 'work',
+                    address: ['jobs_job_info'],
+                },
+                {
+                    name: ' رزومه ساز',
+                    url: "{% url 'resume:landing' %}",
+                    icon: 'description',
+                    address: ['resume_landing'],
+                },
+                {
+                    name: 'آزمون ها',
+                    url: "{% url 'core:exams' %}",
+                    icon: 'psychology',
+                    address: ['exams'],
+                },
+                {
+                    name: 'ارزیابی و توسعه',
+                    url: "{% url 'core:evaluation' %}",
+                    icon: 'assessment',
+                    address: ['evaluation'],
+                },
+                {
+                    name: 'آموزش',
+                    url: "https://www.domain.local/",
+                    icon: 'school',
+                    address: ['education'],
+                    target: 'blank'
+                },
+            ]
+        },
+        methods:{
+            checkActiveTabHeader(obj, list) {
+                var i;
+                for (i = 0; i < list.length; i++) {
+                    if (obj.startsWith(list[i]) && list[i].endsWith("_"))
+                    return true;
+                    if (list[i] === obj)
+                    return true;
+                }
+                return false;
+            }
+        },
+    });
+</script>
+{% endblock %}

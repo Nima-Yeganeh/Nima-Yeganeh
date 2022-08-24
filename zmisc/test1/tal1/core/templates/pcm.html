@@ -1,0 +1,39 @@
+
+{% extends 'panel.html' %}
+{% load static %}
+
+{% block home_style %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/pcm/pcm.min.css' %}">
+   
+{% endblock %}
+
+{% block home_content %}
+   <div id="element___pcm_page">
+      <pcm :context="variablesData"></pcm>
+   </div>
+{% endblock %}
+
+{% block home_js %}
+   
+   <script src="{% static 'pages/pcm/pcm.min.js' %}"></script>
+   <script>
+         var context = {
+    title: 'سلام به دنیا'
+}  
+         </script>
+   <script>
+      let vue___pcm_page = new Vue({
+         el: '#element___pcm_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'ارکان بازار سرمایه';
+         },
+         components: {
+            "pcm": pcm,
+         }
+      });
+   </script>
+{% endblock %}
+   

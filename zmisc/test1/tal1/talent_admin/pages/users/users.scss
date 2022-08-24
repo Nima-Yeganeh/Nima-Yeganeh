@@ -1,0 +1,23 @@
+h1 {
+    color: red;
+} 
+.main-users{
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    .search-users{
+        flex-grow: 1;
+        width: 80% !important;
+    }
+    .filterUsers{
+        padding-right: 5px;
+        width: 20% !important;
+    }
+}
+
+.applicant-role{
+    width: 100%;
+    .hidden{
+        font-size: 12px;
+    }
+}

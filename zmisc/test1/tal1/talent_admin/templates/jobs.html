@@ -1,0 +1,41 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/jobs/jobs.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___jobs_page">
+      <jobs :context="variablesData"></jobs>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/jobs/jobs.min.js' %}"></script>
+   <script>
+         var context = {
+    jobs_api: "{% url 'talent_admin:jobs_api' %}",
+    viewJobUrl: "{% url 'talent_admin:view_job' %}",
+    API_delete_job: "{% url 'job:api:update_job' %}",
+}
+         </script>
+   <script>
+      let vue___jobs_page = new Vue({
+         el: '#element___jobs_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'آگهی ها';
+         },
+         components: {
+            "jobs": jobs,
+         }
+      });
+   </script>
+{% endblock %}
+   

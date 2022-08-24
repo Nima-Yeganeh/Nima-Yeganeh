@@ -1,0 +1,67 @@
+
+{% extends 'panel.html' %}
+{% load static %}
+
+{% block home_style %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/home/home.min.css' %}">
+   
+{% endblock %}
+
+{% block home_content %}
+   <div id="element___home_page">
+      <home :context="variablesData"></home>
+   </div>
+{% endblock %}
+
+{% block home_js %}
+   
+   <script src="{% static 'pages/home/home.min.js' %}"></script>
+   <script>
+         var context = {
+    // img_home: "{% static '/base/img/bg-home.png' %}",
+    img_one: "{% static '/base/img/one.webp' %}",
+    img_two: "{% static '/base/img/two.webp' %}",
+    img_three: "{% static '/base/img/three.webp' %}",
+    img_ifc: "{% static '/base/img/aboutus.webp' %}",
+    logo_one: "{% static '/base/img/otherslogo1.webp' %}",
+    logo_two: "{% static '/base/img/otherslogo2.webp' %}", 
+    logo_three: "{% static '/base/img/otherslogo3.webp' %}", 
+    logo_four: "{% static '/base/img/otherslogo4.webp' %}",
+    logo_five:"{% static '/base/img/otherslogo5.webp' %}",
+    job_page_url: "{% url 'job:job_detail' 0 %}",
+    jobs_list_api: "{% url 'job:api:search' %}",
+    jobs_count: Number("{{jobs_count}}"),
+    jobs_list_url: "{% url 'job:jobs_list' %}",
+    jobs_starred_api: "{% url 'job:api:starred_job' %}",
+    special_jobs_api: "{% url 'job:api:home_suggest_job' %}",
+    company_list_api: "{% url 'company:api:company_list' %}",
+    job_home:"{% static '/base/img/job-home.webp' %}",
+    exam_home:"{% static '/base/img/exam-home.webp' %}",
+    cv_home:"{% static '/base/img/cv-home.webp' %}",
+    company_home:"{% static '/base/img/company-home2.webp' %}",
+    advertising_home:"{% static '/base/img/advertising-home.webp' %}",
+    job_list:"{%url 'job:jobs_list' %}",
+    job_info:"{%url 'job:job_info' %}",
+    company_list:"{%url 'company:company_list'%}",
+    resume_maker:"{%url 'resume:landing'%}",
+    exam:"{%url 'core:exams' %}",
+    ifc_site:"https://domain.local/",
+    cons_request_api:"{%url 'ticket:api:consultation_request' %}",
+}
+         </script>
+   <script>
+      let vue___home_page = new Vue({
+         el: '#element___home_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'بورس';
+         },
+         components: {
+            "home": home,
+         }
+      });
+   </script>
+{% endblock %}
+   

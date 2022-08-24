@@ -1,0 +1,36 @@
+<div class="main-ticket">
+    <!-- ticket header -->
+    <div class="ticket-header">
+        <h2 class="ui header">
+            <i class="material-icons ">confirmation_number</i>
+            <div class="content">
+                {{ticket_title}}
+                <div class="sub header">کد تیکت : {{context.ticket.ticket_code}}</div>
+            </div>
+        </h2>
+        <!-- answer -->
+        <div class="answer_field">
+            <a class="ui violet button" @click="showAnswerTicket()">
+                <i class="material-icons ">edit</i>
+                پاسخ
+            </a>
+        </div>
+    </div>
+    <div class="ui divider"></div>
+    <!-- ticket component -->
+    <view-tickets v-if="updateMessages" :ticketCode="context.ticket.ticket_code" :userAs="'admin'"
+        :userId="context.userId">
+    </view-tickets>
+    <!-- show answer ticket -->
+    <template v-if="answerTicketModel">
+        <div class="ui pilled segment">
+            <div class="ui form">
+                <div class="field">
+                    <label>توضیحات</label>
+                    <textarea v-model="answerTicketModel.description"></textarea>
+                </div>
+                <button class="ui button" @click="answerTicket()">ارسال</button>
+            </div>
+        </div>
+    </template>
+</div>

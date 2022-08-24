@@ -1,0 +1,40 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/users/users.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___users_page">
+      <users :context="variablesData"></users>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/users/users.min.js' %}"></script>
+   <script>
+         var context = {
+    users_list_api: "{% url 'talent_admin:users_api' %}",
+    make_employer_url: '{% url "talent_admin:make_employer" %}',
+}  
+         </script>
+   <script>
+      let vue___users_page = new Vue({
+         el: '#element___users_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'کاربران';
+         },
+         components: {
+            "users": users,
+         }
+      });
+   </script>
+{% endblock %}
+   

@@ -1,0 +1,53 @@
+<div class="main-admin">
+    <h1>آگهی ها</h1>
+    <div class="ui pointing secondary menu">
+        <a class=" item" v-for="tab in tabs" :class="{active: activeTab === tab.value, disabled: tab.disabled}"
+            @click="selectTab(tab)">{{tab.title}}</a>
+    </div>
+
+    <div class="ui segment main-content">
+        <!-- loading -->
+        <div class="ui active inverted dimmer loader-style" v-if="loading">
+            <div class="ui text loader">بارگذاری</div>
+        </div>
+        <table class="ui very compact selectable celled table">
+            <thead>
+                <tr>
+                    <th>شناسه</th>
+                    <th>ارسال کننده</th>
+                    <th>موضوع آگهی</th>
+                    <th>زمان</th>
+                    <th>وضعیت</th>
+                    <th class="center aligned">گزینه ها</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in jobs">
+                    <td v-text="item.id"></td>
+                    <td v-text="item.company"></td>
+                    <td v-text="item.title"></td>
+                    <td v-text="item.created_at"></td>
+                    <td v-text="item.status"></td>
+                    <td style="    display: flex; justify-content: center;">
+                        <!-- panel request -->
+                        <div class="ui small basic icon buttons">
+                            <button class="ui button" @click="viewJob(item)" data-tooltip="مشاهده آگهی">
+                                <i class="material-icons icon-desc cursor">visibility</i>
+                            </button>
+                            <button v-if="item.status === 'active'" class="ui button" @click="delete_job(item)"
+                                data-tooltip="غیرفعال کردن آگهی">
+                                <i class="material-icons icon-desc cursor red">not_interested</i>
+                            </button>
+                            <button v-if="item.status === 'expired'" class="ui button" @click="active_job(item)"
+                                data-tooltip="فعال کردن آگهی">
+                                <i class="material-icons icon-desc cursor green">lightbulb</i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- pagination -->
+        <pagination :page_counts="this.page_counts" :p_index="this.index" @reload="loadJobs($event)"></pagination>
+    </div>
+</div>

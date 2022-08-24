@@ -1,0 +1,10 @@
+{
+    "extends": "panel.html",
+    "id": "__evaluation_and_development_page",
+    "css_block_name": "home_style",
+    "html_block_name": "home_content",
+    "js_block_name": "home_js",
+    "compiled_html_name": "evaluation_and_development.html",
+    "vars_prop_name": "context",
+    "title": "کانون ارزیابی و توسعه"
+}

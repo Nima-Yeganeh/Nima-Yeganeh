@@ -1,0 +1,86 @@
+<div class="ui basic segment resume-div">
+    <div class="ui breadcrumb title-r">
+        <a class="section">رزومه‌های دریافتی</a>
+        <template v-if="jobInfo">
+            <div class="divider"> /</div>
+            <div class="section-2">{{ jobInfo.title }}</div>
+        </template>
+        <template v-if="companyInfo">
+            <div class="divider"> /</div>
+            <div class="section-2">{{ companyInfo.title }}</div>
+        </template>
+    </div>
+    <!-- tabs -->
+    <div class="ui pointing secondary menu responsive_menu">
+        <a class=" item" v-for="tab in tabs" :class="{active: activeTab === tab.value, disabled: tab.disabled}"
+            @click="selectTab(tab)">{{tab.title}}</a>
+    </div>
+    <div class="ui basic segment main-content">
+        <!-- loading -->
+        <div class="ui active inverted dimmer loader_display" v-if="loading">
+            <div class="ui text loader">بارگذاری</div>
+        </div>
+        <!-- table -->
+        <table v-if="resumes.length > 0" class="ui very compact unstackable selectable celled table resume-sent">
+            <thead>
+                <tr>
+                    <th class="head">
+                        <p class="th-r">عکس</p>
+                    </th>
+                    <th class="head">نام و نام خانوادگی</th>
+                    <th class="head">سن</th>
+                    <th class="head">شهر</th>
+                    <th class="head" v-if="!jobInfo">آگهی</th>
+                    <th class="head" v-if="role === 'employer'">
+                        <p class="th-r">گزینه ها</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in resumes">
+                    <td data-label="type">
+                        <div class="td-r">
+                            <div class="person-logo" :style="{'background-image': 'url(' + item.image+')'}"></div>
+                            <!-- is special -->
+                            <label class="ui label red mini" v-if="role === 'admin' && item.is_special">ویژه</label>
+                        </div>
+                    </td>
+                    <td data-label="name">
+                        <p class="responsive-r"> {{item.full_name}} </p>
+                    </td>
+                    <td data-label="name">
+                        <p class="responsive-r"> {{item.user_age}} </p>
+                    </td>
+                    <td data-label="name">
+                        <p class="responsive-r"> {{item.state}} </p>
+                    </td>
+                    <td v-if="!jobInfo">
+                        <p class="responsive-r"> {{item.job.title}} </p>
+                    </td>
+                    <!-- buttons -->
+                    <td data-label="more" v-if="role === 'employer'">
+                        <div class=" ui buttons">
+                            <a class="ui black basic button display-btn" target="_blank" @click="viewResume(item)"
+                                data-tooltip="مشاهده رزومه"><i class="eye icon"></i></a>
+                            <template v-if="activeTab === 'waiting'">
+                                <button class="ui green basic button display-btn" data-tooltip="قبول کردن رزومه"
+                                    @click="action(item,'accept')">
+                                    <i class="check icon"></i>
+                                </button>
+                                <button class="ui red basic button display-btn" data-tooltip="رد کردن رزومه"
+                                    @click="action(item,'reject')">
+                                    <i class="close icon"></i>
+                                </button>
+                            </template>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- pagination -->
+        <pagination :page_counts="this.page_counts" :p_index="this.index" @reload="loadResumes($event)"></pagination>
+
+        <!-- not found -->
+        <not-found v-if="not_found"></not-found>
+    </div>
+</div>

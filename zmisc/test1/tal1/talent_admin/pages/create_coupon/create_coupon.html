@@ -1,0 +1,17 @@
+<div class="create-coupon-main">
+    <!-- head create coupon -->
+    <div class="head-create-coupon">
+        <h3>ایجاد کوپن جدید</h3>
+        <button class="ui grey basic button" @click="redirect(context.url_coupon)">لیست کوپن ها</button>
+    </div>
+    <div class="ui form sixteen wide column">
+        <!-- form builder for create new coupon -->
+        <input type="hidden" name="csrfmiddlewaretoken" :value="csrfToken">
+        <form-builder :fields="fields"></form-builder>
+        <!-- button to add coupon -->
+        <button class="ui right floated green button" @click="create_coupon()">
+            <i class="material-icons">done</i>
+            ثبت کوپن
+        </button>
+    </div>
+</div>

@@ -1,0 +1,184 @@
+<div class="home-container">
+    <!-- head of home and image div -->
+    <div class="header-home">
+        <div class="image-header">
+            <!-- menu -->
+            <div class="ui segment menu-header">
+                <div class="ui secondary pointing menu">
+                    <a class="item" v-for="tab in tabs" :class="{active: activeTab === tab.value}"
+                        @click="goToTab(tab.value)">
+                        <i class="material-icons"> {{tab.icon}} </i>
+                        <p>{{tab.des}}</p>
+                    </a>
+                </div>
+            </div>
+            <!-- detail in menu -->
+            <div class="detail-tab">
+                <template v-if="activeTab === 'first'">
+                    <div class="tab-menu first">
+                        <div class="text">
+                            <h2>متناسب با استعدادتان،
+                                <br><br>
+                                شغل ایده آل خود را پیدا کنید.
+                            </h2>
+                            <h4>
+                                {{ convertNumbersToPersian(context.jobs_count) }} فرصت شغلی در انتظار شما هستند.
+                            </h4> 
+                            <button @click="goToPage(context.job_list)" class="ui inverted violet button">فرصت‌های شغلی
+                            </button>
+                        </div>
+                        <img class="image-menu" :src=this.context.advertising_home>
+                    </div>
+                </template>
+                <template v-if="activeTab === 'second'">
+                    <div class="tab-menu">
+                        <div class="text">
+                            <h2>
+                                در ۳۶۰ ثانیه،
+                                <br><br> یک رزومه کامل و استاندارد بسازید.
+                            </h2>
+                            <button class="ui inverted violet button" @click="goToPage(context.resume_maker)">رزومه
+                                ساز</button>
+                        </div>
+                        <img class="image-menu" :src=this.context.cv_home>
+                    </div>
+                </template>
+                <template v-if="activeTab === 'third'">
+                    <div class="tab-menu" id="third">
+                        <div class="text">
+                            <h2>با شناخت مشاغل،
+                                <br><br>راه خود را درست انتخاب کنید.
+                            </h2>
+                            <button class="ui inverted violet button" @click="goToPage(context.job_info)">معرفی مشاغل
+                            </button>
+                        </div>
+                        <img class="image-menu" :src=this.context.job_home>
+                    </div>
+                </template>
+                <template v-if="activeTab === 'four'">
+                    <div class="tab-menu">
+                        <div class="text">
+                            <h2>با شناخت شرکت‌های برتر،
+                                <br><br>آگاهانه انتخاب کنید.
+                            </h2>
+                            <p>
+                            </p>
+                            <button class="ui inverted violet button" @click="goToPage(context.company_list)">معرفی شرکت
+                                ها </button>
+                        </div>
+                        <img class="image-menu" :src=this.context.company_home>
+                    </div>
+
+                </template>
+                <template v-if="activeTab === 'five'">
+                    <div class="tab-menu">
+                        <div class="text">
+                            <h2>
+                                با شناخت خود به سمت
+                                <br><br>بهترین جایگاه‌های شغلی حرکت کنید.
+                            </h2>
+                            <button  @click="goToPage(context.exam)" class="ui inverted violet button">آزمون ها</button>
+                        </div>
+                        <img class="image-menu" :src=this.context.exam_home>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <!-- jobs list -->
+        <div class="jobs-list" v-if="specialJobs.length > 0">
+            <h2 class="ui horizontal divider header">آگهی های پیشنهادی</h2>
+            <div id="special_jobs" class="special-job">
+                <div class="vccard" v-for="job in specialJobs">
+                    <job-card @click="goToJob(job)" :job="job"></job-card>
+                </div>
+            </div>
+        </div>
+
+        <!-- three step text -->
+        <div class="steps">
+            <h2>سه گام تا موفقیت شغلی</h2>
+            <div v-for="items in steps" :class='items.class' class="three-steps">
+                <div class="text">
+                    <h3>{{items.title}}</h3>
+                    <p> {{items.text}} </p>
+                </div>
+                <img :src='items.src'>
+            </div>
+        </div>
+
+        <!-- immediate jobs-->
+        <div class="jobs-list" v-if="starredjobs.length > 0">
+            <h2 class="ui horizontal divider header"> آگهی های فوری </h2>
+            <div id="immediate_jobs" class="immediate_jobs">
+                <div class="vccard" v-for="job in starredjobs">
+                    <job-card @click="goToJob(job)" :job="job"></job-card>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Consultation Request FORM-->
+        <div class="cons-request">
+            <h2>درخواست مشاوره با بورس تلنت </h2>
+            <div class="form-cons">
+                <div class="ui input" v-for="item in cons_req">
+                    <input type="text" :placeholder="item.placeholder" v-model="item.value" :name="item.name" />
+                </div>
+                <button class="ui violet button" @click="getConsultationRequest()" :disabled="disabled">درخواست مشاوره </button>
+            </div>
+        </div>
+
+        <!-- Customers -->
+        <div class="our-customer">
+            <h2>مشتریان ما</h2>
+            <div id="customers" class="customer">
+                <div v-for="item in customers" style="width: 160px;">
+                    <img :src='item.logo'>
+                    <p>{{item.title}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- about us -->
+        <div class="about-us">
+            <div class="text">
+                <h1>درباره بورس</h1>
+                <h4>
+                    
+                </h4>
+                <button class="ui violet button" @click="goToIfc()">مشاهده بیشتر</button>
+
+            </div>
+            <img :src=this.context.img_ifc>
+        </div>
+
+        <!-- Shareholders -->
+        <div class="shareholders">
+            <h1>سهامداران</h1>
+            <div class="logo-shareholders">
+                <div v-for="item in Shareholders">
+                    <img :src='item.src' @click="showModal(item.modal)">
+                </div>
+            </div>
+        </div>
+
+        <div class="ui modal" v-for="item in modal" :id="item.id">
+            <i class="close icon"></i>
+            <div class="header">
+                اطلاعات سهامداران
+            </div>
+            <div class="image content content-shareholder">
+                <div class="image">
+                    <img :src='item.image' class="image-shareholder" alt="">
+                </div>
+                <div class="description">
+                    <p>{{item.desc}}</p>
+                    <a :href="item.link">پایگاه رسمی</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

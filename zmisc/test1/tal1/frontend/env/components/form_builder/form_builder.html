@@ -1,0 +1,93 @@
+<div class="ui grid stackable very padded">
+    <div class="ui inverted dimmer" :class="{active: loading}">
+        <div class="ui text loader">بارگذاری</div>
+    </div>
+    <template v-for="f in fields" :key="f.name+'_widget'">
+        <div :class="[f.grid ? f.grid : 'eight', 'wide', 'column']" class=" " v-if="!f.hidden">
+            <div class="field">
+                <label v-if="f.type !== 'checkbox' && f.type !== 'toggle'" :for="f.name + '_input'">
+                    <span v-text="f.title"></span>
+                    <span v-if="f.required" style="color:red">*</span>
+                </label>
+                <div v-if="!loading" class="ui input"
+                    :class="{'right': f.afterLabel || f.type === 'date', labeled: f.afterLabel, 'action': f.type === 'labels', 'icon': f.type === 'date', 'error': f.hasError}">
+                    <!-- checkbox type -->
+                    <div class="ui  checkbox" v-if="f.type === 'checkbox'">
+                        <input v-model="f.value" type="checkbox" :id="f.name + '_checkbox'"
+                            :readonly="f.readOnly ? true : undefined" @change="changedInput(f)">
+                        <label :for="f.name + '_checkbox'">{{f.title}}</label>
+                    </div>
+                    <!-- input type -->
+                    <input :required="f.required ? true : undefined" v-if="!f.type || f.type === 'labels'"
+                        :type="f.inputType ? f.inputType : 'text'" v-model="f.value" :min="f.min ? f.min : undefined"
+                        :max="f.max ? f.max : undefined" :id="f.name + '_input'" :name="f.name" :placeholder="f.title"
+                        @keyup.enter="OnInputEnter(f)" :readonly="f.readOnly ? true : undefined"
+                        @change="changedInput(f)" :class="f.afterLabel ? 'income-div' : ' '">
+                    <!-- calndar date input -->
+                    <template v-if="f.type === 'date'">
+                        <!--calendar input value-->
+                        <input :id="f.name + '_input_date'" readonly :value="dateInputTexts[f.name]">
+                        <!--calendar icon-->
+                        <i class="calendar icon"></i>
+                    </template>
+                    <!--textarea type-->
+                    <template v-if="f.type === 'textarea'">
+                        <textarea maxlength="500" rows="2" :readonly="f.readOnly ? true : undefined" v-model="f.value"
+                            :id="f.name + '_input'" :name="f.name" @change="changedInput(f)"
+                            :placeholder="f.title"></textarea>
+                    </template>
+                    <!-- after label -->
+                    <div v-if="f.afterLabel" class="ui basic label label-price" v-text="f.afterLabel"></div>
+                    <!-- action button of labels type -->
+                    <button v-if="f.type === 'labels'" class="ui violet icon button" @click.prevent="addLabel(f)"
+                        :disabled="!f.value">
+                        <i class="material-icons">add</i>
+                    </button>
+                    <!-- auto complete type -->
+                    <auto-complete v-if="f.type == 'auto_complete'" class="auto_complete" :dataList="f"
+                        @ac_change="changedInput(f)" v-model="f.value" :name="f.name" :id="f.name + '_auto_complete'">
+                    </auto-complete>
+                    <!-- select type -->
+                    <template v-if="f.type == 'select'">
+                        <select :multiple="f.multiselect ? 'true' : undefined" class=""
+                            :class="[, 'ui', 'dropdown', f.searchable ? 'search' : '', 'selection', 'fluid']"
+                            :id="f.name + '_input'" :name="f.name" v-model="f.value" @change="changedInput(f)">
+                            <template v-for="(opt, ind) in f.options">
+                                <option :key="ind+'_option'" :value="typeof opt === 'object' ? opt.value : opt">{{typeof
+                                    opt
+                                    === 'object' ? opt.text : opt}}</option>
+                            </template>
+                        </select>
+                    </template>
+                    <!--toggle type-->
+                    <div class="ui toggle checkbox" v-if="f.type === 'toggle'">
+                        <input :id="f.name + '_toggle'" @change="changedInput(f)" v-model="f.value" type="checkbox">
+                        <label>{{f.title}}</label>
+                    </div>
+                    <!-- location type -->
+                    <div style="width: 100%;" v-if="f.type == 'location'">
+                        <location-chooser v-model="f.value" @locationchange="changedInput(f)"
+                            :id="f.name + '_location'"></location-chooser>
+                    </div>
+                </div>
+                <!-- basic editor mode -->
+                <!-- <div v-if="!loading && f.type === 'textarea' && f.editorMode" :id="f.editorId"
+                    style="min-height: 200px;width:100%;direction: rtl;">
+                    <p></p>
+                </div> -->
+            </div>
+            <!--labels list-->
+            <template v-if="!loading && f.type === 'labels'">
+                <input type="hidden" :id="f.name + '_input_labels'" :name="f.name + '_labels'">
+                <div class="ui blue labels">
+                    <a v-for="lbl in f.labels" class="ui label label-item" :key="lbl+'_lbl'"
+                        style="display: inline-flex;align-items: center;">
+                        <span v-text="lbl"></span>
+                        <i class="material-icons" style="margin: 0 4px;font-size: 1.4em;"
+                            @click="removeLabel(f, lbl)">delete</i>
+                    </a>
+                </div>
+            </template>
+        </div>
+    </template>
+</div>

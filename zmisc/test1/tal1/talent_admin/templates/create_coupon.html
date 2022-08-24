@@ -1,0 +1,43 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/create_coupon/create_coupon.min.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'base/css/persian-datepicker.css' %}">
+
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___jobs_page">
+      <create_coupon :context="variablesData"></create_coupon>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   <script src="{% static 'base/js/persian-date.min.js' %}"></script>
+<script src="{% static 'base/js/persian-datepicker.min.js' %}"></script>
+
+   <script src="{% static 'pages/create_coupon/create_coupon.min.js' %}"></script>
+   <script>
+         var context = {
+    url: '{% url "payment:api:coupon" %}',
+    url_coupon: '{% url "talent_admin:coupon" %}'
+}  
+         </script>
+   <script>
+      let vue___jobs_page = new Vue({
+         el: '#element___jobs_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'ایجاد کوپن جدید';
+         },
+         components: {
+            "create_coupon": create_coupon,
+         }
+      });
+   </script>
+{% endblock %}
+   

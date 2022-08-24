@@ -1,0 +1,29 @@
+<!-- tickets -->
+<div class="ui comments">
+    <!-- loading -->
+    <div class="ui active inverted dimmer" v-if="loading">
+        <div class="ui text loader">بارگذاری</div>
+    </div>
+    <!-- ticket details -->
+    <div v-for="m in messages" class="comment" :class="{'you': userId == m.created_by}">
+        <div class="align-text">
+            <!-- user profile -->
+            <div class="avatar" :style="{'background-image': 'url(' + userAvatar(m)+')'}"></div>
+            <div class="content">
+                <a class="author">{{userName(m)}}</a>
+                <div class="metadata">
+                    <span class="date">{{toPersianDate(m.created_at)}}</span>
+                </div>
+                <!-- ticket detail -->
+                <div class="text">
+                    {{m.description}}
+                </div>
+            </div>
+        </div>
+        <!-- download link -->
+        <div class="attachment" v-if="m.files.length > 0">
+            <a class="ui violet basic button" target="_blank" :href="m.files[0]" data-tooltip="ضمیمه"><i
+                    class="download icon"></i></a>
+        </div>
+    </div>
+</div>

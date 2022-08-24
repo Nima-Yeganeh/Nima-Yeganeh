@@ -1,0 +1,279 @@
+{% extends 'base_home.html' %} {% load static %} {% block title %} داشبورد {% endblock %} {% block home_style %}
+<link rel="stylesheet" href="{% static 'panel/css/employee_beauty.css' %} "> {% block employee_style %} {% endblock %} {% endblock %} {% block home_content %}
+<div class="main-panel">
+    <div class="right-task" id="user_panel_sidebar">
+        <file-uploader ref="profie_image_uploader"></file-uploader>
+        <!-- profile div -->
+        <div class="profile">
+            <div>
+                <img :src="userImageUrl" alt="آواتار">
+                <div class="icons_dash">
+                    <div v-if="image_flag" class="icon_dash1">
+                        <i class="material-icons pointer remove" @click="deleteFile()">remove_circle</i>
+                    </div>
+                    <div class="icon_dash2">
+                        <i class="material-icons pointer" @click="uploadProfileImage()">add_circle</i>
+                    </div>
+                </div>
+            </div>
+            <!-- about person -->
+            <p>{{ user.get_full_name }}</p>
+        </div>
+
+        <!-- buttons div -->
+        <div class="ui vertical buttons" id="button-div">
+            <template v-for="btn in buttons">
+                <button :title="btn.title" class="ui button button-style"
+                    :class="{active: checkActiveTab(pageName,btn.name)}" @click="goToPage(btn.url)">
+                    <i class="material-icons" v-text="btn.icon"></i>
+                    <span v-text="btn.title"></span>
+                    <!-- show counter badge -->
+                    <span class="ui  circular mini label" :class="[btn.color ? btn.color : '']" style="margin: 0 4px"
+                        v-if="btn.counter && btn.counter()> 0" v-text="convertNumbersToPersian(btn.counter())"></span>
+                </button>
+                <!-- <div class="ui divider" v-if="btn.type"></div> -->
+            </template>
+        </div>
+    </div>
+    <div class="spacer"></div>
+    <!-- pages div -->
+    <div class="main-div">
+        {% block main %} {% endblock %}
+    </div>
+</div>
+{% endblock %} {% block home_js %}
+<script src="{% static 'components/file_uploader.min.js' %}"></script>
+
+<script>
+    // =>get request path
+    let requestPath = '{{request.path}}';
+    let requestPathId = requestPath.split('/').slice(1, requestPath.split('/').length - 1).join('_');
+    console.log(requestPathId)
+
+    //pnel buttons
+    let sidebar12vue = new Vue({
+        el: '#user_panel_sidebar',
+        async created() {
+            // check user image
+            {% if not request.user.avatar.file%}
+                this.image_flag = false;
+            {% endif %}
+            // =>check has employer boolean
+            if (typeof this.has_employer === 'string') {
+                if (this.has_employer === 'false') {
+                    this.has_employer = false;
+                } else {
+                    this.has_employer = true;
+                }
+            }
+            // =>check exist 'role' param in url
+            if (getQueryParam('role')) {
+                if (getQueryParam('role') === 'employer') {
+                    this.has_employer = true;
+                }
+            }
+            if (this.has_employer === true) {
+                let res = await callStdAPI(PUBLIC_URLS.company_status_api, {
+                    method: 'post',
+                    data: {}
+                })
+                if (res.status === 200) {
+                    if (res.data.active !== true) {
+                        showErrorToast('شرکت شما غیر فعال شده است لذا لازم است با پشتیبانی ارتباط برقرار کنید');
+                    }
+                }
+            }
+            // =>set panel role
+            this.panelRole = this.has_employer ? 'employer' : 'applicant';
+            // =>load panel urls list
+            let res = await callStdAPI(PUBLIC_URLS.panel_urls_api, {
+                method: 'get',
+                data: {
+                    role: this.panelRole,
+                },
+            });
+            if (res.status === 200) {
+                this.panelUrls = res.data;
+            }
+            // =>load panel buttons
+            for (const key of Object.keys(this.panelUrls)) {
+                // =>find button by id
+                let btn = this.panelButtons.find(i => i.id === key);
+                if (!btn) continue;
+                // =>add button
+                this.buttons.push(btn);
+                // =>set button link url
+                this.buttons[this.buttons.length - 1].url = this.panelUrls[key] + '?role=' + this.panelRole;
+            }
+            // =>get user avatar hash, for upload new avatar
+            this.userAvatarHash = (await callAPI("{% url 'accounts:user_avatar_hash' %}", {}, 'get'))[1].data;
+            // =>listen every 1s
+            // setInterval(() => {
+            //     // =>set notifications count
+            //     if (this.buttons.find(i => i.id === 'notifications')) {
+            //         this.buttons.find(i => i.id === 'notifications').counter = this.USER_NOTIFICATIONS_COUNT;
+            //     }
+            // }, 1000);
+        },
+        data: {
+            panelUrls: {},
+            USER_NOTIFICATIONS_COUNT: 0,
+            USER_RECEIVED_RESUME_COUNT: 0,
+            USER_SENT_RESUME_COUNT: 0,
+            userImageUrl: "{{ user.get_image }}",
+            image_flag: true,
+            has_employer: '{{ has_employer |default:"false" }}',
+            panelRole: 'applicant',
+            userAvatarHash: '',
+            pageName: requestPathId,
+            panelButtons: [{
+                    title: 'آگهی‌ها',
+                    icon: 'receipt_long',
+                    id: 'jobs',
+                    name: ['company_jobs', 'company_job_request'],
+                }, {
+                    title: 'رزومه های دریافتی',
+                    icon: 'group_work',
+                    id: 'received_resumes',
+                    name: ['resume_recieved_resumes'],
+                    counter() {
+                        return returnVariable('USER_RECEIVED_RESUME_COUNT');
+                    },
+                    color: 'pink',
+                }, {
+                    title: 'اطلاعات شرکت',
+                    icon: 'apartment',
+                    id: 'company_info',
+                    name: ['company'],
+                    // type: 'hr',
+                }, {
+                    title: "رزومه من",
+                    icon: 'description',
+                    id: 'my_resume',
+                    name: ['resume'],
+                }, {
+                    title: 'رزومه‌های ارسالی',
+                    icon: 'send',
+                    id: 'sent_resume',
+                    name: ['resume_sent_resumes'],
+                    counter() {
+                        return returnVariable('USER_SENT_RESUME_COUNT');
+                    },
+                    color: 'teal',
+                }, {
+                    title: 'آگهی‌های پیشنهادی',
+                    icon: 'menu_book',
+                    id: 'recomended_jobs',
+                    name: ['jobs_recomended_jobs'],
+                }, {
+                    title: 'آگهی‌های نشان شده',
+                    icon: 'bookmark',
+                    id: 'bookmarked_jobs',
+                    name: ['jobs_bookmarked_jobs'],
+                }, {
+                    title: 'تیکت های پشتیبانی',
+                    icon: 'rate_review',
+                    id: 'tickets',
+                    name: ['ticket', 'ticket_ticket-registration', 'ticket_detail-ticket_'],
+                },
+                // {
+                //     title: 'درخواست پنل حقوقی',
+                //     id: 'panel_request',
+                //     icon: 'person_add',
+                //     name: ['ticket_panel-request'],
+                // },
+                {
+                    title: 'صندوق پیام',
+                    icon: 'mail',
+                    id: 'notifications',
+                    name: ['notification', 'notification_notification_details_'],
+                    counter() {
+                        console.log(returnVariable('USER_NOTIFICATIONS_COUNT'))
+                        return (returnVariable('USER_NOTIFICATIONS_COUNT'));
+                    },
+                    color: 'green',
+                }, {
+                    title: 'تراکنش ها',
+                    icon: 'account_balance_wallet',
+                    id: 'payment_report',
+                    name: ['payment-payment_report'],
+                },
+            ],
+            buttons: [],
+        },
+        methods: {
+            goToPage(url) {
+                window.location.href = url
+            },
+            // selectTab(value) {
+            //     this.loadJobs(1);
+            // },
+            async uploadProfileImage() {
+                // $('.ui.modal').modal('show');
+                let fileIds = await sidebar12vue.$refs.profie_image_uploader.open({
+                    uploadHash: this.userAvatarHash,
+                    title: 'تغییر تصویر آواتار',
+                    modalSize: 'small',
+                    allowedMimeTypes: ['image/png', 'image/jpeg', 'image/jpg'],
+                    maxFileSize: 204800,
+                });
+                console.log('file ids:', fileIds);
+                if (fileIds.length > 0) {
+                    // =>send request
+                    let res = await callAPI("{% url 'accounts:api:change_user_avatar' %}", {
+                        file_id: fileIds[0]
+                    });
+                    if (res[0] === 'success') {
+                        this.userImageUrl = res[1].data['avatar'];
+                        this.image_flag = true;
+                    }
+                }
+            },
+
+            checkActiveTab(obj, list) {
+                var i;
+                for (i = 0; i < list.length; i++) {
+                    if (obj.startsWith(list[i]) && list[i].endsWith("_"))
+                        return true;
+                    if (list[i] === obj)
+                        return true;
+                }
+                return false;
+            },
+            async deleteFile() {
+
+                // this.loading = true;
+                if (!await confirmToast('آیا از حذف این آواتار اطمینان دارید؟')) return;
+                // this.loading = true;
+                let res = await callStdAPI("{% url 'accounts:api:delete_avatar' %}", {
+                    method: 'delete',
+                    data: {}
+                });
+                // =>if success
+                if (res.status === 200) {
+                    // this.loadJobs();
+                    showSuccessToast('با موفقیت حذف شد.');
+                    this.userImageUrl = res.data;
+                    this.image_flag = false;
+                } else {
+                    showErrorToast('مشکلی در حذف بوجود آمده است.');
+                    // this.loading = false;
+                }
+            },
+            convertNumbersToPersian(str) {
+                return convertNumbersToPersian(str);
+            }
+
+        },
+        components: {
+            'file-uploader': file_uploader,
+        },
+
+    });
+
+    function returnVariable(vari) {
+        return sidebar12vue[vari];
+    }
+</script>
+
+{% block employee_js %} {% endblock %} {% endblock %}

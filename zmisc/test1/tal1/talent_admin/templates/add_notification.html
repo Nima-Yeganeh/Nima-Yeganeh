@@ -1,0 +1,40 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/add_notification/add_notification.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___add_notification_page">
+      <add_notification :context="variablesData"></add_notification>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/add_notification/add_notification.min.js' %}"></script>
+   <script>
+         var context = {
+    users_list_api: "{% url 'talent_admin:users_api' %}",
+    add_notification: '{% url "talent_admin:api:send_notification" %}'
+}
+         </script>
+   <script>
+      let vue___add_notification_page = new Vue({
+         el: '#element___add_notification_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'اضافه کردن اعلان';
+         },
+         components: {
+            "add_notification": add_notification,
+         }
+      });
+   </script>
+{% endblock %}
+   

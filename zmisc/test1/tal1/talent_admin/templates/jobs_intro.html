@@ -1,0 +1,41 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/jobs_intro/jobs_intro.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___jobs_intro_page">
+      <jobs_intro :context="variablesData"></jobs_intro>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/jobs_intro/jobs_intro.min.js' %}"></script>
+   <script>
+         var context = {
+    get_configs_api: "{% url 'talent_admin:api:sys_config' %}",
+    delete_configs_api: "{% url 'talent_admin:delete_config' %}",
+    uploadFileApi: "{% url 'core:file_upload' %}",
+}
+         </script>
+   <script>
+      let vue___jobs_intro_page = new Vue({
+         el: '#element___jobs_intro_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'معرفی مشاغل';
+         },
+         components: {
+            "jobs_intro": jobs_intro,
+         }
+      });
+   </script>
+{% endblock %}
+   

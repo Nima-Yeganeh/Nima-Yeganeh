@@ -1,0 +1,42 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/edit_pages/edit_pages.min.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'base/css/summernote.min.css' %}">
+
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___edit_pages_page">
+      <edit_pages :context="variablesData"></edit_pages>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   <script src="{% static 'base/js/summernote.min.js' %}"></script>
+<script src="{% static 'base/js/summernote-fa-IR.js' %}"></script>
+
+   <script src="{% static 'pages/edit_pages/edit_pages.min.js' %}"></script>
+   <script>
+         var context = {
+    get_configs_api: "{% url 'talent_admin:api:sys_config' %}"
+}
+         </script>
+   <script>
+      let vue___edit_pages_page = new Vue({
+         el: '#element___edit_pages_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'ویرایش صفحات';
+         },
+         components: {
+            "edit_pages": edit_pages,
+         }
+      });
+   </script>
+{% endblock %}
+   

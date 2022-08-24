@@ -1,0 +1,13 @@
+{
+    "id": "__company_sent_resume_page",
+    "extends": "base_admin.html",
+    "css_block_name": "style1",
+    "html_block_name": "content1",
+    "js_block_name": "js1",
+    "compiled_html_name": "company_sent_resume.html",
+    "vars_prop_name": "context",
+    "title": "رزومه های ارسالی به شرکت",
+    "components": [ 
+        "recieved_resumes"
+    ]
+}

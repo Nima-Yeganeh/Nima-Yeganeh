@@ -1,0 +1,399 @@
+.main-panel {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 5% !important;
+    max-width: 1500px;
+    padding: 10px;
+}
+
+.right-task {
+    display: flex;
+    flex-direction: column;
+    width: 28%;
+    height: 100%;
+    max-width: 280px;
+    min-height: 200px;
+    padding: 10px;
+    /* margin-right: 5px !important; */
+    background-color: #ffffff;
+    border-radius: 9px;
+    min-width: 220px;
+    box-shadow: 0px 16px 25px 4px rgba(0, 0, 0, 0.05);
+    /* margin-left: 30px; */
+}
+
+.spacer {
+    width: 30px;
+    display: inline-block;
+}
+
+.main-div {
+    background: #ffffff;
+    box-shadow: 0px 16px 25px 4px rgb(0 0 0 / 5%);
+    border-radius: 10px;
+    flex: 1 1 0;
+    width: 73% !important;
+    height: 100%;
+    min-height: 600px;
+    padding: 20px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile p {
+    font-size: 20px;
+    color: #4f4f4f;
+    font-weight: 600;
+    margin: 15px;
+}
+
+.profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    margin: 15px;
+    object-fit: cover;
+}
+
+.profile i {
+    margin-right: -59px;
+    margin-top: -28px;
+    font-size: 26px;
+    color: #6946ff;
+}
+
+.icons_dash {
+    /* width: 81%;
+    height: 130px;
+    margin-right: 102%;
+    margin-top: -54%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+    width: 100%;
+    height: 101px;
+    margin-right: -2%;
+    margin-top: -55%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.icon_dash2 {
+    margin-right: 56% !important;
+}
+
+.remove {
+    color: red !important;
+}
+
+.buttonbeauty2 {
+    font-size: 12px !important;
+    border-radius: 9px !important;
+    width: 40% !important;
+}
+
+.button-style {
+    margin: 3px 0px !important;
+    display: flex !important;
+    align-items: center !important;
+    border-radius: 9px !important;
+    background-color: #ffffff !important;
+    padding-right: 10px !important;
+    border-right: 5px solid transparent !important;
+}
+
+.button-style.active,
+.button-style:hover {
+    background-color: #ebf2f6 !important;
+    border-right: 5px solid #6946ff !important;
+    font-weight: bold !important;
+}
+
+.button-style.active,
+.button-style:hover i {
+    color: #6946ff !important;
+    font-weight: bold !important;
+}
+
+.button-style i {
+    font-size: 18px;
+    padding: 5px;
+    font-weight: 400;
+}
+
+.button-style span {
+    font-weight: 400;
+}
+
+.button-left {
+    margin-top: 100px !important;
+    border-radius: 9px !important;
+    display: flex !important;
+    background-color: #ffffff !important;
+    align-items: center !important;
+}
+
+.button-left i {
+    font-size: 15px;
+    padding: 5px;
+    color: #6946ff;
+}
+
+.pointer-change {
+    cursor: pointer;
+    font-size: 55px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+#modal-change h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.image-change {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.image-change img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+#div-upload {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#div-upload p {
+    color: #4f4f4f;
+}
+
+#div-upload h5 {
+    font-size: 10px;
+    color: red;
+    display: flex;
+    justify-content: center;
+}
+
+.choose-photo {
+    width: auto;
+    background-color: #6946ff !important;
+    color: white !important;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 5px;
+    padding: 8px;
+}
+
+.choose-photo i {
+    color: white;
+    font-size: 1em !important;
+}
+
+.verify-photo {
+    width: auto;
+    background-color: green !important;
+    color: white !important;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 5px;
+    padding: 8px;
+}
+
+.verify-photo i {
+    color: white;
+    font-size: 1em !important;
+}
+
+.modal-content p {
+    font-size: 15px;
+}
+
+.modal-content h1 {
+    color: #6946ff;
+}
+
+#demo-file::file-selector-button {
+    border: 2px solid #6946ff;
+    color: #6946ff;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+#demo-file::file-selector-button:hover {
+    background-color: #e9e9e9;
+    cursor: pointer;
+}
+
+#demo-file::-webkit-file-upload-button {
+    border: 2px solid #6946ff;
+    color: #6946ff;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+#demo-file::-webkit-file-upload-button:hover {
+    background-color: #e9e9e9;
+    cursor: pointer;
+}
+
+input[type="submit"] {
+    background-color: #6946ff;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+/* Container needed to position the overlay. Adjust the width as needed */
+
+.container {
+    position: relative;
+    width: 200px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Make the image to responsive */
+
+.image {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+
+/* The overlay effect (full height and width) - lays on top of the container and over the image */
+
+.overlay {
+    position: absolute;
+    border-radius: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    width: 200px;
+    opacity: 0;
+    transition: 0.3s ease;
+    background-color: rgb(63 63 63 / 58%);
+}
+
+
+/* When you mouse over the container, fade in the overlay icon*/
+
+.container:hover .overlay {
+    opacity: 1;
+}
+
+
+/* The icon inside the overlay is positioned in the middle vertically and horizontally */
+
+.icon-panel {
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+/* When you move the mouse over the icon, change color */
+
+.fa-user:hover {
+    color: #eee;
+}
+
+#button-div hr {
+    margin: 10px 0px;
+}
+
+@media screen and (min-width: 780px) and (max-width: 950px) {
+    .main-panel {
+        margin: 20px 0% !important;
+        padding: 4px !important;
+    }
+    .right-task {
+        margin-right: 20px !important;
+        margin-left: 15px !important;
+        width: 28% !important;
+        max-width: unset;
+    }
+    .spacer {
+        display: none;
+    }
+    .main-div {
+        padding: 5px !important;
+        margin-left: 20px !important;
+        flex: unset;
+        width: 66% !important;
+        padding: 2% !important;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .main-panel {
+        flex-direction: column;
+        margin: 20px 0% !important;
+    }
+    .main-div {
+        margin: 13px 2% 0px !important;
+        width: 96% !important;
+        /* display: flex;
+        justify-content: center; */
+        flex: unset;
+    }
+    .right-task {
+        flex-direction: row;
+        min-height: 85px;
+        margin: 0px 2% !important;
+        width: 96% !important;
+        max-width: unset;
+    }
+    .profile {
+        display: none !important;
+    }
+    #button-div {
+        flex-direction: row !important;
+        overflow-x: scroll !important;
+    }
+    .button-style {
+        width: 12em !important;
+    }
+    .button-style span {
+        font-size: 1em !important;
+    }
+}

@@ -1,0 +1,351 @@
+::-webkit-scrollbar {
+    height: 1px !important;
+}
+.home-container {
+    background-color: #ffffff !important;
+    .header-home {
+        .image-header {
+            background-color: #ebf2f6;
+            min-height: 480px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+            margin-top: -17px;
+        }
+        .menu-header {
+            margin: 3%;
+            border-radius: 65px;
+            padding: 0;
+            border: none;
+            background-color: #ffffffa8;
+            width: 700px;
+            display: flex;
+            justify-content: center;
+            .menu {
+                border-bottom: none;
+                overflow-y: hidden;
+                overflow-x: auto;
+                width: 80%;
+                display: flex;
+                justify-content: space-between;
+            }
+            .active.item {
+                border-bottom: 4px solid #4e5dfc !important;
+            }
+            .item {
+                display: flex;
+                flex-direction: column;
+                color: #020069b5;
+                padding: 2% 3%;
+                i {
+                    font-size: 28px !important;
+                }
+                p {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    .detail-tab {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 200px;
+    }
+    .tab-menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 60%;
+        .text {
+            height: 227px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            margin-right: 12%;
+            color: #020069b5;
+            h2 {
+                -webkit-text-stroke: 0.7px;
+            }
+            .button {
+                border-radius: 20px;
+            }
+        }
+        .image-menu {
+            min-width: 44%;
+            max-width: 46%;
+        }
+    }
+    .ui.horizontal.divider {
+        letter-spacing: unset !important;
+    }
+    // ***for job cards in slider
+    .jobs-list {
+        padding: 1% 5%;
+        margin: 4% 0;
+        .vccard {
+            padding: 22px 0px;
+            width: 95% !important;
+        }
+    }
+    // ***for steps
+    .steps {
+        background-color: #ebf2f6;
+        padding: 4%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h2 {
+            text-align: center;
+            -webkit-text-stroke: 0.6px;
+        }
+        .three-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8%;
+            margin: 0;
+            width: 60%;
+            .text {
+                width: 64%;
+                h3 {
+                    -webkit-text-stroke: 0.6px;
+                }
+                p {
+                    font-size: 18px;
+                    text-align: justify;
+                }
+            }
+            img {
+                max-width: 35%;
+                min-width: 35%;
+                border-radius: 12px;
+            }
+        }
+        .step-two {
+            flex-direction: row-reverse;
+        }
+    }
+    // ***for Consultation request FORM
+    .cons-request {
+        padding: 3% 6%;
+        display: flex;
+        flex-direction: column;
+        background-color: #ebf2f6;
+        justify-content: space-between;
+        .form-cons {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        div,
+        button {
+            width: 24.5%;
+        }
+        button {
+            color: #fff;
+        }
+    }
+    // ***for our customers
+    .our-customer {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        h2 {
+            margin: 2%;
+        }
+        .customer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            width: 85%;
+            div {
+                min-height: 100px;
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                p {
+                    text-align: center;
+                    font-size: 16px !important;
+                }
+                img {
+                    max-width: 80px;
+                    max-height: 80px;
+                    min-width: 80px;
+                    min-height: 80px;
+                    border-radius: 16px;
+                }
+            }
+        }
+    }
+    // ***About IFC
+    .about-ifc {
+        display: flex;
+        flex-direction: row;
+        padding: 1%;
+        align-items: center;
+        justify-content: center;
+        background-color: #ebf2f6;
+        margin-top: 2%;
+        img {
+            max-width: 400px;
+            // max-width: 55%;
+            min-width: 30%;
+            border-radius: 12px;
+            // min-height: 250px;
+            // max-height: 300px;
+        }
+        .text {
+            padding: 4% 4%;
+            width: 47%;
+            h4 {
+                text-align: justify;
+                line-height: 30px;
+            }
+        }
+    }
+    // ***Shareholders
+    .shareholders {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 3%;
+        h1{
+            margin-bottom: 0;
+        }
+        .logo-shareholders {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            // padding: 2%;
+            width: 70%;
+            div {
+                cursor: pointer;
+                padding: 0 3%;
+            }
+            img {
+                transition: all 0.5s ease-in-out;
+                max-width: 120px;
+                min-width: 50px;
+                max-height: 120px;
+                min-height: 50px;
+            }
+            img:hover {
+                transform: scale(1.1);
+                border-radius: 12px;
+            }
+        }
+    }
+}
+.image-shareholder {
+    max-width: 230px !important;
+    max-height: 130px !important;
+}
+.content-shareholder {
+    display: flex;
+    align-items: center;
+    p {
+        text-align: justify;
+    }
+}
+// ******************** RESPONSIVE ********************
+@media only screen and (min-width: 1000px) and (max-width: 1280px) {
+    .image-header {
+        min-height: 520px !important;
+    }
+}
+@media only screen and (min-width: 700px) and (max-width: 1280px) {
+    .menu-header {
+        margin: 6% !important;
+        width: 75% !important;
+    }
+    .tab-menu {
+        width: 90% !important;
+    }
+}
+// @media only screen and (min-width: 700px) and (max-width: 900px) {
+//     .tab-menu {
+//         width: 100% !important;
+//         margin: 0px 4%;
+//         justify-content: space-evenly !important;
+//         .text {
+//             margin-right: 0px !important;
+//         }
+//     }
+// }
+@media only screen and (max-width: 700px) {
+    .menu-header {
+        width: 90% !important;
+    }
+    .detail-tab {
+        height: 100% !important;
+    }
+    .tab-menu {
+        flex-direction: column !important;
+        margin: 0px 4% 15px !important;
+        width: 96% !important;
+        .text {
+            margin: 0px !important;
+            width: 80% !important;
+        }
+        img {
+            min-width: 100% !important;
+            max-width: 100% !important;
+        }
+    }
+    .three-steps {
+        flex-direction: column-reverse !important;
+        .text {
+            width: 100% !important;
+        }
+        img {
+            max-width: 50% !important;
+        }
+    }
+    .jobs-list,
+    .our-customer {
+        padding: 1% 12% !important;
+    }
+    .form-cons {
+        flex-direction: column !important;
+        div,
+        button {
+            width: 100% !important;
+        }
+    }
+    .about-ifc {
+        flex-direction: column !important;
+        .text {
+            width: 100% !important;
+        }
+        img {
+            max-width: 100% !important;
+            min-height: 190px;
+        }
+    }
+    .logo-shareholders {
+        flex-direction: column !important;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .home-container {
+        .steps {
+            .three-steps {
+                width: 90% !important;
+                margin: 5% !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/make_employer/make_employer.min.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'base/css/persian-datepicker.css' %}">
+
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___make_employer_page">
+      <make_employer :context="variablesData"></make_employer>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   <script src="{% static 'base/js/persian-date.min.js' %}"></script>
+<script src="{% static 'base/js/persian-datepicker.min.js' %}"></script>
+
+   <script src="{% static 'pages/make_employer/make_employer.min.js' %}"></script>
+   <script>
+         var context = {
+    {% autoescape off %}
+    user: {{ user_id }},
+    {% endautoescape %}
+    companyApi: "{% url 'talent_admin:api:company_list' %}",
+    defImage_r: "{% static '/base/img/change-upload-icon.svg' %} ",
+    defImage_l: "{% static '/base/img/file-upload-icon.svg' %} ",
+    panel_file_hash: "{% url 'ticket:api:panel_file_hash' %}",
+    tick: "{% static '/base/img/tick.png' %}",
+}  
+         </script>
+   <script>
+      let vue___make_employer_page = new Vue({
+         el: '#element___make_employer_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'ارتقا به کارفرما';
+         },
+         components: {
+            "make_employer": make_employer,
+         }
+      });
+   </script>
+{% endblock %}
+   

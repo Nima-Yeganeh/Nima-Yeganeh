@@ -1,0 +1,111 @@
+.card {
+    cursor: pointer;
+    transition: all 0.3s;
+    max-height: 200px;
+    min-height: 200px;
+    border-radius: 12px;
+    &:hover {
+        box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.2);
+    }
+    .description {
+        font-size: 10px;
+    }
+    .actions {
+        display: flex;
+        flex-direction: column !important;
+        align-items: flex-end;
+        flex-direction: row-reverse;
+        i {
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all 0.3s;
+            font-size: 20px !important;
+            margin-left: 0px !important;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+    span {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .send-btn {
+        transform: rotate(-135deg) !important;
+        color: #6435c9 !important;
+    }
+    .starred {
+        display: flex;
+        align-self: flex-end;
+        margin: 5px;
+        text-align: center;
+    }
+}
+.company-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .right-top {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        div {
+            display: flex;
+            flex-direction: column;
+            // height: 45px;
+            align-items: baseline;
+        }
+        img {
+            width: 45px !important;
+            height: 45px !important;
+        }
+        h4 {
+            margin: 0.5em 0;
+            font-size: 17px ;
+            margin: 5px 0px;
+        }
+        p {
+            color: gray;
+            font-size: 12px;
+        }
+    }
+}
+// *********************************RESPONSIVE*********************************
+@media only screen and (max-width: 800px) {
+    .card-res {
+        max-height: 220px !important;
+        min-height: 220px !important;
+
+    }
+}
+@media only screen and (max-width: 650px) {
+    .card-res {
+        max-height: 220px !important;
+        min-height: 220px !important;
+        h4 {
+            font-size: 14px !important;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 570px) {
+    .card-res {
+        max-height: 220px !important;
+        min-height: 220px !important;    }
+    h4 {
+        font-size: 12px !important;
+    }
+    span {
+        font-size: 9px !important;
+    }
+}
+
+// dialogs style
+.image-p {
+    display: flex;
+    justify-content: center;
+    img {
+        width: 40%;
+    }
+}

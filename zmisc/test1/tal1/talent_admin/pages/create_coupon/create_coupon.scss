@@ -1,0 +1,13 @@
+.create-coupon-main{
+    margin: 15px;
+    width: 98%;
+    .head-create-coupon{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        h3{
+            font-size: 18px;
+            color: #4f4f4f;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "extends": "panel.html",
+    "id": "__file_uploader_page",
+    "css_block_name": "employee_style",
+    "html_block_name": "main",
+    "js_block_name": "employee_js",
+    "compiled_html_name": "file_uploader.html",
+    "vars_prop_name": "context",
+    "title": "file_uploader",
+    "is_compile": true
+}

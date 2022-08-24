@@ -1,0 +1,39 @@
+
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block style1 %}
+   <link rel="stylesheet" type="text/css" href="{% static  'pages/reports/reports.min.css' %}">
+   
+{% endblock %}
+
+{% block content1 %}
+   <div id="element___reports_page">
+      <reports :context="variablesData"></reports>
+   </div>
+{% endblock %}
+
+{% block js1 %}
+   
+   <script src="{% static 'pages/reports/reports.min.js' %}"></script>
+   <script>
+         var context = {
+    payment: '{% url "talent_admin:api:payment_list" %}'
+}  
+         </script>
+   <script>
+      let vue___reports_page = new Vue({
+         el: '#element___reports_page',
+         data: {
+            variablesData: context,
+         },
+         created() {
+            document.title = 'گزارش پرداخت';
+         },
+         components: {
+            "reports": reports,
+         }
+      });
+   </script>
+{% endblock %}
+   

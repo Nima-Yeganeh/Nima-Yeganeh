@@ -1,0 +1,11 @@
+{
+    "extends": "panel.html",
+    "id": "__header_search_page",
+    "css_block_name": "employee_style",
+    "html_block_name": "main",
+    "js_block_name": "employee_js",
+    "compiled_html_name": "header_search.html",
+    "vars_prop_name": "context",
+    "title": "header_search",
+    "is_compile": true
+}

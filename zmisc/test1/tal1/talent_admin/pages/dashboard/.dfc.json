@@ -1,0 +1,10 @@
+{
+    "id": "__dashboard_page",
+    "compiled_html_name": "dashboard.html",
+    "extends": "base_admin.html",
+    "css_block_name": "style1",
+    "html_block_name": "content1",
+    "js_block_name": "js1",
+    "vars_prop_name": "context",
+    "title": "داشبورد"
+}

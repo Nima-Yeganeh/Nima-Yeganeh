@@ -1,0 +1,131 @@
+
+:root {
+  --tablet: 768px;
+  --smallMonitor: 992px;
+  --largeMonitor: 1200px;
+  --font-family: 'Shabnam', 'Open Sans', sans-serif;
+}
+
+body {
+  font-family: var(--font-family) !important;
+  
+}
+.body-content {
+  display: flex;
+  height: 100%;
+}
+
+.body-content .main-content {
+  margin-top: 40px;
+  padding: 10px 5px !important;
+  flex: 1 1 0;
+  overflow: auto;
+}
+
+body ::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ui.vertical.menu.sidebar-menu {
+  margin-top: 40px !important;
+  margin-bottom: 0;
+border-radius: 0;
+  /* max-height: calc(100% - 40px) !important; */
+  /* height: calc(100% - 40px) !important; */
+  /* width: 15rem !important; */
+  /* font-size: 22px; */
+
+}
+
+
+/* .ui.vertical.menu.sidebar-menu .item i.icon {
+  float: left;
+  margin: 0em 0.5em 0em 0em;
+} */
+
+@media (min-width: 768px) {
+  /* .ui.vertical.menu.sidebar-menu {
+    visibility: visible;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    width: 20rem !important;
+  } */
+
+  .sidebar-menu-toggler {
+    display: none !important;
+  }
+}
+/*# sourceMappingURL=style.css.map */
+
+.main-admin{
+    margin: 30px !important;
+}
+
+.see-job{
+    cursor: pointer;
+}
+
+.main-admin h1{
+    font-size: 18px;
+    color: #232323;
+}
+
+.main-job-information{
+  margin: 20px 70px !important;
+  padding: 30px !important;
+}
+
+.head-admin-panel{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 10px 30px 10px;
+}
+
+.head-admin-panel h4{
+  margin-bottom: 0px !important;
+}
+
+.company-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.company-info img{
+  border-radius: 10px;
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+}
+
+.company-info div{
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.company-info h3{
+  margin-top: 0px !important;
+  font-size: 18px;
+}
+
+.company-info p{
+  color: #232323;
+  font-size: 12px;
+}
+
+.button-align{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.button-status{
+  cursor: default !important;
+}
+
+.subject-title{
+  color: #4F4F4F;
+}
