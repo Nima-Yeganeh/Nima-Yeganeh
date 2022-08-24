@@ -1,0 +1,64 @@
+version: "3.9"
+services:
+  mysql:
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
+    image: {{docker_registery}}/mysql:8.0
+    ports:
+      - "{{'' if allow_public_mysql else '127.0.0.1:'}}{{mysql_port}}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: '{{mysql_password}}'
+      MYSQL_DATABASE: 'talent'
+      HOSTNAME: 'mysql'
+      MYSQL_TCP_PORT: {{mysql_port}}
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 2s
+      retries: 30
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./hooks/mysql:/docker-entrypoint-initdb.d
+    depends_on:
+      - redis
+  app:
+    image: {{project_docker_image}}
+    volumes:
+      - ./data/static:/app/staticfiles
+      - ./data/media:/app/media
+      - ./hooks/app/settings/:/app/talent/settings
+      - ./data/mysql_backups/:/app/backups
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      DJANGO_SETTINGS_MODULE: talent.settings.production
+      UWSGI_WORKERS: 1
+      DATABASE_HOST: mysql
+    restart: unless-stopped
+    links:
+      - mysql
+    depends_on:
+      mysql:
+        condition: service_healthy
+  nginx:
+    image: {{docker_registery}}/nginx:stable
+    restart: unless-stopped
+    ports:
+      - "{{nginx_port}}:{{nginx_port}}"
+      {% if ssl_enabled %}
+      - "80:80"
+      {% endif %}
+    volumes:
+      - ./hooks/nginx/conf:/etc/nginx/conf.d
+      - ./hooks/nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./data/static:/static
+      - ./data/media:/media
+      {% if ssl_enabled %}
+      - ./ssl:/etc/nginx/certs
+      {% endif %}
+    depends_on:
+      - app
+  redis:
+    image: {{docker_registery}}/redis:alpine
+    restart: unless-stopped
+    ports:
+      - "{{'' if allow_public_redis else '127.0.0.1:'}}6379:6379"

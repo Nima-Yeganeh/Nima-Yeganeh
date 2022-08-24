@@ -107,3 +107,17 @@ docker image rm alpine:latest
 docker container run --rm golang go version
 docker image rm $(docker image ls -q) -f
 
+docker container run -it ubuntu /bin/bash
+docker container run -it microsoft/powershell:nanoserver pwsh.exe
+
+docker container run alpine:latest sleep 10
+docker container run microsoft/powershell:nanoserver Start-Sleep -s 10
+
+service docker status
+systemctl is-active docker
+
+Get-Service docker
+
+docker container run -it ubuntu:latest /bin/bash
+ps -elf
+
