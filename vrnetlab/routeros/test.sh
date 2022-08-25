@@ -8,3 +8,5 @@ sudo docker ps
 sudo docker images
 sudo docker rm -f my-vr-routeros
 sudo docker run -d --privileged --name my-vr-routeros vr-routeros
+sudo docker ps
+sudo docker ps -a
