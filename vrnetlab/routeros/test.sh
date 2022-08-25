@@ -6,4 +6,5 @@ ls -anp
 sudo make docker-image
 sudo docker ps
 sudo docker images
+sudo docker rm -f my-vr-routeros
 sudo docker run -d --privileged --name my-vr-routeros vr-routeros
