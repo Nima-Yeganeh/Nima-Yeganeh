@@ -9,3 +9,5 @@ sudo docker run -d yeganehnimadgmailcom/docker_test1
 sudo docker run -d yeganehnimadgmailcom/docker-test-psweb2
 sudo docker run -d debian
 sudo docker run -d alpine
+sudo docker ps -a
+sudo docker images

@@ -10,3 +10,4 @@ def fizz_buzz(n=100):
             print(i)
 if __name__ == '__main__':
     fizz_buzz()
+    
