@@ -31,3 +31,4 @@ for _ in range(int(input())):
         print("Too chaotic")
     else:
         print(count_inversion(a))
+        
