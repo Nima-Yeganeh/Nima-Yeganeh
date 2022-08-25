@@ -1,0 +1,90 @@
+#! /bin/bash
+# CMS
+snmp_community="public"
+
+ip=$1
+
+# Get information from device by SNMP
+uptime=$(snmpget -v 2c -c $snmp_community -m mib/SNMPv2-MIB.my $ip SNMPv2-MIB::sysUpTime.0  | cut -d "(" -f2 | cut -d ")" -f1 ) # | cut -d ")" -f2 |  cut -d "." -f1)
+if_number=$(snmpget -v 2c -c $snmp_community -m mib/IF-MIB.my $ip ifNumber.0 | sed -e 's/^IF-MIB::ifNumber.0 = INTEGER: //g')
+if_index=$(snmpbulkget -v 2c -Cr$if_number -c $snmp_community $ip -m mib/IF-MIB.my ifIndex | grep IF-MIB::ifIndex.*.INTEGER: | sort -n -t: -k4 | sed 's/^IF-MIB::ifIndex.* = INTEGER: //g' )
+if_name=$(snmpbulkget -v 2c -Cr$if_number -c $snmp_community $ip -m mib/IF-MIB.my ifDescr | sed -e 's/^IF-MIB::ifDescr.*[0-9] = STRING: //g')
+#if_mac=$(snmpbulkget -v 2c -Cr$if_number -c $snmp_community $ip -m mib/IF-MIB.my ifPhysAddress | sed -e 's/^IF-MIB::ifPhysAddress.*[0-9] = STRING: //g')
+if_oper=$(snmpbulkget -v 2c -Cr$if_number -c $snmp_community $ip -m mib/IF-MIB.my ifOperStatus | sed -e 's/^IF-MIB::ifOperStatus.*[0-9] = INTEGER: //g' | cut -d "(" -f 1)
+if_lastchange=$(snmpbulkget -v 2c -Cr$if_number -c $snmp_community -m mib/IF-MIB.my $ip ifLastChange | cut -d "(" -f2 | cut -d ")" -f1)
+if_admin=$(snmpbulkget -v 2c -Cr$if_number -c $snmp_community $ip -m mib/IF-MIB.my ifAdminStatus | sed -e 's/^IF-MIB::ifAdminStatus..*[0-9] = INTEGER: //g' | sed -e 's/down/admin_down/g' | cut -d "(" -f 1)
+ip_table=$(snmpbulkget -v 2c -Cr$if_number -c $snmp_community $ip -m mib/IP-MIB.mib ipAdEntIfIndex  | grep IP-MIB::ipAdEntIfIndex.*.INTEGER: | sort -n -t: -k4 | cut -d "=" -f 1 | sed 's/^IP-MIB::ipAdEntIfIndex.//g')
+ip_index=$(snmpbulkget -v 2c -Cr$if_number -c $snmp_community $ip -m mib/IP-MIB.mib ipAdEntIfIndex  | grep IP-MIB::ipAdEntIfIndex.*.INTEGER: | sort -n -t: -k4 | sed 's/^IP-MIB::ipAdEntIfIndex.* = INTEGER: //g')
+
+# Put SNMP getting information to arrays
+IFS=$' \n' read -r -a indexif <<< $if_index
+IFS=$' \n' read -r -a pname <<< $if_name
+IFS=$' \n' read -r -a pmac <<< $if_mac
+IFS=$' \n' read -r -a poper <<< $if_oper
+IFS=$' \n' read -r -a pchange <<< $if_lastchange
+IFS=$' \n' read -r -a padmin <<< $if_admin
+IFS=$' \n' read -r -a indext <<< $ip_index
+IFS=$' \n' read -r -a ipt <<< $ip_table
+
+# Feel empty cells 
+ifmaxnum=${indexif[${#indexif[@]}-1]}
+
+for ((i=0; i<$ifmaxnum+1; i++))
+do
+	ifdesc[$i]="-"
+#	ifmac[$i]="-"
+	ifoper[$i]="-"
+	ifadmin[$i]="-"
+	ifip[$i]="-"
+	ifindex[$i]="-"
+done 
+
+# Feel arrays by actual information array[i]  )
+for ((i=0; i<${#indext[@]}; i++))
+do
+	c=${indext[$i]}
+	ifip[$c]=${ipt[$i]}
+done
+
+for ((i=0; i<${#indexif[@]}; i++))
+do
+	c=${indexif[$i]}
+	ifdesc[$c]=${pname[$i]}
+	#ifmac[$c]=${pmac[$i]}
+	ifoper[$c]=${poper[$i]}
+	ifadmin[$c]=${padmin[$i]}
+	ifchange[$c]=$(echo $((($uptime-${pchange[$i]})/100)) | awk '{print int($0/86400),"days",int($0%86400/3600),"hours",int($0%86400%3600/60),"min"}')
+	
+	if  [[ "${ifdesc[$c]}" == *"Tunnel"* ]] && [ "${ifadmin[$c]}" == "admin_down" ]
+	then 
+		ifip[$c]=$(printf '%d.%d.%d.%d\n' $(snmpwalk -Ovx -v 2c -c $snmp_community -m ~/mib/TUNNEL-MIB.mib $ip tunnelIfLocalInetAddress.${c} | sed -e 's/\(Hex-STRING:\| \)//g' | sed 's/../0x& /g'))
+		ifadmin[$c]="standby/shut"	
+	elif [[ "${ifdesc[$c]}" == *"Tunn"* ]] && [[ "${ifip[$c]}" == "-" ]]
+	then
+		ifip[$c]=$(printf '%d.%d.%d.%d\n' $(snmpwalk -Ovx -v 2c -c $snmp_community -m ~/mib/TUNNEL-MIB.mib $ip tunnelIfLocalInetAddress.${c} | sed -e 's/\(Hex-STRING:\| \)//g' | sed 's/../0x& /g'))
+	fi
+	
+done
+
+
+# Prepare table and show it
+printf "\nInterface table:\n"
+printf " ____________________________________________________________________________________________________________\n"
+#printf "| %-3s | %-30s | %-15s | %-10s | %-12s | %-29s |\n" "inx" "Interface" "IP address" "OperStat" "AdminStat" "Last Status Change"
+#printf "| %-3s | %-30s | %-15s | %-10s | %-12s | %-29s |\n" "___" "______________________________" "_______________" "__________" "__________" "_____________________________" 
+
+printf "| %-30s | %-15s | %-12s | %-12s | %-25s |\n" "Interface" "IP-Address" "Status" "Protocol" "Last Status Change"
+printf "| %-30s | %-15s | %-12s | %-12s | %-25s |\n" "______________________________" "_______________" "__________" "____________" "_________________________" 
+
+for ((i=1; i<${#ifindex[@]}; i++))
+do
+	if [ "${ifdesc[$i]}" == "-" ] || [ "${ifdesc[$i]}" == "Null0" ] || [ "${ifdesc[$i]}" == "VoIP-Null0" ]
+	then 
+		continue
+	else
+		#printf "| %-3s | %-30s | %-15s | %-10s | %-12s | %-29s |\n" "${ifindex[$i]}" "${ifdesc[$i]}" "${ifip[$i]}" "${ifoper[$i]}" "${ifadmin[$i]}" "${ifchange[$i]}"
+		printf "| %-30s | %-15s | %-12s | %-12s | %-25s |\n" "${ifdesc[$i]}" "${ifip[$i]}" "${ifadmin[$i]}" "${ifoper[$i]}" "${ifchange[$i]}"
+	fi
+done
+
+printf "|____________________________________________________________________________________________________________|\n"

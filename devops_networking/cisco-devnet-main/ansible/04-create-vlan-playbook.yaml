@@ -1,0 +1,14 @@
+---
+
+- name: Create VLAN on Cisco Switches
+  hosts: MLS
+
+  tasks:
+  - name: Create VLAN
+    cisco.ios.ios_vlans:
+      config:
+      - name: VLAN-Marketing
+        vlan_id: 10
+      - name: VLAN-Tamu
+        vlan_id: 20
+      state: overridden

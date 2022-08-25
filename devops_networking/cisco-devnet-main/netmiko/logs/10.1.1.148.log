@@ -1,0 +1,52 @@
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+Core-Router>terminal width 511
+Core-Router>terminal length 0
+Core-Router>
+Core-Router>
+Core-Router>enable
+Password: 
+Core-Router#
+Core-Router#
+Core-Router#show run | include hostname
+hostname Core-Router
+Core-Router#
+Core-Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Core-Router(config)#
+Core-Router(config)#banner exec ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to Core-Router               *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Core-Router(config)#banner login ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to Core-Router               *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Core-Router(config)#banner incoming ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to Core-Router               *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Core-Router(config)#
+Core-Router(config)#end
+Core-Router#
+Core-Router#
+Core-Router#exit

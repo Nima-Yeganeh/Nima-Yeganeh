@@ -1,0 +1,141 @@
+#!/bin/bash
+##################################################################################################################
+#
+#   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
+#
+##################################################################################################################
+# A menu driven shell script sample template 
+# ----------------------------------
+#  Define variables
+# ----------------------------------
+EDITOR=code
+# PASSWD=/etc/passwd
+RED='\033[0;41;30m'
+STD='\033[0;0;39m'
+ 
+# ----------------------------------
+#  User defined function
+# ----------------------------------
+pause(){
+  read -p "Press [Enter] key to continue...Console cable can be unplugged at this time" fackEnterKey
+}
+
+one(){
+	echo -e "S1 Starting TFTP. ${RED}DO NOT${STD} unplug console cable."
+    bash s1.sh
+        pause
+}
+ 
+two(){
+	echo -e "S2 Starting TFTP. ${RED}DO NOT${STD} unplug console cable."
+    bash s2.sh
+        pause
+}
+
+three(){
+	echo -e "S3 Starting TFTP. ${RED}DO NOT${STD} unplug console cable."
+    bash s3.sh
+        pause
+}
+
+four(){
+	echo -e "S4 Starting TFTP. ${RED}DO NOT${STD} unplug console cable."
+    bash s4.sh
+        pause
+}
+
+five(){
+	echo -e "S5 Starting TFTP. ${RED}DO NOT${STD} unplug console cable."
+    bash s5.sh
+        pause
+}
+
+six(){
+	echo -e "S6 Starting TFTP. ${RED}DO NOT${STD} unplug console cable."
+    bash s6.sh
+        pause
+}
+
+seven(){
+	echo -e "R1 Starting TFTP. ${RED}DO NOT${STD} unplug console cable."
+    bash r1.sh
+        pause
+}
+
+eight(){
+	echo -e "R2 Starting TFTP. ${RED}DO NOT${STD} unplug console cable."
+    bash r2.sh
+        pause
+}
+
+nine(){
+	echo -e "R3 Starting TFTP. ${RED}DO NOT${STD} unplug console cable."
+    bash r3.sh
+        pause
+}
+
+zero(){
+	echo -e "R4 Starting TFTP. ${RED}DO NOT${STD} unplug console cable."
+    bash r4.sh
+        pause
+}
+
+return(){
+    clear && exit 0 && bash main.menu
+}
+
+# function to display menus
+show_menus() {
+	clear
+	echo "~~~~~~~~~~~~~~~~~~~~~"	
+	echo "  T F T P - M E N U"
+	echo "~~~~~~~~~~~~~~~~~~~~~"
+	echo "1. S1"
+	echo "2. S2"
+	echo "3. S3"
+	echo "4. S4"
+   	echo "5. S5"
+	echo "6. S6"
+	echo "7. R1"
+	echo "8. R2"
+	echo "9. R3"
+	echo "0. R4"
+    echo "q. Main Menu"
+}
+# read input from the keyboard and take a action
+# invoke the one() when the user select 1 from the menu option.
+# invoke the two() when the user select 2 from the menu option.
+# Exit when user the user select 3 form the menu option.
+read_options(){
+	local choice
+	read -p "Enter choice:" choice
+	case $choice in
+		1) one ;;
+		2) two ;;
+		3) three ;;
+		4) four ;;
+		5) five ;;
+		6) six ;;
+		7) seven ;;
+		8) eight ;;
+		9) nine ;;
+		0) zero ;;
+		q) exit 0;;
+    	*) echo -e "${RED}Error...Please select a valid option${STD}" && sleep 2
+	esac
+}
+ 
+# ----------------------------------------------
+#  Trap CTRL+C, CTRL+Z and quit signals
+# ----------------------------------------------
+trap '' SIGINT SIGQUIT SIGTSTP
+ 
+# -----------------------------------
+#  Main logic - infinite loop
+# ------------------------------------
+while true
+do
+ 
+	show_menus
+	read_options
+done

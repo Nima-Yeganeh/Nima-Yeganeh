@@ -1,0 +1,31 @@
+---
+
+- name: Create ACL and Assign it to an interface.
+  hosts: all
+
+  tasks:
+
+  - name: Create new ACL into device
+    cisco.ios.ios_config:
+      lines:
+      - 10 deny ip 192.168.2.0 0.0.0.255 host 8.8.8.8 log
+      - 110 deny ip host 192.168.0.5 any log
+      - 9999 permit ip any any
+      parents: ip access-list extended block
+      before: no ip access-list extended block
+      match: exact
+
+  - name: Assign ACL to interface
+    cisco.ios.ios_config:
+      lines:
+      - ip access-group block in
+      parents: interface G3/0
+
+
+
+
+
+  # - name: Delete the ACL
+  #   cisco.ios.ios_config:
+  #     lines:
+  #     -  no ip access-list extended block

@@ -1,0 +1,82 @@
+---
+
+- name: Create VLAN on Cisco Switches
+  hosts: SW1
+
+  tasks:
+  - name: Create VLAN
+    cisco.ios.ios_vlans:
+      config:
+      - name: VLAN_Admin
+        vlan_id: 10
+      - name: VLAN_Tamu
+        vlan_id: 20
+      state: merged
+
+  - name: Configure access ports
+    cisco.ios.ios_l2_interfaces:
+      config:
+      - name: GigabitEthernet1/0
+        mode: access
+        access:
+          vlan: 10
+      - name: GigabitEthernet1/1
+        mode: access
+        access:
+          vlan: 10
+      - name: GigabitEthernet1/2
+        mode: access
+        access:
+          vlan: 20
+      - name: GigabitEthernet1/3
+        mode: access
+        access:
+          vlan: 20
+
+- name: Enable Trunk Port on SW1
+  hosts: SW1
+  tasks:
+  - name: Configure access and trunking interfaces
+    cisco.ios.ios_l2_interfaces:
+      config:
+      - name: GigabitEthernet0/1
+        mode: trunk
+        trunk:
+          allowed_vlans: 10,20
+          native_vlan: 99
+          encapsulation: dot1q
+      state: merged
+
+- name: Enable Trunk Port on SW2
+  hosts: SW2
+  tasks:
+  - name: Configure access and trunking interfaces
+    cisco.ios.ios_l2_interfaces:
+      config:
+      - name: GigabitEthernet0/1
+        mode: trunk
+        trunk:
+          allowed_vlans: 10,20
+          native_vlan: 99
+          encapsulation: dot1q
+      - name: GigabitEthernet0/2
+        mode: trunk
+        trunk:
+          allowed_vlans: 10,20
+          native_vlan: 99
+          encapsulation: dot1q
+      state: merged
+
+- name: Enable Trunk Port on SW3
+  hosts: SW3
+  tasks:
+  - name: Configure access and trunking interfaces
+    cisco.ios.ios_l2_interfaces:
+      config:
+      - name: GigabitEthernet0/2
+        mode: trunk
+        trunk:
+          allowed_vlans: 10,20
+          native_vlan: 99
+          encapsulation: dot1q
+      state: merged

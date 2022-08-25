@@ -1,0 +1,14 @@
+dist: trusty
+language: python
+
+addons:
+  apt:
+    packages:
+      - python-qt4
+      - pylint
+      - make
+      - graphviz
+
+
+script:
+- make test

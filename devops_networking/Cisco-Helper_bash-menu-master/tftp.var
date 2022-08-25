@@ -1,0 +1,8 @@
+##################################################################################################################
+#
+#   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
+#
+##################################################################################################################
+export tftp_full=/srv/tftp/54SFAB/54SFAB-TAP_5.6.2.454f/C/TAP-7616800/TAP-7616800-CT2R.txt
+export tftp_short=54SFAB/54SFAB-TAP_5.6.2.454f/C/TAP-7616800/TAP-7616800-CT2R.txt
+export file=TAP-7616800-CT2R.txt

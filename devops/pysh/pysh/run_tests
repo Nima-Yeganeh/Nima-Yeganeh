@@ -1,0 +1,33 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import os
+import subprocess
+import sys
+
+tests = [
+  'pysh.main_test',
+  'pysh.converter_test',
+  'pysh.shell.tokenizer',
+  'pysh.shell.parser_test',
+  'pysh.shell.evaluator_test',
+  'pysh.shell.builtin_test',
+  ]
+
+dir = os.path.dirname(os.path.realpath(__file__))
+root = os.path.join(dir, '..')
+path = os.environ.get('PYTHONPATH', '')
+if path:
+  path += ':'
+os.environ['PYTHONPATH'] = path + root
+
+result = {}
+
+for test in tests:
+  result[test] = subprocess.Popen(['python', '-m', test]).wait()
+
+for test in tests:
+  if result[test] == 0:
+    print '\033[32;1mSuccess:\033[m %s' % test
+  else:
+    print '\033[31;1mFailed :\033[m %s' % test

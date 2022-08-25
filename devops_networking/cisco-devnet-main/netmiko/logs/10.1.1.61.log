@@ -1,0 +1,53 @@
+
+****************************************
+* Welcome to Access-SW1                *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+
+Access-SW1>terminal width 511
+Access-SW1>terminal length 0
+Access-SW1>
+Access-SW1>
+Access-SW1>enable
+Password: 
+Access-SW1#
+Access-SW1#
+Access-SW1#show run | include hostname
+hostname Access-SW1
+Access-SW1#
+Access-SW1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Access-SW1(config)#
+Access-SW1(config)#banner exec ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to 
+hostname Access-SW1      *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Access-SW1(config)#banner login ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to 
+hostname Access-SW1      *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Access-SW1(config)#banner incoming ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to 
+hostname Access-SW1      *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Access-SW1(config)#
+Access-SW1(config)#end
+Access-SW1#
+Access-SW1#
+Access-SW1#exit

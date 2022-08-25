@@ -1,0 +1,49 @@
+#!/usr/local/bin/python
+
+import requests
+import urllib3
+import json
+import pprint
+import csv
+
+
+
+requestedInfo = list()
+
+def apiWlanProfile():
+
+    username = input("Please Enter api Username")
+    password = input("Please enter api password")
+    controllerip = input("Please enter the controller ip")
+
+    response = requests.get('https://'+ controllerip + '/webacs/api/v1/data/WlanProfiles.json', verify=False, auth=(username, password))
+    response = json.loads(response.content.decode())
+    listOfControllers = response['queryResponse']['entityId']
+    
+    requestedInfoTemp=list()
+        
+        for controller in listOfControllers:
+            
+            controllerUrl = str(controller['@url'])
+            response = requests.get(controllerUrl+ '.json', verify=False, auth=(username, password))
+            r = json.loads(response.content.decode())
+            
+            if len(requestedInfo) == 0:
+            
+                header = ['WLAN Profile','SSID','advanced Peer To Peer Blocking setting']
+                requestedInfo.append(header)
+            
+            WlanProfile = r['queryResponse']['entity'][0]['wlanProfilesDTO']['@displayName']
+            ssid = r['queryResponse']['entity'][0]['wlanProfilesDTO']['ssid']
+            peerBlockingSetting = r['queryResponse']['entity'][0]['wlanProfilesDTO']['advancedPeerToPeerBlocking']
+            requestedInfoTemp = [WlanProfile,ssid,peerBlockingSetting]
+            requestedInfo.append(requestedInfoTemp)
+            print(requestedInfo)
+       
+    with open(r'#file_path_for_results_here_', 'w') as file:
+        
+        wr = csv.writer(file)
+        wr.writerows(requestedInfo)
+        
+
+apiWlanProfile()

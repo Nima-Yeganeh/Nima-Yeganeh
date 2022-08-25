@@ -1,0 +1,17 @@
+---
+
+- name: automate switch configuration using ansible
+  hosts: all
+
+  tasks:
+
+  - name: Configure the login banner
+    cisco.ios.ios_banner:
+      banner: login
+      text: |
+        ************************************************************
+        * SWITCH IDN.ID                                            *
+        * Dilarang masuk tanpa izin.                               *
+        * Tindakan merusak sistem diancam pidana.                  *
+        ************************************************************
+      state: present

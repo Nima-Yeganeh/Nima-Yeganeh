@@ -1,0 +1,2 @@
+This script requires python2.7.
+Script firstly will take list of IP adresses of Cisco devices(Switches or Routers). After that, will get informations from CDP neighbors. This informations will be hostname and interface of neighbor cisco device. And at the end will write description to the local Interface to the already connected cisco device.

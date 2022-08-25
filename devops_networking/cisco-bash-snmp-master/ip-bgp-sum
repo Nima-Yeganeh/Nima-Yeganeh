@@ -1,0 +1,41 @@
+#!/bin/sh
+ip=$1
+snmp_community="public"
+
+let i=0
+while read -r line; do
+
+
+	if [ "$line" == "SNMPv2-SMI::mib-2.15.3.1.2 = No Such Instance currently exists at this OID" ] 
+	then 
+		continue
+	else
+		bgp_neighbor_ip[$i]=$(echo $line | sed 's/SNMPv2-SMI::mib-2.15.3.1.2.//' |  grep -oE '\b[0-9]{1,3}(\.[0-9]{1,3}){3}\b')
+		bgp_neighbor_status[$i]=$(echo $line | sed 's/^SNMPv2-SMI::mib-2.15.3.1.2.* = INTEGER: //g' | sed 's/6$/Established/' | sed 's/1$/Idle/' | sed 's/3$/Active/' | sed 's/5$/Openconfirm/' | sed 's/4$/Opensent/' | sed 's/2$/Connect/')
+		bgp_neighbor_time[$i]=$(snmpget -v 2c -c $snmp_community  $ip  1.3.6.1.2.1.15.3.1.16.${bgp_neighbor_ip[$i]} | sed 's/^SNMPv2-SMI::mib-2.15.3.1.16.* = Gauge32: //'  | awk '{print int($0/86400),"days",int($0%86400/3600),"hours",int($0%86400%3600/60),"minutes"}')
+		
+		pfxrcd_test=$(snmpget -v 2c -c $snmp_community  $ip .1.3.6.1.4.1.9.9.187.1.2.4.1.1.${bgp_neighbor_ip[$i]}.1.1 | sed 's/^SNMPv2-SMI::enterprises.9.9.187.* = Counter32: //g')
+		if [ "$(echo $pfxrcd_test | sed 's/^SNMPv2-SMI::enterprises.* = //g')" == "No Such Instance currently exists at this OID" ] 
+		then 
+			continue
+		else 
+			bgp_neighbor_pfxrcd[$i]=$pfxrcd_test
+		fi
+		
+		((i++))
+	fi
+done <<< "$(snmpwalk -v 2c -c $snmp_community -m mib/SNMPv2-SMI.mib $ip SNMPv2-SMI::mib-2.15.3.1.2) "
+ 
+printf "\nBGP summary (Default): \n"
+printf " ________________________________________________________________________\\n"
+printf "| %-15s | %-11s | %-29s | %-6s |\n" "Neighbor IP" "Status" "Uptime" "PfxRcd"
+printf "| %-15s | %-11s | %-29s | %-6s |\n" "_______________" "___________" "_____________________________" "______"
+  
+for ((i=0; i<${#bgp_neighbor_ip[@]}; i++))
+do
+	printf "| %-15s | %-11s | %-29s | %-6s |\n" "${bgp_neighbor_ip[$i]}" "${bgp_neighbor_status[$i]}" "${bgp_neighbor_time[$i]}" "${bgp_neighbor_pfxrcd[$i]}"
+	#printf "\nbgp_neighbor_ip: ${bgp_neighbor_ip[$i]}"
+done 
+
+printf "|________________________________________________________________________|\\n"
+

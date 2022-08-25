@@ -1,0 +1,45 @@
+ 
+Test
+Access-SW2>terminal width 511
+Access-SW2>terminal length 0
+Access-SW2>
+Access-SW2>
+Access-SW2>enable
+Password: 
+Access-SW2#
+Access-SW2#
+Access-SW2#show run | include hostname
+hostname Access-SW2
+Access-SW2#
+Access-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Access-SW2(config)#
+Access-SW2(config)#banner exec ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to Access-SW2                *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Access-SW2(config)#banner login ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to Access-SW2                *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Access-SW2(config)#banner incoming ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to Access-SW2                *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Access-SW2(config)#
+Access-SW2(config)#end
+Access-SW2#
+Access-SW2#
+Access-SW2#exit

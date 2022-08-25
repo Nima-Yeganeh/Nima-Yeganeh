@@ -1,0 +1,51 @@
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************Distribution-SW>terminal width 511
+Distribution-SW>terminal length 0
+Distribution-SW>
+Distribution-SW>
+Distribution-SW>enable
+Password: 
+Distribution-SW#
+Distribution-SW#
+Distribution-SW#show run | include hostname
+hostname Distribution-SW
+Distribution-SW#
+Distribution-SW#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Distribution-SW(config)#
+Distribution-SW(config)#banner exec ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to Distribution-SW           *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Distribution-SW(config)#banner login ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to Distribution-SW           *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Distribution-SW(config)#banner incoming ^
+Enter TEXT message.  End with the character '^'.
+****************************************
+* Welcome to Distribution-SW           *
+* This device managed by XDNRoot       *
+* Hack me please!                      *
+****************************************
+^
+Distribution-SW(config)#
+Distribution-SW(config)#end
+Distribution-SW#
+Distribution-SW#
+Distribution-SW#exit

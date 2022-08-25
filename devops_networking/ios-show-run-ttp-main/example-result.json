@@ -1,0 +1,1307 @@
+[
+    [
+        {
+            "interfaces": {
+                "Loopback1": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet0/0": {
+                    "speed": "auto",
+                    "duplex": "auto",
+                    "ip": "10.0.2.33",
+                    "mask": "255.255.255.0",
+                    "mode": null,
+                    "disabled": false,
+                    "description": null,
+                    "dot1q": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet0/1": {
+                    "speed": "auto",
+                    "duplex": "auto",
+                    "ip": "192.168.1.1",
+                    "mask": "255.255.255.0",
+                    "description": "cat",
+                    "mode": null,
+                    "disabled": false,
+                    "dot1q": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet1/0": {
+                    "speed": "auto",
+                    "duplex": "auto",
+                    "ip": "192.168.3.1",
+                    "mask": "255.255.255.0",
+                    "mode": null,
+                    "disabled": false,
+                    "description": null,
+                    "dot1q": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet2/0": {
+                    "speed": "auto",
+                    "duplex": "auto",
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/0": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/1": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/2": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/3": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/4": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/5": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/6": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/7": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/8": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/9": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/10": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/11": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/12": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/13": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/14": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "FastEthernet3/15": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "Port-channel1": {
+                    "negation": "auto",
+                    "description": "<description/Remark>",
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null,
+                    "service_instance": {
+                        "100": {
+                            "pop": "1",
+                            "symmetric": "symmetric",
+                            "input_policy": "PM-INGRESS-NETCONTROL-COS",
+                            "output_policy": null,
+                            "bdomain": "100",
+                            "encapsulation": {
+                                "vlan": "100",
+                                "second_vlan": "32"
+                            }
+                        },
+                        "151": {
+                            "description": "TDM-E1_WT",
+                            "pop": "1",
+                            "symmetric": "symmetric",
+                            "input_policy": "PM-INGRESS-NNI-TDM",
+                            "output_policy": null,
+                            "bdomain": "151",
+                            "encapsulation": {
+                                "vlan": "151"
+                            }
+                        },
+                        "152": {
+                            "description": "TDM-E1_PT",
+                            "pop": "1",
+                            "symmetric": "symmetric",
+                            "input_policy": "PM-INGRESS-NNI-TDM",
+                            "output_policy": null,
+                            "bdomain": "152",
+                            "encapsulation": {
+                                "vlan": "default"
+                            }
+                        }
+                    }
+                },
+                "Vlan1": {
+                    "input_policy": "BG_MARKING",
+                    "output_mac_acl": "MAC_ACL",
+                    "input_mac_acl": "MAC_ACL",
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null
+                },
+                "Vlan2": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "Vlan3": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "Vlan5": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                },
+                "Vlan99": {
+                    "mode": null,
+                    "disabled": false,
+                    "ip": null,
+                    "description": null,
+                    "dot1q": null,
+                    "mask": null,
+                    "vrf": null,
+                    "negotiation": null,
+                    "speed": null,
+                    "duplex": null,
+                    "vlan": null,
+                    "ip_directed_broadcast": null,
+                    "input_mac_acl": null,
+                    "output_mac_acl": null,
+                    "input_policy": null
+                }
+            },
+            "global": {
+                "http_server": {
+                    "enabled": false
+                },
+                "http_secure_server": {
+                    "enabled": false
+                },
+                "version": {
+                    "version": "12.4"
+                },
+                "ip_domain_name": {
+                    "domain_name": "test"
+                },
+                "cef": {
+                    "cef": true
+                },
+                "subnet_zero": {
+                    "subnet_zero": false
+                },
+                "control_plane": {
+                    "enabled": true
+                },
+                "vlan": {
+                    "id": [
+                        "10",
+                        "20",
+                        "30",
+                        "40",
+                        "50",
+                        "60",
+                        "70",
+                        "80",
+                        "90",
+                        "100",
+                        "200"
+                    ]
+                },
+                "vtp": {
+                    "enabled": true
+                },
+                "policy": {
+                    "policy": [
+                        {
+                            "policy_map": "NPM-INGRESS-NNI",
+                            "class": {
+                                "cos5": {
+                                    "set_qos_group": "5"
+                                },
+                                "cos3": {
+                                    "set_qos_group": "3"
+                                },
+                                "cos1": {
+                                    "set_qos_group": "1"
+                                },
+                                "cos4": {
+                                    "set_qos_group": "4"
+                                },
+                                "cos2": {
+                                    "set_qos_group": "2"
+                                },
+                                "cos0": {
+                                    "set_qos_group": "0"
+                                }
+                            }
+                        },
+                        {
+                            "policy_map": "BG_MARKING",
+                            "class": {
+                                "af41": [
+                                    {
+                                        "set_dscp": "default"
+                                    },
+                                    {
+                                        "set_qos_group": "0"
+                                    },
+                                    {
+                                        "set_cos": "0"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "policy_map": "PM-EGRESS-NNI",
+                            "class": {
+                                "CM-GROUP6": {
+                                    "bandwith_remaining_percent": "5"
+                                },
+                                "CM-GROUP5": {},
+                                "CM-GROUP4": {
+                                    "bandwith_remaining_percent": "5"
+                                },
+                                "CM-GROUP3": {
+                                    "bandwith_remaining_percent": "10"
+                                },
+                                "CM-GROUP2": {
+                                    "bandwith_remaining_percent": "40"
+                                },
+                                "CM-GROUP1": {
+                                    "bandwith_remaining_percent": "10"
+                                },
+                                "class-default": {
+                                    "bandwith_remaining_percent": "5"
+                                }
+                            }
+                        },
+                        {
+                            "policy_map": "NMS_MARKING",
+                            "class": {
+                                "class-default": [
+                                    {
+                                        "set_qos_group": "4"
+                                    },
+                                    {
+                                        "set_dscp": "cs4"
+                                    },
+                                    {
+                                        "set_cos": "4"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "policy_map": "TDM_MARKING",
+                            "class": {
+                                "class-default": [
+                                    {
+                                        "set_qos_group": "2"
+                                    },
+                                    {
+                                        "set_cos": "2"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "policy_map": "PM-INGRESS-NETCONTROL-COS",
+                            "class": {
+                                "class-default": [
+                                    {
+                                        "set_qos_group": "6"
+                                    },
+                                    {
+                                        "set_cos": "6"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "policy_map": "NPM-EGRESS-NNI",
+                            "class": {
+                                "qos5": [
+                                    {
+                                        "set_dscp": "ef"
+                                    },
+                                    {
+                                        "set_cos": "5"
+                                    },
+                                    {
+                                        "bandwith_remaining_percent": "30"
+                                    }
+                                ],
+                                "qos3": [
+                                    {
+                                        "bandwith_remaining_percent": "30"
+                                    },
+                                    {
+                                        "set_dscp": "af32"
+                                    },
+                                    {
+                                        "set_cos": "3"
+                                    }
+                                ],
+                                "qos2": {
+                                    "set_cos": "2"
+                                },
+                                "qos1": [
+                                    {
+                                        "bandwith_remaining_percent": "30"
+                                    },
+                                    {
+                                        "set_dscp": "af11"
+                                    },
+                                    {
+                                        "set_cos": "1"
+                                    }
+                                ],
+                                "qos4": [
+                                    {
+                                        "set_dscp": "cs4"
+                                    },
+                                    {
+                                        "set_cos": "4"
+                                    }
+                                ],
+                                "class-default": [
+                                    {
+                                        "set_dscp": "default"
+                                    },
+                                    {
+                                        "set_cos": "0"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "policy_map": "PM-INGRESS-NNI-TDM",
+                            "class": {
+                                "class-default": [
+                                    {
+                                        "set_qos_group": "5"
+                                    },
+                                    {
+                                        "set_cos": "5"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "policy_map": "SERVICES_MARKING",
+                            "class": {
+                                "af41": [
+                                    {
+                                        "set_qos_group": "5"
+                                    },
+                                    {
+                                        "set_dscp": "ef"
+                                    },
+                                    {
+                                        "set_cos": "4"
+                                    }
+                                ],
+                                "af22": [
+                                    {
+                                        "set_qos_group": "3"
+                                    },
+                                    {
+                                        "set_dscp": "af32"
+                                    },
+                                    {
+                                        "set_cos": "3"
+                                    }
+                                ],
+                                "be": [
+                                    {
+                                        "set_dscp": "af11"
+                                    },
+                                    {
+                                        "set_qos_group": "1"
+                                    },
+                                    {
+                                        "set_cos": "1"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "class": [
+                        {
+                            "match_type": "all",
+                            "class_name": "af41",
+                            "match": {
+                                "type": "dscp",
+                                "value": [
+                                    "af41 "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "ef",
+                            "match": {
+                                "type": "dscp",
+                                "value": [
+                                    "ef "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "af32",
+                            "match": {
+                                "type": "dscp",
+                                "value": [
+                                    "af32 "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "af22",
+                            "match": {
+                                "type": "dscp",
+                                "value": [
+                                    "af22 "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "be",
+                            "match": {
+                                "type": "dscp",
+                                "value": [
+                                    "default "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "af11",
+                            "match": {
+                                "type": "dscp",
+                                "value": [
+                                    "af11 "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "any",
+                            "class_name": "CM-GROUP4",
+                            "match": {
+                                "type": "qos-group",
+                                "value": [
+                                    "4"
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "any",
+                            "class_name": "CM-GROUP5",
+                            "match": {
+                                "type": "qos-group",
+                                "value": [
+                                    "5"
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "cos5",
+                            "match": {
+                                "type": "cos",
+                                "value": [
+                                    "5 "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "any",
+                            "class_name": "CM-GROUP6",
+                            "match": [
+                                {
+                                    "type": "qos-group",
+                                    "value": [
+                                        "6"
+                                    ]
+                                },
+                                {
+                                    "type": "dscp",
+                                    "value": [
+                                        "cs6",
+                                        "cs7 "
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "cos4",
+                            "match": {
+                                "type": "cos",
+                                "value": [
+                                    "4 "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "cos3",
+                            "match": {
+                                "type": "cos",
+                                "value": [
+                                    "3 "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "cos2",
+                            "match": {
+                                "type": "cos",
+                                "value": [
+                                    "2 "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "any",
+                            "class_name": "CM-GROUP1",
+                            "match": {
+                                "type": "qos-group",
+                                "value": [
+                                    "1"
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "cos1",
+                            "match": {
+                                "type": "cos",
+                                "value": [
+                                    "1 "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "any",
+                            "class_name": "CM-GROUP2",
+                            "match": {
+                                "type": "qos-group",
+                                "value": [
+                                    "2"
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "cos0",
+                            "match": {
+                                "type": "cos",
+                                "value": [
+                                    "0 "
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "any",
+                            "class_name": "CM-GROUP3",
+                            "match": {
+                                "type": "qos-group",
+                                "value": [
+                                    "3"
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "qos5",
+                            "match": {
+                                "type": "qos-group",
+                                "value": [
+                                    "5"
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "any",
+                            "class_name": "qos4",
+                            "match": [
+                                {
+                                    "type": "qos-group",
+                                    "value": [
+                                        "4"
+                                    ]
+                                },
+                                {
+                                    "type": "dscp",
+                                    "value": [
+                                        "cs4 "
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "qos1",
+                            "match": {
+                                "type": "qos-group",
+                                "value": [
+                                    "1"
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "qos3",
+                            "match": {
+                                "type": "qos-group",
+                                "value": [
+                                    "3"
+                                ]
+                            }
+                        },
+                        {
+                            "match_type": "all",
+                            "class_name": "qos2",
+                            "match": {
+                                "type": "qos-group",
+                                "value": [
+                                    "2"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "bridge_domain": {
+                    "3001": {
+                        "igmp_snooping_enabled": false
+                    },
+                    "3002": {
+                        "igmp_snooping_enabled": false
+                    },
+                    "3003": {
+                        "igmp_snooping_enabled": false
+                    },
+                    "3004": {
+                        "igmp_snooping_enabled": false
+                    },
+                    "3005": {
+                        "igmp_snooping_enabled": false
+                    },
+                    "3006": {
+                        "igmp_snooping_enabled": false
+                    },
+                    "3007": {
+                        "igmp_snooping_enabled": false
+                    },
+                    "3008": {
+                        "igmp_snooping_enabled": false
+                    },
+                    "3009": {
+                        "igmp_snooping_enabled": false
+                    },
+                    "3010": {
+                        "igmp_snooping_enabled": false
+                    }
+                }
+            },
+            "management": {
+                "hostname": {
+                    "hostname": "meowcat"
+                },
+                "lldp_run": {
+                    "enabled": false
+                },
+                "cdp_run": {
+                    "enabled": true
+                },
+                "scp_server": {
+                    "enabled": true
+                },
+                "ssh2_server": {
+                    "enabled": true
+                },
+                "enable": {
+                    "secret": null,
+                    "password": null
+                },
+                "snmp": [
+                    {
+                        "community": "cat",
+                        "mode": "RO"
+                    },
+                    {
+                        "community": "test",
+                        "mode": "RO",
+                        "enabled_traps": {
+                            "snmp authentication linkdown linkup coldstart warmstart": {},
+                            "ospf state-change if-state-change neighbor-state-change": {},
+                            "bgp state-changes all": {},
+                            "config-copy": {},
+                            "config": {},
+                            "isis state-change": {},
+                            "ipsla": {},
+                            "ether-oam": {},
+                            "memory bufferpeak": {},
+                            "entity-state": {},
+                            "entity": {},
+                            "cpu threshold": {},
+                            "rep": {},
+                            "entity-sensor": {},
+                            "resource-policy": {},
+                            "flash insertion": {},
+                            "flash removal": {},
+                            "mpls ldp session-up session-down": {},
+                            "pw vc": {},
+                            "bulkstat collection transfer": {},
+                            "mac-notification": {},
+                            "transceiver all": {}
+                        }
+                    }
+                ],
+                "line": {
+                    "con 0": {
+                        "logging": "synchronous",
+                        "password": null
+                    },
+                    "aux 0": {
+                        "logging": "synchronous",
+                        "password": null
+                    },
+                    "vty 0 4": {
+                        "input": "ssh",
+                        "local": "local",
+                        "password": null
+                    },
+                    "vty 5 15": {
+                        "input": "ssh",
+                        "local": "local",
+                        "password": null
+                    }
+                }
+            },
+            "routing": {
+                "routes": {
+                    "weight": null
+                },
+                "ospf": {
+                    "7306": {
+                        "router_id": "10.249.16.152",
+                        "passive_interface_enabled": true,
+                        "area": {
+                            "0.0.0.60": {
+                                "area_type": "nssa"
+                            }
+                        },
+                        "no_passive_interface": {
+                            "interface": "Loopback0"
+                        },
+                        "networks": {
+                            "10.249.16.152/0": {
+                                "area": "0.0.0.60"
+                            },
+                            "10.249.24.136/29": {
+                                "area": "0.0.0.60"
+                            },
+                            "10.249.29.24/29": {
+                                "area": "0.0.0.60"
+                            },
+                            "10.251.250.94/31": {
+                                "area": "0.0.0.60"
+                            },
+                            "10.251.250.180/31": {
+                                "area": "0.0.0.60"
+                            },
+                            "10.251.253.88/31": {
+                                "area": "0.0.0.60"
+                            },
+                            "10.251.253.90/31": {
+                                "area": "0.0.0.60"
+                            },
+                            "10.251.253.168/29": {
+                                "area": "0.0.0.60"
+                            }
+                        }
+                    }
+                },
+                "rip": {
+                    "redistribute": "static",
+                    "version": "2",
+                    "address_family": {
+                        "ipv4": {
+                            "MHC": {
+                                "auto_summary_disabled": true,
+                                "redistribute": {
+                                    "connected": {},
+                                    "static": {}
+                                },
+                                "networks": {
+                                    "10.0.0.0": {},
+                                    "172.20.0.0": {}
+                                },
+                                "version": "2"
+                            },
+                            "HERPLYFE": {
+                                "auto_summary_disabled": true,
+                                "redistribute": {
+                                    "connected": {},
+                                    "static": {}
+                                },
+                                "version": "2",
+                                "networks": {
+                                    "10.0.0.0": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "eigrp": {
+                    "no_passive_interface": {
+                        "interface": "Loopback0"
+                    }
+                },
+                "bgp": [
+                    {
+                        "neighbor_ip": "10.0.0.4",
+                        "update_source": "Loopback0",
+                        "remote_as": "65000",
+                        "asn": "65000",
+                        "auto_summary_enabled": true
+                    },
+                    {
+                        "asn": "65100",
+                        "auto_summary_enabled": true,
+                        "vrfs": {
+                            "CUST-1": {
+                                "peers": [
+                                    {
+                                        "rpl_out": "RPL-1-EXPORT-V4",
+                                        "rpl_in": "RPL-1-IMPORT-v4",
+                                        "afi": "ipv4",
+                                        "description": "peer-1",
+                                        "remote_as": "65101",
+                                        "peer_ip": "192.0.2.1",
+                                        "local_asn": "65100",
+                                        "hostname": "hostname"
+                                    },
+                                    {
+                                        "rpl_out": "RPL-2-EXPORT-V6",
+                                        "rpl_in": "RPL-2-IMPORT-V6",
+                                        "afi": "ipv4",
+                                        "description": "peer-2",
+                                        "remote_as": "65102",
+                                        "peer_ip": "192.0.2.2",
+                                        "local_asn": "65100",
+                                        "hostname": "hostname"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
+            "security": {
+                "access_lists": [
+                    {
+                        "id": "103",
+                        "type": "permit",
+                        "src_proto": "udp",
+                        "src": "200.1.1.1",
+                        "dest": "any",
+                        "dest_proto": "isakmp",
+                        "src_wildcard": null,
+                        "dest_wildcard": null
+                    },
+                    {
+                        "id": "103",
+                        "type": "permit",
+                        "src_proto": "udp",
+                        "src": "200.1.1.1",
+                        "dest_proto": "isakmp",
+                        "dest": "any",
+                        "src_wildcard": null,
+                        "dest_wildcard": null
+                    },
+                    {
+                        "id": "103",
+                        "type": "permit",
+                        "src_proto": "esp",
+                        "src": "200.1.1.1",
+                        "dest": "any",
+                        "dest_proto": null,
+                        "src_wildcard": null,
+                        "dest_wildcard": null
+                    },
+                    {
+                        "id": "103",
+                        "type": "permit",
+                        "src_proto": "icmp",
+                        "src": "any",
+                        "dest": "any",
+                        "dest_proto": null,
+                        "src_wildcard": null,
+                        "dest_wildcard": null
+                    },
+                    {
+                        "id": "103",
+                        "type": "deny",
+                        "src_proto": "ip",
+                        "src": "any",
+                        "dest": "any",
+                        "dest_proto": null,
+                        "src_wildcard": null,
+                        "dest_wildcard": null
+                    },
+                    {
+                        "id": "105",
+                        "type": "permit",
+                        "src": "10.1.1.0",
+                        "src_wildcard": "0.0.0.255",
+                        "dest": "192.168.0.0",
+                        "dest_wildcard": "0.0.255.255",
+                        "src_proto": null,
+                        "dest_proto": null
+                    }
+                ],
+                "local_user": {
+                    "username": "admin",
+                    "priv": "15",
+                    "secret_type": "5",
+                    "secret": "$1$M1ce$SKeVGg2lUCPrsLkJMIdWf."
+                }
+            }
+        }
+    ]
+]

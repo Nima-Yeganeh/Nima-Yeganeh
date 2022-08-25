@@ -1,0 +1,41 @@
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************Access-SW2>terminal width 511
+Access-SW2>terminal length 0
+Access-SW2>
+Access-SW2>
+Access-SW2>enable
+Password: 
+Access-SW2#
+Access-SW2#
+Access-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Access-SW2(config)#
+Access-SW2(config)#int g0/1
+Access-SW2(config-if)#switchport trunk encapsulation dot1q
+Access-SW2(config-if)#switchport mode trunk
+Access-SW2(config-if)#switchport trunk allowed vlan 10,20
+Access-SW2(config-if)#vtp version 2
+Access-SW2(config)#vtp mode client
+Setting device to VTP Client mode for VLANS.
+Access-SW2(config)#vtp domain cisco
+Changing VTP domain name from NULL to cisco
+Access-SW2(config)#vtp password vtpcisco123
+Setting device VTP password to vtpcisco123
+Access-SW2(config)#
+Access-SW2(config)#end
+Access-SW2#
+Access-SW2#
+Access-SW2#
+Access-SW2#write mem
+Building configuration...
+
+  Compressed configuration from 3936 bytes to 1893 bytes[OK]
+Access-SW2#
+Access-SW2#exit

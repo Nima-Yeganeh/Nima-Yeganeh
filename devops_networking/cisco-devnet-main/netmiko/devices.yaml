@@ -1,0 +1,38 @@
+---
+core:
+  - device_type: cisco_ios
+    host: 10.1.1.148
+    username: cisco
+    password: Router2021
+    secret: Cisco2021
+    session_log: logs/10.1.1.148.log
+
+distribution:
+  - device_type: cisco_ios
+    host: 10.1.1.50
+    username: cisco
+    password: Switch0
+    secret: Cisco2021
+    session_log: logs/10.1.1.50.log
+
+access:
+  - device_type: cisco_ios
+    host: 10.1.1.61
+    username: cisco
+    password: Switch1
+    secret: Cisco2021
+    session_log: logs/10.1.1.61.log
+    
+  - device_type: cisco_ios
+    host: 10.1.1.62
+    username: cisco
+    password: Switch2
+    secret: Cisco2021
+    session_log: logs/10.1.1.62.log
+
+  - device_type: cisco_ios
+    host: 10.1.1.63
+    username: cisco
+    password: Switch3
+    secret: Cisco2021
+    session_log: logs/10.1.1.63.log

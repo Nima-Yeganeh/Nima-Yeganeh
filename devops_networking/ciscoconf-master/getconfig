@@ -1,0 +1,85 @@
+#!/usr/bin/expect -f
+# expect script zum speichern von Cisco-Router Konfigurationen in die Datei
+# runningconfig und startupconfig
+# datei getconfig Ver.: 1.4
+
+log_user 0
+
+set timeout 20
+set mode [lindex $argv 0]
+set host [lindex $argv 1]
+set pw1 [lindex $argv 2]
+set pw2 [lindex $argv 3]
+
+if {$mode == "ssh" || $mode == "s"} {
+	set user $pw2
+	set pw2 [lindex $argv 4]
+	set pid [ spawn ssh -o StrictHostKeyChecking=no $user\@$host ]
+
+	expect {
+                timeout  { exit 4 }
+		":~$ " {
+			send "sudo vtysh\n"
+			expect "$user:" { send "$pw1\n" }
+		}
+		"password:" { exit 1 }
+	}
+} elseif {$mode == "telnet" || $mode == "t"} {
+	set user [lindex $argv 4]
+	set pid [ spawn telnet $host ]
+
+	expect {
+                timeout  { exit 4 }
+		"Password:" {
+			send "$pw1\n"
+			expect {
+               			timeout  { exit 4 }
+				">" {
+					send "enable\n"
+					expect "Password:"
+					send "$pw2\n"
+				}
+				-re "Password:|Access denied" { exit 1 }
+			}
+		}
+		"Username:" {
+			if {$user == ""} { exit 2 }
+			send "$user\n"
+			expect "Password:"
+			send "$pw1\n"
+			expect {
+                 		timeout  { exit 4 }
+				">" {
+					send "enable\n"
+					expect "Password:"
+					send "$pw2\n"
+				}
+				-re "Password:|Access denied" { exit 1 }
+			}
+		}
+		"Connection refused" { exit 6 }
+	}
+} else { exit 3 }
+
+expect {
+        timeout  { exit 4 }
+	"#" {
+		send "ter le 0\n"
+		expect "#"
+		log_user 1
+		send "sh run\n"
+		log_file -noappend configrunning
+		expect "#"
+		log_file
+		send "sh start\n"
+		log_file -noappend configstartup
+		expect "#"
+		log_file
+		send "ter le 24\n"
+		expect "#"
+		send "exit\n"
+		if { $pw2 == "" } { expect ":~$"; send "exit\n" }
+	}
+	-re "denied|failed|Password:|$user:" { exit 5 }
+}
+exit 0

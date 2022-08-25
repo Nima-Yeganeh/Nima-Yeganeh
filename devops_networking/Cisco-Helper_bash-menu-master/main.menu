@@ -1,0 +1,127 @@
+#!/bin/bash
+##################################################################################################################
+#
+#   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
+#
+##################################################################################################################
+# A menu driven shell script sample template 
+## ----------------------------------
+# Define variables
+# ----------------------------------
+EDITOR=code
+# PASSWD=/etc/passwd
+RED='\033[0;41;30m'
+STD='\033[0;0;39m'
+
+
+# ----------------------------------
+# User defined function
+# ----------------------------------
+pause(){
+  read -p "Console cable can be unplugged at this time...Press [Enter] to continue" fackEnterKey
+}
+
+one(){
+	bash IOS_TFTP.menu
+}
+ 
+two(){
+	echo -e "Extracting archive. ${RED}DO NOT${STD} unplug console cable."
+    bash archive_x.sh
+        pause
+}
+
+three(){
+	echo -e "Deleting Old IOS. ${RED}DO NOT${STD} unplug console cable."
+    bash clean.sh
+        pause
+}
+
+four(){
+    bash config.sh
+    pause
+}
+
+five(){
+	echo -e "Generating Crypto. ${RED}DO NOT${STD} unplug console cable."
+    bash crypto.sh
+        pause
+}
+
+nine(){
+	echo "Enter config dir (e.g. /srv/tftp/some/folder/config/s...):"
+    read dir
+    echo "export dir=${dir}" > dir.var
+}
+
+zero(){
+	echo "Enter ${RED}Your Computer's${STD} IP Address:"
+    read IP
+    echo "export IP=${IP}" > IP.var
+}
+
+
+# function to display menus
+show_menus() {
+	clear
+	echo "~~~~~~~~~~~~~~~~~~~~~"	
+	echo "  M A I N - M E N U"
+	echo "~~~~~~~~~~~~~~~~~~~~~"
+	echo "1. IOS TFTP-upload"
+	echo "2. Archive Extract"
+	echo "3. Flash Cleanup"
+	echo "4. Config Install"
+   	echo "5. Crypto Generation (SSH Setup)"
+    echo "9. Set TFTP Directory"
+    echo "0. Set IP Address"
+    echo "q. Exit"
+}
+# read input from the keyboard and take a action
+# invoke the one() when the user select 1 from the menu option.
+# invoke the two() when the user select 2 from the menu option.
+# Exit when user the user select 3 form the menu option.
+read_options(){
+	local choice
+	read -p "Enter choice:" choice
+	case $choice in
+		1) one ;;
+		2) two ;;
+		3) three ;;
+		4) four ;;
+		5) five ;;
+		6) six ;;
+		7) seven ;;
+		8) eight ;;
+		9) nine ;;
+		0) zero ;;
+		q) clear && exit 0;;
+    	*) echo -e "${RED}Error...Please select a valid option${STD}" && sleep 2
+	esac
+}
+ 
+# ----------------------------------------------
+# Trap CTRL+C, CTRL+Z and quit singles
+# ----------------------------------------------
+# trap '' SIGINT SIGQUIT SIGTSTP
+#
+#--------------------------
+# Define the serial device
+#--------------------------
+serial=$(ls /dev/ttyUS*)
+echo "export serial=${serial}" > serial.var
+sudo chmod 777 ${serial}
+
+# ---------------------------------------
+#  Start minicom for monitoring progress
+# ---------------------------------------
+
+
+# -----------------------------------
+# Main logic - infinite loop
+# ------------------------------------
+while true
+do
+ 
+	show_menus
+	read_options
+done

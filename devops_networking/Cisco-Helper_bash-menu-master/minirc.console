@@ -1,0 +1,11 @@
+# Machine-generated file - use "minicom -s" to change parameters.
+##################################################################################################################
+#
+#   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
+#
+##################################################################################################################
+pu port             /dev/ttyS0
+pu baudrate         9600
+pu bits             8
+pu parity           N
+pu stopbits         1
