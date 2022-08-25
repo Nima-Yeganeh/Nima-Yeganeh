@@ -1,3 +1,4 @@
+git pull
 for ((i=1; i<200; i++));
 do
     num1=$(shuf -i 1-240 -n 1)
