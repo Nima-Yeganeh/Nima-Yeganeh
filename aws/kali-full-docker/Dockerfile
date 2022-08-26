@@ -38,4 +38,4 @@ RUN apt-get -qq update && apt-get -qq dist-upgrade && apt-get install -qq -y --n
     && apt-get -qq clean
 RUN apt update -y
 RUN apt-get -qq update && apt-get install -qq kali-linux-large
-RUN apt-get -qq update && apt-get install -qq kali-linux-everything
+# RUN apt-get -qq update && apt-get install -qq kali-linux-everything
