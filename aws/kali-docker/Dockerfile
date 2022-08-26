@@ -21,3 +21,19 @@ RUN apt --fix-broken install -y
 RUN apt install -f -y
 RUN apt autoremove -y
 RUN apt full-upgrade -y
+RUN apt-get -qq update && apt-get -qq dist-upgrade && apt-get install -qq -y --no-install-recommends \
+    git \
+    openssh-client \
+    ca-certificates \
+    curl \
+    p7zip \
+    build-essential \
+    pkg-config \
+    libgl1-mesa-dev \
+    libsm6 \
+    libice6 \
+    libxext6 \
+    libxrender1 \
+    libfontconfig1 \
+    && apt-get -qq clean
+RUN apt update -y
