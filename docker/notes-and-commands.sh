@@ -172,3 +172,117 @@ docker image build -t multi:stage .
 cd docker-test-counter-app
 ls
 docker-compose up -d
+
+docker network ls
+docker volume ls
+docker-compose down
+docker-compose top
+docker-compose ps
+docker-compose stop
+
+docker-compose restart
+
+docker volume inspect counterapp_counter-vol | grep Mount
+docker volume inspect docker-test-counter-app_counter-vol
+cp ~/counterapp/app.py /var/lib/docker/volumes/counterapp_counter-vol/_data/app.py
+
+docker swarm init --advertise-addr 10.0.0.1:2377 --listen-addr 10.0.0.1:2377
+docker node ls
+
+docker swarm join-token worker
+docker swarm join --token TOKEN 10.0.0.1:2377
+
+docker swarm join-token manager
+docker swarm join --token TOKEN 10.0.0.1:2377
+
+docker swarm join --token TOKEN 10.0.0.1:2377 --advertise-addr 10.0.0.4:2377 --listen-addr 10.0.0.4:2377
+docker swarm join --token TOKEN 10.0.0.1:2377 --advertise-addr 10.0.0.2:2377 --listen-addr 10.0.0.1:2377
+
+docker node ls
+docker swarm update --autolock=true
+service docker restart
+
+docker swarm unlock
+docker service create --name web-fe -p 8080:8080 --replicas 5 nigelpoulton/pluralsight-docker-ci
+docker service ps web-fe
+docker service inspect --pretty web-fe
+docker service scale web-fe=10
+
+docker service scale web-fe=5
+docker service rm web-fe
+
+docker network create -d overlay uber-net
+
+docker network ls
+docker service create --name uber-svc --network uber-net -p 80:80 --replicas 12 nigelpoulton/tu-demo:v1
+
+docker service ls
+docker service ps uber-svc
+
+docker service create --name uber-svc --network uber-net --publish published=80,target=80,mode=host --replicas 12 nigelpoulton/tu-demo:v1
+
+docker service update \
+--image nigelpoulton/tu-demo:v2 \
+--update-parallelism 2 \
+--update-delay 20s uber-svc
+
+docker network inspect bridge
+ip link show docker0
+docker network inspect bridge | grep bridge.name
+docker network create -d bridge localnet
+docker network create -d nat localnet
+
+brctl show
+
+docker container run -d --name c1 \
+--network localnet \
+alpine sleep 1d
+docker network inspect localnet --format '{{json .Containers}}'
+
+ docker container run -it --name c2 \
+--network localnet \
+alpine sh
+
+docker container run -it --name c2 --network localnet microsoft/powershell:nanoserver
+
+ping c1
+
+
+docker container run -d --name web \
+--network localnet \
+--publish 5000:80 \
+nginx
+
+docker port web
+
+docker network create -d macvlan \
+--subnet=10.0.0.0/24 \
+--ip-range=10.0.00/25 \
+--gateway=10.0.0.1 \
+-o parent=eth0.100 \
+macvlan100
+
+docker service create -d --name svc1 \
+--publish published=5000,target=80,mode=host \
+nginx
+
+docker container exec -it 396c8b142a85 bash
+apt-get update
+apt-get install iputils-ping
+
+docker volume create myvol
+docker volume inspect myvol
+docker volume prune
+docker volume rm
+
+
+docker container run -dit --name voltainer \
+--mount source=bizvol,target=/vol \
+alpine
+
+docker container run -dit --name voltainer --mount source=bizvol,target=c:\vol microsoft/powershell:nanoserver
+
+ls -l /var/lib/docker/volumes/bizvol/_data/
+cat /var/lib/docker/volumes/bizvol/_data/file1
+
+
