@@ -40,3 +40,4 @@ RUN apt update -y
 RUN apt-get -qq update && apt-get install -qq kali-linux-default
 # RUN apt-get -qq update && apt-get install -qq kali-linux-large
 # RUN apt-get -qq update && apt-get install -qq kali-linux-everything
+# RUN apt-get -qq update && apt-get install -qq kali-linux-nethunter
