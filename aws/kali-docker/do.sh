@@ -1,3 +1,5 @@
+sudo docker image rm kali
+sudo docker image rm yeganehnimadgmailcom/kali
 sudo docker image build -t kali .
 sudo docker images
 sudo docker image ls | grep kali
