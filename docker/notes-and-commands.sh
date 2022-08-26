@@ -285,4 +285,9 @@ docker container run -dit --name voltainer --mount source=bizvol,target=c:\vol m
 ls -l /var/lib/docker/volumes/bizvol/_data/
 cat /var/lib/docker/volumes/bizvol/_data/file1
 
+docker stack deploy -c docker-stack.yml seastack
+docker network ls
+docker service ls
+docker stack ls
+docker stack ps seastack
 
