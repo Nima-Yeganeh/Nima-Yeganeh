@@ -12,3 +12,4 @@ int main()
     printf("%c\n%s\n%s",ch,s,sen);
     return 0;
 }
+
