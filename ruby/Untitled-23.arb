@@ -1,0 +1,6 @@
+def square_of_sum my_array
+    (my_array.inject :+)**2
+end
+my_array = gets.split().map(&:to_i)
+
+puts square_of_sum(my_array)

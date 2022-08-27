@@ -1,0 +1,20 @@
+def convert_temp(t,scales)
+    
+    case scales[:input_scale]
+        when "kelvin"
+            t-=273.15
+        when "fahrenheit"
+            t=(t-32)*5/9.0
+    end
+    
+    scales[:output_scale]="celsius" if not scales.has_key?(:output_scale)
+    
+    case scales[:output_scale]
+        when "kelvin"
+            t+=273.15
+        when "fahrenheit"
+            t=1.8*t+32.0
+    end
+
+    return t
+end

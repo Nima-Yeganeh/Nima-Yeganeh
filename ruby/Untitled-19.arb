@@ -1,0 +1,3 @@
+def take(arr,index)
+    arr.drop(index)
+end
