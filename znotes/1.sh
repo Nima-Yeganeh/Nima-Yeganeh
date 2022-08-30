@@ -272,3 +272,44 @@ grep error /var/log/syslog | wc -l
 
 dmesg | grep error
 
+sudo netstat -tupan
+sudo netstat -tupan | grpe 53
+
+ls -RF /etc/ | grep /
+ls -RF /etc/ | grep -v / | grep -v "^$"
+
+ls -RF /etc/ | grep -v / | grep -v "^$" | sort -r
+
+ls -l /dev/mem
+strings /dev/mem
+
+diff -B file1 file2
+
+sudo apt install vim
+
+vim -d file1 file2
+vimdiff file1 file2
+
+sudo tar -czvf etc.tar.gz /etc/
+ls -anp
+
+sudo tar -czvf archive.tar.gz /etc/passwd /etc/group /var/log/dmesg /etc/ssh
+
+date +%F
+
+tar -xvf file.tar.xz
+gzip
+gunzip
+
+ln file1 file2
+ls -li
+
+find . -inum INODE_NUM
+ln -s /etc/passwd ./passwd
+ls -l
+ps aux
+ln hardlink softlink
+
+less /etc/passwd
+less /etc/shadow
+
