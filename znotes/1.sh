@@ -556,3 +556,200 @@ ssh -p 22 -l user 192.168.0.1
 cat /etc/ssh/ssh_config
 systemctl restart ssh
 
+ls -anp
+cat .ssh/known_hosts
+
+sudo dnf install telnet
+sudo apt install telnet
+
+telnet 192.168.0.1 22
+
+sudo dnf install nmap
+nmap -p 22 192.168.0.1
+nmap -p 22 192.168.0.1 -Pn
+
+sudo iptables -vnL
+ufw status verbose
+sudo ufw enable
+sudo ufw disable
+ufw app list
+ufw allow ssh
+ssh -v root@192.168.0.1
+ssh -vv root@192.168.0.1
+
+tail -f /var/log/auth.log
+tail -f /var/log/secure
+
+vi /etc/ssh/sshd_config
+Port 22
+PermitRootLogin no
+AllowUsers student toor u1
+
+iptables -A INPUT -p tcp --dport 22 -s 192.168.0.2 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j DROP
+
+ls -anp
+ip addr show > ip.txt
+scp -P 22 ip.txt user@192.168.0.1:/home/
+
+scp -r mydir/ root@192.168.0.1:/home/
+scp user@192.168.0.1:/etc/passwd .
+
+sudo rsync -av /etc/ /home/etc-backup/
+sudo rsync -aq /etc/ /home/etc-backup/
+sudo rsync -av --delete /etc/ /home/etc-backup/
+
+vi exclude_files
+*.png
+
+rsync -av --exclude-from='./exclude_files' myproj/ backup/
+
+rsync -av --exclude='*.png' proj1/ proj2/
+
+sudo rsync -av -e ssh /etc/ user@192.168.0.1:/home/bak1/
+
+sudo rsync -av -e 'ssh -p 22' --delete /etc/ user@192.168.0.1:/home/bak1/
+
+sudo apt install wget
+wget -c -P URL_LINK
+
+sudo netstat -tupan
+sudo lsof -iTCP -sTCP:LISTEN -nP
+ss -tupan
+sudo nmap 192.168.0.1
+nmap -p 80
+
+dpkg --info file.deb
+sudo dpkg -i file.deb
+dpkg --get-selections
+
+dpkg-query -l
+dpkg-query -l | grep ssh
+dpkg -L openssh-server
+
+dpkg -L coreutils | less
+sudo dpkg -r google-chrome-stable
+
+sudo apt install apache2
+systemctl status nginx
+sudo apt install gparted vlc
+apt list --upgradable
+sudo apt full-upgrade -y
+
+sudo apt autoremove
+
+apt list | wc -l
+apt search "transparent proxy"
+apt list --installed
+
+sudo apt update && sudo apt install build-essential
+sudo dnf group install "Development Tools"
+
+gcc --version
+g++ --version
+
+vi hello.c
+#include <stdio.h>
+int main(){
+    printf("Hello!\n");
+    return 0;
+}
+
+gcc hello.c -o hello
+./hello
+
+md5sum file.tar.gz
+tar -xzvf file.tar.gz
+cd src
+./configure --help
+./configure --prefix=/opt/proftpd
+make
+
+which crontab
+ls -l /etc/crontab
+ls /var/spool/cron/
+crontab -l
+crontab -e
+
+crontab -e -u user
+@yearly /root/ytask.sh
+@monthly /root/mtask.sh
+@weekly /root/wtask.sh
+@daily /root/dtask.sh
+@hourly /root/htask.sh
+@reboot /root/firewall.sh
+
+# url >> crontab-generator.org
+
+mount
+mount -l -t ext4
+ls -l /dev/sdb
+fdisk -l
+lsblk
+sudo apt install gparted
+df -h
+
+dd if=/dev/sdb of=/home/user/backup-usb.img status=progress
+
+dd if=/home/user/file.iso of=/dev/sdb bs=4M status=progress
+
+lshw
+lshw -json
+lshw -C cpu
+lscpu -J
+dmidecode -t memory | grep -i size
+free -m
+lspci | grep -i wireless
+lspci | grep -i vga
+lsusb
+lsusb -v
+lshw -C disk
+lshw -C disk -short
+lsblk
+hdparm -i /dev/sda
+hdparm -t --direct /dev/sda
+
+iw list
+ls /proc/
+cat /proc/meminfo
+cat /proc/partitions
+cat /proc/version
+
+uname -r
+apt install acpi
+systemd --version
+
+systemd-analyze
+systemd-analyze blame
+
+sudo su
+apt update && apt install nginx
+systemctl status nginx.service
+systemctl reload-or-restart nginx
+systemctl is-enabled nginx
+
+alias
+unalias now
+
+vi .bashrc
+alias now="date +%F\ %T"
+
+alias root="sudo su"
+alias ports="netstat -tupan"
+alias lt="ls -hSF --size -1"
+
+echo $0
+echo $PATH
+which -a bash
+ls -li /bin/bash /usr/bin/bash
+which python3
+
+vi test.sh
+#!/usr/bin/python3
+import sys
+print(sys.version)
+./test.sh
+
+vi test.sh
+:set num
+
