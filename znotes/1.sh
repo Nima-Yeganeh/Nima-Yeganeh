@@ -394,3 +394,165 @@ chown toor file
 groups toor
 
 find /usr/bin/ -perm -4000 -ls
+
+which cat
+
+sudo su
+groupadd prog
+useradd -s /bin/bash pr1
+useradd -s /bin/bash pr2
+usermod -aG prog pr1
+usermod -aG prog pr2
+groups pr1
+groups pr2
+chown pr1:prog /prog/
+chmod 770 /prog/
+stat /prog/
+
+lsattr file
+chattr --help
+chattr +a file
+chattr +A file
+chattr +i file
+
+ps -ef
+pstree
+top
+id
+ps
+ps -ef | wc -l
+ps aux | less
+ps aux --sort=%mem | less
+
+ps -f -u root
+pgrep sshd
+pgrep python
+pgrep -l systemd
+pgrep -u root sshd
+pstree | less
+
+top -d1 -n3 -b > topproc.txt
+sudo apt update && sudo apt install htop
+
+kill -l
+pgrep -l gedit
+kill -2 PROC_NUM
+
+pidof firefox
+kill -INT PROC_IDs
+kill -SIGINT $(pidof firefox)
+
+sudo systemctl status ssh
+tail -f /var/log/auth.log
+
+cat /var/run/sshd.pid
+pgrep -l sshd
+killall APP
+
+sleep 123&
+sleep 321&
+killall -15 sleep
+
+pkill slee
+
+ifconfig > output.txt 2> err.txt
+ping -c 1 google.com > /dev/null 2>&1
+
+jobs
+jobs -l
+
+slep 10 &
+jobs
+fg %1
+bg %1
+
+sudo apt install net-tools
+ifconfig -a
+ip address show
+
+ip a sh
+ip -4 addr
+ip -6 addr
+
+ifconfig eth0
+ip addr show dev enp0s3
+
+route
+route -n
+ip route sh
+
+systemd-resolve --status
+
+sudo su
+ifconfig eth0 down
+ifconfig eth0 up
+ifconfig
+
+ip link set eth0 down
+ip link show dev eth0
+ip link set eth0 up
+
+ifconfig eth0 192.168.0.1/24 up
+ifconfig | grep 192.168.0.1
+ip addr del 192.168.0.1/24 dev eth0
+ip addr add 192.168.0.1/24 dev eth0
+
+route -n
+ip route show
+
+route del default gw 192.168.0.254
+route add def gw 192.168.0.254
+ip route del default
+ip route add default via 192.168.0.254
+ip route show
+
+ifconfig eth0 down
+ifconfig eth0 hw ether NEWMAC
+ifconfig eth0 up
+ip link set dev eth0 addres NEWMAC
+ip link show dev eth0
+
+ls /etc/netplan/
+
+sudo su
+id
+systemctl stop NetworkManager
+systemctl is-enabled NetworkManager
+
+vi /etc/netplan/01-netconfig.yaml
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      dhcp4: false
+      addresses:
+        - 192.168.0.1/24
+      gateway4: "192.168.0.254"
+      nameservers:
+        addresses:
+          - "8.8.8.8"
+          - "8.8.4.4"
+
+netplan apply
+route -n
+
+ping google.com -n
+ping -i 0.4 -c 4 google.com
+ping -q -c 4 google.com
+ping -t 1 -c 3 -n google.com
+ping -t 2 -c 3 -n google.com
+
+sudo apt install openssh-server openssh-client
+
+sudo dnf install openssh-server openssh-client
+
+systemctl status sshd
+systemctl status ssh
+
+ps -ef | grep ssh
+ssh -p 22 -l user 192.168.0.1
+
+cat /etc/ssh/ssh_config
+systemctl restart ssh
+
