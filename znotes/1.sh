@@ -313,3 +313,84 @@ ln hardlink softlink
 less /etc/passwd
 less /etc/shadow
 
+tail -n3 /etc/group
+
+sudo useradd -m -d /home/james -c "C++ Developer" -s /bin/bash -G sudo,adm,mail james
+
+cat /etc/passwd
+
+sudo useradd -e 2020-12-31 u2
+sudo chage -l james
+sudo chage -l u2
+
+cat /etc/group
+cat /etc/gshadow
+
+sudo usermod -g daemon james
+sudo groupadd developers
+sudo groupadd managers
+
+sudo usermod -G developers,managers james
+
+groups james
+sudo usermod -aG sudo james
+groups james
+
+sudo userdel u1
+
+sudo useradd -m -s /bin/bash toor
+grep toor /etc/passwd
+sudo passwd toor
+
+su toor
+id
+whoami
+
+sudo usermod -aG sudo toor
+cat /etc/groups
+
+sudo apt install openssh-server
+systemctl status ssh
+
+who -H
+who -aH
+
+uptime
+last
+last reboot
+
+ls -anp
+chmod u-r file.txt
+chmod u-w file.txt
+chmod 000 file.txt
+stat /etc/passwd
+
+# rws = 4 + 2 + 1 = 7
+# rw- = 4 + 2 + 0 = 6
+# r-- = 4 + 0 + 0 = 4
+# rw-rw-r-- = 664
+
+stat Desktop/
+stat /etc/
+
+ls -anp
+chmod u+rwx user.txt
+chmod u-x,g+w,o-rwx user.txt
+
+chmod ug-r,u+x,o-rwx user.txt
+chmod a+r,a-wx user.txt
+chmod ug=rw,o= user.txt
+
+chmod --reference=i.txt user.txt
+ls -ld folder/
+
+find /home/ -type f
+find /home/ -type f -exec chmod 640 {} \;
+
+find /home/ -type d -exec chmod 750 {} \;
+
+lscpu
+chown toor file
+groups toor
+
+find /usr/bin/ -perm -4000 -ls
