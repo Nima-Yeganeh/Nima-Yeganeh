@@ -986,7 +986,7 @@ do
 done
 
 #!/bin/bash
-#process_monitoring_test_by_id
+#process_monitoring_test_by_name
 while :
 do
   output="$(pgrep -l $1)"
@@ -1002,3 +1002,173 @@ done
 #!/bin/bash
 #get_service_pid
 systemctl status $1 | grep PID
+
+#!/bin/bash
+while true; do echo "infinite loop!"; sleep 1; done
+
+#!/bin/bash
+echo -n "pet?"
+read PET
+case "$PET" in
+  dog)
+    echo "dog!"
+    ;;
+  cat|Cat)
+    echo "cat!"
+    ;;
+  fish|"African Turtle")
+    echo "fish!"
+    ;;
+  *)
+    echo "unknown!"
+esac
+
+#!/bin/bash
+if [[ $# -ne 2 ]]
+then
+  echo "run >> with 2 args >> sig + pid"
+fi
+case "$1" in
+  1)
+    kill -SIGHUP $2
+    ;;
+  2)
+    kill -SIGINT $2
+    ;;
+  15)
+    kill -15 $2
+    ;;
+  *)
+    echo "not done!"
+    ;;
+esac
+
+#!/bin/bash
+function print_it () {
+  echo "print func"
+}
+display_it () {
+  echo "display func"
+}
+print_it
+display_it
+
+#!/bin/bash
+create_files () {
+  echo "file >> $1"
+  touch $1
+  chmod 400 $1
+  echo "file >> $2"
+  touch $2
+  chmod 600 $2
+  return 10
+}
+create_files aa.txt bb.txt
+echo $?
+
+#!/bin/bash
+function lines_in_file () {
+  grep -c "$1" "$2"
+}
+n=$(lines_in_file "usb" "var/log/dmesg")
+echo $n
+
+#!/bin/bash
+var1="AA"
+var2="BB"
+function func1() {
+  echo "func1 >> var1=$var1 and var2=$var2"
+}
+func1
+
+#!/bin/bash
+var1="AA"
+var2="BB"
+function func1() {
+  var1="XX"
+  local var2="YY"
+  echo "func1 >> var1=$var1 and var2=$var2"
+}
+func1
+echo "after calling func1 >> var1=$var1 and var2=$var2"
+
+#!/bin/bash
+PS3="Your country:"
+select COUNTRY in Germany France USA "United Kingdom"
+do
+  echo "COUNTRY is $COUNTRY"
+  echo "REPLY is $REPLY"
+done
+
+#!/bin/bash
+PS3="Your country:"
+select COUNTRY in Germany France USA "United Kingdom" Quit
+do
+  case $REPLY in
+    1)
+      echo "german"
+      ;;
+    2)
+      echo "french"
+      ;;
+    3)
+      echo "american"
+      ;;
+    4)
+      echo "british"
+      ;;
+    5)
+      echo "quit"
+      break
+      ;;
+    *)
+      echo "invalid"
+      ;;
+  esac
+done
+
+#!/bin/bash
+#system_admin_script_test
+PS3="your choice:"
+select ITEM in "add_user" "list_proc" "kill_proc" "install_prog" "quit"
+do
+if [[ $REPLY -eq 1 ]]
+then
+  read -p "username: " username
+  output="$(grep -w $username /etc/passwd)"
+  if [[ -n "$output" ]]
+  then
+    echo "$username >> exist err"
+  else
+    sudo useradd -m -d /bin/bash "$username"
+    if [[ $? -eq 0 ]]
+    then
+      echo "$username >> added >> done!"
+      tail -n 1 /etc/passwd
+    else
+      echo "user add >> err"
+    fi
+  fi
+elif [[ $REPLY -eq 2 ]]
+then
+  echo "proc >> listing"
+  sleep 1
+  ps -ef | more
+elif [[ $REPLY -eq 3 ]]
+then
+  read -p "proc id to kill: " process
+  pkill $process
+elif [[ $REPLY -eq 4 ]]
+then
+  read -p "prog to install: " app
+  sudo apt update && sudo apt install $app
+elif [[ $REPLY -eq 5 ]]
+then
+  echo "quit"
+  sleep 1
+  exit
+else
+  echo "invalid"
+fi
+done
+

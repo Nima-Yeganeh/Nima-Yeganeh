@@ -1,5 +1,5 @@
 #!/bin/bash
-#process_monitoring_test_by_id
+#process_monitoring_test_by_name
 while :
 do
   output="$(pgrep -l $1)"
