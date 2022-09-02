@@ -6,9 +6,9 @@ then
   cat $1
 elif [[ -d "$1" ]]
 then
-  echo "file"
+  echo "dir"
   sleep 1
   ls -l $1
 else
-  echo "$1"
+  echo "input >> $1"
 fi
