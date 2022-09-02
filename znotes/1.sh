@@ -861,7 +861,7 @@ else
   echo "argument?"
 fi
 
-output="$(ps -ef "grep bash)"
+output="$(ps -ef | grep bash)"
 echo "$output"
 
 date +%F
