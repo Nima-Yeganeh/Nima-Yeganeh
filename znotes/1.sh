@@ -1209,3 +1209,23 @@ docker system prune -a
 docker container run --name=c1 centos
 docker container run --name=c2 -it centos
 
+docker container exec -it ID bash
+docker container port mysite
+ip a
+docker container logs mysite
+docker container top mysite
+docker container inspect mysite
+docker container inspect mysite | grep -i ipaddr
+
+docker container run -it --name=c2 centos
+docker commit -m "done" -a "name" ID docker_id/my_centos:latest
+docker image tag nginx docker_id/nginx:custom
+docker login
+docker image push docker_id/my_centos:latest
+
+sudo ls /var/lib/docker/overlay2
+docker container ps -s
+
+docker image build -t mynginx:1.0 .
+docker container run -d -P mynginx:1.0
+
