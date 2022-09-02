@@ -954,3 +954,11 @@ do
   sudo iptables -I INPUT -s $ip -j DROP
 done
 sudo iptables --list | grep DROP
+
+#!/bin/bash
+i=0
+while [[ $i -lt 10 ]]
+do
+  echo "i: $i"
+  ((i++))
+done
