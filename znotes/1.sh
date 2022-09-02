@@ -1172,3 +1172,40 @@ else
 fi
 done
 
+ssh-keygen -t rsa -b 2048 -C 'comment'
+ls .ssh/
+cat .ssh/id_rsa
+cat .ssh/id_rsa.pub
+ssh-copy-id root@SERVER_IP
+
+cat .ssh/authorized_keys
+vi /etc/ssh/sshd_config
+# change PasswordAuthentication from Yes to No
+systemctl restart ssh
+
+systemctl status docker
+sudo usermod -aG docker user
+docker --version
+docker container ls
+docker image ls
+
+docker run hello-world
+docker search debian
+docker search mongo
+docker container run redis
+docker container httpd
+docker container create -p 80:80 httpd
+docker container run -it centos
+docker container run -d -p 8080:80 --name mysite nginx
+
+docker ps
+docker container ls -a -f status=exited -q
+docker container run -d -P --name mywebsite nginx
+docker ps
+docker container stop ID
+docker continaer rm -f ID
+docker system prune -a
+
+docker container run --name=c1 centos
+docker container run --name=c2 -it centos
+
