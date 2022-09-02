@@ -7,6 +7,7 @@ then
 elif [[ "$output" == *"address required"* ]]
 then
   echo "not address! try again!"
-else
+elif [[ "$output" == *"0% packet loss"* ]]
+then
   echo "ok!"
 fi
