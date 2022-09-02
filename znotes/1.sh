@@ -753,3 +753,170 @@ print(sys.version)
 vi test.sh
 :set num
 
+os="linux"
+age=30
+echo "$os $age"
+distro="test"
+unset distro
+echo $HOME
+echo $USER
+
+declare -r logdir="/var/log"
+ls $logdir
+env | grep USER
+env | grep SHELL
+printenv HOME
+printenv SHELL PWD LC_TIME
+
+abc="test"
+set | grep abc
+
+cat /home/.bashrc
+
+export PATH=$PATH:/home/scripts
+export MYVAR=123
+
+cat /etc/environment
+
+read name
+echo $name
+read -p "ip?" ip
+echo $ip
+ping -c 1 $ip
+
+vi test.sh
+#!/bin/bash
+read -p "Enter IP: " ip
+iptables -I INPUT -s $ip -j DROP
+
+chmod +x test.sh
+./test.sh
+
+vi arguments.sh
+#!/bin/bash
+echo "\$0 is $0"
+echo "\$1 is $1"
+echo "\$2 is $2"
+echo "\$3 is $3"
+echo "\$* is $*"
+echo "\$# is $#"
+
+#!/bin/bash
+if [[ -f "$1" ]]
+then
+  echo "file"
+  sleep 1
+  cat $1
+elif [[ -d "$1" ]]
+then
+  echo "file"
+  sleep 1
+  ls -l $1
+else
+  echo "$1"
+fi
+
+vi test.sh
+#!/bin/bash
+read -p "num?" age
+if [[ $age -lt 18 ]]
+then
+  echo ""
+elif [[ $age -eq 18 ]]
+then
+  echo ""
+else
+  echo ""
+fi
+
+#!/bin/bash
+read -p "num?" age
+if [[ $age -lt 18 ]] && [[ $age -ge 0 ]]
+then
+  echo ""
+elif [[ $age -eq 18 ]]
+then
+  echo ""
+elif [[ $age -gt 18 ]] && [[ $age -le 100 ]]
+then
+  echo ""
+else
+  echo ""
+fi
+
+vi test.sh
+#!/bin/bash
+if [[ $# -eq 1 ]]
+then
+  if [[ -f "$1" ]]
+  then
+    cat $1
+  elif [[ -d "$1" ]]
+  then
+    ls -l $1
+  else
+    echo "$1 >> not file or dir"
+  fi
+else
+  echo "argument?"
+fi
+
+output="$(ps -ef "grep bash)"
+echo "$output"
+
+date +%F
+date +%F_%H%M
+
+sudo tar -czvf etc.tar.gz /etc/
+
+vi test.sh
+#!/bin/bash
+read -p str1
+read -p str2
+if [ "$str1" = "$str2" ]
+then
+  echo ""
+else
+  echo ""
+fi
+
+if [[ "$str1" == "$str2" ]]
+then
+  echo ""
+else
+  echo ""
+fi
+
+if [[ "$str1" != "$str2" ]]; then
+echo ""
+fi
+
+if [[ "$str1" == *"linux"* ]]
+then
+  echo ""
+else
+  echo ""
+fi
+
+if [[ -z "$str1" ]]
+then
+  echo "zero length"
+else
+fi
+
+if [[ -n "$str1" ]]
+then
+  echo "not zero"
+else
+fi
+
+#!/bin/bash
+output="$(ping -c 3 $1)"
+echo "$output"
+if [[ "$output" == *"100% packet loss"* ]]
+then
+  echo "not working"
+else
+  echo "ok"
+fi
+
