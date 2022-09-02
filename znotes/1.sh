@@ -962,3 +962,43 @@ do
   echo "i: $i"
   ((i++))
 done
+
+#!/bin/bash
+a=1
+b=2
+c=$((a+b))
+echo $c
+let d=a+b
+echo $d
+
+#!/bin/bash
+while [ 1 -eq 1 ]
+do
+  echo "Infinite loop, press cntrl+c to exit..."
+  sleep 1
+done
+
+#!/bin/bash
+while true
+do
+  echo "Infinite loop, press cntrl+c to exit..."
+  sleep 1
+done
+
+#!/bin/bash
+#process_monitoring_test_by_id
+while :
+do
+  output="$(pgrep -l $1)"
+  if [[ -n "$output" ]]
+  then
+    echo "$1 >> running"
+  else
+    echo "$1 >> not running"
+  fi
+  sleep 3
+done
+
+#!/bin/bash
+#get_service_pid
+systemctl status $1 | grep PID
