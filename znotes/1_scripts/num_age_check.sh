@@ -1,5 +1,5 @@
 #!/bin/bash
-read -p "your age?" age
+read -p "your age? " age
 if [[ $age -lt 18 ]]
 then
   echo "<18"
