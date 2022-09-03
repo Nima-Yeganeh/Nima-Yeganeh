@@ -1242,3 +1242,101 @@ docker container run -d --name mywebapp -p 80:80 -v mysite:/usr/share/nginx/html
 
 sudo cp /etc/passwd /var/lib/docker/volumes/mysite/_data/index.html
 
+grub-mkpasswd-pbkdf2
+ls /boot/grub/grub.cfg
+ls /etc/grub.d/
+cat /etc/login.defs
+
+sudo apt install libpam-pwquality
+sudo passwd --status user
+sudo chage -l user
+sudo usermod --expiredate 1 user
+sudo usermod --expiredate 1970-01-02 user
+sudo usermod --expiredate "" tux
+
+ulimit -u
+ulimit -a
+$0 && $0 &
+
+cat /etc/security/limits.conf
+
+# project-rainbowcrack.com >> table
+# download LM/NTLM/MD5 rainbow tables
+
+sudo apt install john
+unshadow /etc/passwd /etc/shadow > unshadowed.txt
+john -single unshadowed.txt
+john --show unshadowed.txt
+john --wordlist=/usr/share/john/password.lst --rules unshadowed.txt
+john -restore
+
+apt install aide
+aide -v
+aide --help
+cat /etc/aide/aide.conf
+aideinit
+
+apt install rkhunter
+rkhunter --propupd
+rkhunter --check
+apt install chkrootkit
+chkrootkit
+
+apt install clamav clamav-daemon
+systemctl status clamav-freshclam
+systemctl status clamav-daomon
+ls /var/lib/clamav
+freshclam --version
+
+systemctl start clamav-daemon
+tail /var/log/clamav/clamav.log
+clamdscan --fdpass /root
+
+apt install clamtk
+apt install cryptsetup
+
+fdisk -l
+dd if=/dev/urandom of=/dev/sdb status=progress
+cryptosetup -y -v luksFormat /dev/sdb
+
+cryptosetup luksOpen /dev/sdb secretdata
+
+apt install steghide
+steghide embed -cf img.jpg ef file.txt
+steghide extract -sf img.jpg
+sha256sum img.jpg
+
+apt install nmap
+nmap 192.168.0.1
+sudo nmap -sS 192.168.0.1
+nmap -sT 192.168.0.1
+nmap -p 80,443 -sV 192.168.0.1
+nmap -sn 192.168.0.0/24
+
+nmap -p 22 -sV 192.168.0.1 -D 192.168.0.2,192.168.0.3,192.168.0.4
+
+nmap -p 80 -iL hosts.txt
+
+apt install wireshark
+
+dig -t ns google.com
+apt install bind9 bind9utils bind9-doc
+
+cat /etc/default/named
+dig -t a @localhost google.com
+
+cat /etc/bind/named.conf.default-zones
+vi
+forwarders {
+  8.8.8.8;
+  4.2.2.4;
+}
+
+systemctl reload-or-restart bind9
+dig @localhost -t a google.com
+
+apt instlal apache2
+ufw status
+ufw allow 'Apache Full'
+
+curl -4 ident.me
