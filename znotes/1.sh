@@ -1193,8 +1193,14 @@ docker run hello-world
 docker search debian
 docker search mongo
 docker container run redis
-docker container httpd
+docker container run httpd
 docker container create -p 80:80 httpd
+docker container create -p 8081:80 httpd
+docker ps -a
+docker rm -f myhttpdsite1 myhttpdsite2
+docker container run -d -p 8081:80 --name myhttpdsite1 httpd
+docker container run -d -p 8082:80 --name myhttpdsite2 httpd
+docker ps
 docker container run -it centos
 docker container run -d -p 8080:80 --name mysite nginx
 
