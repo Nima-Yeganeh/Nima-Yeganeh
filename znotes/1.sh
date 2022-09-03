@@ -1229,3 +1229,10 @@ docker container ps -s
 docker image build -t mynginx:1.0 .
 docker container run -d -P mynginx:1.0
 
+docker volume create mysite
+docker volume ls
+docker volume inspect mysite
+docker container run -d --name mywebapp -p 80:80 -v mysite:/usr/share/nginx/html nginx
+
+sudo cp /etc/passwd /var/lib/docker/volumes/mysite/_data/index.html
+
