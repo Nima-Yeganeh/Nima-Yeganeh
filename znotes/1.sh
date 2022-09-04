@@ -1340,3 +1340,79 @@ ufw status
 ufw allow 'Apache Full'
 
 curl -4 ident.me
+apt install certbot python3-certbot-apache
+
+certbot -d domain.local
+
+apt install apache2-utils
+
+# exploit-db.com
+
+sudo apt install php php-mysql libapache2-mod-php
+systemctl restart apache2
+php -v
+
+vi test.php
+<?php
+phpinfo();
+?>
+
+sudo apt install mysql-server
+systemctl status mysql
+mysql_secure_installation
+
+apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
+
+sudo apt install ansible
+vi hosts
+[servers]
+vps1 ansible_host=192.168.0.2
+vps2 ansible_host=192.168.0.3
+vps3 ansible_host=192.168.0.4
+
+ansible -i ./hosts --list-hosts all
+ansible -i ./hosts vps1 -m ping -u user -k
+sudo apt install sshpass
+cat /etc/ansible/ansible.cfg
+host_key_checking = False
+ansible -i ./hosts servers -m ping -u user -k
+ansible -i ./hosts servers -m setup -u user -k
+
+vi hosts
+[servers]
+vps1 ansible_host=192.168.0.2
+vps2 ansible_host=192.168.0.3
+vps3 ansible_host=192.168.0.4
+[servers:vars]
+ansible_user=user
+ansible_ssh_pass=ansible1234
+ansible_become_pass=ansible123456
+ansible_port=22
+
+ansible -i ./hosts servers -m ping
+ansible -i ./hosts servers -m shell -a "df -h" -u user -k
+
+ansible -i ./hosts servers -m shell -a "lsmem"
+
+ansible -i ./hosts servers -m shell -a "ip addr show dev eth0 | grep ether"
+shell -a "ip addr show dev eth0 | grep ether | cut -d' ' -f6"
+shell -a "ip addr show dev eth0 | grep ether | cut -d' ' -f6" | grep -v ">>"
+
+vi backup.sh
+#!/bin/bash
+tar -czf /root/etc-$(date +%F).tar.gz /etc
+
+ansible -i ./hosts servers -m script -a "./backup.sh" --become -K
+
+ansible -i hosts -m apt -a "name=nmap state=present update_cache=true" -u user -k --become -K
+
+nmap -p 80 -sV google.com
+
+ansible -i hosts servers -m apt -a "name=nmap state=absent purge=yes update_cache=true" --become
+
+ansible -i hosts servers -m apt -a "upgrade=full" --become
+
+ansible -i ./hosts servers -m apt -a "name=nginx state=present update_cache=true" --become
+ansible -i ./hosts servers -m service -a "name=nginx state=started" --become
+ansible -i ./hosts servers -m service -a "name=nginx enabled=yes" --become
+
