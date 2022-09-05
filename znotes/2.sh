@@ -82,3 +82,4 @@ resource "aws_instance" "MySecondInstance" {
 
 terraform plan
 terraform apply
+
