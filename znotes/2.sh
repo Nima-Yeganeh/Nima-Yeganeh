@@ -96,3 +96,6 @@ terraform plan
 terraform plan -var AWS_ACCESS_KEY="" -var AWS_SECRET_KEY=""
 terraform create
 
+sudo apt install awscli
+aws configure
+
