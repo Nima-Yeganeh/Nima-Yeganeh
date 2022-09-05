@@ -1416,3 +1416,47 @@ ansible -i ./hosts servers -m apt -a "name=nginx state=present update_cache=true
 ansible -i ./hosts servers -m service -a "name=nginx state=started" --become
 ansible -i ./hosts servers -m service -a "name=nginx enabled=yes" --become
 
+ansible -i ./hosts servers -m group -a "name=developers state=present" -become
+# check >> tail -n 3 /etc/group
+ansible -i ./hosts servers -m group -a "name=developers state=absent" -become
+
+ansible -i ./hosts servers -m user -a "name=john state=present groups=developers create_home=yes comment=\"new user\"" --become
+# check >> tail -n 3 /etc/passwd
+ansible -i ./hosts servers -m user -a "name=john state=present groups=developers create_home=yes comment=\"new user\" shell=/bin/bash generate_ssh_key=yes ssh_key_bits=2048" --become
+
+ansible -i ./hosts servers -m user -a "name=john state=present groups=developers,sudo,adm create_home=yes comment=\"new user\" shell=/bin/bash generate_ssh_key=yes ssh_key_bits=2048" --become
+# check >> groups john
+
+# ipfs.io/ipfs/HASH
+scp -P 2299 ipfs.txt root@ip:/var/www/html/
+
+# dist.ipfs.io
+wget IPFS_LINUX_LINK
+tar -xzvf file.tar.gz
+cd go-ipfs
+sudo ./install.sh
+ipfs --version
+sudo ipfs init
+sudo ipfs id
+sudo ipfs daemon
+sudo ipfs swarm peers
+sudo ipfs cat /ipfs/HASH > /home/file.ext
+# localhost:5001/ipfs/webui
+# github.com/ipfs/
+sudo ipfs daemon
+sudo ipfs add -r dir/
+sudo ipfs ls HASH
+sudo ipfs add file.txt
+sudo ipfs pin ls --type=all
+
+# puttygen.ext
+# save file >> sshkey.pub and sshprivatekey.ppk
+
+ssh-keygen -b 2048 -t rsa -C "linux user key"
+cat /home/user/.ssh/id_rsa
+cat /home/user/.ssh/id_rsa.pub
+
+ls -anp home/user/.ssh/
+
+vi /home/user/.ssh/authorized_keys
+# copy public key
