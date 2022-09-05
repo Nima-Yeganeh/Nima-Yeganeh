@@ -1460,3 +1460,4 @@ ls -anp home/user/.ssh/
 
 vi /home/user/.ssh/authorized_keys
 # copy public key
+ssh -v IP
