@@ -93,4 +93,6 @@ printenv
 
 git pull
 terraform plan
+terraform plan -var AWS_ACCESS_KEY="" -var AWS_SECRET_KEY=""
 terraform create
+
