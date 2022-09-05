@@ -29,6 +29,8 @@ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashi
 
 sudo yum -y install terraform
 
+# check it
+terraform version
 
 vi myvar.tf
 variable "myfirstvar" {
@@ -38,3 +40,24 @@ variable "myfirstvar" {
 
 git pull
 terraform version
+terraform console
+var.myfirstvar
+
+"${var.myfirstvar}"
+
+vi create_aws_instance.tf
+provider "aws" {
+    access_key  = ""
+    secret_key  = ""
+    region      = "us-east-1"
+}
+resource "aws_instance" "MyFirstInstance" {
+    ami             = ""
+    instance_type   = "t2.micro"
+}
+
+git pull
+ls
+terraform init
+terraform apply
+
