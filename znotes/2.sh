@@ -59,5 +59,26 @@ resource "aws_instance" "MyFirstInstance" {
 git pull
 ls
 terraform init
+terraform plan
 terraform apply
+terraform destroy
+terraform plan -out myfirstplan.out
+ls
+terraform apply "myfirstplan.out"
+terraform destroy
 
+vi aws_provider.tf
+provider "aws" {
+    access_key  = ""
+    secret_key  = ""
+    region      = "us-east-1"
+}
+
+vi create_aws_instance2.tf
+resource "aws_instance" "MySecondInstance" {
+    ami             = ""
+    instance_type   = "t2.micro"
+}
+
+terraform plan
+terraform apply
