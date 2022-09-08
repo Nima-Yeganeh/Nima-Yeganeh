@@ -26,3 +26,18 @@ sudo docker run -it yeganehnimadgmailcom/debian:1.0
 
 docker build -t yeganehnimadgmailcom/debian-git:1.0 .
 docker images | grep debian-git
+
+docker build -t yeganehnimadgmailcom/debian-git-python:1.0 .
+docker images | grep debian-git
+
+docker build -t yeganehnimadgmailcom/test . --no-cache=true
+
+docker tag ID NAME/IMAGE
+docker login
+docker login --username=nima
+
+docker login
+docker push yeganehnimadgmailcom/debian-git:1.0
+
+docker login
+docker push yeganehnimadgmailcom/debian-git-python:1.0
