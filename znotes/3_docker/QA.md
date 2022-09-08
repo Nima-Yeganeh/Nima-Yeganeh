@@ -53,3 +53,26 @@ True:
 Docker will use latest as a default tag when no tag is provided.
 Docker push is the command used to push images to docker repository.
 
+Which of the following statements is true?
+We should always set the USER instruction in Dockerfile.
+
+Which of the following is not part of the Redis APIs?
+retrieval API
+
+True:
+get API
+post API
+
+How do container links work in Docker?
+By adding entries in the /etc/hosts file in the recipient container to map IPs to container names
+
+Which of the following statements is not true?
+"version: 2" must be specified at the root for all docker compose file.
+
+True:
+Port mapping is defined as <host_port>:<container_port> format in docker compose file.
+A typical use of Volume is to share data between container and host machine.
+
+Which of the following docker compose commands will update existing Docker image?
+docker-compose build
+

@@ -70,3 +70,64 @@ Docker Cache
 • Each =me Docker executes an instruc=on it builds a new image layer.
 • The next =me, if the instruc=on doesn't change, Docker will simply reuse
 the exis=ng layer.
+
+Benefits of Docker Container Links
+• The main use for docker container links is when we build an application with a microservice architecture, we are able to run many independent components in different containers.
+• Docker creates a secure tunnel between the containers that doesn’t need to expose any ports externally on the container.
+
+Why Docker Compose?
+Manual linking containers and configuring services become impractical when the number of containers grows.
+
+Docker Compose
+• Docker compose is a very handy tool to quickly get docker environment up and running.
+• Docker compose uses yaml files to store the configuration of all the containers, which removes the burden to maintain our scripts for docker orchestration.
+
+Docker Compose Commands
+• docker compose up starts up all the containers.
+• docker compose ps checks the status of the containers managed by docker compose.
+• docker compose logs outputs colored and aggregated logs for the compose-managed containers.
+• docker compose logs with dash f op,on outputs appended log when the log grows.
+• docker compose logs with the container name in the end outputs the logs of a specific container.
+• docker compose stop stops all the running containers without removing them.
+• docker compose rm removes all the containers.
+• docker compose build rebuilds all the images.
+
+Unit Tests in Containers
+• Unit tests should test some basic functionality of our docker app code, with no reliance on external services.
+• Unit tests should run as quickly as possible so that developers can iterate much faster without being blocked by waiting for the tests results.
+• Docker containers can spin up in seconds and can create a clean and isolated environment which is great tool to run unit tests with.
+
+Incorpora=ng Unit Tests into Docker Images
+Pros:
+• A single image is used through development, testing and production, which greatly ensures the reliability of our tests.
+Cons:
+• It increases the size of the image.
+
+What is Con=nuous Integra=on?
+• Continuous integration is a software engineering practice in which isolated changes are immediately tested and reported when they are added to a larger code base.
+• The goal of Continuous integration is to provide rapid feedback so that if a defect is introduced into the code base, it can be identified and corrected as soon as possible.
+
+Set up SSH keys for Github Account
+• SSH keys are a way to identify trusted computers without involving password.
+• Generate a SSH key pair and save the private SSH key in your local box and add the public key to your GitHub account.
+• Then you can directly push your changes to github repository without typing password.
+
+How to check if SSH public key files are available on your local box?
+The SSH public key file usually sits under ~/.ssh/ directory and ends with .pub extension.
+
+Link Circle CI with GitHub Account
+to build a Continuous Integration pipeline
+
+Opinions about Running Docker in Produc,on
+• One one hand, many docker pioneers are confident that a distributed web app can be deployed at scale using Docker and have incorporated Docker into their production environment.
+• On the other hand, there are still some people who are reluctant to use Docker in production as they think docker workflow is too complex or unstable for real life use cases.
+
+Concerns about Running Docker in Produc,on
+• There are still some missing pieces about Docker around data persistence, networking, security and identity management.
+• The ecosystem of supporting Dockerized applications in production such as tools for monitoring and logging are still
+not fully ready yet.
+
+Why Running Docker Containers inside VMs?
+• To address security concerns.
+• Hardware level isola=on.
+
