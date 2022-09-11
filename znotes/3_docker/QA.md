@@ -76,3 +76,17 @@ A typical use of Volume is to share data between container and host machine.
 Which of the following docker compose commands will update existing Docker image?
 docker-compose build
 
+Which of the following statements is not true?
+There is no downside of incorporating the tests for our application into docker images.
+
+True:
+We should incorporate the tests for our application into our docker images.
+Docker containers can be spin up in seconds and can create a clean and isolated environment which is great tool to run unit tests with.
+
+Which is the following statement is not true?
+The build in a continuous integration pipeline should be triggered periodically.
+
+True:
+Continuous integration is a software engineering practice in which isolated changes are immediately tested and reported when they are added to a larger code base.
+The goal of Continuous integration is to provide rapid feedback so that if a defect is introduced into the code base it can be identified and corrected as soon as possible.
+
