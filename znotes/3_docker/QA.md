@@ -90,3 +90,13 @@ True:
 Continuous integration is a software engineering practice in which isolated changes are immediately tested and reported when they are added to a larger code base.
 The goal of Continuous integration is to provide rapid feedback so that if a defect is introduced into the code base it can be identified and corrected as soon as possible.
 
+After you set up CircleCI with Github account, when a build will be trigged?
+Whenever changes are pushed to any files in the central repo.
+
+True:
+Whenever changes are pushed to the circle.yml file in the central repo
+Whenever you make changes to the local repo.
+
+Which command is used to push docker images to Docker hub?
+docker push
+
