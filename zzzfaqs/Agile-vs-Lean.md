@@ -7,3 +7,6 @@ Scrum framework >> dealing with complex problems
 Lean framework >> maximizing customer >> needs
 
 Roadmap >> backlog >> upcoming >> in progress >> done
+
+Agile/lean difference >> agile (development optimization) but lean (production optimization)
+Agile >> improvements in team but in lean >> process improvement in org
