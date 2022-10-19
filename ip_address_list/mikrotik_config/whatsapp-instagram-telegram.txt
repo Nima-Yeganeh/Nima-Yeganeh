@@ -1,0 +1,635 @@
+ip firewall address-list add address=  108.168.174.7 list=Whatsapp2
+ip firewall address-list add address=  15.197.206.217 list=Whatsapp2
+ip firewall address-list add address=  15.197.210.208 list=Whatsapp2
+ip firewall address-list add address=  158.85.224.171 list=Whatsapp2
+ip firewall address-list add address=  158.85.224.172 list=Whatsapp2
+ip firewall address-list add address=  158.85.224.173 list=Whatsapp2
+ip firewall address-list add address=  158.85.224.174 list=Whatsapp2
+ip firewall address-list add address=  158.85.224.175 list=Whatsapp2
+ip firewall address-list add address=  158.85.224.176 list=Whatsapp2
+ip firewall address-list add address=  158.85.224.177 list=Whatsapp2
+ip firewall address-list add address=  158.85.224.178 list=Whatsapp2
+ip firewall address-list add address=  158.85.224.179 list=Whatsapp2
+ip firewall address-list add address=  158.85.224.180 list=Whatsapp2
+ip firewall address-list add address=  174.123.168.2 list=Whatsapp2
+ip firewall address-list add address=  174.37.240.116 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.64 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.65 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.66 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.69 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.70 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.71 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.79 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.81 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.84 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.86 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.89 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.92 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.94 list=Whatsapp2
+ip firewall address-list add address=  184.172.19.95 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.64 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.65 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.66 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.67 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.68 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.69 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.70 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.71 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.72 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.73 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.74 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.75 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.76 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.77 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.79 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.80 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.81 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.82 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.83 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.84 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.85 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.86 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.87 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.88 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.89 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.90 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.91 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.93 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.94 list=Whatsapp2
+ip firewall address-list add address=  184.173.136.95 list=Whatsapp2
+ip firewall address-list add address=  184.173.147.38 list=Whatsapp2
+ip firewall address-list add address=  184.173.147.39 list=Whatsapp2
+ip firewall address-list add address=  184.173.147.53 list=Whatsapp2
+ip firewall address-list add address=  192.155.212.202 list=Whatsapp2
+ip firewall address-list add address=  192.155.212.203 list=Whatsapp2
+ip firewall address-list add address=  208.43.115.202 list=Whatsapp2
+ip firewall address-list add address=  208.43.122.131 list=Whatsapp2
+ip firewall address-list add address=  208.43.122.132 list=Whatsapp2
+ip firewall address-list add address=  208.43.122.133 list=Whatsapp2
+ip firewall address-list add address=  208.43.122.134 list=Whatsapp2
+ip firewall address-list add address=  208.43.122.135 list=Whatsapp2
+ip firewall address-list add address=  208.43.244.168 list=Whatsapp2
+ip firewall address-list add address=  208.43.244.169 list=Whatsapp2
+ip firewall address-list add address=  208.43.244.170 list=Whatsapp2
+ip firewall address-list add address=  208.43.244.171 list=Whatsapp2
+ip firewall address-list add address=  208.43.244.172 list=Whatsapp2
+ip firewall address-list add address=  208.43.244.174 list=Whatsapp2
+ip firewall address-list add address=  208.43.244.175 list=Whatsapp2
+ip firewall address-list add address=  208.43.96.4 list=Whatsapp2
+ip firewall address-list add address=  208.43.96.5 list=Whatsapp2
+ip firewall address-list add address=  208.43.96.6 list=Whatsapp2
+ip firewall address-list add address=  208.43.96.7 list=Whatsapp2
+ip firewall address-list add address=  208.43.97.156 list=Whatsapp2
+ip firewall address-list add address=  209.95.33.68 list=Whatsapp2
+ip firewall address-list add address=  3.33.221.48 list=Whatsapp2
+ip firewall address-list add address=  3.33.252.61 list=Whatsapp2
+ip firewall address-list add address=  50.22.198.205 list=Whatsapp2
+ip firewall address-list add address=  50.22.199.44 list=Whatsapp2
+ip firewall address-list add address=  50.22.203.212 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.128 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.129 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.130 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.131 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.132 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.133 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.134 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.135 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.136 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.137 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.138 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.141 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.142 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.143 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.144 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.145 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.146 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.147 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.148 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.149 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.150 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.151 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.152 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.153 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.154 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.155 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.158 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.159 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.32 list=Whatsapp2
+ip firewall address-list add address=  50.22.210.33 list=Whatsapp2
+ip firewall address-list add address=  50.22.213.140 list=Whatsapp2
+ip firewall address-list add address=  50.22.213.141 list=Whatsapp2
+ip firewall address-list add address=  50.22.213.142 list=Whatsapp2
+ip firewall address-list add address=  50.22.213.143 list=Whatsapp2
+ip firewall address-list add address=  50.22.225.69 list=Whatsapp2
+ip firewall address-list add address=  50.22.227.220 list=Whatsapp2
+ip firewall address-list add address=  50.22.227.222 list=Whatsapp2
+ip firewall address-list add address=  50.22.227.224 list=Whatsapp2
+ip firewall address-list add address=  50.22.227.225 list=Whatsapp2
+ip firewall address-list add address=  50.22.227.226 list=Whatsapp2
+ip firewall address-list add address=  50.22.227.227 list=Whatsapp2
+ip firewall address-list add address=  50.22.235.124 list=Whatsapp2
+ip firewall address-list add address=  50.22.235.125 list=Whatsapp2
+ip firewall address-list add address=  50.22.235.126 list=Whatsapp2
+ip firewall address-list add address=  50.22.235.127 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.160 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.161 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.162 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.163 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.168 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.169 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.170 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.173 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.174 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.175 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.176 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.177 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.180 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.181 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.182 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.190 list=Whatsapp2
+ip firewall address-list add address=  50.23.142.191 list=Whatsapp2
+ip firewall address-list add address=  50.97.57.148 list=Whatsapp2
+ip firewall address-list add address=  64.233.162.141 list=Whatsapp2
+ip firewall address-list add address=  75.119.222.13 list=Whatsapp2
+ip firewall address-list add address=  android-crashlog.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  c.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  c1.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  c10.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  c2.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  c3.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  c4.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  c5.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  c6.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  c7.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  c8.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  c9.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e1.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e10.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e11.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e12.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e13.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e14.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e15.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e16.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e17.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e18.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e19.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e2.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e20.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e3.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e4.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e5.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e6.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e7.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e8.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  e9.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  s.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  s1.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  s10.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  s2.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  s3.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  s4.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  s5.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  s6.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  s7.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  s8.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  s9.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  sro.whatsapp2.net list=Whatsapp2
+ip firewall address-list add address=  static.reverse.softlayer.com list=Whatsapp2
+ip firewall address-list add address=  104.106.115.161 list=FaceBook
+ip firewall address-list add address=  104.117.77.169 list=FaceBook
+ip firewall address-list add address=  104.16.154.36 list=FaceBook
+ip firewall address-list add address=  104.16.88.20 list=FaceBook
+ip firewall address-list add address=  104.16.89.20 list=FaceBook
+ip firewall address-list add address=  104.17.24.14 list=FaceBook
+ip firewall address-list add address=  104.18.10.207 list=FaceBook
+ip firewall address-list add address=  104.18.13.76 list=FaceBook
+ip firewall address-list add address=  104.18.22.10 list=FaceBook
+ip firewall address-list add address=  104.18.225.52 list=FaceBook
+ip firewall address-list add address=  104.18.226.52 list=FaceBook
+ip firewall address-list add address=  104.19.131.79 list=FaceBook
+ip firewall address-list add address=  104.26.10.25 list=FaceBook
+ip firewall address-list add address=  104.82.223.28 list=FaceBook
+ip firewall address-list add address=  104.98.226.113 list=FaceBook
+ip firewall address-list add address=  108.156.60.18 list=FaceBook
+ip firewall address-list add address=  13.249.33.214 list=FaceBook
+ip firewall address-list add address=  138.199.26.17 list=FaceBook
+ip firewall address-list add address=  142.250.180.33 list=FaceBook
+ip firewall address-list add address=  142.250.187.225 list=FaceBook
+ip firewall address-list add address=  143.244.56.11 list=FaceBook
+ip firewall address-list add address=  151.101.1.26 list=FaceBook
+ip firewall address-list add address=  151.101.1.69 list=FaceBook
+ip firewall address-list add address=  151.101.129.69 list=FaceBook
+ip firewall address-list add address=  151.101.130.114 list=FaceBook
+ip firewall address-list add address=  151.101.193.108 list=FaceBook
+ip firewall address-list add address=  151.101.193.69 list=FaceBook
+ip firewall address-list add address=  152.199.21.118 list=FaceBook
+ip firewall address-list add address=  156.146.33.18 list=FaceBook
+ip firewall address-list add address=  157.240.195.10 list=FaceBook
+ip firewall address-list add address=  157.240.195.17 list=FaceBook
+ip firewall address-list add address=  157.240.195.24 list=FaceBook
+ip firewall address-list add address=  157.240.195.35 list=FaceBook
+ip firewall address-list add address=  157.240.195.56 list=FaceBook
+ip firewall address-list add address=  157.240.195.63 list=FaceBook
+ip firewall address-list add address=  157.240.196.10 list=FaceBook
+ip firewall address-list add address=  157.240.196.17 list=FaceBook
+ip firewall address-list add address=  157.240.196.24 list=FaceBook
+ip firewall address-list add address=  157.240.196.34 list=FaceBook
+ip firewall address-list add address=  157.240.196.60 list=FaceBook
+ip firewall address-list add address=  157.240.196.63 list=FaceBook
+ip firewall address-list add address=  157.240.20.35 list=FaceBook
+ip firewall address-list add address=  157.240.21.10 list=FaceBook
+ip firewall address-list add address=  157.240.21.11 list=FaceBook
+ip firewall address-list add address=  157.240.21.16 list=FaceBook
+ip firewall address-list add address=  157.240.21.174 list=FaceBook
+ip firewall address-list add address=  157.240.21.20 list=FaceBook
+ip firewall address-list add address=  157.240.21.32 list=FaceBook
+ip firewall address-list add address=  157.240.21.35 list=FaceBook
+ip firewall address-list add address=  157.240.21.52 list=FaceBook
+ip firewall address-list add address=  157.240.21.63 list=FaceBook
+ip firewall address-list add address=  157.240.214.63 list=FaceBook
+ip firewall address-list add address=  157.240.221.11 list=FaceBook
+ip firewall address-list add address=  157.240.221.16 list=FaceBook
+ip firewall address-list add address=  157.240.221.18 list=FaceBook
+ip firewall address-list add address=  157.240.221.60 list=FaceBook
+ip firewall address-list add address=  157.240.221.63 list=FaceBook
+ip firewall address-list add address=  157.240.247.13 list=FaceBook
+ip firewall address-list add address=  157.240.247.35 list=FaceBook
+ip firewall address-list add address=  157.90.131.241 list=FaceBook
+ip firewall address-list add address=  157.90.90.133 list=FaceBook
+ip firewall address-list add address=  17.164.1.41 list=FaceBook
+ip firewall address-list add address=  17.253.15.207 list=FaceBook
+ip firewall address-list add address=  17.253.77.202 list=FaceBook
+ip firewall address-list add address=  17.57.21.63 list=FaceBook
+ip firewall address-list add address=  172.67.129.12 list=FaceBook
+ip firewall address-list add address=  172.67.38.106 list=FaceBook
+ip firewall address-list add address=  179.60.192.2 list=FaceBook
+ip firewall address-list add address=  179.60.192.3 list=FaceBook
+ip firewall address-list add address=  179.60.192.36 list=FaceBook
+ip firewall address-list add address=  179.60.192.51 list=FaceBook
+ip firewall address-list add address=  18.65.39.51 list=FaceBook
+ip firewall address-list add address=  18.66.147.107 list=FaceBook
+ip firewall address-list add address=  185.143.233.114 list=FaceBook
+ip firewall address-list add address=  185.143.233.120 list=FaceBook
+ip firewall address-list add address=  185.143.234.120 list=FaceBook
+ip firewall address-list add address=  185.147.178.16 list=FaceBook
+ip firewall address-list add address=  185.59.221.8 list=FaceBook
+ip firewall address-list add address=  185.60.216.35 list=FaceBook
+ip firewall address-list add address=  188.0.241.27 list=FaceBook
+ip firewall address-list add address=  195.181.175.7 list=FaceBook
+ip firewall address-list add address=  199.232.57.229 list=FaceBook
+ip firewall address-list add address=  2.18.132.49 list=FaceBook
+ip firewall address-list add address=  205.185.208.20 list=FaceBook
+ip firewall address-list add address=  205.251.207.107 list=FaceBook
+ip firewall address-list add address=  209.197.3.25 list=FaceBook
+ip firewall address-list add address=  209.197.3.84 list=FaceBook
+ip firewall address-list add address=  216.58.213.65 list=FaceBook
+ip firewall address-list add address=  23.65.119.134 list=FaceBook
+ip firewall address-list add address=  31.13.83.52 list=FaceBook
+ip firewall address-list add address=  34.120.133.55 list=FaceBook
+ip firewall address-list add address=  34.160.144.191 list=FaceBook
+ip firewall address-list add address=  37.48.117.210 list=FaceBook
+ip firewall address-list add address=  52.222.236.127 list=FaceBook
+ip firewall address-list add address=  52.222.236.57 list=FaceBook
+ip firewall address-list add address=  54.192.99.82 list=FaceBook
+ip firewall address-list add address=  54.192.99.85 list=FaceBook
+ip firewall address-list add address=  69.55.53.169 list=FaceBook
+ip firewall address-list add address=  72.247.182.72 list=FaceBook
+ip firewall address-list add address=  8.252.23.115 list=FaceBook
+ip firewall address-list add address=  8.252.24.115 list=FaceBook
+ip firewall address-list add address=  8.253.80.115 list=FaceBook
+ip firewall address-list add address=  84.17.50.48 list=FaceBook
+ip firewall address-list add address=  94.182.146.34 list=FaceBook
+ip firewall address-list add address=  94.182.146.35 list=FaceBook
+ip firewall address-list add address=  99.86.254.67 list=FaceBook
+ip firewall address-list add  address= 149.154.160.0/22 list=telegram
+ip firewall address-list add  address= 149.154.164.0/22 list=telegram
+ip firewall address-list add  address=91.108.4.0/22 list=telegram
+ip firewall address-list add  address= 91.108.56.0/22 list=telegram
+ip firewall address-list add  address= 91.108.8.0/22 list=telegram
+ip firewall address-list add  address= 95.161.64.0/20 list=telegram
+ip firewall address-list add  address= 149.154.167.99 list=telegram
+ip firewall address-list add  address= 149.154.164.3 list=telegram
+ip firewall address-list add  address= 149.154.164.13  list=telegram
+ip firewall address-list add  address= 95.161.64.99  list=telegram
+ip firewall address-list add  address=95.161.64.100  list=telegram
+ip firewall address-list add  address=149.154.167.32 list=telegram
+ip firewall address-list add  address= 149.154.164.3 list=telegram
+ip firewall address-list add  address= 149.154.167.117 list=telegram
+
+ip firewall address-list add  address=66.111.48.0/22 list=instagram
+ip firewall address-list add  address=102.132.100.60/31 list=instagram
+ip firewall address-list add  address=102.132.101.60/31 list=instagram
+ip firewall address-list add  address=102.132.102.60/31 list=instagram
+ip firewall address-list add  address=102.132.103.60/31 list=instagram
+ip firewall address-list add  address=102.132.104.60/31 list=instagram
+ip firewall address-list add  address=102.132.105.60/31 list=instagram
+ip firewall address-list add  address=102.132.106.60/31 list=instagram
+ip firewall address-list add  address=102.132.107.60/31 list=instagram
+ip firewall address-list add  address=102.132.108.60/31 list=instagram
+ip firewall address-list add  address=102.132.109.60/31 list=instagram
+ip firewall address-list add  address=102.132.110.60/31 list=instagram
+ip firewall address-list add  address=102.132.111.60/31 list=instagram
+ip firewall address-list add  address=102.132.96.54/31 list=instagram
+ip firewall address-list add  address=102.132.97.54/31 list=instagram
+ip firewall address-list add  address=102.132.98.60/31 list=instagram
+ip firewall address-list add  address=102.132.99.60/31 list=instagram
+ip firewall address-list add  address=15.197.206.217 list=instagram
+ip firewall address-list add  address=15.197.210.208 list=instagram
+ip firewall address-list add  address=157.240.0.60/31 list=instagram
+ip firewall address-list add  address=157.240.1.60/31 list=instagram
+ip firewall address-list add  address=157.240.10.53 list=instagram
+ip firewall address-list add  address=157.240.10.54 list=instagram
+ip firewall address-list add  address=157.240.11.53 list=instagram
+ip firewall address-list add  address=157.240.11.54 list=instagram
+ip firewall address-list add  address=157.240.12.53 list=instagram
+ip firewall address-list add  address=157.240.12.54 list=instagram
+ip firewall address-list add  address=157.240.13.54/31 list=instagram
+ip firewall address-list add  address=157.240.14.52/31 list=instagram
+ip firewall address-list add  address=157.240.15.60/31 list=instagram
+ip firewall address-list add  address=157.240.16.52/31 list=instagram
+ip firewall address-list add  address=157.240.17.60/31 list=instagram
+ip firewall address-list add  address=157.240.18.52/31 list=instagram
+ip firewall address-list add  address=157.240.19.53 list=instagram
+ip firewall address-list add  address=157.240.19.54 list=instagram
+ip firewall address-list add  address=157.240.192.52 list=instagram
+ip firewall address-list add  address=157.240.192.55 list=instagram
+ip firewall address-list add  address=157.240.193.60/31 list=instagram
+ip firewall address-list add  address=157.240.194.54/31 list=instagram
+ip firewall address-list add  address=157.240.195.54 list=instagram
+ip firewall address-list add  address=157.240.195.56 list=instagram
+ip firewall address-list add  address=157.240.196.60/31 list=instagram
+ip firewall address-list add  address=157.240.197.60/31 list=instagram
+ip firewall address-list add  address=157.240.198.60/31 list=instagram
+ip firewall address-list add  address=157.240.199.60/31 list=instagram
+ip firewall address-list add  address=157.240.2.53 list=instagram
+ip firewall address-list add  address=157.240.2.54 list=instagram
+ip firewall address-list add  address=157.240.20.52/31 list=instagram
+ip firewall address-list add  address=157.240.200.60/31 list=instagram
+ip firewall address-list add  address=157.240.201.60/31 list=instagram
+ip firewall address-list add  address=157.240.202.60/31 list=instagram
+ip firewall address-list add  address=157.240.203.60/31 list=instagram
+ip firewall address-list add  address=157.240.204.60/31 list=instagram
+ip firewall address-list add  address=157.240.205.60/31 list=instagram
+ip firewall address-list add  address=157.240.205.63 list=instagram
+ip firewall address-list add  address=157.240.206.60/31 list=instagram
+ip firewall address-list add  address=157.240.207.60/31 list=instagram
+ip firewall address-list add  address=157.240.208.60/31 list=instagram
+ip firewall address-list add  address=157.240.209.60/31 list=instagram
+ip firewall address-list add  address=157.240.21.174 list=instagram
+ip firewall address-list add  address=157.240.21.52/31 list=instagram
+ip firewall address-list add  address=157.240.210.60/31 list=instagram
+ip firewall address-list add  address=157.240.211.60/31 list=instagram
+ip firewall address-list add  address=157.240.212.60/31 list=instagram
+ip firewall address-list add  address=157.240.213.60/31 list=instagram
+ip firewall address-list add  address=157.240.214.60/31 list=instagram
+ip firewall address-list add  address=157.240.214.63 list=instagram
+ip firewall address-list add  address=157.240.215.60/31 list=instagram
+ip firewall address-list add  address=157.240.216.60/31 list=instagram
+ip firewall address-list add  address=157.240.217.60/31 list=instagram
+ip firewall address-list add  address=157.240.218.60/31 list=instagram
+ip firewall address-list add  address=157.240.219.60/31 list=instagram
+ip firewall address-list add  address=157.240.22.53 list=instagram
+ip firewall address-list add  address=157.240.22.54 list=instagram
+ip firewall address-list add  address=157.240.220.60/31 list=instagram
+ip firewall address-list add  address=157.240.221.60/31 list=instagram
+ip firewall address-list add  address=157.240.221.63 list=instagram
+ip firewall address-list add  address=157.240.222.60/31 list=instagram
+ip firewall address-list add  address=157.240.223.60/31 list=instagram
+ip firewall address-list add  address=157.240.224.60/31 list=instagram
+ip firewall address-list add  address=157.240.225.60/31 list=instagram
+ip firewall address-list add  address=157.240.226.60/31 list=instagram
+ip firewall address-list add  address=157.240.227.60/31 list=instagram
+ip firewall address-list add  address=157.240.228.60/31 list=instagram
+ip firewall address-list add  address=157.240.229.60/31 list=instagram
+ip firewall address-list add  address=157.240.23.53 list=instagram
+ip firewall address-list add  address=157.240.23.54 list=instagram
+ip firewall address-list add  address=157.240.231.60/31 list=instagram
+ip firewall address-list add  address=157.240.232.60/31 list=instagram
+ip firewall address-list add  address=157.240.233.60/31 list=instagram
+ip firewall address-list add  address=157.240.234.60/31 list=instagram
+ip firewall address-list add  address=157.240.235.60/31 list=instagram
+ip firewall address-list add  address=157.240.236.60/31 list=instagram
+ip firewall address-list add  address=157.240.237.60/31 list=instagram
+ip firewall address-list add  address=157.240.238.60/31 list=instagram
+ip firewall address-list add  address=157.240.239.60/31 list=instagram
+ip firewall address-list add  address=157.240.24.60/31 list=instagram
+ip firewall address-list add  address=157.240.240.60/31 list=instagram
+ip firewall address-list add  address=157.240.241.60/31 list=instagram
+ip firewall address-list add  address=157.240.242.60/31 list=instagram
+ip firewall address-list add  address=157.240.243.60/31 list=instagram
+ip firewall address-list add  address=157.240.244.60/31 list=instagram
+ip firewall address-list add  address=157.240.245.60/31 list=instagram
+ip firewall address-list add  address=157.240.246.60/31 list=instagram
+ip firewall address-list add  address=157.240.247.60/31 list=instagram
+ip firewall address-list add  address=157.240.248.60/31 list=instagram
+ip firewall address-list add  address=157.240.249.60/31 list=instagram
+ip firewall address-list add  address=157.240.25.60/31 list=instagram
+ip firewall address-list add  address=157.240.250.60/31 list=instagram
+ip firewall address-list add  address=157.240.251.60/31 list=instagram
+ip firewall address-list add  address=157.240.252.60/31 list=instagram
+ip firewall address-list add  address=157.240.253.60/31 list=instagram
+ip firewall address-list add  address=157.240.254.60/31 list=instagram
+ip firewall address-list add  address=157.240.26.54/31 list=instagram
+ip firewall address-list add  address=157.240.27.54/31 list=instagram
+ip firewall address-list add  address=157.240.28.51 list=instagram
+ip firewall address-list add  address=157.240.28.55 list=instagram
+ip firewall address-list add  address=157.240.29.60/31 list=instagram
+ip firewall address-list add  address=157.240.3.54/31 list=instagram
+ip firewall address-list add  address=157.240.30.54/31 list=instagram
+ip firewall address-list add  address=157.240.31.60/31 list=instagram
+ip firewall address-list add  address=157.240.4.60/31 list=instagram
+ip firewall address-list add  address=157.240.5.60/31 list=instagram
+ip firewall address-list add  address=157.240.6.53 list=instagram
+ip firewall address-list add  address=157.240.6.54 list=instagram
+ip firewall address-list add  address=157.240.7.53 list=instagram
+ip firewall address-list add  address=157.240.7.54 list=instagram
+ip firewall address-list add  address=157.240.8.53 list=instagram
+ip firewall address-list add  address=157.240.8.54 list=instagram
+ip firewall address-list add  address=157.240.9.53 list=instagram
+ip firewall address-list add  address=157.240.9.54 list=instagram
+ip firewall address-list add  address=163.70.128.60/31 list=instagram
+ip firewall address-list add  address=163.70.129.60/31 list=instagram
+ip firewall address-list add  address=163.70.130.60/31 list=instagram
+ip firewall address-list add  address=163.70.131.60/31 list=instagram
+ip firewall address-list add  address=163.70.132.60/31 list=instagram
+ip firewall address-list add  address=163.70.133.60/31 list=instagram
+ip firewall address-list add  address=163.70.134.60/31 list=instagram
+ip firewall address-list add  address=163.70.135.60/31 list=instagram
+ip firewall address-list add  address=163.70.136.60/31 list=instagram
+ip firewall address-list add  address=163.70.137.60/31 list=instagram
+ip firewall address-list add  address=163.70.138.60/31 list=instagram
+ip firewall address-list add  address=163.70.139.60/31 list=instagram
+ip firewall address-list add  address=163.70.140.60/31 list=instagram
+ip firewall address-list add  address=163.70.141.60/31 list=instagram
+ip firewall address-list add  address=163.70.142.60/31 list=instagram
+ip firewall address-list add  address=163.70.143.60/31 list=instagram
+ip firewall address-list add  address=163.70.144.60/31 list=instagram
+ip firewall address-list add  address=163.70.145.60/31 list=instagram
+ip firewall address-list add  address=163.70.146.60/31 list=instagram
+ip firewall address-list add  address=163.70.147.60/31 list=instagram
+ip firewall address-list add  address=163.70.148.60/31 list=instagram
+ip firewall address-list add  address=163.70.149.60/31 list=instagram
+ip firewall address-list add  address=163.70.150.60/31 list=instagram
+ip firewall address-list add  address=163.70.151.60/31 list=instagram
+ip firewall address-list add  address=163.70.152.60/31 list=instagram
+ip firewall address-list add  address=163.70.153.60/31 list=instagram
+ip firewall address-list add  address=163.70.154.60/31 list=instagram
+ip firewall address-list add  address=163.70.155.60/31 list=instagram
+ip firewall address-list add  address=163.70.156.60/31 list=instagram
+ip firewall address-list add  address=163.70.157.60/31 list=instagram
+ip firewall address-list add  address=163.70.158.60/31 list=instagram
+ip firewall address-list add  address=163.70.159.60/31 list=instagram
+ip firewall address-list add  address=179.60.192.49 list=instagram
+ip firewall address-list add  address=179.60.192.51 list=instagram
+ip firewall address-list add  address=179.60.193.60/31 list=instagram
+ip firewall address-list add  address=179.60.194.53 list=instagram
+ip firewall address-list add  address=179.60.194.54 list=instagram
+ip firewall address-list add  address=179.60.195.49 list=instagram
+ip firewall address-list add  address=179.60.195.51 list=instagram
+ip firewall address-list add  address=185.60.216.53 list=instagram
+ip firewall address-list add  address=185.60.216.54 list=instagram
+ip firewall address-list add  address=185.60.217.53 list=instagram
+ip firewall address-list add  address=185.60.217.54 list=instagram
+ip firewall address-list add  address=185.60.218.53 list=instagram
+ip firewall address-list add  address=185.60.218.54 list=instagram
+ip firewall address-list add  address=185.60.219.60/31 list=instagram
+ip firewall address-list add  address=3.33.221.48 list=instagram
+ip firewall address-list add  address=3.33.252.61 list=instagram
+ip firewall address-list add  address=31.13.64.60/31 list=instagram
+ip firewall address-list add  address=31.13.65.49 list=instagram
+ip firewall address-list add  address=31.13.65.50 list=instagram
+ip firewall address-list add  address=31.13.66.51 list=instagram
+ip firewall address-list add  address=31.13.66.56 list=instagram
+ip firewall address-list add  address=31.13.67.52/31 list=instagram
+ip firewall address-list add  address=31.13.68.60/31 list=instagram
+ip firewall address-list add  address=31.13.69.60/31 list=instagram
+ip firewall address-list add  address=31.13.70.49 list=instagram
+ip firewall address-list add  address=31.13.70.50 list=instagram
+ip firewall address-list add  address=31.13.71.49 list=instagram
+ip firewall address-list add  address=31.13.71.50 list=instagram
+ip firewall address-list add  address=31.13.72.48 list=instagram
+ip firewall address-list add  address=31.13.72.52 list=instagram
+ip firewall address-list add  address=31.13.73.52/31 list=instagram
+ip firewall address-list add  address=31.13.74.52/31 list=instagram
+ip firewall address-list add  address=31.13.75.60/31 list=instagram
+ip firewall address-list add  address=31.13.76.60/31 list=instagram
+ip firewall address-list add  address=31.13.77.60/31 list=instagram
+ip firewall address-list add  address=31.13.78.60/31 list=instagram
+ip firewall address-list add  address=31.13.79.53 list=instagram
+ip firewall address-list add  address=31.13.79.54 list=instagram
+ip firewall address-list add  address=31.13.80.48 list=instagram
+ip firewall address-list add  address=31.13.80.53 list=instagram
+ip firewall address-list add  address=31.13.81.48 list=instagram
+ip firewall address-list add  address=31.13.81.53 list=instagram
+ip firewall address-list add  address=31.13.82.51 list=instagram
+ip firewall address-list add  address=31.13.82.55 list=instagram
+ip firewall address-list add  address=31.13.83.49 list=instagram
+ip firewall address-list add  address=31.13.83.51 list=instagram
+ip firewall address-list add  address=31.13.84.49 list=instagram
+ip firewall address-list add  address=31.13.84.51 list=instagram
+ip firewall address-list add  address=31.13.85.49 list=instagram
+ip firewall address-list add  address=31.13.85.51 list=instagram
+ip firewall address-list add  address=31.13.86.49 list=instagram
+ip firewall address-list add  address=31.13.86.51 list=instagram
+ip firewall address-list add  address=31.13.87.48 list=instagram
+ip firewall address-list add  address=31.13.87.51 list=instagram
+ip firewall address-list add  address=31.13.88.60/31 list=instagram
+ip firewall address-list add  address=31.13.89.53 list=instagram
+ip firewall address-list add  address=31.13.89.54 list=instagram
+ip firewall address-list add  address=31.13.90.60/31 list=instagram
+ip firewall address-list add  address=31.13.91.60/31 list=instagram
+ip firewall address-list add  address=31.13.92.48 list=instagram
+ip firewall address-list add  address=31.13.92.52 list=instagram
+ip firewall address-list add  address=31.13.93.53 list=instagram
+ip firewall address-list add  address=31.13.93.54 list=instagram
+ip firewall address-list add  address=31.13.94.52 list=instagram
+ip firewall address-list add  address=31.13.94.54 list=instagram
+ip firewall address-list add  address=31.13.95.60/31 list=instagram
+ip firewall address-list add  address=34.120.8.140 list=instagram
+ip firewall address-list add  address=34.192.181.12 list=instagram
+ip firewall address-list add  address=34.193.38.112 list=instagram
+ip firewall address-list add  address=34.194.255.230 list=instagram
+ip firewall address-list add  address=34.194.71.217 list=instagram
+ip firewall address-list add  address=42.105.143.33 list=instagram
+ip firewall address-list add  address=69.171.250.60/31 list=instagram
+ip firewall address-list add  address=edge-chat.instagram.com list=instagram
+ip firewall address-list add  address=graph.instagram.com list=instagram
+ip firewall address-list add  address=i.instagram.com list=instagram
+ip firewall address-list add  address=instagram.fbom46-1.fna.fbcdn.net list=instagram
+ip firewall address-list add  address=mytools.management list=instagram
+ip firewall address-list add  address=scontent.cdninstagram.com list=instagram
+ip firewall address-list add  address=scontent-hel3-1.cdninstagram.com list=instagram
+ip firewall address-list add  address=scontent-lhr8-1.cdninstagram.com list=instagram
+ip firewall address-list add  address=scontent-lhr8-2.cdninstagram.com list=instagram
+ip firewall address-list add  address=static.cdninstagram.com list=instagram
+ip firewall address-list add  address=www.instagram.com list=instagram
+ip firewall address-list add  address=157.240.195.10 list=instagram
+ip firewall address-list add  address=157.240.195.63 list=instagram
+ip firewall address-list add  address=157.240.196.10 list=instagram
+ip firewall address-list add  address=157.240.21.10 list=instagram
+ip firewall address-list add  address=157.240.21.63 list=instagram
+ip firewall address-list add  address=157.240.221.11 list=instagram
+ip firewall address-list add  address=176.28.184.99 list=instagram
+ip firewall address-list add  address=31.13.83.52 list=instagram
+ip firewall address-list add  address=82.199.196.225 list=instagram
+ip firewall address-list add  address=157.240.195.10 list=instagram
+ip firewall address-list add  address=157.240.195.63 list=instagram
+ip firewall address-list add  address=157.240.196.10 list=instagram
+ip firewall address-list add  address=157.240.21.10 list=instagram
+ip firewall address-list add  address=157.240.21.63 list=instagram
+ip firewall address-list add  address=157.240.221.11 list=instagram
+ip firewall address-list add  address=176.28.184.99 list=instagram
+ip firewall address-list add  address=31.13.83.52 list=instagram
+ip firewall address-list add  address=82.199.196.225 list=instagram
+ip firewall address-list add address=66.111.48.0/22 list=whatsapp
+ip firewall address-list add address=66.111.48.0/24 list=whatsapp
+ip firewall address-list add address=66.111.48.0/22 list=whatsapp
+ip firewall address-list add address=66.111.49.0/24 list=whatsapp
+ip firewall address-list add address=66.111.50.0/24 list=whatsapp
+ip firewall address-list add address=66.111.51.0/24 list=whatsapp
+ip firewall address-list add address=157.240.201.0/24 list=whatsapp
+ip firewall address-list add address=157.240.214.0/24 list=whatsapp
+ip firewall address-list add address=157.240.221.0/24 list=whatsapp
+ip firewall address-list add address=15.197.206.0/24 list=whatsapp
+ip firewall address-list add address=104.243.213.0/24 list=whatsapp
+ip firewall address-list add address=104.243.213.0/24 list=whatsapp
+ip firewall address-list add address=104.232.37.0/24 list=whatsapp
+ip firewall address-list add address=179.40.128.0/24 list=whatsapp
+ip firewall address-list add address=201.0.243.0/24 list=whatsapp
+ip firewall address-list add address=201.229.208.0/24 list=whatsapp
+ip firewall address-list add address=202.163.65.0/24 list=whatsapp
+ip firewall address-list add address=78.11.56.0/24 list=whatsapp
+ip firewall address-list add address=177.23.168.0/24 list=whatsapp
+ip firewall address-list add address=103.217.246.0/24 list=whatsapp
+ip firewall address-list add address=98.171.221.0/24 list=whatsapp
+ip firewall address-list add address=20.42.72.0/24 list=whatsapp
+ip firewall address-list add address=64.225.61.0/24 list=whatsapp
+ip firewall address-list add address=93.57.122.0/24 list=whatsapp
+ip firewall address-list add address=157.240.128.0/24 list=whatsapp
+ip firewall address-list add address=92.87.174.0/24 list=whatsapp
+ip firewall address-list add address=122.2.211.0/24 list=whatsapp
+ip firewall address-list add address=203.134.46.0/24 list=whatsapp
+ip firewall address-list add address=1.38.9.0/24 list=whatsapp
+ip firewall address-list add address=129.134.133.0/24 list=whatsapp
+ip firewall address-list add address=157.240.247.0/24 list=whatsapp
+ip firewall address-list add address=157.240.27.0/24 list=whatsapp
+ip firewall address-list add address=179.60.194.0/24 list=whatsapp
+ip firewall address-list add address=157.240.27.0/24 list=whatsapp
+ip firewall address-list add address=179.60.194.0/24 list=whatsapp
+ip firewall address-list add address=157.240.21.0/24 list=whatsapp
+ip firewall address-list add address=157.240.0.0/16 list=whatsapp
+ip firewall address-list add address=72.52.10.0/24 list=whatsapp
+ip firewall address-list add address=116.119.111.0/24 list=whatsapp
+ip firewall address-list add address=179.40.128.0/24 list=whatsapp
+ip firewall address-list add address=103.57.132.980/24 list=whatsapp
+ip firewall address-list add address=204.14.72.0/24 list=whatsapp
+ip firewall address-list add address=27.111.22.0/24 list=whatsapp
+ip firewall address-list add address=34.192.181.0/24 list=whatsapp
+ip firewall address-list add address=34.193.38.0/24 list=whatsapp
+ip firewall address-list add address=34.194.255.0/24 list=whatsapp
+ip firewall address-list add address=34.194.71.0/24 list=whatsapp
+ip firewall address-list add address=189.103.191.0/24 list=whatsapp
+ip firewall address-list add address=200.28.9.0/24 list=whatsapp
+ip firewall address-list add address=1.38.9.0/24 list=whatsapp
