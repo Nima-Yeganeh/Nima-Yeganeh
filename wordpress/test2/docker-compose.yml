@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  nginx:
+    image: nginx
+    links:
+    - wordpress:wordpress
+    volumes:
+      - ./nginx:/etc/nginx
+    ports:
+      - "80:80"
+  wordpress:
+    image: wordpress
+    links:
+      - mariadb:mysql
+    restart: always
+    volumes:
+      - ./wordpress:/var/www/html
+    ports:
+      - "80"
+    environment:
+      - WORDPRESS_DB_PASSWORD=password
+      - WORDPRESS_DB_USER=root
+  mariadb:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=wordpress
+  redis:
+    image: redis
+    restart: always
