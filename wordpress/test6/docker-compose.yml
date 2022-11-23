@@ -48,6 +48,7 @@ services:
   wp1:
     depends_on:
       - mysql1
+      - redis1
     image: $wp_image
     ports:
       - "80"
@@ -62,6 +63,7 @@ services:
   wp2:
     depends_on:
       - mysql2
+      - redis2
     image: $wp_image
     ports:
       - "80"
@@ -76,6 +78,7 @@ services:
   wp3:
     depends_on:
       - mysql3
+      - redis3
     image: $wp_image
     ports:
       - "80"
@@ -91,6 +94,7 @@ services:
     depends_on:
       - mysql1
       - wp1
+      - redis1
     image: $wpcli_image
     links:
       - mysql1:mysql1
@@ -105,6 +109,16 @@ services:
       wp config set DB_USER $user;
       wp config set DB_PASSWORD $pass;
       wp core install --path="$wp_data" --url="$url1" --title="$title1" --admin_user=$admin_user --admin_password=$admin_pass --admin_email=$email;
+      wp config set WP_REDIS_HOST redis1
+      wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT
+      wp config set WP_REDIS_PORT $WP_REDIS_PORT
+      wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD
+      wp config set WP_REDIS_SCHEME tls
+      wp config set WP_REDIS_SCHEME unix
+      wp config delete WP_REDIS_SCHEME
+      wp plugin install redis-cache --activate
+      wp redis status
+      wp redis enable --force
       '
     volumes:
      - wp1_data:$wp_data
@@ -114,6 +128,7 @@ services:
     depends_on:
       - mysql2
       - wp2
+      - redis2
     image: $wpcli_image
     links:
       - mysql2:mysql2
@@ -137,6 +152,7 @@ services:
     depends_on:
       - mysql3
       - wp3
+      - redis3
     image: $wpcli_image
     links:
       - mysql3:mysql3
@@ -157,13 +173,35 @@ services:
     working_dir: $wp_data
 
   redis1:
-    image: redis:latest
+    image: $redis_image
     restart: always
     entrypoint: redis-server --appendonly yes --requirepass $REDIS_PASSWORD --maxmemory 512mb --maxmemory-policy allkeys-lru
     ports:
-      - "6379:6379"
+      - "6379"
     volumes:
       - redis1_data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  redis2:
+    image: $redis_image
+    restart: always
+    entrypoint: redis-server --appendonly yes --requirepass $REDIS_PASSWORD --maxmemory 512mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379"
+    volumes:
+      - redis2_data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  redis3:
+    image: $redis_image
+    restart: always
+    entrypoint: redis-server --appendonly yes --requirepass $REDIS_PASSWORD --maxmemory 512mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379"
+    volumes:
+      - redis3_data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 
@@ -175,3 +213,5 @@ volumes:
   db3_data:
   wp3_data:
   redis1_data:
+  redis2_data:
+  redis3_data:
