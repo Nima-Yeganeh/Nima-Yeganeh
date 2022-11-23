@@ -1,0 +1,97 @@
+version: '3.1'
+services:
+
+  nginx:
+    image: nginx
+    links:
+    - wordpress1:wordpress1
+    - wordpress2:wordpress2
+    - wordpress3:wordpress3
+    volumes:
+      - ./nginx:/etc/nginx
+    ports:
+      - "80:80"
+
+  wordpress1:
+    image: wordpress
+    links:
+      - mariadb1:mysql
+    restart: always
+    volumes:
+      - ./wordpress1:/var/www/html
+    ports:
+      - "80"
+    environment:
+      - WORDPRESS_DB_PASSWORD=password
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_NAME=wordpress1
+
+  wordpress2:
+    image: wordpress
+    links:
+      - mariadb2:mysql
+    restart: always
+    volumes:
+      - ./wordpress2:/var/www/html
+    ports:
+      - "80"
+    environment:
+      - WORDPRESS_DB_PASSWORD=password
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_NAME=wordpress2
+
+  wordpress3:
+    image: wordpress
+    links:
+      - mariadb3:mysql
+    restart: always
+    volumes:
+      - ./wordpress3:/var/www/html
+    ports:
+      - "80"
+    environment:
+      - WORDPRESS_DB_PASSWORD=password
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_NAME=wordpress3
+
+  mariadb1:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./mysql1:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=wordpress1
+      - MYSQL_USER=dbuser
+      - MYSQL_PASSWORD=dbpass
+
+  mariadb2:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./mysql2:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=wordpress2
+      - MYSQL_USER=dbuser
+      - MYSQL_PASSWORD=dbpass
+
+  mariadb3:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./mysql3:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=wordpress3
+      - MYSQL_USER=dbuser
+      - MYSQL_PASSWORD=dbpass
+
+  wpcli1:
+    image: wordpress:cli
+    volumes_from:
+      - wordpress1
+    links:
+      - mariadb1
+    # entrypoint: wp
+    # command: "--info"
