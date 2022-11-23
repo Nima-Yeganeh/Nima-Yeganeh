@@ -1,0 +1,197 @@
+##########################################################################
+# Wordpress PHP-FPM
+##########################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  ports:
+    - name: fpm-tcp
+      port: 9000
+      targetPort: 9000
+      protocol: TCP
+  selector:
+    app: wordpress
+    tier: engine
+  type: ClusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wp-pv-claim
+  labels:
+    app: wordpress
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: engine
+    spec:
+      containers:
+      - image: fjudith/wordpress:php7-fpm
+        name: wordpress
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: mysql
+        - name: WORDPRESS_DB_NAME
+          value: wordpress
+        - name: WORDPRESS_DB_USER
+          value: wordpress
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wp-mysql-pass
+              key: password.txt
+        ports:
+        - containerPort: 9000
+          name: fpm-tcp
+          protocol: TCP
+        livenessProbe:
+          tcpSocket:
+            port: 9000
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        volumeMounts:
+        - name: wordpress-persistent-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: wordpress-persistent-storage
+        persistentVolumeClaim:
+          claimName: wp-pv-claim
+---
+##########################################################################
+# Deployment (memcached)
+##########################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: memcached
+  labels:
+    app: wordpress
+spec:
+  ports:
+    - name: memcached-tcp
+      port: 11211
+      targetPort: 11211
+      protocol: TCP
+    - name: memcached-udp
+      port: 11211
+      targetPort: 11211
+      protocol: UDP
+  selector:
+    app: wordpress
+    tier: caching
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memcached
+  labels:
+    app: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: caching
+    spec:
+      containers:
+      - image: amd64/memcached:1.5
+        name: memcached
+        ports:
+        - containerPort: 11211
+          name: memcached-tcp
+          protocol: TCP
+        - containerPort: 11211
+          name: memcached-udp
+          protocol: UDP
+        livenessProbe:
+          tcpSocket:
+            port: 11211
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+---
+##########################################################################
+# Nginx
+##########################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: wordpress
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: https
+      port: 443
+      protocol: TCP
+  selector:
+    app: wordpress
+    tier: frontend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: frontend
+    spec:
+      containers:
+      - image: fjudith/wordpress:nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+          name: http
+        - containerPort: 443
+          name: https
+        volumeMounts:
+        - name: wordpress-persistent-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: wordpress-persistent-storage
+        persistentVolumeClaim:
+          claimName: wp-pv-claim
+---
