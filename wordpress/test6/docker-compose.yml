@@ -156,6 +156,17 @@ services:
      - wp3_data:$wp_data
     working_dir: $wp_data
 
+  redis1:
+    image: redis:latest
+    restart: always
+    entrypoint: redis-server --appendonly yes --requirepass $REDIS_PASSWORD --maxmemory 512mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis1_data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
 volumes:
   db1_data:
   wp1_data:
@@ -163,3 +174,4 @@ volumes:
   wp2_data:
   db3_data:
   wp3_data:
+  redis1_data:
