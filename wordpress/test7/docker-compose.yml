@@ -17,7 +17,7 @@ services:
     environment:
       ES_JAVA_OPTS: "-Xms750m -Xmx750m"
     ports:
-      - "9200"
+      - "9200:9200"
 
   elk2:
     image: elasticsearch:5.6.5
@@ -140,6 +140,11 @@ services:
       wp plugin install redis-cache --activate;
       wp redis status;
       wp redis enable --force;
+      wp plugin delete akismet;
+      wp plugin delete hello;
+      wp config set EP_HOST http://elk1:9200;
+      wp plugin install elasticpress --activate;
+      wp elasticpress index --setup;
       '
     volumes:
      - wp1_data:$wp_data
@@ -174,6 +179,11 @@ services:
       wp plugin install redis-cache --activate;
       wp redis status;
       wp redis enable --force;
+      wp plugin delete akismet;
+      wp plugin delete hello;
+      wp config set EP_HOST http://elk2:9200;
+      wp plugin install elasticpress --activate;
+      wp elasticpress index --setup;
       '
     volumes:
      - wp2_data:$wp_data
@@ -208,6 +218,11 @@ services:
       wp plugin install redis-cache --activate;
       wp redis status;
       wp redis enable --force;
+      wp plugin delete akismet;
+      wp plugin delete hello;
+      wp config set EP_HOST http://elk3:9200;
+      wp plugin install elasticpress --activate;
+      wp elasticpress index --setup;
       '
     volumes:
      - wp3_data:$wp_data
