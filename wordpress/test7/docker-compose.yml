@@ -130,16 +130,16 @@ services:
       wp config set DB_USER $user;
       wp config set DB_PASSWORD $pass;
       wp core install --path="$wp_data" --url="$url1" --title="$title1" --admin_user=$admin_user --admin_password=$admin_pass --admin_email=$email;
-      wp config set WP_REDIS_HOST redis1
-      wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT
-      wp config set WP_REDIS_PORT $WP_REDIS_PORT
-      wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD
-      wp config set WP_REDIS_SCHEME tls
-      wp config set WP_REDIS_SCHEME unix
-      wp config delete WP_REDIS_SCHEME
-      wp plugin install redis-cache --activate
-      wp redis status
-      wp redis enable --force
+      wp config set WP_REDIS_HOST redis1;
+      wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT;
+      wp config set WP_REDIS_PORT $WP_REDIS_PORT;
+      wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD;
+      wp config set WP_REDIS_SCHEME tls;
+      wp config set WP_REDIS_SCHEME unix;
+      wp config delete WP_REDIS_SCHEME;
+      wp plugin install redis-cache --activate;
+      wp redis status;
+      wp redis enable --force;
       '
     volumes:
      - wp1_data:$wp_data
@@ -164,16 +164,16 @@ services:
       wp config set DB_USER $user;
       wp config set DB_PASSWORD $pass;
       wp core install --path="$wp_data" --url="$url2" --title="$title2" --admin_user=$admin_user --admin_password=$admin_pass --admin_email=$email;
-      wp config set WP_REDIS_HOST redis2
-      wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT
-      wp config set WP_REDIS_PORT $WP_REDIS_PORT
-      wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD
-      wp config set WP_REDIS_SCHEME tls
-      wp config set WP_REDIS_SCHEME unix
-      wp config delete WP_REDIS_SCHEME
-      wp plugin install redis-cache --activate
-      wp redis status
-      wp redis enable --force
+      wp config set WP_REDIS_HOST redis2;
+      wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT;
+      wp config set WP_REDIS_PORT $WP_REDIS_PORT;
+      wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD;
+      wp config set WP_REDIS_SCHEME tls;
+      wp config set WP_REDIS_SCHEME unix;
+      wp config delete WP_REDIS_SCHEME;
+      wp plugin install redis-cache --activate;
+      wp redis status;
+      wp redis enable --force;
       '
     volumes:
      - wp2_data:$wp_data
@@ -198,16 +198,16 @@ services:
       wp config set DB_USER $user;
       wp config set DB_PASSWORD $pass;
       wp core install --path="$wp_data" --url="$url3" --title="$title3" --admin_user=$admin_user --admin_password=$admin_pass --admin_email=$email;
-      wp config set WP_REDIS_HOST redis3
-      wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT
-      wp config set WP_REDIS_PORT $WP_REDIS_PORT
-      wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD
-      wp config set WP_REDIS_SCHEME tls
-      wp config set WP_REDIS_SCHEME unix
-      wp config delete WP_REDIS_SCHEME
-      wp plugin install redis-cache --activate
-      wp redis status
-      wp redis enable --force
+      wp config set WP_REDIS_HOST redis3;
+      wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT;
+      wp config set WP_REDIS_PORT $WP_REDIS_PORT;
+      wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD;
+      wp config set WP_REDIS_SCHEME tls;
+      wp config set WP_REDIS_SCHEME unix;
+      wp config delete WP_REDIS_SCHEME;
+      wp plugin install redis-cache --activate;
+      wp redis status;
+      wp redis enable --force;
       '
     volumes:
      - wp3_data:$wp_data
