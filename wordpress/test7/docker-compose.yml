@@ -1,0 +1,258 @@
+version: "3.3"
+services:
+
+  nginx1:
+    image: nginx
+    links:
+      - wp1:wp1
+      - wp2:wp2
+      - wp3:wp3
+    volumes:
+      - ./nginx:/etc/nginx
+    ports:
+      - "80:80"
+
+  elk1:
+    image: elasticsearch:5.6.5
+    environment:
+      ES_JAVA_OPTS: "-Xms750m -Xmx750m"
+    ports:
+      - "9200"
+
+  elk2:
+    image: elasticsearch:5.6.5
+    environment:
+      ES_JAVA_OPTS: "-Xms750m -Xmx750m"
+    ports:
+      - "9200"
+
+  elk3:
+    image: elasticsearch:5.6.5
+    environment:
+      ES_JAVA_OPTS: "-Xms750m -Xmx750m"
+    ports:
+      - "9200"
+
+  mysql1:
+    image: $mysql_image
+    volumes:
+      - db1_data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=$pass
+      - MYSQL_DATABASE=$db
+      - MYSQL_USER=$user
+      - MYSQL_PASSWORD=$pass
+
+  mysql2:
+    image: $mysql_image
+    volumes:
+      - db2_data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=$pass
+      - MYSQL_DATABASE=$db
+      - MYSQL_USER=$user
+      - MYSQL_PASSWORD=$pass
+
+  mysql3:
+    image: $mysql_image
+    volumes:
+      - db3_data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=$pass
+      - MYSQL_DATABASE=$db
+      - MYSQL_USER=$user
+      - MYSQL_PASSWORD=$pass
+
+  wp1:
+    depends_on:
+      - mysql1
+      - redis1
+    image: $wp_image
+    ports:
+      - "80"
+    restart: always
+    environment:
+      - WORDPRESS_DB_NAME=$db
+      - WORDPRESS_DB_USER=$user
+      - WORDPRESS_DB_PASSWORD=$pass
+    volumes:
+      - wp1_data:$wp_data
+
+  wp2:
+    depends_on:
+      - mysql2
+      - redis2
+    image: $wp_image
+    ports:
+      - "80"
+    restart: always
+    environment:
+      - WORDPRESS_DB_NAME=$db
+      - WORDPRESS_DB_USER=$user
+      - WORDPRESS_DB_PASSWORD=$pass
+    volumes:
+      - wp2_data:$wp_data
+
+  wp3:
+    depends_on:
+      - mysql3
+      - redis3
+    image: $wp_image
+    ports:
+      - "80"
+    restart: always
+    environment:
+      - WORDPRESS_DB_NAME=$db
+      - WORDPRESS_DB_USER=$user
+      - WORDPRESS_DB_PASSWORD=$pass
+    volumes:
+      - wp3_data:$wp_data
+
+  wpcli1:
+    depends_on:
+      - mysql1
+      - wp1
+      - redis1
+    image: $wpcli_image
+    links:
+      - mysql1:mysql1
+    user: xfs
+    command: >
+      /bin/sh -c '
+      sleep $SLEEP_TIME;
+      wp --info;
+      wp config list;
+      wp config set DB_HOST mysql1;
+      wp config set DB_NAME $db;
+      wp config set DB_USER $user;
+      wp config set DB_PASSWORD $pass;
+      wp core install --path="$wp_data" --url="$url1" --title="$title1" --admin_user=$admin_user --admin_password=$admin_pass --admin_email=$email;
+      wp config set WP_REDIS_HOST redis1
+      wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT
+      wp config set WP_REDIS_PORT $WP_REDIS_PORT
+      wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD
+      wp config set WP_REDIS_SCHEME tls
+      wp config set WP_REDIS_SCHEME unix
+      wp config delete WP_REDIS_SCHEME
+      wp plugin install redis-cache --activate
+      wp redis status
+      wp redis enable --force
+      '
+    volumes:
+     - wp1_data:$wp_data
+    working_dir: $wp_data
+
+  wpcli2:
+    depends_on:
+      - mysql2
+      - wp2
+      - redis2
+    image: $wpcli_image
+    links:
+      - mysql2:mysql2
+    user: xfs
+    command: >
+      /bin/sh -c '
+      sleep $SLEEP_TIME;
+      wp --info;
+      wp config list;
+      wp config set DB_HOST mysql2;
+      wp config set DB_NAME $db;
+      wp config set DB_USER $user;
+      wp config set DB_PASSWORD $pass;
+      wp core install --path="$wp_data" --url="$url2" --title="$title2" --admin_user=$admin_user --admin_password=$admin_pass --admin_email=$email;
+      wp config set WP_REDIS_HOST redis2
+      wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT
+      wp config set WP_REDIS_PORT $WP_REDIS_PORT
+      wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD
+      wp config set WP_REDIS_SCHEME tls
+      wp config set WP_REDIS_SCHEME unix
+      wp config delete WP_REDIS_SCHEME
+      wp plugin install redis-cache --activate
+      wp redis status
+      wp redis enable --force
+      '
+    volumes:
+     - wp2_data:$wp_data
+    working_dir: $wp_data
+
+  wpcli3:
+    depends_on:
+      - mysql3
+      - wp3
+      - redis3
+    image: $wpcli_image
+    links:
+      - mysql3:mysql3
+    user: xfs
+    command: >
+      /bin/sh -c '
+      sleep $SLEEP_TIME;
+      wp --info;
+      wp config list;
+      wp config set DB_HOST mysql3;
+      wp config set DB_NAME $db;
+      wp config set DB_USER $user;
+      wp config set DB_PASSWORD $pass;
+      wp core install --path="$wp_data" --url="$url3" --title="$title3" --admin_user=$admin_user --admin_password=$admin_pass --admin_email=$email;
+      wp config set WP_REDIS_HOST redis3
+      wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT
+      wp config set WP_REDIS_PORT $WP_REDIS_PORT
+      wp config set WP_REDIS_PASSWORD $REDIS_PASSWORD
+      wp config set WP_REDIS_SCHEME tls
+      wp config set WP_REDIS_SCHEME unix
+      wp config delete WP_REDIS_SCHEME
+      wp plugin install redis-cache --activate
+      wp redis status
+      wp redis enable --force
+      '
+    volumes:
+     - wp3_data:$wp_data
+    working_dir: $wp_data
+
+  redis1:
+    image: $redis_image
+    restart: always
+    entrypoint: redis-server --appendonly yes --requirepass $REDIS_PASSWORD --maxmemory 512mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379"
+    volumes:
+      - redis1_data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  redis2:
+    image: $redis_image
+    restart: always
+    entrypoint: redis-server --appendonly yes --requirepass $REDIS_PASSWORD --maxmemory 512mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379"
+    volumes:
+      - redis2_data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  redis3:
+    image: $redis_image
+    restart: always
+    entrypoint: redis-server --appendonly yes --requirepass $REDIS_PASSWORD --maxmemory 512mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379"
+    volumes:
+      - redis3_data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+volumes:
+  db1_data:
+  wp1_data:
+  db2_data:
+  wp2_data:
+  db3_data:
+  wp3_data:
+  redis1_data:
+  redis2_data:
+  redis3_data:
