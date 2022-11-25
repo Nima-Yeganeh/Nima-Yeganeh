@@ -1,8 +1,9 @@
+
 version: "3.3"
 services:
 
   nginx1:
-    image: nginx
+    image: $nginx_image
     links:
       - wp1:wp1
       - wp2:wp2
@@ -13,21 +14,21 @@ services:
       - "80:80"
 
   elk1:
-    image: elasticsearch:5.6.5
+    image: $elk_image
     environment:
       ES_JAVA_OPTS: "-Xms750m -Xmx750m"
     ports:
       - "9200:9200"
 
   elk2:
-    image: elasticsearch:5.6.5
+    image: $elk_image
     environment:
       ES_JAVA_OPTS: "-Xms750m -Xmx750m"
     ports:
       - "9200"
 
   elk3:
-    image: elasticsearch:5.6.5
+    image: $elk_image
     environment:
       ES_JAVA_OPTS: "-Xms750m -Xmx750m"
     ports:
