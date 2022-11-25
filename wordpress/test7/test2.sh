@@ -20,3 +20,10 @@
       wp sg optimize fix-insecure-content disable;
       wp sg optimize preload-combined-css disable;
       wp sg database-optimization disable;
+
+      wp core update;
+      wp core update-db;
+      wp disable-comments settings --types=all;
+
+      wp plugin install wordpress-seo --activate;
+      wp rewrite structure %postname%;

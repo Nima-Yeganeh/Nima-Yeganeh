@@ -203,12 +203,16 @@ services:
       sleep $SLEEP_TIME;
       wp --info;
       wp config list;
+
       wp config set DB_HOST mysql3;
       wp config set DB_NAME $db;
       wp config set DB_USER $user;
       wp config set DB_PASSWORD $pass;
       wp core install --path="$wp_data" --url="$url3" --title="$title3" --admin_user=$admin_user --admin_password=$admin_pass --admin_email=$email;
-      
+
+      wp core update;
+      wp core update-db;
+
       wp config set WP_REDIS_HOST redis3;
       wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT;
       wp config set WP_REDIS_PORT $WP_REDIS_PORT;
@@ -239,6 +243,16 @@ services:
       wp elasticpress delete-index --yes;
       wp elasticpress list-features;
       wp elasticpress index --setup --yes; 
+
+      wp plugin install wordpress-seo --activate;
+      wp rewrite structure %postname%;
+      
+      wp disable-comments settings --types=all;
+      wp theme delete --all;
+      wp post delete $(wp post list --post_type='page' --format=ids);
+      wp post list --post_type=page;
+      wp post delete $(wp post list --post_type='post' --format=ids);
+      wp post list --post_type=post;
 
       '
     volumes:
