@@ -213,6 +213,9 @@ services:
       wp core update;
       wp core update-db;
 
+      wp config set WP_POST_REVISIONS 0;
+      wp rewrite structure %postname%;
+
       wp config set WP_REDIS_HOST redis3;
       wp config set WP_CACHE_KEY_SALT $WP_CACHE_KEY_SALT;
       wp config set WP_REDIS_PORT $WP_REDIS_PORT;
@@ -223,16 +226,12 @@ services:
       wp plugin install redis-cache --activate;
       wp redis status;
       wp redis enable --force;
+
       wp plugin delete akismet;
       wp plugin delete hello;
       wp config set EP_HOST http://elk3:9200;
       wp plugin install elasticpress --activate;
 
-      wp theme delete --all;
-      wp config set WP_POST_REVISIONS 0;
-
-      wp plugin delete akismet;
-      wp plugin delete hello;
       wp plugin install disable-comments --activate;
       wp disable-comments delete --types=all;
       wp disable-comments settings --types=all;
@@ -245,14 +244,17 @@ services:
       wp elasticpress index --setup --yes; 
 
       wp plugin install wordpress-seo --activate;
-      wp rewrite structure %postname%;
-      
       wp disable-comments settings --types=all;
-      wp theme delete --all;
+
       wp post delete $(wp post list --post_type='page' --format=ids);
       wp post list --post_type=page;
       wp post delete $(wp post list --post_type='post' --format=ids);
       wp post list --post_type=post;
+
+      wp theme activate twentytwenty;
+      wp theme activate twentytwentyone;
+      wp theme activate twentytwentytwo;
+      wp theme delete --all;
 
       '
     volumes:

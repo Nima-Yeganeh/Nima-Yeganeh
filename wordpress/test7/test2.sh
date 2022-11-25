@@ -27,3 +27,6 @@
 
       wp plugin install wordpress-seo --activate;
       wp rewrite structure %postname%;
+
+      wp theme activate twentytwentytwo;
+      wp theme delete --all;

@@ -11,43 +11,22 @@ http {
   }
   server {
     listen 80;
-    index index.php;
     server_name domain1.local;
     location / {
       proxy_pass http://domain1.local;
       proxy_redirect default;
     }
-    location = /favicon.ico {
-      log_not_found off;
-      access_log off;
-    }
-    location = /robots.txt {
-      allow all;
-      log_not_found off;
-      access_log off;
-    }
   }
   server {
     listen 80;
-    index index.php;
     server_name domain2.local;
     location / {
       proxy_pass http://domain2.local;
       proxy_redirect default;
     }
-    location = /favicon.ico {
-      log_not_found off;
-      access_log off;
-    }
-    location = /robots.txt {
-      allow all;
-      log_not_found off;
-      access_log off;
-    }
   }
   server {
     listen 80;
-    index index.php;
     server_name domain3.local;
     location / {
       proxy_pass http://domain3.local;
@@ -62,7 +41,7 @@ http {
       log_not_found off;
       access_log off;
     }
-    location ~* \.(png|jpg|jpeg|gif|ico)$ {
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
       expires max;
       log_not_found off;
     }
