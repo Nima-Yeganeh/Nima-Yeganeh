@@ -73,7 +73,7 @@ services:
       - redis1
     image: $wp_image
     ports:
-      - "80"
+      - "9000:9000"
     restart: always
     environment:
       - WORDPRESS_DB_NAME=$db
@@ -88,7 +88,7 @@ services:
       - redis2
     image: $wp_image
     ports:
-      - "80"
+      - "9000"
     restart: always
     environment:
       - WORDPRESS_DB_NAME=$db
@@ -103,7 +103,7 @@ services:
       - redis3
     image: $wp_image
     ports:
-      - "80"
+      - "9000"
     restart: always
     environment:
       - WORDPRESS_DB_NAME=$db
