@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM ubuntu:latest
 LABEL maintainer="Nima Yeganeh <yeganeh.nima.d@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 RUN cd /tmp
