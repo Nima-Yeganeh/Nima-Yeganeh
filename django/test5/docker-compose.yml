@@ -1,0 +1,45 @@
+version: '2'
+services:
+    dbhost:
+        image: postgres:9.4
+        restart: always
+        environment:
+            ### CHANGE PASSWORD! ###
+            POSTGRES_USER: djangocms
+            POSTGRES_PASSWORD: PASS7jed6an2pas1yug9WORD
+        volumes:
+            - dbdata:/var/lib/postgresql/data
+    uwsgi:
+        build: .
+        restart: always
+        links:
+            - dbhost:dbhost
+        ports:
+            - "8000:8000"
+        environment:
+            #ADMIN_USER: admin
+            #ADMIN_EMAIL: admin@example.org
+            #NGINX_SERVER_NAME: example.org
+
+            ### required settings: CHANGE secret key & hosts. CHANGE PASSWORD in django-CMS after login!
+            CMS_MODE: production
+            ADMIN_PASSWD: djangocms321
+            CMS_SECRET_KEY: whalyajkojmacdywaykpylkarpiowaithelbinsyqkxzubilmq
+            # allows all hosts ["*"] is insecure: 
+            CMS_ALLOWED_HOSTS: localhost
+            #CMS_ALLOWED_HOSTS: [".example.org", "127.0.0.1", "localhost"]
+
+        # django-cms will be installed in the /cms directory, if empty
+        volumes:
+            # modify mounted host directory (an existing project can be used)
+            - ./cms-project:/cms
+    nginx:
+        image: nginx:latest
+        restart: always
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes_from:
+            - uwsgi
+volumes:
+  dbdata:

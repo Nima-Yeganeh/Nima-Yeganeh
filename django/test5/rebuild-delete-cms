@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+read -r -p "THIS WILL DELETE THE CONTAINERS, DATA AND CMS-PROJECT FILES based on ${PWD##*/} - Are you sure? [yes/N] " response
+response=${response,,}    # tolower
+if [[ $response =~ ^(yes)$ ]]; then
+	docker-compose stop
+	docker-compose rm -f
+	echo "Removing cms-project"
+    rm -rf cms-project/
+	docker-compose build
+	docker-compose up -d
+    set +e
+	docker-compose logs
+fi

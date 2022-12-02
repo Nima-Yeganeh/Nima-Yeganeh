@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+cd /cms
+
+# static files will be served by nginx
+echo "[info] collecting static files..." 
+python manage.py collectstatic --noinput --verbosity=2 >> /var/log/collectstatic.log
+chown -R www-data:www-data media static

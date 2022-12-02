@@ -1,0 +1,66 @@
+#!/bin/bash
+set -e
+#set -x
+
+# The script installs Django-CMS, only on first run of container
+#   - the site will be installed in /cms/website1
+#   - it will preserve data when recreating containers
+#   - it enables installing into a mounted docker data-volume
+
+# include dot-files (if present) when cp or rm
+shopt -s dotglob
+cd /cms/
+
+echo -e "\n==========================================================================================="
+if [ ! -e /config/envplate-done ]; then
+    ep -v /etc/nginx/conf.d/*               # uses env variables to set nginx server name
+    touch /config/envplate-done             # run only once
+fi    
+
+# install django-CMS website1 with djangocms-installer (if no existing project is found)
+if [ ! -e /cms/manage.py ]; then
+    echo "[info] django-CMS: installation started..."
+    ep -v /config/cms_installer.ini         # uses env variables to set database url
+    djangocms --config-file /config/cms_installer.ini website1
+    pip install -r /config/cms_requirements.txt
+    mv -v /config/settings_dev.py website1/
+    mv -v /config/settings_production.py website1/
+    ep -v website1/settings_production.py   # uses env variables to set allowed hosts & secret key
+    pip freeze > cms_freeze_requirements.txt
+echo -e "\n==========================================================================================="
+echo    "[info] django-CMS: installation complete!"
+
+elif [ -e /cms/cms_freeze_requirements.txt ]; then
+    echo -e "\n==========================================================================================="
+    echo -e "[info] django-CMS: restoring an existing cms-project & installing its requirements\n" # run only once
+    pip install -r cms_freeze_requirements.txt
+    echo "[info] Synchronize the database state with the current set of models and migrations."
+    python manage.py migrate
+else 
+    echo -e "[error] django-CMS: found an existing cms-project, but lacking cms_freeze_requirements"
+    exit 1
+fi
+
+# wait a second, as sometimes with 'docker-compose start', the database is not yet ready
+printf  "[info] waiting for PostgreSQL container.."
+connect="OFFLINE"; i=0
+until [ $connect == "ONLINE" ] || [ "$i" -eq 15 ]
+do
+    nc -v -z -w 1 dbhost 5432 &> /dev/null && connect="ONLINE" || connect="OFFLINE"
+    printf "."; sleep 1
+    let "i+=1"
+done
+echo " ${connect}"
+
+# create a cms super-user as provided by env variables (checks first, if user exists)
+ADMIN_USER="${ADMIN_USER:-admin}" 
+ADMIN_EMAIL="${ADMIN_EMAIL:-admin@example.org}"
+echo "from django.contrib.auth import get_user_model; User = get_user_model(); print '[info] ${ADMIN_USER} exists' if User.objects.filter(username='${ADMIN_USER}').exists() else User.objects.create_superuser('${ADMIN_USER}', '${ADMIN_EMAIL}', '${ADMIN_PASSWD}')" | python manage.py shell
+echo -e "\n[info] Login User: ${ADMIN_USER} Password: ${ADMIN_PASSWD} at http://example.org/admin - '${CMS_MODE}' mode! "
+
+# collect static files
+collect-static
+echo -e "===========================================================================================\n"
+
+# else default to run whatever the user wanted like "bash"
+exec "$@"

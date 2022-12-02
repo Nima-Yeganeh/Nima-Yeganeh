@@ -1,0 +1,83 @@
+## various plugins - https://github.com/divio
+
+# A HTML snippet plugin for django CMS. (this plugin is a potential security hazard)
+djangocms-snippet    
+
+# A simple oembed plugin. Currently only video oembeds are implemented.
+#djangocms-oembed
+
+# Displays all plugins of another page or another language. 
+#djangocms-inherit
+
+# A Multi Column Plugin for django CMS, that uses a common grid system.
+#djangocms-grid
+
+# A Table Plugin for django CMS.
+#djangocms-table
+
+# django-taggit a simpler approach to tagging with Django.
+#django-taggit
+
+# A transparent sorted ManyToMany field for django
+#django-sortedm2m
+
+# A picture plugin for django CMS.
+#djangocms-picture
+
+# Allows you to upload a file. (quite limited, consider django-filer with CMS plugin instead)
+#djangocms-file
+
+# Displays a teaser box for another page or a URL. A picture and a description can be added.
+#djangocms-teaser
+
+# Plays Video Files or Youtube / Vimeo Videos. Uses the OSFlashVideoPlayer. 
+#djangocms-video
+
+# django-filer cms plugins for django-cms. A set of cms plugins that replace the plugins shipped with django-cms
+#   with versions that use file fields from django-filer - includes file, folder, link, image, teaser, video
+#   this is best installed by djangocms-installer! 
+#cmsplugin-filer
+
+## Aldryn Addons - https://github.com/aldryn
+# always freeze versions, requires.io will show outdated dependencies
+
+#aldryn-bootstrap3 is a plugin bundle provided for django CMS. This package extends the most used components of the Bootstrap framework. 
+#aldryn-bootstrap3>=0.5.1            # adds django-filer
+
+# Aldryn Boilerplate Bootstrap 3 is the most complete django CMS based Boilerplate for rapid development. 
+#aldryn-boilerplates>=0.7.2
+
+# Aldryn Style provides a plugin that wraps other plugins in CSS styling, by placing a class name on a containing element.
+#aldryn-style>=0.2.1
+
+## Aldryn Essential Addons 
+## http://www.divio.com/en/blog/aldryn-essential-addons-collection/
+
+# A combined news/weblog application for Aldryn and django CMS
+#   dependencies: aldryn-newsblog, aldryn-boilerplates, aldryn-common, aldryn-people, aldryn-reversion,
+#   aldryn-translation-tools, aldryn-categories, django-parler, etc.
+#aldryn-newsblog>=1.0.6              
+
+# Add questions and answers for Aldryn and django CMS
+#aldryn-faq>=1.0.0
+
+# An events publishing application for Aldryn and django CMS
+#aldryn-events>=1.0.0
+
+# A job publishing application for Aldryn and django CMS
+#aldryn-jobs>=1.0.1
+
+# Manage and publish lists and groups of people
+#aldryn-people>=1.0.1
+
+## other Aldryn Addons
+
+# A simple, Aldryn-compatible project that provides hierarchical categories as an independent model in your project.
+#aldryn-categories>=1.0.0
+
+# Flexible HTML forms for your Aldryn and django CMS projects to integrate them directly in your pages.
+#aldryn-forms>=0.5.1
+
+### Pin specific versions, if necessary ###
+#django-reversion==1.8.7             # or >=1.8.2,<1.8.6
+#djangocms-text-ckeditor==2.5.3 

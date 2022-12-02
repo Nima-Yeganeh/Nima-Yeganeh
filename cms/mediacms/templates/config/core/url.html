@@ -1,0 +1,34 @@
+MediaCMS.url = {
+    home: "/",
+    search: "/search",
+    latestMedia: "/latest",
+    featuredMedia: "/featured",
+    recommendedMedia: "/recommended",
+    members: "/members",
+    /* Error pages */
+    error404: "/error",
+    /* Archive pages */
+    tags: "/tags",
+    categories: "/categories",
+    /* User pages */
+    likedMedia: "/liked",
+    history: "/history",
+    /* Add pages */
+    addMedia: "/upload",
+    /* Profile/account edit pages */
+    editProfile: "{{user.edit_url}}",
+    {% if request.user.is_authenticated %}
+    signout: "/accounts/logout/",
+    editChannel: "{{user.default_channel_edit_url}}",
+    changePassword: "/accounts/password/change/",
+    /* Administration pages */
+    {% if IS_MEDIACMS_ADMIN %}admin: '/admin',{% endif %}
+    /* Management pages */
+    {% if IS_MEDIACMS_EDITOR %}manageMedia: "/manage/media",{% endif %}
+    {% if IS_MEDIACMS_MANAGER %}manageUsers: "/manage/users",{% endif %}
+    {% if IS_MEDIACMS_EDITOR %}manageComments: "/manage/comments",{% endif %}
+    {% else %}
+    signin: "/accounts/login/",
+    register: "/accounts/signup/",
+    {% endif %}
+};
