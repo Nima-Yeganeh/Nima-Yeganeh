@@ -1,0 +1,9 @@
+{% extends "django_sql_dashboard/widgets/_base_widget.html" %}
+
+{% load django_sql_dashboard %}
+
+{% block widget_results %}
+  {% for row in result.rows %}
+    {{ row.html|sql_dashboard_bleach }}
+  {% endfor %}
+{% endblock %}

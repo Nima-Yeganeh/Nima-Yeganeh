@@ -1,0 +1,10 @@
+{% extends "django_sql_dashboard/widgets/_base_widget.html" %}
+
+{% block widget_results %}
+  {% for row in result.rows %}
+    <div class="big-number">
+      <p><strong>{{ row.label }}</strong></p>
+      <h1>{{ row.big_number }}</h1>
+    </div>
+  {% endfor %}
+{% endblock %}

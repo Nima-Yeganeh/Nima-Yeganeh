@@ -1,0 +1,179 @@
+main {
+  margin-top: 1em;
+  font-family: Helvetica, sans-serif;
+}
+main img {
+  height: 2em;
+}
+table {
+  margin-top: 1em;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+th {
+  white-space: nowrap;
+  text-align: left;
+  padding: 4px;
+  padding-right: 1em;
+  border-right: 1px solid #eee;
+}
+td {
+  border-top: 1px solid #aaa;
+  border-right: 1px solid #eee;
+  padding: 4px;
+  vertical-align: top;
+  white-space: pre-wrap;
+}
+span.null {
+  color: #aaa;
+  font-weight: bold;
+}
+pre.json {
+  margin: 0;
+}
+.btn {
+  font-weight: 400;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #666;
+  padding: 0.5em 0.8em;
+  font-size: 0.9rem;
+  line-height: 1;
+  border-radius: 0.25rem;
+}
+.query-results {
+  border: 1px solid #666;
+  border-right: none;
+  margin: 1em 0;
+  padding: 1em;
+}
+.query-results textarea,
+.query-results pre.sql {
+  width: 95%;
+  border: 2px solid #666;
+  padding: 0.5em;
+}
+.pre-results textarea {
+  height: 4em;
+}
+div.query-parameters {
+  width: 80%;
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: 0.5em;
+  align-items: center;
+  margin-bottom: 1em;
+}
+div.query-parameters input[type="text"] {
+  border: 1px solid #666;
+  padding: 0.5em;
+}
+div.query-parameters label {
+  text-align: right;
+  font-weight: bold;
+  display: inline-block;
+  padding-right: 2em;
+}
+.completed-count-total-count {
+  width: 60%;
+  background-color: #efefef;
+  height: 3em;
+}
+.completed-count-total-count-bar {
+  background-color: blue;
+  height: 3em;
+}
+
+.save-dashboard-form p {
+  width: 80%;
+}
+.save-dashboard-form label {
+  text-align: left;
+  font-weight: bold;
+  display: inline-block;
+  width: 20%;
+}
+.save-dashboard-form input {
+  border: 1px solid #666;
+  padding: 0.5em;
+}
+.save-dashboard-form .errorlist {
+  color: red;
+}
+.save-dashboard-form .helptext {
+  color: #666;
+  white-space: nowrap;
+}
+ul.dashboard-columns {
+  column-count: 2;
+}
+ul.dashboard-columns li {
+  break-inside: avoid;
+  margin-bottom: 0.3em;
+}
+ul.dashboard-columns li p {
+  margin: 0;
+  color: #666;
+  font-size: 0.8em;
+}
+@media (max-width: 800px) {
+  ul.dashboard-columns {
+    column-count: auto;
+  }
+}
+
+svg.dropdown-menu-icon {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  cursor: pointer;
+  opacity: 0.8;
+  padding-left: 6px;
+}
+.dropdown-menu {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  line-height: 1.4;
+  font-size: 16px;
+  box-shadow: 2px 2px 2px #aaa;
+  background-color: #fff;
+  z-index: 1000;
+}
+.dropdown-menu ul,
+.dropdown-menu li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.dropdown-menu li {
+  border-bottom: 1px solid #ccc;
+}
+.dropdown-menu li:last-child {
+  border: none;
+}
+.dropdown-menu a:link,
+.dropdown-menu a:visited,
+.dropdown-menu a:hover,
+.dropdown-menu a:focus
+.dropdown-menu a:active {
+  text-decoration: none;
+  display: block;
+  padding: 4px 8px 2px 8px;
+  color: #222;
+  white-space: nowrap;
+}
+.dropdown-menu a:hover {
+  background-color: #eee;
+}
+.dropdown-menu .hook {
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 6px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #666;
+}
