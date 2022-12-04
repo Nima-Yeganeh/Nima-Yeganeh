@@ -6,7 +6,7 @@ services:
       - mariadb:mysql
     restart: always
     ports:
-      - 8080:80
+      - 8081:80
     environment:
       - WORDPRESS_DB_PASSWORD=password
       - WORDPRESS_DB_USER=root
