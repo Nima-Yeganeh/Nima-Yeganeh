@@ -1,0 +1,50 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Binary for this repo
+/containerized-golang-and-vuejs
+
+# Ava snapshots
+/test/component/__snapshots__/
+
+# Test binary, build with `go test -c`
+*.test
+
+# Cert file
+cert.pem
+
+# Key file
+key.pem
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Vscode
+/.vscode
+
+# Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
+.glide/
+
+# Node Modules
+/node_modules
+
+# Gitbook Generated Files
+/_book
+
+# Remove build directory
+/static/build/*
+
+# Dont add npm-debug.log
+/npm-debug.log
+
+# Mongo data
+/mongo_data
+
+# Go dependencies
+/vendor
+
+# Cypress files that are large
+cypress/videos
