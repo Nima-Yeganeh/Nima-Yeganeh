@@ -26,5 +26,14 @@ services:
     restart: always
     depends_on:
       - db1
+  mongodb1:
+    image: bitnami/mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+      - mongoconfig:/data/configdb
 volumes:
   db1_data:
+  mongodb:
+  mongoconfig:
