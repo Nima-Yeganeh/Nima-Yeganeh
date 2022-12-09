@@ -7,3 +7,4 @@ docker compose up -d
 docker compose down
 docker ps -a
 
+npm install mongodb
