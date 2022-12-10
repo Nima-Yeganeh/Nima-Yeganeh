@@ -1,0 +1,3 @@
+<p dir="rtl">
+Data written to a new line
+</p>
