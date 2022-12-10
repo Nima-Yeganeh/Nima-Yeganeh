@@ -33,7 +33,7 @@ function fetchTitle(url, onComplete = null) {
 }
 
 let id = 2819220;
-while (id < 2819241) {
+while (id < 2819291) {
 //    console.log(id);
     // let value = fetchTitle("https://www.tasnimnews.com/fa/news/"+id);
     fetchTitle("https://www.tasnimnews.com/fa/news/"+id);
