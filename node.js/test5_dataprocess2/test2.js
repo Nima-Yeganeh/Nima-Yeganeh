@@ -8,7 +8,6 @@ function fetchTitle(url, onComplete = null) {
         if (!error && response.statusCode === 200) {
             var $ = cheerio.load(body);
             // console.log(`URL = ${url}`);
-
             var title = $("head > title").text().trim();
             var title = title;
             var title = title.replace('Title','');
@@ -26,7 +25,6 @@ function fetchTitle(url, onComplete = null) {
             var title = title.replace('؟',' ');
             var title = title.replace('?',' ');
             var title = title.replace(' |','');
-
             var title = title.replace('Tasnim','')
             var title = title.replace('  ',' ');
             var title = title.replace('  ',' ');
