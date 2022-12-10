@@ -7,7 +7,7 @@ function fetchTitle(url, onComplete = null) {
         var output = url;   // default to URL       
         if (!error && response.statusCode === 200) {
             var $ = cheerio.load(body);
-            var title = $('.story').text();
+            var title = $('.time').text();
             var title = title.replace('-','  ');            
             console.log(title);
             fs.existsSync(filePath, function(exists) {
@@ -33,7 +33,7 @@ function fetchTitle(url, onComplete = null) {
 }
 
 let id = 2819220;
-while (id < 2819221) {
+while (id < 2819241) {
 //    console.log(id);
     // let value = fetchTitle("https://www.tasnimnews.com/fa/news/"+id);
     fetchTitle("https://www.tasnimnews.com/fa/news/"+id);
