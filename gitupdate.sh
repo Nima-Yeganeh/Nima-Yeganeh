@@ -7,3 +7,4 @@ git pull --rebase
 git pull
 git status
 echo 'done!'
+
