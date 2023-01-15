@@ -1,0 +1,8 @@
+uBridge version 0.9.18 running with WinPcap version 4.1.3 (packet.dll version 4.1.0.2980), based on libpcap version 1.0 branch 1_0_rel0b (20091008)
+Hypervisor TCP control server started (IP localhost port 54973).
+UDP tunnel connecting from local port 10012 to IPv4 address 127.0.0.1 on port 10013
+Ethernet interface \Device\NPF_{8AD50FFF-68F1-45A4-9B86-F78126EF1AA7}
+Source NIO listener thread for b75f6252-f148-4e35-92a2-c23bb3d000c7-0 has started
+Destination NIO listener thread for b75f6252-f148-4e35-92a2-c23bb3d000c7-0 has started
+recv: No error
+Destination NIO listener thread for b75f6252-f148-4e35-92a2-c23bb3d000c7-0 has stopped because of an error: No error 
