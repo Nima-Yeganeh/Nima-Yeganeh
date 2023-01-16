@@ -1,0 +1,11 @@
+>>> from box import Box
+>>> box = Box(Box.TOP | Box.RIGHT)
+>>> box.has_side
+True
+>>> box.has_both_sides
+False
+>>> box = Box(Box.TOP | Box.RIGHT | Box.LEFT)
+>>> box.has_side
+True
+>>> box.has_both_sides
+True

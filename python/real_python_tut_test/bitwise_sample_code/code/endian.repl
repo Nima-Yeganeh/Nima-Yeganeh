@@ -1,0 +1,19 @@
+>>> import sys
+>>> sys.byteorder
+'little'
+>>> raw = (1969).to_bytes(length=4, byteorder="big")
+>>> raw
+b'\x00\x00\x07\xb1'
+>>> int.from_bytes(raw, byteorder="big")
+1969
+>>> int.from_bytes(raw, byteorder="little")
+2970025984
+>>> from socket import htons, htonl, ntohs, ntohl
+>>> htons(1969)
+45319
+>>> htonl(1969)
+2970025984
+>>> ntohs(45319)
+1969
+>>> ntohl(2970025984)
+1969

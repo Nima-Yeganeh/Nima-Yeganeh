@@ -1,0 +1,58 @@
+>>> from adder import print_unsigned
+>>> for x in range(0x10):
+...     print_unsigned(x)
+...
+bits: 0000
+bits: 0001
+bits: 0010
+bits: 0011
+bits: 0100
+bits: 0101
+bits: 0110
+bits: 0111
+bits: 1000
+bits: 1001
+bits: 1010
+bits: 1011
+bits: 1100
+bits: 1101
+bits: 1110
+bits: 1111
+>>> from adder import half_adder
+>>> half_adder(0, 0)
+(0, 0)
+>>> half_adder(1, 0)
+(1, 0)
+>>> half_adder(0, 1)
+(1, 0)
+>>> half_adder(1, 1)
+(0, 1)
+>>> from adder import full_adder
+>>> for x in range(0, 0b1000):
+...     a = x >> 2
+...     b = (x & 0b10) >> 1
+...     c = (x & 0b1)
+...     s, cout = full_adder(a, b, c)
+...     print(a, b, c, cout, s)
+...
+0 0 0 0 0
+0 0 1 0 1
+0 1 0 0 1
+0 1 1 1 0
+1 0 0 0 1
+1 0 1 1 0
+1 1 0 1 0
+1 1 1 1 1
+>>> from adder import four_bit_adder
+>>> four_bit_adder(0, 0)
+bits: 0000
+0
+>>> four_bit_adder(1, 0)
+bits: 0001
+1
+>>> four_bit_adder(0b11, 0b11)
+bits: 0110
+6
+>>> four_bit_adder(0b1111, 0b1)
+bits: 0000
+0

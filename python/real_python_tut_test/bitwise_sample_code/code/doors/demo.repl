@@ -1,0 +1,26 @@
+>>> from doors import Doors
+>>> hallway = Doors()
+>>> hallway.open_door(3)
+>>> hallway.door_state
+8
+>>> bin(hallway.door_state)
+'0b1000'
+>>> hallway.open_door(5)
+>>> hallway.door_state
+40
+>>> bin(hallway.door_state)
+'0b101000'
+>>> hallway.is_open(3)
+8
+>>> hallway.is_open(4)
+0
+>>> hallway.is_open2(3)
+1
+>>> hallway.is_open2(4)
+0
+>>> hallway.toggle_door(3)
+>>> hallway.door_state
+32
+>>> hallway.toggle_door(3)
+>>> hallway.door_state
+40

@@ -1,0 +1,4 @@
+Django==3.1.2
+django-awl==1.4.0
+django-bstrap-modals==2.1.0
+djangorestframework==3.12.1

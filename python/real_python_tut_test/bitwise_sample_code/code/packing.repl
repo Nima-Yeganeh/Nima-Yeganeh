@@ -1,0 +1,26 @@
+>>> import math
+>>> math.pi
+3.141592653589793
+>>> math.pi & 0xFF
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for &: 'float' and 'int'
+>>> from struct import pack
+>>> pack(">d", math.pi)
+b'@\t!\xfbTD-\x18'
+>>> list(pack(">d", math.pi))
+[64, 9, 33, 251, 84, 68, 45, 24]
+>>> "".join([f"{byte:08b}" for byte in pack(">d", math.pi)])
+'0100000000001001001000011111101101010100010001000010110100011000'
+>>> from struct import unpack
+>>> bits = "0100000000001001001000011111101101010100010001000010110100011000"
+>>> unpack(
+...     ">d",
+...     bytes(int(bits[i:i+8], 2) for i in range(0, len(bits), 8))
+... )
+(3.141592653589793,)
+>>> unpack(
+...     ">hhhh",
+...     bytes(int(bits[i:i+8], 2) for i in range(0, len(bits), 8))
+... )
+(16393, 8699, 21572, 11544)

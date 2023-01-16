@@ -1,0 +1,81 @@
+{% extends "base.html" %}   <!-- edit_timeline.html -->
+{% load static %}
+
+{% block extra_script %}
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{% endblock extra_script %}
+
+{% block content %}
+<div id="vue-container">
+  <template>
+    <div v-if="!has_loaded">
+      <p>Loading...</p>
+    </div>
+    <div v-else class="row">
+      <div class="col-10 offset-1">
+        <div class="list-group">
+          <div class="list-group-item active">
+            <h4>[[name]]</h4>
+            <div class="row">
+              <div class="col-4 offset-1">
+                Title
+              </div>
+              <div class="col-2">
+                Clip Length (s)
+              </div>
+              <div class="col-2 offset-3">
+                <button class="btn btn-light" @click="add_entry()">Add</button>
+              </div>
+            </div>
+          </div>
+          <draggable v-model="entries" handle=".entry-drag-handle"
+              v-on:end='entry_moved'>
+            <div v-for="(entry, index) in entries" :key="entry.id" 
+                :data-entry_id="entry.id" :data-entry_rank="entry.rank"
+                class="list-group-item list-group-item-action">
+              <div class="row">
+                <div class="col-1 entry-drag-handle" style="cursor:move"
+                  >⠿</div>
+                <div class="col-4">
+                  <a href="#" @click="edit_entry(index)" 
+                    v-html="'' + (index + 1) + ' ' + entry.title"></a>
+                </div>
+                <div class="col-2" v-html="entry.length"></div>
+                <div class="col-3"></div>
+                <div class="col-2">
+                  <button class="btn btn-danger" @click="delete_entry(entry)"
+                    >Delete</button>
+                </div>
+              </div>
+            </div>
+          </draggable>
+        </div>
+      </div>
+    </div>
+  </template>
+</div>
+
+{% include "bsmodals/confirm.html" %}
+{% include "change_entry.html" with dialog_id="change-entry" title="Edit" no_click_off=True %}
+
+{% endblock content %}
+
+{% block body_script %}
+<script>
+// --- Globals
+var FETCH_URL = '{% url "timeline-detail" timeline.id %}';
+
+</script>
+
+<script src="{% static 'bsmodals/bsmodals.js' %}"></script>
+<script src="{% static 'bsmodals/restapi.js' %}"></script>
+
+<!-- Sched's scripts -->
+<script src="{% static 'js/utils.js' %}"></script>
+<script src="{% static 'js/timelines.js' %}"></script>
+
+<!-- Vue.Draggable (https://github.com/SortableJS/Vue.Draggable) -->
+<script src="//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
+
+{% endblock body_script %}

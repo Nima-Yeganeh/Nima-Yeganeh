@@ -1,0 +1,14 @@
+>>> from numpy import uint32
+>>> x = uint32(3)
+>>> x
+3
+>>> uint32(0b0110) | uint32(0b1101)
+15
+>>> ~uint32(0b0110)
+4294967289
+>>> x = ~uint32(0b0110)
+>>> type(x)
+<class 'numpy.uint32'>
+>>> from numpy import uint8
+>>> ~uint8(0b0110)
+249

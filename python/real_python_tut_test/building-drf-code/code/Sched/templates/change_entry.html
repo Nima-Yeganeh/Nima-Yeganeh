@@ -1,0 +1,19 @@
+{% extends 'bsmodals/form.html' %}
+
+{% block body %}
+
+<form>
+  <input type="hidden" name="timeline">
+  <input type="hidden" name="rank">
+  <div class="form-group">
+    <label for="title" class="col-form-label">Title</label>
+    <input type="text" class="form-control" name="title">
+  </div>
+  <div class="form-group">
+    <label for="length" class="col-form-label">Length</label>
+    <input type="number" class="form-control" name="length">
+    <div class="invalid-feedback"></div>
+  </div>
+</form>
+
+{% endblock body %}

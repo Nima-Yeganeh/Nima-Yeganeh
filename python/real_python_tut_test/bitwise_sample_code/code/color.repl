@@ -1,0 +1,23 @@
+>>> mona = 0x7F8053
+>>> mona
+8355923
+>>> red = mona >> 16
+>>> red
+127
+>>> hex(red)
+'0x7f'
+>>> blue = (mona & 0x00FF00) >> 8
+>>> blue
+128
+>>> hex(blue)
+'0x80'
+>>> green = (mona & 0xFF)
+>>> green
+83
+>>> hex(green)
+'0x53'
+>>> lisa = (red << 16) | (blue << 8) | green
+>>> lisa
+8355923
+>>> hex(lisa)
+'0x7f8053'

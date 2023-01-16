@@ -1,0 +1,61 @@
+>>> 42
+42
+>>> 0o52
+42
+>>> 0x2A
+42
+>>> 0b101010
+42
+>>> x = 0b101010
+>>> x
+42
+>>> f"{x:b}"
+'101010'
+>>> f"{x:08b}"
+'00101010'
+>>> oct(42)
+'0o52'
+>>> hex(42)
+'0x2a'
+>>> bin(42)
+'0b101010'
+>>> 0b0110 & 0b1101
+4
+>>> bin(0b0110 & 0b1101)
+'0b100'
+>>> bin(0b0110 | 0b1101)
+'0b1111'
+>>> bin(~0b0110)
+'-0b111'
+>>> x = ~0b0110
+>>> x
+-7
+>>> bin(-7)
+'-0b111'
+>>> ~0
+-1
+>>> bin(-1)
+'-0b1'
+>>> from ctypes import c_uint8 as unsigned_byte
+>>> unsigned_byte(-42)
+c_ubyte(214)
+>>> x = unsigned_byte(-42).value
+>>> x
+214
+>>> unsigned_byte(0b0110) & unsigned_byte(0b1101)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for &: 'c_ubyte' and 'c_ubyte'
+>>> from array import array
+>>> signed = array("b", [-42, 42])
+>>> unsigned = array("B")
+>>> unsigned.frombytes(signed.tobytes())
+>>> unsigned
+array('B', [214, 42])
+>>> bin(unsigned[0])
+'0b11010110'
+>>> bin(unsigned[1])
+'0b101010'
+>>> from struct import pack, unpack
+>>> unpack("BB", pack("bb", -42, 42))
+(214, 42)
