@@ -10,3 +10,5 @@
 
 # Open Registry Editor, now Go to HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\DeviceGuard. Add a new DWORD value named EnableVirtualizationBasedSecurity and set it to 0 to disable it.
 # Next Go to HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\LSA. Add a new DWORD value named LsaCfgFlags and set it to 0 to disable it.
+
+# important >> disable windows core isolation feature
