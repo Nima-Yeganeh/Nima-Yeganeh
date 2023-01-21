@@ -41,3 +41,7 @@ bridge-domain 10
     member VNI 5010
     member GiagabitEthernet 1 service-instance 1
 
+# show nve vni
+# show nve vni interface nve1
+# show nve interface nve1
+# show nve interface nve1 detail
