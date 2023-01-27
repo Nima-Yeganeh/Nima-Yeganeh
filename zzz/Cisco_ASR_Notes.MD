@@ -44,3 +44,35 @@ ASR 9000
 NCS 5000
 # https://regional.forum.ix.br/files/apresentacao/arquivo/458/IX-FORUM_RS2018_ROTEADORES-CISCO-PARA-ISPS_GUILHERME-RODRIGUES.pdf
 
+
+# ASR 9K and 9000v
+# https://www.cisco.com/c/dam/en/us/products/collateral/routers/asr-9000-series-aggregation-services-routers/asr_nv_100611.pdf
+
+# ASR 1000 and ISR 4000 and CSR 1000
+ISR G1 >> 1800/2800/3800
+ISR G2 >> 800/1900/2900/3900
+ISR 4451 (IOS XE)
+ISR 4431 and 4300 (IOS XE)
+ISR 4321 >> 50-100 Mbps
+ISR 4331 >> 100-300 Mbps
+ISR 4351 >> 200-400 Mbps
+ISR 4431 >> 500-1000 Mbps
+ISR 4451 >> 1-2 Gbps
+ISR 4000 >> Modular >> T1/E1/FXO/ADSL/VDSL/3G/4G/FXS/CME/SRST/SW
+CSR 1000v >> IOS XE >> EEM >> Restconf over HTTPS >> JSON/XML/YANG
+# https://www.cisco.com/c/dam/global/hr_hr/events/2016/cisco-connect/pdf/Cisco_IOS_XE_Routers_-_ASR_1000_and_ISR_4000_-_The_Evolution_of_Converged_Network_Edge_Architectures_-_Jaromir_Pila_Cisco.pdf
+
+
+# ASR 1000
+# https://www.andovercg.com/datasheets/cisco-ASR-1000-datasheet.pdf
+# https://www.andovercg.com/datasheets/cisco-asr-1000-series-aggregation-services-routers-datasheet.pdf
+# https://www.router-switch.com/media/upload/product-pdf/cisco-router-asr-1000-datasheet.pdf
+
+# ASR 9K
+# https://www.ciscolive.com/c/dam/r/ciscolive/emea/docs/2020/pdf/BRKARC-2003.pdf
+Access/Aggregation >> 9001(240Gbps)/9901(456Gbps)/9904(16Tbps)
+SP or Service Edge >> Peering/P/PE/CE >> 9006(16Tbps)/9906(32Tbps)/9010(32Tbps)/9910(64Tbps)
+SP Core or Servie Edge >> Mobility and Broadband >> 9912(80Tbps)/9922(160Tbps)
+G1 >> 9000
+G2 >> 9900
+ASR 9K >> Control Module >> RP3 and RSP5
