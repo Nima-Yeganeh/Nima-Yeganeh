@@ -52,3 +52,6 @@ IOS XR Upgrade Procedure (NEW)
     install add
     install deactivate
     install rollback
+MPLS Explicit Null
+    With explicit NULL, the penultimate router swaps an MPLS label with a NULL label, and sends a labeled packet to the egress router. The egress router performs an MPLS label lookup and finds a NULL label which triggers another lookup in IP routing table.
+    
