@@ -54,4 +54,8 @@ IOS XR Upgrade Procedure (NEW)
     install rollback
 MPLS Explicit Null
     With explicit NULL, the penultimate router swaps an MPLS label with a NULL label, and sends a labeled packet to the egress router. The egress router performs an MPLS label lookup and finds a NULL label which triggers another lookup in IP routing table.
-    
+NSR and NSF
+    Non Stop Forwarding (NSF) and Non Stop Routing (NSR) are two different mechanisms to prevent routing protocol re-convergence during a processor switchover.
+HSRP or VRRP Election
+    HSRP active/standby router election process uses priority value (0-255) that is manually configured on the router (255 is the highest). By default , the priority is 100 . If all the routers are set to default value then the router with highest IP address on the HSRP interface becomes the active router.
+BFD vs UDLD
