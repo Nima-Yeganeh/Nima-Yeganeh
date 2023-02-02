@@ -59,3 +59,4 @@ NSR and NSF
 HSRP or VRRP Election
     HSRP active/standby router election process uses priority value (0-255) that is manually configured on the router (255 is the highest). By default , the priority is 100 . If all the routers are set to default value then the router with highest IP address on the HSRP interface becomes the active router.
 BFD vs UDLD
+IOS XR vs IOS vs IOS XE (Structure or Kernel Diff)
