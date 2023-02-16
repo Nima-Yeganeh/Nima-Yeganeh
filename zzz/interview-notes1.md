@@ -11,7 +11,7 @@ Traceroute
         By default, traceroute will send three packets to each hop in the path. The exact type of packet varies between implementations, and can also be changed with different flags, but this same basic methodology is used in all cases. 
 BGP TTL
     What is TTL value for Ibgp and Ebgp?
-        iBGP uses TTL=255. eBGP uses TTL=1 and sometimes ebgp-multihoop is needed.
+        iBGP uses TTL=255. eBGP uses TTL=1 and sometimes ebgp-multihop is needed.
 OSPF LSA Types
     6 Types of OSPF LSA
         Type1 is a Router LSA.
@@ -25,7 +25,7 @@ IBGP vs EBGP
 HSRB vs VRRP vs GLBP
 LACP vs MLAG vs VPC
     What is MLAG and LACP?
-        he main purpose of MLAG is to deliver system-level redundancy in the event one of the chassis fails. LACP (Link Aggregation Control Protocol), a subcomponent of IEEE 802.3ad standard, provides a method to control the bundling of several physical ports together to form a single logical channel.
+        The main purpose of MLAG is to deliver system-level redundancy in the event one of the chassis fails. LACP (Link Aggregation Control Protocol), a subcomponent of IEEE 802.3ad standard, provides a method to control the bundling of several physical ports together to form a single logical channel.
     What is the difference between vPC and MLAG?
         MLAG is a public protocol that is supported by almost every vendor using their own custom rolled implementation, while vPC is a Cisco Nexus specific protocol, not all the vendors have this technology. Thus, MLAG setup is a bit easier than vPC.
 EBGP Multihop
