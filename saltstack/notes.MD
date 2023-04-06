@@ -35,14 +35,31 @@ pip install salt-ssh
 
 cat /etc/salt/roster
 vi /etc/salt/roster
-# Example
+# YAML Example
 ID1:
   host: 192.168.0.1
   user: root
-  sudo: true
+  sudo: True
 ID2:
   host: 192.168.0.2
   user: root
-  sudo: true
+  sudo: True
 
 salt-ssh '*' cmd.run 'hostname'
+
+# Salt >> Config Management For >> Files/Users/Services/Profiles
+
+# File Example
+make_a_file:
+    file.managed:
+        - name: /tmp/test
+        - makedirs: True
+        - contents:
+            - We made a file
+            - That was easy
+
+sudo salt-call state.apply states/files/file-example
+
+cat /etc/os-release
+
+# Minions need to be able to connect to the Master on TCP ports 4505 and 4506. Minions do not need any inbound ports open.
