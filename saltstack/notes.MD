@@ -63,3 +63,4 @@ sudo salt-call state.apply states/files/file-example
 cat /etc/os-release
 
 # Minions need to be able to connect to the Master on TCP ports 4505 and 4506. Minions do not need any inbound ports open.
+
